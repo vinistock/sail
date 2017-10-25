@@ -3,7 +3,7 @@ PATH
   specs:
     sail (0.1.0)
       rails (~> 5.1.4)
-      sass-rails
+      sass-rails (~> 5.0.6)
 
 GEM
   remote: https://rubygems.org/
