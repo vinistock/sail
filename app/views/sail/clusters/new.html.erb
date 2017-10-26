@@ -1,0 +1,16 @@
+<div id="cluster-analysis-page">
+  <section>
+    <h1>Cluster analysis</h1>
+
+    <%= form_tag(clusters_report_path, method: :get) do %>
+        <label for="model">Model</label>
+        <select name="model" id="model">
+          <% @models.each do |model| %>
+            <option value="<%= model %>"><%= model %></option>
+          <% end %>
+        </select>
+
+        <button type="submit">Generate</button>
+    <% end %>
+  </section>
+</div>

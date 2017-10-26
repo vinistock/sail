@@ -25,4 +25,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'codeclimate-test-reporter', '~> 1.0'
   s.add_development_dependency 'byebug', '~> 9.0'
   s.add_development_dependency 'bundler', '~> 1.15'
+  s.add_development_dependency 'rails-controller-testing', '~> 1.0.2'
 end
