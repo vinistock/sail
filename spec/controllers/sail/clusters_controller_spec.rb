@@ -40,7 +40,7 @@ describe Sail::ClustersController, type: :controller do
       it 'returns status ok' do
         subject
         expect(response).to have_http_status(:ok)
-        expect(response.body).to eq("[\"name\",\"value\",\"real\",\"content\"]")
+        expect(response.body).to eq("[\"Name\",\"Value\",\"Real\",\"Content\"]")
       end
     end
   end

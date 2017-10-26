@@ -17,7 +17,7 @@ module Sail
       columns = columns_params[:model].classify.safe_constantize&.column_names - %w(id)
 
       respond_to do |f|
-        f.json { render json: columns, status: :ok }
+        f.json { render json: columns.map(&:capitalize), status: :ok }
       end
     end
 
