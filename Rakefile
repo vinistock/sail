@@ -17,5 +17,5 @@ Dir[File.join(File.dirname(__FILE__), 'tasks/**/*.rake')].each {|f| load f }
 require 'rspec/core'
 require 'rspec/core/rake_task'
 
-RSpec::Core::RakeTask.new(:spec => 'app:db:test:prepare')
-task :default => :spec
+RSpec::Core::RakeTask.new(spec: 'app:db:test:prepare')
+task default: :spec
