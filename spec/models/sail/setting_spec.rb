@@ -86,17 +86,26 @@ describe Sail::Setting, type: :model do
   end
 
   describe '.set' do
-    subject { described_class.set(:setting, :new_value) }
-    let!(:setting) { described_class.create(name: :setting, value: :old_value, cast_type: described_class.cast_types['string']) }
+    before { Rails.cache.delete('setting_get_setting') }
 
-    it 'deletes cache' do
-      expect(Rails.cache).to receive(:delete).with('setting_get_setting')
-      subject
-    end
+    [
+      { type: 'string', old: 'old_value', new: 'new_value', expected: 'new_value' },
+      { type: 'boolean', old: 'false', new: 'true', expected: 'true' },
+      { type: 'boolean', old: 'false', new: true, expected: 'true' }
+    ].each do |test_data|
+      context "when changing value of a #{test_data[:type]} setting" do
+        let!(:setting) { described_class.create(name: :setting, value: test_data[:old], cast_type: described_class.cast_types[test_data[:type]]) }
 
-    it 'updates setting value in database' do
-      subject
-      expect(setting.reload.value).to eq('new_value')
+        it 'sets value appropriately' do
+          described_class.set(:setting, test_data[:new])
+          expect(setting.reload.value).to eq(test_data[:expected])
+        end
+
+        it 'deletes cache' do
+          expect(Rails.cache).to receive(:delete).with('setting_get_setting')
+          described_class.set(:setting, test_data[:new])
+        end
+      end
     end
   end
 end

@@ -26,7 +26,9 @@ module Sail
     end
 
     def self.set(name, value)
-      Setting.where(name: name).update(value: value)
+      setting = Setting.find_by(name: name)
+      value_cast = cast_value_for_set(setting, value)
+      setting.update_attributes(value: value_cast)
       Rails.cache.delete("setting_get_#{name}")
     end
 
@@ -40,6 +42,23 @@ module Sail
         setting.value.split(';')
       else
         setting.value
+      end
+    end
+
+    def self.cast_value_for_set(setting, value)
+      case setting.cast_type.to_sym
+      when :integer, :range
+        value.to_i
+      when :boolean
+        if value.is_a?(String)
+          value
+        else
+          value ? 'true' : 'false'
+        end
+      when :array
+        value.is_a?(String) ? value : value.join(';')
+      else
+        value
       end
     end
 
