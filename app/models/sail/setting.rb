@@ -3,12 +3,19 @@
 module Sail
   class Setting < ApplicationRecord
     FULL_RANGE = 0...100
+    SETTINGS_PER_PAGE = 20
     validates_presence_of :name, :value, :cast_type
     validates_uniqueness_of :name
     enum cast_type: %i[integer string boolean range array].freeze
 
     validate :value_is_within_range, if: -> { self.range? }
     validate :value_is_true_or_false, if: -> { self.boolean? }
+
+    scope :paginated, ->(page) do
+      select(:name, :description, :value)
+        .offset(page * SETTINGS_PER_PAGE)
+        .limit(SETTINGS_PER_PAGE)
+    end
 
     def self.get(name)
       Rails.cache.fetch("setting_get_#{name}", expires_in: 10.minutes) do
