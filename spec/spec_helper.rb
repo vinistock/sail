@@ -6,9 +6,11 @@ require 'byebug'
 require 'rspec/rails'
 require 'simplecov'
 require 'rails/all'
+require 'database_cleaner'
 require 'sail'
 
 SimpleCov.start
+DatabaseCleaner.strategy = :truncation
 
 RSpec.configure do |config|
   config.expect_with :rspec do |c|
@@ -17,4 +19,19 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
   config.order = :random
+
+  config.before(:each) do
+    DatabaseCleaner.clean
+  end
+end
+
+ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
+ActiveRecord::Schema.define do
+  create_table :sail_settings, force: true do |t|
+    t.string :name, null: false
+    t.text :description
+    t.string :value, null: false
+    t.integer :cast_type, null: false, limit: 2
+    t.index ["name"], name: "index_settings_on_name"
+  end
 end
