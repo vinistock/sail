@@ -5,6 +5,7 @@ class CreateSailSettings < ActiveRecord::Migration<%= migration_version %>
       t.text :description
       t.string :value, null: false
       t.integer :cast_type, null: false, limit: 2
+      t.timestamps
       t.index ["name"], name: "index_settings_on_name", unique: true
     end
   end

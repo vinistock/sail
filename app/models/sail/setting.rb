@@ -13,7 +13,7 @@ module Sail
 
     scope :paginated, ->(page) do
       select(:name, :description, :value)
-        .offset(page * SETTINGS_PER_PAGE)
+        .offset(page.to_i * SETTINGS_PER_PAGE)
         .limit(SETTINGS_PER_PAGE)
     end
 

@@ -9,5 +9,10 @@ describe Sail::SettingsController, type: :controller do
       subject
       expect(response).to have_http_status(:ok)
     end
+
+    it 'sets eTag in response headers' do
+      subject
+      expect(response.headers['ETag']).to_not be_nil
+    end
   end
 end
