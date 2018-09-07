@@ -2,7 +2,7 @@
 
 # Sail
 
-A gem to bring into your Rails application settings to be used as knobs and gauges for controlling behavior. 
+This Rails engine brings a setting model into your app to be used as feature flags, gauges, knobs and other live controls you may need. 
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -36,6 +36,7 @@ create_table :sail_settings do |t|
   t.string :value, null: false
   t.integer :cast_type, null: false, limit: 2
   t.index ["name"], name: "index_settings_on_name", unique: true
+  t.timetamps
 end
 ```
 
@@ -52,37 +53,43 @@ Possible cast types are
 
 ```ruby
 # Get setting value with appropriate cast type 
-Setting.get('name')
+Sail::Setting.get('name')
 
 # Set setting value
-Setting.set('name', 'value') 
+Sail::Setting.set('name', 'value') 
 ```
 
 ## Examples
 
 ```ruby
 # Integer setting
-Setting.create(name: :my_setting, cast_type: :integer, description: 'A very important setting', value: '15')
-Setting.get(:my_setting)
+Sail::Setting.create(name: :my_setting, cast_type: :integer, description: 'A very important setting', value: '15')
+Sail::Setting.get(:my_setting)
 => 15
 
 # String setting
-Setting.create(name: :my_setting, cast_type: :string, description: 'A very important setting', value: '15')
-Setting.get(:my_setting)
+Sail::Setting.create(name: :my_setting, cast_type: :string, description: 'A very important setting', value: '15')
+Sail::Setting.get(:my_setting)
 => '15'
 
 # Boolean setting
-Setting.create(name: :my_setting, cast_type: :boolean, description: 'A very important setting', value: 'true')
-Setting.get(:my_setting)
+Sail::Setting.create(name: :my_setting, cast_type: :boolean, description: 'A very important setting', value: 'true')
+Sail::Setting.get(:my_setting)
 => true
 
 # Range setting (ranges only accept values between 0...100)
-Setting.create(name: :my_setting, cast_type: :range, description: 'A very important setting', value: '99')
-Setting.get(:my_setting)
+Sail::Setting.create(name: :my_setting, cast_type: :range, description: 'A very important setting', value: '99')
+Sail::Setting.get(:my_setting)
 => 99
 
 # Array setting
-Setting.create(name: :my_setting, cast_type: :array, description: 'A very important setting', value: 'John;Alfred;Michael')
-Setting.get(:my_setting)
+Sail::Setting.create(name: :my_setting, cast_type: :array, description: 'A very important setting', value: 'John;Alfred;Michael')
+Sail::Setting.get(:my_setting)
 => ['John', 'Alfred', 'Michael']
 ```
+
+## Managing your settings live
+
+Sail brings a simple dashboard so that you can manage your settings and update their values as needed.
+
+![dashboard](https://raw.githubusercontent.com/vinistock/sail/master/app/assets/images/sail/sail.png)

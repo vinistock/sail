@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Sail
   class Engine < ::Rails::Engine
     require 'jquery-rails'

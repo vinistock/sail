@@ -1,10 +1,10 @@
 PATH
   remote: .
   specs:
-    sail (0.1.0)
-      jquery-rails (~> 4.3.1)
-      rails (~> 5.2.0)
-      sass-rails (~> 5.0.6)
+    sail (1.0.0)
+      jquery-rails
+      rails
+      sass-rails
 
 GEM
   remote: https://rubygems.org/

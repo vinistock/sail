@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Sail
   class SettingsController < ApplicationController
     def index
@@ -15,8 +17,8 @@ module Sail
     private
 
     def value
-      if params[:cast_type] == 'boolean'
-        params[:value] == 'on'
+      if params[:cast_type] == Sail::ConstantCollection::BOOLEAN
+        params[:value] == Sail::ConstantCollection::ON
       else
         params[:value]
       end
