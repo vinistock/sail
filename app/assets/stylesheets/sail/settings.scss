@@ -68,6 +68,9 @@
     .setting-description {
       clear: both;
       padding: 15px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
     .value-input {

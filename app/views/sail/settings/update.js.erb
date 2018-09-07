@@ -1,5 +1,12 @@
 var messageDiv = $("<%= "#setting-message-#{@setting.name}" %>");
-messageDiv.html("<p><%= I18n.t('sail.updated') %></p>");
+var cardDiv = messageDiv.closest(".card");
+var offset = cardDiv.offset();
+var width = cardDiv.width();
+var height = cardDiv.height();
+var centerX = (offset.left + width / 2) - 25;
+var centerY = (offset.top + height / 2) + 15;
+
+messageDiv.html("<p style='position: absolute; top: " + centerY + "px; left: " + centerX + "px;'><%= I18n.t('sail.updated') %></p>");
 
 setTimeout(function () {
     messageDiv.find("p").fadeOut("slow");
