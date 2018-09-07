@@ -93,3 +93,10 @@ Sail::Setting.get(:my_setting)
 Sail brings a simple dashboard so that you can manage your settings and update their values as needed.
 
 ![dashboard](https://raw.githubusercontent.com/vinistock/sail/master/app/assets/images/sail/sail.png)
+
+## Contributing
+
+Please refer to this simple [guideline].
+
+[guideline]: https://github.com/vinistock/sail/blob/master/CONTRIBUTING.md
+
