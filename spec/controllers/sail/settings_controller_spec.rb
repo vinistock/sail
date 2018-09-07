@@ -23,7 +23,7 @@ describe Sail::SettingsController, type: :controller do
     it 'updates setting value' do
       expect(setting.value).to eq('old value')
       subject
-      expect(response).to have_http_status(:no_content)
+      expect(response).to have_http_status(:ok)
       expect(setting.reload.value).to eq('new value')
     end
   end
