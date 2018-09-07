@@ -1,32 +1,34 @@
-<div class="card">
-  <h3 class="title"><%= setting.name %></h3>
-  <hr/>
+<% cache setting do %>
+  <div class="card">
+    <h3 class="title"><%= setting.name %></h3>
+    <hr/>
 
-  <div class="label-container">
-    <label class="type-label"><%= "#{I18n.t('sail.setting_type')}: #{setting.cast_type}" %></label>
-  </div>
-
-  <p class="setting-description"><%= setting.description %></p>
-  <div id="<%= "setting-message-#{setting.name}" %>" class="setting-message"></div>
-
-  <%= form_tag(setting_path(name: setting.name), method: :put, remote: true) do %>
-    <%= hidden_field_tag(:cast_type, setting.cast_type) %>
-
-    <div class="card-body-container">
-      <div class="card-body">
-        <% if setting.boolean? %>
-          <label class="switch">
-            <input type="checkbox" name="value" <%= setting.value == 'true' ? 'checked' : '' %>>
-            <span class="slider round"></span>
-          </label>
-        <% elsif setting.range? %>
-          <input type="range" min="0" max="99" value="<%= setting.value %>" name="value" class="value-slider">
-        <% else %>
-          <input type="text" name="value" class="value-input" value="<%= setting.value %>"/>
-        <% end %>
-
-        <button type="submit" class="btn-value-submit"><%= I18n.t('sail.save') %></button>
-      </div>
+    <div class="label-container">
+      <label class="type-label"><%= "#{I18n.t('sail.setting_type')}: #{setting.cast_type}" %></label>
     </div>
-  <% end %>
-</div>
+
+    <p class="setting-description"><%= setting.description %></p>
+    <div id="<%= "setting-message-#{setting.name}" %>" class="setting-message"></div>
+
+    <%= form_tag(setting_path(name: setting.name), method: :put, remote: true) do %>
+      <%= hidden_field_tag(:cast_type, setting.cast_type) %>
+
+      <div class="card-body-container">
+        <div class="card-body">
+          <% if setting.boolean? %>
+            <label class="switch">
+              <input type="checkbox" name="value" <%= setting.value == 'true' ? 'checked' : '' %>>
+              <span class="slider round"></span>
+            </label>
+          <% elsif setting.range? %>
+            <input type="range" min="0" max="99" value="<%= setting.value %>" name="value" class="value-slider">
+          <% else %>
+            <input type="text" name="value" class="value-input" value="<%= setting.value %>"/>
+          <% end %>
+
+          <button type="submit" class="btn-value-submit"><%= I18n.t('sail.save') %></button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -28,6 +28,10 @@ html, body {
   text-align: center;
 }
 
+.clearfix {
+  clear: both;
+}
+
 #nav-bar {
   background-color: $dark_gray;
   color: $light_gray;
@@ -35,5 +39,24 @@ html, body {
 
   .title {
     margin: 0;
+  }
+}
+
+#pagination {
+  text-align: center;
+
+  a {
+    color: $main_black;
+    text-decoration: none;
+    background-color: white;
+    padding: 15px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+
+    &.active {
+      background-color: $dark_teal;
+      color: white;
+    }
   }
 }

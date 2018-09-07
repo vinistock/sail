@@ -3,7 +3,7 @@
 module Sail
   class Setting < ApplicationRecord
     FULL_RANGE = 0...100
-    SETTINGS_PER_PAGE = 20
+    SETTINGS_PER_PAGE = 8
     validates_presence_of :name, :value, :cast_type
     validates_uniqueness_of :name
     enum cast_type: %i[integer string boolean range array].freeze

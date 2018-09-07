@@ -47,8 +47,8 @@ describe Sail::Setting, type: :model do
       let!(:settings) { (0...40).map { |i| described_class.create(name: "setting_#{i}", cast_type: :integer, value: '0') } }
 
       it 'paginates results' do
-        expect(described_class.paginated(0).map(&:name)).to eq(settings[0...20].map(&:name))
-        expect(described_class.paginated(1).map(&:name)).to eq(settings[20...40].map(&:name))
+        expect(described_class.paginated(0).map(&:name)).to eq(settings[0...8].map(&:name))
+        expect(described_class.paginated(1).map(&:name)).to eq(settings[8...16].map(&:name))
       end
     end
   end

@@ -4,6 +4,10 @@
   height: 100vh;
   color: $main_black;
 
+  #settings-container {
+    height: 80%;
+  }
+
   .card {
     min-height: 230px;
     background-color: white;
@@ -30,6 +34,7 @@
       color: $dark_green;
       font-size: 18px;
       font-weight: bolder;
+      z-index: 5;
     }
     
     .card-body-container {
