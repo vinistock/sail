@@ -12,7 +12,7 @@ module Sail
     validate :value_is_true_or_false, if: -> { self.boolean? }
 
     scope :paginated, ->(page) do
-      select(:name, :description, :value)
+      select(:name, :description, :value, :cast_type)
         .offset(page.to_i * SETTINGS_PER_PAGE)
         .limit(SETTINGS_PER_PAGE)
     end
@@ -30,6 +30,7 @@ module Sail
       value_cast = cast_value_for_set(setting, value)
       setting.update_attributes(value: value_cast)
       Rails.cache.delete("setting_get_#{name}")
+      setting
     end
 
     def self.cast_setting_value(setting)

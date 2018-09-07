@@ -1,0 +1,6 @@
+var messageDiv = $("<%= "#setting-message-#{@setting.name}" %>");
+messageDiv.html("<p><%= I18n.t('sail.updated') %></p>");
+
+setTimeout(function () {
+    messageDiv.find("p").fadeOut("slow");
+}, 1500);

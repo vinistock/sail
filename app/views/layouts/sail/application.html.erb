@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sail</title>
-  <%= stylesheet_link_tag    "sail/application", media: "all" %>
-  <%= javascript_include_tag "sail/application" %>
+  <title><%= I18n.t('sail.page_title') %></title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <%= stylesheet_link_tag    'sail/application', media: 'all' %>
+  <%= javascript_include_tag 'sail/application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 <div id="controller-picker" class="<%= controller_name %>-controller">
+  <nav id="nav-bar">
+    <h1 class="title"><%= I18n.t('sail.page_title') %></h1>
+  </nav>
+
   <%= yield %>
 </div>
-
 </body>
 </html>

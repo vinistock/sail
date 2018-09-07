@@ -14,6 +14,26 @@
  *= require_self
  */
 
-body {
+@import "colors";
+
+html, body {
   height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: $light_gray;
+  font-family: 'Roboto', sans-serif;
+}
+
+.title {
+  text-align: center;
+}
+
+#nav-bar {
+  background-color: $dark_gray;
+  color: $light_gray;
+  padding: 25px;
+
+  .title {
+    margin: 0;
+  }
 }
