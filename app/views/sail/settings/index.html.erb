@@ -5,6 +5,7 @@
   </div>
 
   <div id="pagination">
+    <div class="clearfix"></div>
     <%= link_to('<', settings_path(page: [params[:page].to_i - 1, 0].max), method: :get) %>
 
     <% (0...number_of_pages).each do |page| %>

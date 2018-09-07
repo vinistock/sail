@@ -11,7 +11,6 @@
   .card {
     min-height: 230px;
     background-color: white;
-    color: $main_black;
     float: left;
     margin: 30px;
     box-shadow: 0 0 10px lighten(black, 40%);
@@ -54,10 +53,10 @@
       -webkit-border-radius: 25px;
       -moz-border-radius: 25px;
       border-radius: 25px;
-      background-color: $dark_gray;
+      background-color: $light_yellow;
       padding: 5px;
       box-shadow: 0 0 5px lighten(black, 70%);
-      color: $light_gray;
+      color: $main_black;
       font-size: 14px;
     }
 
@@ -81,8 +80,8 @@
       outline: none;
 
       &:focus {
-        box-shadow: 0 0 10px $dark_teal;
-        border: 1px solid $dark_teal;
+        box-shadow: 0 0 10px $tangerine;
+        border: 1px solid $tangerine;
       }
     }
 
@@ -104,7 +103,7 @@
         width: 25px;
         height: 25px;
         border-radius: 50%;
-        background: $dark_teal;
+        background: $tangerine;
         cursor: pointer;
       }
 
@@ -112,7 +111,7 @@
         width: 25px;
         height: 25px;
         border-radius: 50%;
-        background: $dark_teal;
+        background: $tangerine;
         cursor: pointer;
       }
     }
@@ -122,13 +121,13 @@
       height: 35px;
       text-align: center;
       font-size: 18px;
-      background-color: $dark_teal;
+      background-color: $tangerine;
       border: none;
       outline: none;
 
       &:active {
         color: $main_black;
-        background-color: $light_teal;
+        background-color: lighten($tangerine, 20%);
       }
     }
 
@@ -168,11 +167,11 @@
     }
 
     input:checked + .slider {
-      background-color: $dark_teal;
+      background-color: $tangerine;
     }
 
     input:focus + .slider {
-      box-shadow: 0 0 1px $dark_teal;
+      box-shadow: 0 0 1px $tangerine;
     }
 
     input:checked + .slider:before {
