@@ -18,7 +18,7 @@ module Sail
     end
 
     def self.get(name)
-      Rails.cache.fetch("setting_get_#{name}", expires_in: 10.minutes) do
+      Rails.cache.fetch("setting_get_#{name}", expires_in: Sail.configuration.cache_life_span) do
         cast_setting_value(
           Setting.select(:value, :cast_type).where(name: name).first
         )
@@ -40,7 +40,7 @@ module Sail
       when :boolean
         setting.value == Sail::ConstantCollection::TRUE
       when :array
-        setting.value.split(';')
+        setting.value.split(Sail.configuration.array_separator)
       else
         setting.value
       end
@@ -57,7 +57,7 @@ module Sail
           value ? 'true' : 'false'
         end
       when :array
-        value.is_a?(String) ? value : value.join(';')
+        value.is_a?(String) ? value : value.join(Sail.configuration.array_separator)
       else
         value
       end
