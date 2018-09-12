@@ -40,6 +40,17 @@ create_table :sail_settings do |t|
 end
 ```
 
+## Configuration
+
+Available configurations and their defaults are listed below
+
+```ruby
+Sail.configure do |config|
+  config.cache_life_span = 10.minutes # How long to cache the Sail::Setting.get response for
+  config.array_separator = ';'        # Default separator for array settings
+end
+```
+
 ## Manipulating settings in the code
 
 Settings can be read or set via their interface. Notice that when reading a setting's value, it will be cast to the appropriate type using the "cast_type" field.
