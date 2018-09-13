@@ -67,6 +67,7 @@ describe Sail::Setting, type: :model do
 
     [
       { type: 'integer', value: '1', expected_value: 1 },
+      { type: 'float', value: '1.123', expected_value: 1.123 },
       { type: 'boolean', value: 'true', expected_value: true },
       { type: 'range', value: '1', expected_value: 1 },
       { type: 'array', value: '1;2;3;4', expected_value: %w[1 2 3 4] },
@@ -89,6 +90,9 @@ describe Sail::Setting, type: :model do
     before { Rails.cache.delete('setting_get_setting') }
 
     [
+      { type: 'float', old: '1.532', new: 1.324, expected: '1.324' },
+      { type: 'integer', old: '15', new: 8, expected: '8' },
+      { type: 'array', old: 'John;Ted', new: %w[John Ted Mark], expected: 'John;Ted;Mark' },
       { type: 'string', old: 'old_value', new: 'new_value', expected: 'new_value' },
       { type: 'boolean', old: 'false', new: 'true', expected: 'true' },
       { type: 'boolean', old: 'false', new: true, expected: 'true' }

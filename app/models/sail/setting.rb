@@ -6,7 +6,7 @@ module Sail
     SETTINGS_PER_PAGE = 8
     validates_presence_of :name, :value, :cast_type
     validates_uniqueness_of :name
-    enum cast_type: %i[integer string boolean range array].freeze
+    enum cast_type: %i[integer string boolean range array float].freeze
 
     validate :value_is_within_range, if: -> { self.range? }
     validate :value_is_true_or_false, if: -> { self.boolean? }
@@ -37,6 +37,8 @@ module Sail
       case setting.cast_type.to_sym
       when :integer, :range
         setting.value.to_i
+      when :float
+        setting.value.to_f
       when :boolean
         setting.value == Sail::ConstantCollection::TRUE
       when :array
@@ -50,6 +52,8 @@ module Sail
       case setting.cast_type.to_sym
       when :integer, :range
         value.to_i
+      when :float
+        value.to_f
       when :boolean
         if value.is_a?(String)
           value

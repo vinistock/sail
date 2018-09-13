@@ -17,14 +17,27 @@ describe Sail::SettingsController, type: :controller do
   end
 
   describe 'PUT update' do
-    subject { put :update, params: { name: setting.name, value: 'new value' }, format: :js }
+    subject { put :update, params: { name: setting.name, value: new_value, cast_type: setting.cast_type }, format: :js }
     let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :string, value: 'old value') }
+    let(:new_value) { 'new value' }
 
     it 'updates setting value' do
       expect(setting.value).to eq('old value')
       subject
       expect(response).to have_http_status(:ok)
       expect(setting.reload.value).to eq('new value')
+    end
+
+    context 'when setting is boolean' do
+      let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :boolean, value: 'false') }
+      let(:new_value) { 'on' }
+
+      it 'updates setting value' do
+        expect(setting.value).to eq('false')
+        subject
+        expect(response).to have_http_status(:ok)
+        expect(setting.reload.value).to eq('true')
+      end
     end
   end
 end

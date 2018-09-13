@@ -57,6 +57,7 @@ Settings can be read or set via their interface. Notice that when reading a sett
 
 Possible cast types are
 * integer
+* float
 * string
 * boolean
 * range
@@ -77,6 +78,11 @@ Sail::Setting.set('name', 'value')
 Sail::Setting.create(name: :my_setting, cast_type: :integer, description: 'A very important setting', value: '15')
 Sail::Setting.get(:my_setting)
 => 15
+
+# Float setting
+Sail::Setting.create(name: :my_setting, cast_type: :float, description: 'A very important setting', value: '1.532')
+Sail::Setting.get(:my_setting)
+=> 1.532
 
 # String setting
 Sail::Setting.create(name: :my_setting, cast_type: :string, description: 'A very important setting', value: '15')
