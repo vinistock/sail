@@ -67,6 +67,10 @@ module Sail
       end
     end
 
+    def display_name
+      self.name.gsub(/[^a-zA-Z\d]/, ' ').titleize
+    end
+
     private
 
     def value_is_true_or_false

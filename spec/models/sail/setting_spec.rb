@@ -112,4 +112,9 @@ describe Sail::Setting, type: :model do
       end
     end
   end
+
+  describe '#display_name' do
+    subject { Sail::Setting.create(name: 'my#setting_with+symbols', cast_type: :string, value: 'whatever').display_name }
+    it { expect(subject).to eq('My Setting With Symbols') }
+  end
 end

@@ -13,19 +13,25 @@
     background-color: white;
     float: left;
     margin: 30px;
-    box-shadow: 0 0 10px lighten(black, 40%);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     padding: 10px;
     z-index: 2;
-    width: 80%;
+    width: 92%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
 
-    @media (min-width: 768px) { width: 80%; }
-    @media (min-width: 992px) { width: 40%; }
-    @media (min-width: 1200px) { width: 20%; }
+    @media (min-width: 992px) { width: 44%; }
+    @media (min-width: 1200px) { width: 21%; }
+
     hr {
-      width: 100%;
       border: 0;
-      height: 1px;
-      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+      height: 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     }
 
     .setting-message {
@@ -49,13 +55,12 @@
     }
 
     .type-label {
-      font-weight: bolder;
+      font-weight: bold;
       -webkit-border-radius: 25px;
       -moz-border-radius: 25px;
       border-radius: 25px;
       background-color: $light_yellow;
-      padding: 5px;
-      box-shadow: 0 0 5px lighten(black, 70%);
+      padding: 10px;
       color: $main_black;
       font-size: 14px;
     }
@@ -70,6 +75,7 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      color: darken($aluminium, 45%);
     }
 
     .value-input {
@@ -78,10 +84,13 @@
       height: 20px;
       font-size: 18px;
       outline: none;
+      border: none;
+      border-bottom: 2px solid darken($aluminium, 30%);
+      font-family: 'Roboto', sans-serif;
 
       &:focus {
-        box-shadow: 0 0 10px $tangerine;
-        border: 1px solid $tangerine;
+        border-color: $tangerine;
+        outline: none;
       }
     }
 
@@ -124,10 +133,14 @@
       background-color: $tangerine;
       border: none;
       outline: none;
+      font-family: 'Roboto', sans-serif;
 
       &:active {
         color: $main_black;
-        background-color: lighten($tangerine, 20%);
+      }
+
+      &:hover {
+        background-color: darken($tangerine, 20%);
       }
     }
 
