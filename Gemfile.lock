@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sail (1.0.1)
+    sail (1.1.0)
       jquery-rails
       rails
       sass-rails
