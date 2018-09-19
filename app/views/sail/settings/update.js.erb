@@ -1,5 +1,7 @@
 var messageDiv = $("<%= "#setting-message-#{@setting.name}" %>");
 var cardDiv = messageDiv.closest(".card");
+cardDiv.css('opacity', '.95');
+
 var offset = cardDiv.offset();
 var width = cardDiv.width();
 var height = cardDiv.height();
@@ -10,4 +12,5 @@ messageDiv.html("<p style='position: absolute; top: " + centerY + "px; left: " +
 
 setTimeout(function () {
     messageDiv.find("p").fadeOut("slow");
+    cardDiv.css('opacity', '1');
 }, 1500);

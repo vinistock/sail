@@ -1,22 +1,23 @@
 @import "colors";
 
 #settings-dashboard {
-  height: 100vh;
+  max-height: 100vh;
   color: $main_black;
 
   #settings-container {
-    height: 80%;
+    margin-top: 1rem;
+    text-align: center;
   }
 
   .card {
     min-height: 230px;
     background-color: white;
-    float: left;
-    margin: 30px;
+    margin: 1rem .75rem;
+    display: inline-block;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     padding: 10px;
     z-index: 2;
-    width: 92%;
+    width: 25rem;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -126,10 +127,11 @@
     }
 
     .btn-value-submit {
-      width: 100%;
+      width: 95%;
       height: 35px;
       text-align: center;
       font-size: 18px;
+      border-radius: .25rem;
       background-color: $tangerine;
       border: none;
       outline: none;
@@ -137,6 +139,7 @@
 
       &:active {
         color: $main_black;
+        opacity: .8;
       }
 
       &:hover {
