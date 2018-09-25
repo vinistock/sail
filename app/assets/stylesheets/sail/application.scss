@@ -21,11 +21,7 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: $cerulean;
-  font-family: 'Roboto', sans-serif;
-}
-
-.title {
-  text-align: center;
+  font-family: Helvetica, Arial, 'Roboto', sans-serif;
 }
 
 .clearfix {
@@ -35,15 +31,18 @@ html, body {
 #nav-bar {
   background-color: $lead;
   color: white;
-  padding: 25px;
 
   .title {
     margin: 0;
+    text-align: center;
+    font-size: 3rem;
+    padding: .75rem 0;
   }
 }
 
 #pagination {
   text-align: center;
+  margin-top: 2rem;
 
   a {
     color: $main_black;
