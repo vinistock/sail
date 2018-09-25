@@ -41,6 +41,11 @@
       font-size: 18px;
       font-weight: bolder;
       z-index: 5;
+      -webkit-transition: opacity 1s ease;
+      -moz-transition: opacity 1s ease;
+      -ms-transition: opacity 1s ease;
+      -o-transition: opacity 1s ease;
+      transition: opacity 1s ease;
     }
     
     .card-body-container {
@@ -68,11 +73,12 @@
 
     .label-container {
       float: right;
+      margin-top: 5px;
     }
 
     .setting-description {
       clear: both;
-      padding: 15px;
+      padding: 25px 15px 15px 15px;
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
