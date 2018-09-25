@@ -21,6 +21,12 @@ Or install it yourself as:
 $ gem install sail
 ```
 
+Adding the following line to your routes file will make the dashboard available at <base_url>/sail
+
+```ruby
+mount Sail::Engine => '/sail'
+```
+
 Running the generator will create the settings table for your application.
 
 ```bash
@@ -123,4 +129,3 @@ Sail brings a simple dashboard so that you can manage your settings and update t
 Please refer to this simple [guideline].
 
 [guideline]: https://github.com/vinistock/sail/blob/master/CONTRIBUTING.md
-
