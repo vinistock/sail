@@ -39,6 +39,22 @@ describe Sail::Setting, type: :model do
         subject { described_class.new(name: :setting, value: 'whatever', cast_type: :boolean) }
         it { is_expected.to be_invalid }
       end
+
+      context 'when type is ab_test and value is false' do
+        subject { described_class.new(name: :setting, value: 'false', cast_type: :ab_test) }
+        it { is_expected.to be_valid }
+      end
+
+      context 'when type is ab_test and value is true' do
+        subject { described_class.new(name: :setting, value: 'true', cast_type: :ab_test) }
+        it { is_expected.to be_valid }
+      end
+
+      context 'when type is ab_test and value is whatever' do
+        subject { described_class.new(name: :setting, value: 'whatever', cast_type: :ab_test) }
+        it { is_expected.to be_invalid }
+      end
+
     end
   end
 
