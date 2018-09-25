@@ -43,8 +43,8 @@ module Sail
         setting.value == Sail::ConstantCollection::TRUE
       when :array
         setting.value.split(Sail.configuration.array_separator)
-      when :ab_type
-	setting.value == Sail::ConstantCollection::TRUE ? [true, false].sample : false
+      when :ab_test
+        setting.value == Sail::ConstantCollection::TRUE ? Sail::ConstantCollection::BOOLEANS.sample : false
       else
         setting.value
       end
@@ -60,7 +60,7 @@ module Sail
         if value.is_a?(String)
           value
         else
-          value ? 'true' : 'false'
+          value ? Sail::ConstantCollection::TRUE : Sail::ConstantCollection::FALSE
         end
       when :array
         value.is_a?(String) ? value : value.join(Sail.configuration.array_separator)
@@ -76,9 +76,9 @@ module Sail
     private
 
     def value_is_true_or_false
-      if Sail::ConstantCollection::BOOLEANS.exclude?(value)
+      if Sail::ConstantCollection::STRING_BOOLEANS.exclude?(value)
         errors.add(:not_a_boolean_error,
-                   "Boolean settings only take values inside #{Sail::ConstantCollection::BOOLEANS}")
+                   "Boolean settings only take values inside #{Sail::ConstantCollection::STRING_BOOLEANS}")
       end
     end
 

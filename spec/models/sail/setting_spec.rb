@@ -77,7 +77,7 @@ describe Sail::Setting, type: :model do
     end
 
     it 'caches response' do
-      expect(Rails.cache).to receive(:fetch).with('setting_get_setting', expires_in: 10.minutes)
+      expect(Rails.cache).to receive(:fetch).with('setting_get_setting', expires_in: Sail.configuration.cache_life_span)
       subject
     end
 
@@ -85,6 +85,7 @@ describe Sail::Setting, type: :model do
       { type: 'integer', value: '1', expected_value: 1 },
       { type: 'float', value: '1.123', expected_value: 1.123 },
       { type: 'boolean', value: 'true', expected_value: true },
+      { type: 'ab_test', value: 'false', expected_value: false },
       { type: 'range', value: '1', expected_value: 1 },
       { type: 'array', value: '1;2;3;4', expected_value: %w[1 2 3 4] },
       { type: 'string', value: '1', expected_value: '1' }
@@ -110,6 +111,8 @@ describe Sail::Setting, type: :model do
       { type: 'integer', old: '15', new: 8, expected: '8' },
       { type: 'array', old: 'John;Ted', new: %w[John Ted Mark], expected: 'John;Ted;Mark' },
       { type: 'string', old: 'old_value', new: 'new_value', expected: 'new_value' },
+      { type: 'ab_test', old: 'true', new: 'false', expected: 'false' },
+      { type: 'ab_test', old: 'true', new: false, expected: 'false' },
       { type: 'boolean', old: 'false', new: 'true', expected: 'true' },
       { type: 'boolean', old: 'false', new: true, expected: 'true' }
     ].each do |test_data|
