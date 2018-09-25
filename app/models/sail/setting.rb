@@ -6,10 +6,10 @@ module Sail
     SETTINGS_PER_PAGE = 8
     validates_presence_of :name, :value, :cast_type
     validates_uniqueness_of :name
-    enum cast_type: %i[integer string boolean range array float].freeze
+    enum cast_type: %i[integer string boolean range array float ab_test].freeze
 
     validate :value_is_within_range, if: -> { self.range? }
-    validate :value_is_true_or_false, if: -> { self.boolean? }
+    validate :value_is_true_or_false, if: -> { self.boolean? || self.ab_test? }
 
     scope :paginated, ->(page) do
       select(:name, :description, :value, :cast_type)
@@ -43,6 +43,8 @@ module Sail
         setting.value == Sail::ConstantCollection::TRUE
       when :array
         setting.value.split(Sail.configuration.array_separator)
+      when :ab_type
+	setting.value == Sail::ConstantCollection::TRUE ? [true, false].sample : false
       else
         setting.value
       end
@@ -54,7 +56,7 @@ module Sail
         value.to_i
       when :float
         value.to_f
-      when :boolean
+      when :boolean, :ab_test
         if value.is_a?(String)
           value
         else
