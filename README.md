@@ -60,6 +60,7 @@ Possible cast types are
 * float
 * string
 * boolean
+* ab_test
 * range
 * array
 
@@ -91,6 +92,12 @@ Sail::Setting.get(:my_setting)
 
 # Boolean setting
 Sail::Setting.create(name: :my_setting, cast_type: :boolean, description: 'A very important setting', value: 'true')
+Sail::Setting.get(:my_setting)
+=> true
+
+# AB test setting
+# When true, returns true or false randomly. When false, always returns false 
+Sail::Setting.create(name: :my_setting, cast_type: :ab_test, description: 'A very important setting', value: 'true')
 Sail::Setting.get(:my_setting)
 => true
 
