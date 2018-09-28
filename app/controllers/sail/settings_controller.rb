@@ -9,20 +9,12 @@ module Sail
 
     def update
       respond_to do |format|
-        @setting = Setting.set(params[:name], value)
+        @setting = Setting.set(params[:name], params[:value])
         format.js {}
       end
     end
 
     private
-
-    def value
-      if params[:cast_type] == Sail::ConstantCollection::BOOLEAN
-        params[:value] == Sail::ConstantCollection::ON
-      else
-        params[:value]
-      end
-    end
 
     def index_params
       params.permit(:page)

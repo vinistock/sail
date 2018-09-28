@@ -58,7 +58,7 @@ module Sail
         value.to_f
       when :boolean, :ab_test
         if value.is_a?(String)
-          value
+          value == Sail::ConstantCollection::ON ? Sail::ConstantCollection::TRUE : value
         else
           value ? Sail::ConstantCollection::TRUE : Sail::ConstantCollection::FALSE
         end
