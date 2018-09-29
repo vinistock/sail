@@ -3,7 +3,7 @@
 module Sail
   class SettingsController < ApplicationController
     def index
-      @settings = Setting.paginated(index_params[:page])
+      @settings = Setting.by_name(params[:query]).paginated(index_params[:page])
       fresh_when(@settings)
     end
 

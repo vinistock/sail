@@ -2,7 +2,8 @@ describe Sail::SettingsController, type: :controller do
   routes { Sail::Engine.routes }
 
   describe 'GET index' do
-    subject { get :index, params: { page: '1' } }
+    subject { get :index, params: params }
+    let(:params) {{ page: '1' }}
 
     it 'queries settings with pagination' do
       expect(Sail::Setting).to receive(:paginated).with('1')
@@ -13,6 +14,15 @@ describe Sail::SettingsController, type: :controller do
     it 'sets eTag in response headers' do
       subject
       expect(response.headers['ETag']).to_not be_nil
+    end
+
+    context 'when passing a query' do
+      let(:params) {{ query: 'test' }}
+
+      it 'invokes proper scope with query' do
+        expect(Sail::Setting).to receive(:by_name).with('test').and_call_original
+        subject
+      end
     end
   end
 

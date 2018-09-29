@@ -17,6 +17,8 @@ module Sail
         .limit(SETTINGS_PER_PAGE)
     end
 
+    scope :by_name, ->(name) { name.present? ? where('name LIKE ?', "%#{name}%") : all }
+
     def self.get(name)
       Rails.cache.fetch("setting_get_#{name}", expires_in: Sail.configuration.cache_life_span) do
         cast_setting_value(
