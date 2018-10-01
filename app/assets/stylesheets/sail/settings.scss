@@ -210,4 +210,29 @@
       border-radius: 50%;
     }
   }
+
+  #search-form {
+    text-align: center;
+    padding-top: 25px;
+
+    #query {
+      height: 50px;
+      width: 50%;
+      -webkit-border-radius: 12px;
+      -moz-border-radius: 12px;
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+      font-size: 18px;
+      text-align: center;
+      -webkit-transition : border 1ms ease-in;
+      -moz-transition : border 1ms ease-in;
+      -o-transition : border 1ms ease-in;
+      transition : border 1ms ease-in;
+
+      &:focus {
+        border: 2px solid $tangerine;
+      }
+    }
+  }
 }

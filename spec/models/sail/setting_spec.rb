@@ -67,6 +67,31 @@ describe Sail::Setting, type: :model do
         expect(described_class.paginated(1).map(&:name)).to eq(settings[8...16].map(&:name))
       end
     end
+
+    describe '.by_query' do
+      subject { described_class.by_name(query) }
+      let!(:setting) { described_class.create(name: 'My Setting', cast_type: :integer, value: '0') }
+
+      context 'when name matches partially' do
+        let(:query) { 'y Sett' }
+        it { expect(subject).to include(setting) }
+      end
+
+      context 'when name matches fully' do
+        let(:query) { 'My Setting' }
+        it { expect(subject).to include(setting) }
+      end
+
+      context 'when name does not match' do
+        let(:query) { 'whatever' }
+        it { expect(subject).to_not include(setting) }
+      end
+
+      context 'when query is empty' do
+        let(:query) { '' }
+        it { expect(subject).to include(setting) }
+      end
+    end
   end
 
   describe '.get' do
