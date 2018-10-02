@@ -11,8 +11,6 @@
     <div id="<%= "setting-message-#{setting.name}" %>" class="setting-message"></div>
 
     <%= form_tag(setting_path(name: setting.name), method: :put, remote: true) do %>
-      <%= hidden_field_tag(:cast_type, setting.cast_type) %>
-
       <div class="card-body-container">
         <div class="card-body">
           <% if setting.boolean? || setting.ab_test? %>

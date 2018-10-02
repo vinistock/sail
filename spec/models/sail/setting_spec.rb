@@ -138,7 +138,9 @@ describe Sail::Setting, type: :model do
       { type: 'string', old: 'old_value', new: 'new_value', expected: 'new_value' },
       { type: 'ab_test', old: 'true', new: 'false', expected: 'false' },
       { type: 'ab_test', old: 'true', new: false, expected: 'false' },
+      { type: 'ab_test', old: 'false', new: 'on', expected: 'true' },
       { type: 'boolean', old: 'false', new: 'true', expected: 'true' },
+      { type: 'boolean', old: 'false', new: 'on', expected: 'true' },
       { type: 'boolean', old: 'false', new: true, expected: 'true' }
     ].each do |test_data|
       context "when changing value of a #{test_data[:type]} setting" do
