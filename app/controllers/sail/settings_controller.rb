@@ -14,6 +14,12 @@ module Sail
       end
     end
 
+    def show
+      @setting = Sail::Setting.get(params[:name])
+
+      render json: { value: @setting }
+    end
+
     private
 
     def index_params
