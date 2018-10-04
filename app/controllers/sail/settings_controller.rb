@@ -14,6 +14,13 @@ module Sail
       end
     end
 
+    def show
+      respond_to do |format|
+        @setting_value = Setting.get(params[:name])
+        format.js { render json: { value: @setting_value, name: params[:name] } }
+      end
+    end
+
     private
 
     def index_params
