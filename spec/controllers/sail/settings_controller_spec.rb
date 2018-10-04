@@ -50,4 +50,17 @@ describe Sail::SettingsController, type: :controller do
       end
     end
   end
+
+  describe 'GET show' do
+    subject { get :show, params: { name: setting.name }, xhr: true }
+    let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :string, value: 'value') }
+
+    it 'returns the requested setting' do
+      subject
+      expect(response).to have_http_status(:ok)
+
+      body = JSON.parse(response.body)
+      expect(body).to eql({ 'value' => setting.value, 'name' => setting.name })
+    end
+  end
 end
