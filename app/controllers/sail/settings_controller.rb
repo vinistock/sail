@@ -15,9 +15,13 @@ module Sail
     end
 
     def show
-      @setting = Sail::Setting.get(params[:name])
+      respond_to do |format|
+        format.json do
+          setting = Sail::Setting.get(params[:name])
 
-      render json: { value: @setting }
+          render json: { value: setting }
+        end
+      end
     end
 
     private

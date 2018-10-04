@@ -52,7 +52,7 @@ describe Sail::SettingsController, type: :controller do
   end
 
   describe 'GET show' do
-    subject { get :show, params: params }
+    subject { get :show, params: params, format: :json }
     let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :string, value: 'some value') }
     let(:params) {{ name: setting.name }}
 
