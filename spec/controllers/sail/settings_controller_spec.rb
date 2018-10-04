@@ -50,4 +50,26 @@ describe Sail::SettingsController, type: :controller do
       end
     end
   end
+
+  describe 'GET show' do
+    subject { get :show, params: params, format: :json }
+    let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :string, value: 'some value') }
+    let(:params) {{ name: setting.name }}
+
+    it 'returns setting value' do
+      subject
+      body = JSON.parse(response.body)
+      expect(body['value']).to eq(setting.value)
+    end
+
+    it 'returns 200 status' do
+      subject
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'response json format' do
+      subject
+      expect(response.content_type).to eq("application/json")
+    end
+  end
 end

@@ -14,6 +14,16 @@ module Sail
       end
     end
 
+    def show
+      respond_to do |format|
+        format.json do
+          setting = Sail::Setting.get(params[:name])
+
+          render json: { value: setting }
+        end
+      end
+    end
+
     private
 
     def index_params
