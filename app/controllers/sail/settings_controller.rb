@@ -11,6 +11,7 @@ module Sail
       respond_to do |format|
         @setting = Setting.set(params[:name], params[:value])
         format.js {}
+        format.json { head(:ok) }
       end
     end
 
@@ -18,7 +19,6 @@ module Sail
       respond_to do |format|
         format.json do
           setting = Sail::Setting.get(params[:name])
-
           render json: { value: setting }
         end
       end

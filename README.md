@@ -78,6 +78,22 @@ Sail::Setting.get('name')
 Sail::Setting.set('name', 'value') 
 ```
 
+Sail also comes with a JSON API for manipulating settings.
+
+```json
+GET sail/settings/:name
+
+Response
+{
+  "value": true
+}
+
+PUT sail/settings/:name
+
+Response
+200 OK
+```
+
 ## Examples
 
 ```ruby

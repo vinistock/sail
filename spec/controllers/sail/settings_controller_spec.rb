@@ -49,6 +49,17 @@ describe Sail::SettingsController, type: :controller do
         expect(setting.reload.value).to eq('true')
       end
     end
+
+    context 'when format is JSON' do
+      subject { put :update, params: { name: setting.name, value: new_value, cast_type: setting.cast_type }, format: :json }
+
+      it 'updates setting value' do
+        expect(setting.value).to eq('old value')
+        subject
+        expect(response).to have_http_status(:ok)
+        expect(setting.reload.value).to eq('new value')
+      end
+    end
   end
 
   describe 'GET show' do
@@ -67,9 +78,9 @@ describe Sail::SettingsController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'response json format' do
+    it 'responds in json format' do
       subject
-      expect(response.content_type).to eq("application/json")
+      expect(response.content_type).to eq('application/json')
     end
   end
 end
