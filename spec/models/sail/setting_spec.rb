@@ -169,6 +169,12 @@ describe Sail::Setting, type: :model do
           expect(Rails.cache).to receive(:delete).with('setting_get_setting')
           described_class.set(:setting, test_data[:new])
         end
+
+        it 'returns setting and success flag' do
+          setting, flag = described_class.set(:setting, test_data[:new])
+          expect(setting).to be_a(Sail::Setting)
+          expect(flag).to eq(true)
+        end
       end
     end
   end

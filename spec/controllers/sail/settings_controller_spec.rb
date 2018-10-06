@@ -1,5 +1,6 @@
 describe Sail::SettingsController, type: :controller do
   routes { Sail::Engine.routes }
+  before { Rails.cache.delete('setting_get_setting') }
 
   describe 'GET index' do
     subject { get :index, params: params }

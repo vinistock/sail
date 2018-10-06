@@ -37,7 +37,6 @@
 
     .setting-message {
       text-align: center;
-      color: $dark_green;
       font-size: 18px;
       font-weight: bolder;
       z-index: 5;
@@ -46,6 +45,14 @@
       -ms-transition: opacity 1s ease;
       -o-transition: opacity 1s ease;
       transition: opacity 1s ease;
+
+      p.success {
+        color: $dark_green;
+      }
+      
+      p.failure {
+        color: $bright_red;
+      }
     }
     
     .card-body-container {

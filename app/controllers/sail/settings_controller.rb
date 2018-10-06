@@ -9,9 +9,9 @@ module Sail
 
     def update
       respond_to do |format|
-        @setting = Setting.set(params[:name], params[:value])
+        @setting, @successful_update = Setting.set(params[:name], params[:value])
         format.js {}
-        format.json { head(:ok) }
+        format.json { @successful_update ? head(:ok) : head(:conflict) }
       end
     end
 

@@ -8,7 +8,7 @@ var height = cardDiv.height();
 var centerX = (offset.left + width / 2) - 25;
 var centerY = (offset.top + height / 2) + 15;
 
-messageDiv.html("<p style='position: absolute; top: " + centerY + "px; left: " + centerX + "px;'><%= I18n.t('sail.updated') %></p>");
+messageDiv.html("<p class='<%= @successful_update ? 'success' : 'failure' %>' style='position: absolute; top: " + centerY + "px; left: " + centerX + "px;'><%= @successful_update ? I18n.t('sail.updated') : I18n.t('sail.failed') %></p>");
 
 setTimeout(function () {
     messageDiv.find("p").fadeOut("slow");

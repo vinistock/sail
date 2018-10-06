@@ -33,9 +33,9 @@ module Sail
     def self.set(name, value)
       setting = Setting.find_by(name: name)
       value_cast = cast_value_for_set(setting, value)
-      setting.update_attributes(value: value_cast)
-      Rails.cache.delete("setting_get_#{name}")
-      setting
+      success = setting.update_attributes(value: value_cast)
+      Rails.cache.delete("setting_get_#{name}") if success
+      return setting, success
     end
 
     def self.cast_setting_value(setting)
