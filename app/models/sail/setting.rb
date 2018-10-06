@@ -1,15 +1,18 @@
 # frozen_string_literal: true
 
+require 'fugit'
+
 module Sail
   class Setting < ApplicationRecord
     FULL_RANGE = 0...100
     SETTINGS_PER_PAGE = 8
     validates_presence_of :name, :value, :cast_type
     validates_uniqueness_of :name
-    enum cast_type: %i[integer string boolean range array float ab_test].freeze
+    enum cast_type: %i[integer string boolean range array float ab_test cron].freeze
 
     validate :value_is_within_range, if: -> { self.range? }
     validate :value_is_true_or_false, if: -> { self.boolean? || self.ab_test? }
+    validate :cron_is_valid, if: -> { self.cron? }
 
     scope :paginated, ->(page) do
       select(:name, :description, :value, :cast_type)
@@ -47,6 +50,8 @@ module Sail
         setting.value.split(Sail.configuration.array_separator)
       when :ab_test
         setting.value == Sail::ConstantCollection::TRUE ? Sail::ConstantCollection::BOOLEANS.sample : false
+      when :cron
+        Fugit::Cron.new(setting.value).match?(DateTime.now.utc.change(sec: 0))
       else
         setting.value
       end
@@ -88,6 +93,13 @@ module Sail
       unless FULL_RANGE.cover?(self.class.cast_setting_value(self))
         errors.add(:outside_range_error,
                    "Range settings only take values inside range #{FULL_RANGE}")
+      end
+    end
+
+    def cron_is_valid
+      if Fugit::Cron.new(value).nil?
+        errors.add(:invalid_cron_string,
+                   'Setting value is not a valid cron')
       end
     end
   end

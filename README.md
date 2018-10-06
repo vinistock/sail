@@ -67,6 +67,7 @@ Possible cast types are
 * string
 * boolean
 * ab_test
+* cron
 * range
 * array
 
@@ -120,6 +121,12 @@ Sail::Setting.get(:my_setting)
 # AB test setting
 # When true, returns true or false randomly. When false, always returns false 
 Sail::Setting.create(name: :my_setting, cast_type: :ab_test, description: 'A very important setting', value: 'true')
+Sail::Setting.get(:my_setting)
+=> true
+
+# Cron setting
+# if DateTime.now.utc matches the configured cron expression returns true. Returns false for no matches. 
+Sail::Setting.create(name: :my_setting, cast_type: :cron, description: 'A very important setting', value: '* 15 1 * *')
 Sail::Setting.get(:my_setting)
 => true
 

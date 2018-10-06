@@ -54,7 +54,18 @@ describe Sail::Setting, type: :model do
         subject { described_class.new(name: :setting, value: 'whatever', cast_type: :ab_test) }
         it { is_expected.to be_invalid }
       end
+    end
 
+    describe 'cron_is_valid' do
+      context 'when type is cron and value is a proper cron string' do
+        subject { described_class.new(name: :setting, value: '3 * 5 * *', cast_type: :cron) }
+        it { is_expected.to be_valid }
+      end
+
+      context 'when type is cron and value is not a proper cron string' do
+        subject { described_class.new(name: :setting, value: 'whatever', cast_type: :cron) }
+        it { is_expected.to be_invalid }
+      end
     end
   end
 
@@ -99,6 +110,7 @@ describe Sail::Setting, type: :model do
 
     before do
       Rails.cache.delete('setting_get_setting')
+      allow(DateTime).to receive(:now).and_return(DateTime.parse('2018-10-05 20:00'))
     end
 
     it 'caches response' do
@@ -111,6 +123,8 @@ describe Sail::Setting, type: :model do
       { type: 'float', value: '1.123', expected_value: 1.123 },
       { type: 'boolean', value: 'true', expected_value: true },
       { type: 'ab_test', value: 'false', expected_value: false },
+      { type: 'cron', value: '* * 5 * *', expected_value: true },
+      { type: 'cron', value: '* * 6 * *', expected_value: false },
       { type: 'range', value: '1', expected_value: 1 },
       { type: 'array', value: '1;2;3;4', expected_value: %w[1 2 3 4] },
       { type: 'string', value: '1', expected_value: '1' }
