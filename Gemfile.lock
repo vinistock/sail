@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sail (1.2.0)
+    sail (1.2.1)
       fugit
       jquery-rails
       rails

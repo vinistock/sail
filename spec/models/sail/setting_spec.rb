@@ -140,6 +140,11 @@ describe Sail::Setting, type: :model do
         it { is_expected.to eq(test_data[:expected_value]) }
       end
     end
+
+    context 'when looking for a setting that does not exist' do
+      subject { described_class.get(:whatever) }
+      it { is_expected.to be_nil }
+    end
   end
 
   describe '.set' do

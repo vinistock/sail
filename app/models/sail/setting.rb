@@ -39,6 +39,8 @@ module Sail
     end
 
     def self.cast_setting_value(setting)
+      return if setting.nil?
+
       case setting.cast_type.to_sym
       when :integer, :range
         setting.value.to_i
