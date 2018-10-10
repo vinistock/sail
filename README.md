@@ -54,6 +54,7 @@ Available configurations and their defaults are listed below
 Sail.configure do |config|
   config.cache_life_span = 10.minutes # How long to cache the Sail::Setting.get response for
   config.array_separator = ';'        # Default separator for array settings
+  config.dashboard_auth_lambda = nil  # Defines an authorization lambda to access the dashboard. When the lambda returns true, accessing the dashboard is authorized. Otherwise, it will render forbidden.
 end
 ```
 

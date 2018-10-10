@@ -25,6 +25,34 @@ describe Sail::SettingsController, type: :controller do
         subject
       end
     end
+
+    context 'when defining an authorization strategy' do
+      before do
+        Sail.configuration.dashboard_auth_lambda = -> { user_is_authorized }
+      end
+
+      after do
+        Sail.configuration.dashboard_auth_lambda = nil
+      end
+
+      context 'when authorized' do
+        let(:user_is_authorized) { true }
+
+        it 'queries settings with pagination' do
+          subject
+          expect(response).to have_http_status(:ok)
+        end
+      end
+
+      context 'when not authorized' do
+        let(:user_is_authorized) { false }
+
+        it 'queries settings with pagination' do
+          subject
+          expect(response).to have_http_status(:forbidden)
+        end
+      end
+    end
   end
 
   describe 'PUT update' do
