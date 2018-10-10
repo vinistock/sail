@@ -2,8 +2,6 @@
 
 module Sail
   class SettingsController < ApplicationController
-    before_action :authorize_dashboard, only: :index, unless: -> { Sail.configuration.dashboard_auth_lambda.nil? }
-
     def index
       @settings = Setting.by_name(params[:query]).paginated(index_params[:page])
       fresh_when(@settings)
@@ -30,10 +28,6 @@ module Sail
 
     def index_params
       params.permit(:page)
-    end
-
-    def authorize_dashboard
-      head(:forbidden) unless Sail.configuration.dashboard_auth_lambda.call
     end
   end
 end
