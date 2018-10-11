@@ -2,7 +2,9 @@
 
 # Sail
 
-This Rails engine brings a setting model into your app to be used as feature flags, gauges, knobs and other live controls you may need. 
+This Rails engine brings a setting model into your app to be used as feature flags, gauges, knobs and other live controls you may need.
+
+It can either serve as an admin control panel or user settings, depending on how you wish to apply it. 
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -144,7 +146,7 @@ Sail::Setting.get(:my_setting)
 
 ## Managing your settings live
 
-Sail brings a simple dashboard so that you can manage your settings and update their values as needed.
+Sail brings a dashboard so that you can manage your settings and update their values as needed.
 
 ![dashboard](https://raw.githubusercontent.com/vinistock/sail/master/app/assets/images/sail/sail.png)
 

@@ -90,7 +90,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     nio4r (2.3.1)
-    nokogiri (1.8.4)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     raabro (1.1.6)
     rack (2.0.5)
@@ -126,7 +126,7 @@ GEM
       ffi (>= 0.5.0, < 2)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
-    rspec-expectations (3.8.1)
+    rspec-expectations (3.8.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
     rspec-mocks (3.8.0)
@@ -178,7 +178,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.16.4)
+  bundler (~> 1.16.6)
   byebug (~> 10.0.2)
   codeclimate-test-reporter (~> 1.0)
   database_cleaner (~> 1.7.0)
@@ -188,4 +188,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.16.4
+   1.16.6
