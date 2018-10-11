@@ -1,16 +1,21 @@
-var messageDiv = $("<%= "#setting-message-#{@setting.name}" %>");
-var cardDiv = messageDiv.closest(".card");
-cardDiv.css('opacity', '.85');
+var messageDiv = document.getElementById("<%= "setting-message-#{@setting.name}" %>");
+var cardDiv = messageDiv.parentNode;
+cardDiv.style.opacity = '.85';
 
-var offset = cardDiv.offset();
-var width = cardDiv.width();
-var height = cardDiv.height();
-var centerX = (offset.left + width / 2) - 25;
-var centerY = (offset.top + height / 2) + 15;
+var rect = cardDiv.getBoundingClientRect();
+var offset = {
+  top: rect.top + document.body.scrollTop,
+  left: rect.left + document.body.scrollLeft
+};
 
-messageDiv.html("<p class='<%= @successful_update ? 'success' : 'failure' %>' style='position: absolute; top: " + centerY + "px; left: " + centerX + "px;'><%= @successful_update ? I18n.t('sail.updated') : I18n.t('sail.failed') %></p>");
+var width = cardDiv.style.width;
+var height = cardDiv.style.height;
+var centerX = (offset.left + width / 2) + 155;
+var centerY = (offset.top + height / 2) + 150;
+
+messageDiv.innerHTML = "<p class='<%= @successful_update ? 'success' : 'failure' %>' style='position: absolute; top: " + centerY + "px; left: " + centerX + "px;'><%= @successful_update ? I18n.t('sail.updated') : I18n.t('sail.failed') %></p>";
 
 setTimeout(function () {
-    messageDiv.find("p").fadeOut("slow");
-    cardDiv.css('opacity', '1');
+  cardDiv.style.opacity = '1.0';
+  messageDiv.innerHTML = "";
 }, 1500);
