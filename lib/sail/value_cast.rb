@@ -54,7 +54,7 @@ module Sail
       if value.is_a?(String)
         value == Sail::ConstantCollection::ON ? Sail::ConstantCollection::TRUE : value
       else
-        value ? Sail::ConstantCollection::TRUE : Sail::ConstantCollection::FALSE
+        value.to_s
       end
     end
 
@@ -62,7 +62,7 @@ module Sail
       if value.is_a?(String)
         value == Sail::ConstantCollection::ON ? Sail::ConstantCollection::TRUE : value
       else
-        value ? Sail::ConstantCollection::TRUE : Sail::ConstantCollection::FALSE
+        value.to_s
       end
     end
 
