@@ -3,6 +3,9 @@
 require 'sail/engine'
 require 'sail/constant_collection'
 require 'sail/configuration'
+require 'sail/value_cast'
+require 'true_class'
+require 'false_class'
 
 module Sail
   class << self
