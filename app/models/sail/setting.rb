@@ -4,6 +4,7 @@ require 'fugit'
 
 module Sail
   class Setting < ApplicationRecord
+    extend Sail::ValueCast
     FULL_RANGE = 0...100
     SETTINGS_PER_PAGE = 8
     validates_presence_of :name, :value, :cast_type
@@ -40,42 +41,11 @@ module Sail
 
     def self.cast_setting_value(setting)
       return if setting.nil?
-
-      case setting.cast_type.to_sym
-      when :integer, :range
-        setting.value.to_i
-      when :float
-        setting.value.to_f
-      when :boolean
-        setting.value == Sail::ConstantCollection::TRUE
-      when :array
-        setting.value.split(Sail.configuration.array_separator)
-      when :ab_test
-        setting.value == Sail::ConstantCollection::TRUE ? Sail::ConstantCollection::BOOLEANS.sample : false
-      when :cron
-        Fugit::Cron.new(setting.value).match?(DateTime.now.utc.change(sec: 0))
-      else
-        setting.value
-      end
+      send("#{setting.cast_type}_get", setting.value)
     end
 
     def self.cast_value_for_set(setting, value)
-      case setting.cast_type.to_sym
-      when :integer, :range
-        value.to_i
-      when :float
-        value.to_f
-      when :boolean, :ab_test
-        if value.is_a?(String)
-          value == Sail::ConstantCollection::ON ? Sail::ConstantCollection::TRUE : value
-        else
-          value ? Sail::ConstantCollection::TRUE : Sail::ConstantCollection::FALSE
-        end
-      when :array
-        value.is_a?(String) ? value : value.join(Sail.configuration.array_separator)
-      else
-        value
-      end
+      send("#{setting.cast_type}_set", value)
     end
 
     def display_name
