@@ -71,6 +71,7 @@ Possible cast types are
 * boolean
 * ab_test
 * cron
+* obj_model
 * range
 * array
 
@@ -132,6 +133,12 @@ Sail::Setting.get(:my_setting)
 Sail::Setting.create(name: :my_setting, cast_type: :cron, description: 'A very important setting', value: '* 15 1 * *')
 Sail::Setting.get(:my_setting)
 => true
+
+# Obj model setting
+# Will return the model based on the string value 
+Sail::Setting.create(name: :my_setting, cast_type: :obj_model, description: 'A very important setting', value: 'Post')
+Sail::Setting.get(:my_setting)
+=> Post
 
 # Range setting (ranges only accept values between 0...100)
 Sail::Setting.create(name: :my_setting, cast_type: :range, description: 'A very important setting', value: '99')
