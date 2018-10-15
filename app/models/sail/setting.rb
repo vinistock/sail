@@ -8,7 +8,7 @@ module Sail
     FULL_RANGE = 0...100
     SETTINGS_PER_PAGE = 8
     AVAILABLE_MODELS = Dir["#{Rails.root}/app/models/*.rb"]
-                         .map { |dir| dir.split('/').last.camelize.gsub('.rb', '') }
+                         .map { |dir| dir.split('/').last.camelize.gsub('.rb', '') }.freeze
 
     validates_presence_of :name, :value, :cast_type
     validates_uniqueness_of :name
