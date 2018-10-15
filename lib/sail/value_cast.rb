@@ -32,6 +32,10 @@ module Sail
       Fugit::Cron.new(value).match?(DateTime.now.utc.change(sec: 0))
     end
 
+    def obj_model_get(value)
+      value.constantize
+    end
+
     def string_get(value)
       value
     end
@@ -68,6 +72,14 @@ module Sail
 
     def array_set(value)
       value.is_a?(String) ? value : value.join(Sail.configuration.array_separator)
+    end
+
+    def obj_model_set(value)
+      value
+    end
+
+    def cron_set(value)
+      value
     end
 
     def string_set(value)
