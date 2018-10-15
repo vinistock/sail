@@ -7,13 +7,18 @@ module Sail
     extend Sail::ValueCast
     FULL_RANGE = 0...100
     SETTINGS_PER_PAGE = 8
+    AVAILABLE_MODELS = Dir["#{Rails.root}/app/models/*.rb"]
+                         .map { |dir| dir.split('/').last.camelize.gsub('.rb', '') }
+
     validates_presence_of :name, :value, :cast_type
     validates_uniqueness_of :name
-    enum cast_type: %i[integer string boolean range array float ab_test cron].freeze
+    enum cast_type: %i[integer string boolean range
+                       array float ab_test cron obj_model].freeze
 
     validate :value_is_within_range, if: -> { self.range? }
     validate :value_is_true_or_false, if: -> { self.boolean? || self.ab_test? }
     validate :cron_is_valid, if: -> { self.cron? }
+    validate :model_exists, if: -> { self.obj_model? }
 
     scope :paginated, ->(page) do
       select(:name, :description, :value, :cast_type)
@@ -53,6 +58,12 @@ module Sail
     end
 
     private
+
+    def model_exists
+      unless AVAILABLE_MODELS.include?(value)
+        errors.add(:invalid_model, 'Model does not exist')
+      end
+    end
 
     def value_is_true_or_false
       if Sail::ConstantCollection::STRING_BOOLEANS.exclude?(value)

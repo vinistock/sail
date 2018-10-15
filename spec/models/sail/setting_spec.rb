@@ -67,6 +67,18 @@ describe Sail::Setting, type: :model do
         it { is_expected.to be_invalid }
       end
     end
+
+    describe 'model_exists' do
+      context 'when model exists' do
+        subject { described_class.new(name: :setting, value: 'Test', cast_type: :obj_model) }
+        it { is_expected.to be_valid }
+      end
+
+      context 'when model does not exist' do
+        subject { described_class.new(name: :setting, value: 'Invalid', cast_type: :obj_model) }
+        it { is_expected.to be_invalid }
+      end
+    end
   end
 
   describe 'scopes' do
@@ -125,6 +137,7 @@ describe Sail::Setting, type: :model do
       { type: 'ab_test', value: 'false', expected_value: false },
       { type: 'cron', value: '* * 5 * *', expected_value: true },
       { type: 'cron', value: '* * 6 * *', expected_value: false },
+      { type: 'obj_model', value: 'Test', expected_value: Test },
       { type: 'range', value: '1', expected_value: 1 },
       { type: 'array', value: '1;2;3;4', expected_value: %w[1 2 3 4] },
       { type: 'string', value: '1', expected_value: '1' }
@@ -158,12 +171,14 @@ describe Sail::Setting, type: :model do
       { type: 'ab_test', old: 'true', new: 'false', expected: 'false' },
       { type: 'ab_test', old: 'true', new: false, expected: 'false' },
       { type: 'ab_test', old: 'false', new: 'on', expected: 'true' },
+      { type: 'cron', old: '* * * * *', new: '*/5 * 10 * *', expected: '*/5 * 10 * *' },
+      { type: 'obj_model', old: 'Test2', new: 'Test', expected: 'Test' },
       { type: 'boolean', old: 'false', new: 'true', expected: 'true' },
       { type: 'boolean', old: 'false', new: 'on', expected: 'true' },
       { type: 'boolean', old: 'false', new: true, expected: 'true' }
     ].each do |test_data|
       context "when changing value of a #{test_data[:type]} setting" do
-        let!(:setting) { described_class.create(name: :setting, value: test_data[:old], cast_type: described_class.cast_types[test_data[:type]]) }
+        let!(:setting) { described_class.create!(name: :setting, value: test_data[:old], cast_type: described_class.cast_types[test_data[:type]]) }
 
         it 'sets value appropriately' do
           described_class.set(:setting, test_data[:new])
