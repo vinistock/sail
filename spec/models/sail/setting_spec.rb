@@ -133,6 +133,9 @@ describe Sail::Setting, type: :model do
     [
       { type: 'integer', value: '1', expected_value: 1 },
       { type: 'float', value: '1.123', expected_value: 1.123 },
+      { type: 'date', value: 'Apr 15, 2018', expected_value: '15-04-2018' },
+      { type: 'date', value: '15 April 2018', expected_value: '15-04-2018' },
+      { type: 'date', value: 'April 15, 2018', expected_value: '15-04-2018' },
       { type: 'boolean', value: 'true', expected_value: true },
       { type: 'ab_test', value: 'false', expected_value: false },
       { type: 'cron', value: '* * 5 * *', expected_value: true },
@@ -175,7 +178,8 @@ describe Sail::Setting, type: :model do
       { type: 'obj_model', old: 'Test2', new: 'Test', expected: 'Test' },
       { type: 'boolean', old: 'false', new: 'true', expected: 'true' },
       { type: 'boolean', old: 'false', new: 'on', expected: 'true' },
-      { type: 'boolean', old: 'false', new: true, expected: 'true' }
+      { type: 'boolean', old: 'false', new: true, expected: 'true' },
+      { type: 'date', old: '12-01-2010', new: '10-10-2015', expected: '10-10-2015' }
     ].each do |test_data|
       context "when changing value of a #{test_data[:type]} setting" do
         let!(:setting) { described_class.create!(name: :setting, value: test_data[:old], cast_type: described_class.cast_types[test_data[:type]]) }

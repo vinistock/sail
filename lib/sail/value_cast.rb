@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'time'
+
 module Sail
   module ValueCast
     # Section for get value casts
@@ -10,6 +12,10 @@ module Sail
 
     def range_get(value)
       value.to_i
+    end
+
+    def date_get(value)
+      Time.parse(value).strftime("%d-%m-%Y")
     end
 
     def float_get(value)
@@ -48,6 +54,10 @@ module Sail
 
     def range_set(value)
       value.to_i
+    end
+
+    def date_set(value)
+      Time.parse(value).strftime("%d-%m-%Y")
     end
 
     def float_set(value)

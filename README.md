@@ -4,7 +4,7 @@
 
 This Rails engine brings a setting model into your app to be used as feature flags, gauges, knobs and other live controls you may need.
 
-It can either serve as an admin control panel or user settings, depending on how you wish to apply it. 
+It can either serve as an admin control panel or user settings, depending on how you wish to apply it.
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -67,6 +67,7 @@ Settings can be read or set via their interface. Notice that when reading a sett
 Possible cast types are
 * integer
 * float
+* date
 * string
 * boolean
 * ab_test
@@ -76,11 +77,11 @@ Possible cast types are
 * array
 
 ```ruby
-# Get setting value with appropriate cast type 
+# Get setting value with appropriate cast type
 Sail::Setting.get('name')
 
 # Set setting value
-Sail::Setting.set('name', 'value') 
+Sail::Setting.set('name', 'value')
 ```
 
 Sail also comes with a JSON API for manipulating settings.
@@ -112,6 +113,11 @@ Sail::Setting.create(name: :my_setting, cast_type: :float, description: 'A very 
 Sail::Setting.get(:my_setting)
 => 1.532
 
+# Date setting
+Sail::Setting.create(name: :my_setting, cast_type: :date, description: 'A very important setting', value: 'Apr 15, 2018')
+Sail::Setting.get(:my_setting)
+=> 15-04-2018
+
 # String setting
 Sail::Setting.create(name: :my_setting, cast_type: :string, description: 'A very important setting', value: '15')
 Sail::Setting.get(:my_setting)
@@ -123,19 +129,19 @@ Sail::Setting.get(:my_setting)
 => true
 
 # AB test setting
-# When true, returns true or false randomly. When false, always returns false 
+# When true, returns true or false randomly. When false, always returns false
 Sail::Setting.create(name: :my_setting, cast_type: :ab_test, description: 'A very important setting', value: 'true')
 Sail::Setting.get(:my_setting)
 => true
 
 # Cron setting
-# if DateTime.now.utc matches the configured cron expression returns true. Returns false for no matches. 
+# if DateTime.now.utc matches the configured cron expression returns true. Returns false for no matches.
 Sail::Setting.create(name: :my_setting, cast_type: :cron, description: 'A very important setting', value: '* 15 1 * *')
 Sail::Setting.get(:my_setting)
 => true
 
 # Obj model setting
-# Will return the model based on the string value 
+# Will return the model based on the string value
 Sail::Setting.create(name: :my_setting, cast_type: :obj_model, description: 'A very important setting', value: 'Post')
 Sail::Setting.get(:my_setting)
 => Post
