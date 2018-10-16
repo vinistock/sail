@@ -57,6 +57,8 @@ module Sail
     def boolean_set(value)
       if value.is_a?(String)
         value == Sail::ConstantCollection::ON ? Sail::ConstantCollection::TRUE : value
+      elsif value.nil?
+        Sail::ConstantCollection::FALSE
       else
         value.to_s
       end
@@ -65,6 +67,8 @@ module Sail
     def ab_test_set(value)
       if value.is_a?(String)
         value == Sail::ConstantCollection::ON ? Sail::ConstantCollection::TRUE : value
+      elsif value.nil?
+        Sail::ConstantCollection::FALSE
       else
         value.to_s
       end
