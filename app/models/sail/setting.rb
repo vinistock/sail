@@ -23,7 +23,7 @@ module Sail
     validate :date_is_valid, if: -> { date? }
 
     scope :paginated, ->(page) do
-      select(:name, :description, :value, :cast_type)
+      select(:name, :description, :value, :cast_type, :updated_at)
         .offset(page.to_i * SETTINGS_PER_PAGE)
         .limit(SETTINGS_PER_PAGE)
     end
