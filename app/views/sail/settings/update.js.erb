@@ -2,16 +2,10 @@ var messageDiv = document.getElementById("<%= "setting-message-#{@setting.name}"
 var cardDiv = messageDiv.parentNode;
 cardDiv.style.opacity = '.85';
 
-var rect = cardDiv.getBoundingClientRect();
-var offset = {
-  top: rect.top + document.body.scrollTop,
-  left: rect.left + document.body.scrollLeft
-};
+var xCorrection = <%= @successful_update ? 35 : 25 %>;
 
-var width = cardDiv.style.width;
-var height = cardDiv.style.height;
-var centerX = (offset.left + width / 2) + 155;
-var centerY = (offset.top + height / 2) + 150;
+var centerX = (cardDiv.offsetLeft + cardDiv.offsetWidth / 2) - xCorrection;
+var centerY = (cardDiv.offsetTop + cardDiv.offsetHeight / 2) + 15;
 
 messageDiv.innerHTML = "<p class='<%= @successful_update ? 'success' : 'failure' %>' style='position: absolute; top: " + centerY + "px; left: " + centerX + "px;'><%= @successful_update ? I18n.t('sail.updated') : I18n.t('sail.failed') %></p>";
 
