@@ -1,4 +1,4 @@
-class CreateSailSettings < ActiveRecord::Migration<%= migration_version %>
+class <%= migration_name %> < ActiveRecord::Migration<%= migration_version %>
   def change
     create_table :sail_settings do |t|
       t.string :name, null: false

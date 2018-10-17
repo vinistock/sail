@@ -8,7 +8,7 @@ module ActiveRecord
       source_root File.expand_path('../templates', __FILE__)
 
       def copy_sail_migration
-        migration_template 'settings_migration.rb', "db/migrate/#{target_name}.rb", migration_version: migration_version
+        migration_template 'settings_migration.rb', "db/migrate/#{target_name}.rb", migration_version: migration_version, migration_name: migration_name
       end
 
       def migration_version
@@ -19,6 +19,10 @@ module ActiveRecord
 
       def target_name
         name || 'create_sail_settings'
+      end
+
+      def migration_name
+        target_name.camelize
       end
     end
   end
