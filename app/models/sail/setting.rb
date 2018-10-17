@@ -13,8 +13,8 @@ module Sail
 
     validates_presence_of :name, :value, :cast_type
     validates_uniqueness_of :name
-    enum cast_type: %i[array ab_test boolean cron date float
-                       integer obj_model range string].freeze
+    enum cast_type: %i[integer string boolean range array float
+                       ab_test cron obj_model date].freeze
 
     validate :value_is_within_range, if: -> { range? }
     validate :value_is_true_or_false, if: -> { boolean? || ab_test? }
