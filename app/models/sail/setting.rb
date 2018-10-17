@@ -3,6 +3,7 @@
 require 'fugit'
 
 module Sail
+  # Setting
   class Setting < ApplicationRecord
     extend Sail::ValueCast
     FULL_RANGE = 0...100
@@ -12,13 +13,14 @@ module Sail
 
     validates_presence_of :name, :value, :cast_type
     validates_uniqueness_of :name
-    enum cast_type: %i[integer string boolean range
-                       array float ab_test cron obj_model].freeze
+    enum cast_type: %i[array ab_test boolean cron date float
+                       integer obj_model range string].freeze
 
-    validate :value_is_within_range, if: -> { self.range? }
-    validate :value_is_true_or_false, if: -> { self.boolean? || self.ab_test? }
-    validate :cron_is_valid, if: -> { self.cron? }
-    validate :model_exists, if: -> { self.obj_model? }
+    validate :value_is_within_range, if: -> { range? }
+    validate :value_is_true_or_false, if: -> { boolean? || ab_test? }
+    validate :cron_is_valid, if: -> { cron? }
+    validate :model_exists, if: -> { obj_model? }
+    validate :date_is_valid, if: -> { date? }
 
     scope :paginated, ->(page) do
       select(:name, :description, :value, :cast_type)
@@ -77,6 +79,12 @@ module Sail
         errors.add(:outside_range_error,
                    "Range settings only take values inside range #{FULL_RANGE}")
       end
+    end
+
+    def date_is_valid
+      DateTime.parse(value)
+    rescue ArgumentError
+      errors.add(:invalid_date, 'Date format is invalid.')
     end
 
     def cron_is_valid

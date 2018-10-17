@@ -12,6 +12,10 @@ module Sail
       value.to_i
     end
 
+    def date_get(value)
+      DateTime.parse(value)
+    end
+
     def float_get(value)
       value.to_f
     end
@@ -48,6 +52,10 @@ module Sail
 
     def range_set(value)
       value.to_i
+    end
+
+    def date_set(value)
+      value
     end
 
     def float_set(value)
