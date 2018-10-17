@@ -19,6 +19,18 @@ describe Sail::Setting, type: :model do
       end
     end
 
+    describe 'value_is_a_valid_date' do
+      context 'when cast type a valid date' do
+        subject { described_class.new(name: :setting, value: '2010-01-31', cast_type: :date) }
+        it { is_expected.to be_valid }
+      end
+
+      context 'when cast type is not a valid date' do
+        subject { described_class.new(name: :setting, value: 'April 15, 2018', cast_type: :date) }
+        it { is_expected.to be_invalid }
+      end
+    end
+
     describe 'value_is_true_or_false' do
       context 'when type is not boolean' do
         subject { described_class.new(name: :setting, value: 'not a boolean', cast_type: :string) }
@@ -133,9 +145,8 @@ describe Sail::Setting, type: :model do
     [
       { type: 'integer', value: '1', expected_value: 1 },
       { type: 'float', value: '1.123', expected_value: 1.123 },
-      { type: 'date', value: 'Apr 15, 2018', expected_value: '15-04-2018' },
-      { type: 'date', value: '15 April 2018', expected_value: '15-04-2018' },
-      { type: 'date', value: 'April 15, 2018', expected_value: '15-04-2018' },
+      { type: 'date', value: '2015-04-15', expected_value: '2015-04-15' },
+      { type: 'date', value: '15 April 2018', expected_value: nil },
       { type: 'boolean', value: 'true', expected_value: true },
       { type: 'ab_test', value: 'false', expected_value: false },
       { type: 'cron', value: '* * 5 * *', expected_value: true },
@@ -179,7 +190,7 @@ describe Sail::Setting, type: :model do
       { type: 'boolean', old: 'false', new: 'true', expected: 'true' },
       { type: 'boolean', old: 'false', new: 'on', expected: 'true' },
       { type: 'boolean', old: 'false', new: true, expected: 'true' },
-      { type: 'date', old: '12-01-2010', new: '10-10-2015', expected: '10-10-2015' }
+      { type: 'date', old: '2010-01-30', new: '2018-01-30', expected: '2018-01-30' }
     ].each do |test_data|
       context "when changing value of a #{test_data[:type]} setting" do
         let!(:setting) { described_class.create!(name: :setting, value: test_data[:old], cast_type: described_class.cast_types[test_data[:type]]) }

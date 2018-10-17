@@ -82,9 +82,9 @@ module Sail
     end
 
     def date_is_valid
-      DateTime.parse(value)
+      DateTime.strptime(value, '%Y-%m-%d')
     rescue ArgumentError
-      errors.add(:invalid_date, 'Date format is invalid. It should be in the format DD-MM-YYYY')
+      errors.add(:invalid_date, 'Date format is invalid. It should be in the format %Y-%m-%d')
     end
 
     def cron_is_valid
