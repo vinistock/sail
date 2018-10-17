@@ -13,7 +13,7 @@ module Sail
     end
 
     def date_get(value)
-      DateTime.strptime(value, '%Y-%m-%d')
+      DateTime.parse(value)
     end
 
     def float_get(value)
