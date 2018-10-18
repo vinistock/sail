@@ -116,7 +116,7 @@ Sail::Setting.get(:my_setting)
 # Date setting
 Sail::Setting.create(name: :my_setting, cast_type: :date, description: 'A very important setting', value: '2018-01-30')
 Sail::Setting.get(:my_setting)
-=> 2018-01-30
+=> Tue, 30 Jan 2018 00:00:00 +0000
 
 # String setting
 Sail::Setting.create(name: :my_setting, cast_type: :string, description: 'A very important setting', value: '15')
