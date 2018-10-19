@@ -20,6 +20,8 @@
             </label>
           <% elsif setting.range? %>
             <input type="range" min="0" max="99" value="<%= setting.value %>" name="value" class="value-slider">
+          <% elsif setting.date? %>
+            <input type="datetime-local" value="<%= setting.value %>" name="value" class="date-picker">
           <% else %>
             <input type="text" name="value" class="value-input" value="<%= setting.value %>"/>
           <% end %>
