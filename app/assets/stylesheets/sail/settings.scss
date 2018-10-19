@@ -108,6 +108,22 @@
       }
     }
 
+    .date-picker {
+      position: relative;
+      bottom: 10px;
+      border: none;
+      border-bottom: 2px solid darken($aluminium, 30%);
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+      font-family: 'Roboto', sans-serif;
+
+      &:focus {
+        border-color: $tangerine;
+        outline: none;
+      }
+    }
+
     .value-slider {
       -webkit-appearance: none;
       width: 100%;
