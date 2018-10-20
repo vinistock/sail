@@ -4,7 +4,11 @@
 
 This Rails engine brings a setting model into your app to be used as feature flags, gauges, knobs and other live controls you may need.
 
-It saves configurations to the database so that it can be changed while the application is running, without requiring a deploy. 
+It saves configurations to the database so that it can be changed while the application is running, without requiring a deploy.
+
+Having this ability enables live experiments and tuning to find an application's best setup.
+
+Enable/Disable a new feature, turn ON/OFF ab testing for new functionality, change jobs' parameters to tune performance, you name it.
 
 It can either serve as an admin control panel or user settings, depending on how you wish to apply it.
 
