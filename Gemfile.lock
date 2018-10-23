@@ -89,6 +89,8 @@ GEM
       mini_portile2 (~> 2.3.0)
     raabro (1.1.6)
     rack (2.0.5)
+    rack-mini-profiler (1.0.0)
+      rack (>= 1.2.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.1)
@@ -177,6 +179,7 @@ DEPENDENCIES
   byebug (~> 10.0.2)
   codeclimate-test-reporter (~> 1.0)
   database_cleaner (~> 1.7.0)
+  rack-mini-profiler
   rspec-rails (~> 3.8.0)
   sail!
   simplecov (~> 0.16.1)

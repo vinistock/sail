@@ -27,4 +27,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'byebug', '~> 10.0.2'
   s.add_development_dependency 'bundler', '~> 1.16.6'
   s.add_development_dependency 'database_cleaner', '~> 1.7.0'
+  s.add_development_dependency 'rack-mini-profiler'
 end
