@@ -44,6 +44,10 @@ module Sail
       value
     end
 
+    def uri_get(value)
+      URI(value)
+    end
+
     # Section for set value casts
 
     def integer_set(value)
@@ -95,6 +99,10 @@ module Sail
     end
 
     def string_set(value)
+      value
+    end
+
+    def uri_set(value)
       value
     end
   end

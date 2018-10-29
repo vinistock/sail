@@ -14,13 +14,14 @@ module Sail
     validates_presence_of :name, :value, :cast_type
     validates_uniqueness_of :name
     enum cast_type: %i[integer string boolean range array float
-                       ab_test cron obj_model date].freeze
+                       ab_test cron obj_model date uri].freeze
 
     validate :value_is_within_range, if: -> { range? }
     validate :value_is_true_or_false, if: -> { boolean? || ab_test? }
     validate :cron_is_valid, if: -> { cron? }
     validate :model_exists, if: -> { obj_model? }
     validate :date_is_valid, if: -> { date? }
+    validate :uri_is_valid, if: -> { uri? }
 
     scope :paginated, ->(page) do
       select(:name, :description, :value, :cast_type, :updated_at)
@@ -82,14 +83,20 @@ module Sail
     def date_is_valid
       DateTime.parse(value)
     rescue ArgumentError
-      errors.add(:invalid_date, 'Date format is invalid.')
+      errors.add(:invalid_date, 'Date format is invalid')
     end
 
     def cron_is_valid
       if Fugit::Cron.new(value).nil?
         errors.add(:invalid_cron_string,
-                   'Setting value is not a valid cron')
+                   "Setting value is not a valid cron")
       end
+    end
+
+    def uri_is_valid
+      URI(value)
+    rescue URI::InvalidURIError
+      errors.add(:invalid_uri, "URI value is invalid")
     end
   end
 end

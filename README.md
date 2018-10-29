@@ -79,6 +79,7 @@ Possible cast types are
 * ab_test
 * cron
 * obj_model
+* uri
 * range
 * array
 
@@ -149,6 +150,12 @@ Sail::Setting.get(:my_setting)
 # Obj model setting
 # Will return the model based on the string value
 Sail::Setting.create(name: :my_setting, cast_type: :obj_model, description: 'A very important setting', value: 'Post')
+Sail::Setting.get(:my_setting)
+=> Post
+
+# URI setting
+# Returns the URI object for a given string
+Sail::Setting.create(name: :my_setting, cast_type: :uri, description: 'A very important setting', value: 'https://google.com')
 Sail::Setting.get(:my_setting)
 => Post
 

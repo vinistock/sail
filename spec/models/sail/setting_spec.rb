@@ -96,6 +96,18 @@ describe Sail::Setting, type: :model do
         it { is_expected.to be_invalid }
       end
     end
+
+    describe "url_is_valid" do
+      context "when format is valid" do
+        subject { described_class.new(name: :setting, value: "https://google.com", cast_type: :uri) }
+        it { is_expected.to be_valid }
+      end
+
+      context "when format is invalid" do
+        subject { described_class.new(name: :setting, value: "whatever string", cast_type: :uri) }
+        it { is_expected.to be_invalid }
+      end
+    end
   end
 
   describe 'scopes' do
@@ -159,6 +171,7 @@ describe Sail::Setting, type: :model do
       { type: 'cron', value: '* * 5 * *', expected_value: true },
       { type: 'cron', value: '* * 6 * *', expected_value: false },
       { type: 'obj_model', value: 'Test', expected_value: Test },
+      { type: "uri", value: "https://google.com", expected_value: URI("https://google.com") },
       { type: 'range', value: '1', expected_value: 1 },
       { type: 'array', value: '1;2;3;4', expected_value: %w[1 2 3 4] },
       { type: 'string', value: '1', expected_value: '1' }
@@ -194,6 +207,7 @@ describe Sail::Setting, type: :model do
       { type: 'ab_test', old: 'false', new: 'on', expected: 'true' },
       { type: 'cron', old: '* * * * *', new: '*/5 * 10 * *', expected: '*/5 * 10 * *' },
       { type: 'obj_model', old: 'Test2', new: 'Test', expected: 'Test' },
+      { type: "uri", old: "https://youtube.com", new: "https://google.com", expected: "https://google.com" },
       { type: 'boolean', old: 'false', new: 'true', expected: 'true' },
       { type: 'boolean', old: 'false', new: 'on', expected: 'true' },
       { type: 'boolean', old: 'false', new: true, expected: 'true' },
