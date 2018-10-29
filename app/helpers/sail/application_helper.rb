@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Sail
   module ApplicationHelper
     def number_of_pages

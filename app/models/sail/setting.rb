@@ -6,7 +6,7 @@ module Sail
   # Setting
   class Setting < ApplicationRecord
     extend Sail::ValueCast
-    FULL_RANGE = 0...100
+    FULL_RANGE = (0...100).freeze
     SETTINGS_PER_PAGE = 8
     AVAILABLE_MODELS = Dir["#{Rails.root}/app/models/*.rb"]
                          .map { |dir| dir.split('/').last.camelize.gsub('.rb', '') }.freeze
@@ -43,7 +43,7 @@ module Sail
       value_cast = cast_value_for_set(setting, value)
       success = setting.update_attributes(value: value_cast)
       Rails.cache.delete("setting_get_#{name}") if success
-      return setting, success
+      [setting, success]
     end
 
     def self.cast_setting_value(setting)
@@ -56,15 +56,13 @@ module Sail
     end
 
     def display_name
-      self.name.gsub(/[^a-zA-Z\d]/, ' ').titleize
+      name.gsub(/[^a-zA-Z\d]/, ' ').titleize
     end
 
     private
 
     def model_exists
-      unless AVAILABLE_MODELS.include?(value)
-        errors.add(:invalid_model, 'Model does not exist')
-      end
+      errors.add(:invalid_model, 'Model does not exist') unless AVAILABLE_MODELS.include?(value)
     end
 
     def value_is_true_or_false

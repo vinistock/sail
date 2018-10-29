@@ -1,0 +1,18 @@
+AllCops:
+  Exclude:
+  - spec/**/*
+  - coverage/**/*
+  - lib/generators/active_record/templates/**/*
+
+Metrics/LineLength:
+  Max: 120
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+Style/DateTime:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/ExpandPathArguments:
+  Enabled: false

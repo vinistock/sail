@@ -8,13 +8,13 @@ module ActiveRecord
       source_root File.expand_path('../templates', __FILE__)
 
       def copy_sail_migration
-        migration_template 'settings_migration.rb', "db/migrate/#{target_name}.rb", migration_version: migration_version, migration_name: migration_name
+        migration_template 'settings_migration.rb',
+                           "db/migrate/#{target_name}.rb",
+                           migration_version: migration_version, migration_name: migration_name
       end
 
       def migration_version
-        if Rails.version.start_with?('5')
-          "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]"
-        end
+        "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]" if Rails.version.start_with?('5')
       end
 
       def target_name

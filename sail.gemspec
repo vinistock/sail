@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-$:.push File.expand_path('../lib', __FILE__)
+$LOAD_PATH.push File.expand_path('../lib', __FILE__)
 require 'sail/version'
 
 Gem::Specification.new do |s|
@@ -16,16 +16,17 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['spec/**/*']
 
+  s.add_dependency 'fugit'
   s.add_dependency 'rails'
   s.add_dependency 'sass-rails'
-  s.add_dependency 'fugit'
 
-  s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'rspec-rails', '~> 3.8.0'
-  s.add_development_dependency 'simplecov', '~> 0.16.1'
-  s.add_development_dependency 'codeclimate-test-reporter', '~> 1.0'
-  s.add_development_dependency 'byebug', '~> 10.0.2'
   s.add_development_dependency 'bundler', '~> 1.16.6'
+  s.add_development_dependency 'byebug', '~> 10.0.2'
+  s.add_development_dependency 'codeclimate-test-reporter', '~> 1.0'
   s.add_development_dependency 'database_cleaner', '~> 1.7.0'
   s.add_development_dependency 'rack-mini-profiler'
+  s.add_development_dependency 'rspec-rails', '~> 3.8.0'
+  s.add_development_dependency 'rubocop'
+  s.add_development_dependency 'simplecov', '~> 0.16.1'
+  s.add_development_dependency 'sqlite3'
 end
