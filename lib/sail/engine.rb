@@ -8,7 +8,7 @@ module Sail
       g.test_framework :rspec
     end
 
-    initializer 'sail' do |app|
+    initializer 'sail' do
       unless Sail.configuration.dashboard_auth_lambda.nil?
         to_prepare do
           Sail::SettingsController.before_action(*Sail.configuration.dashboard_auth_lambda)
