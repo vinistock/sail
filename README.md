@@ -157,7 +157,7 @@ Sail::Setting.get(:my_setting)
 # Returns the URI object for a given string
 Sail::Setting.create(name: :my_setting, cast_type: :uri, description: 'A very important setting', value: 'https://google.com')
 Sail::Setting.get(:my_setting)
-=> Post
+=> <URI::HTTPS https://google.com>
 
 # Range setting (ranges only accept values between 0...100)
 Sail::Setting.create(name: :my_setting, cast_type: :range, description: 'A very important setting', value: '99')
