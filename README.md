@@ -63,6 +63,7 @@ Sail.configure do |config|
   config.cache_life_span = 10.minutes # How long to cache the Sail::Setting.get response for
   config.array_separator = ';'        # Default separator for array settings
   config.dashboard_auth_lambda = nil  # Defines an authorization lambda to access the dashboard as a before action. Rendering or redirecting is included here if desired.
+  config.back_link_path = 'root_path' # Path method as string for the "Main app" button in the dashboard. Any non-existent path will make the button disappear
 end
 ```
 
