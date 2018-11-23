@@ -1,0 +1,4 @@
+test_setting:
+  description: This setting exists for testing
+  value: false
+  cast_type: boolean

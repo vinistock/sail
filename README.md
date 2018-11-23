@@ -69,6 +69,25 @@ Sail.configure do |config|
 end
 ```
 
+## Populating the database
+
+In order to create settings, use the config/sail.yml file (or create your own data migrations).
+
+After settings have been created a first time, they will not be updated with the values in the yaml file (otherwise it would defeat the purpose of being able to configure the application without requiring a deploy).
+
+```yaml
+# Rails.root/config/sail.yml
+# Setting name with it's information contained inside
+first_setting:
+  description: My very first setting
+  value: some_important_string
+  cast_type: string
+second_setting:
+  description: My second setting, this time a boolean
+  value: false
+  cast_type: boolean
+``` 
+
 ## Manipulating settings in the code
 
 Settings can be read or set via their interface. Notice that when reading a setting's value, it will be cast to the appropriate type using the "cast_type" field.
