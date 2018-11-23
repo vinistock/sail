@@ -1,3 +1,5 @@
+![dashboard](https://raw.githubusercontent.com/vinistock/sail/master/app/assets/images/sail/sail.png)
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/00ed468acd8b93f66478/maintainability)](https://codeclimate.com/github/vinistock/sail/maintainability) [![Build Status](https://travis-ci.org/vinistock/sail.svg?branch=master)](https://travis-ci.org/vinistock/sail) [![Test Coverage](https://codeclimate.com/github/vinistock/sail/badges/coverage.svg)](https://codeclimate.com/github/vinistock/sail/coverage) [![Gem Version](https://badge.fury.io/rb/sail.svg)](https://badge.fury.io/rb/sail) ![](http://ruby-gem-downloads-badge.herokuapp.com/sail?color=brightgreen&type=total)
 
 # Sail
@@ -10,7 +12,7 @@ Having this ability enables live experiments and tuning to find an application's
 
 Enable/Disable a new feature, turn ON/OFF ab testing for new functionality, change jobs' parameters to tune performance, you name it.
 
-It can either serve as an admin control panel or user settings, depending on how you wish to apply it.
+It can either serve as an admin control panel or user settings, depending on how you wish to apply it, and comes with a dashboard for changing configuration on the fly.
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -170,12 +172,6 @@ Sail::Setting.create(name: :my_setting, cast_type: :array, description: 'A very 
 Sail::Setting.get(:my_setting)
 => ['John', 'Alfred', 'Michael']
 ```
-
-## Managing your settings live
-
-Sail brings a dashboard so that you can manage your settings and update their values as needed.
-
-![dashboard](https://raw.githubusercontent.com/vinistock/sail/master/app/assets/images/sail/sail.png)
 
 ## Contributing
 
