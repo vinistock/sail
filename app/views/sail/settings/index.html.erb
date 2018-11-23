@@ -12,7 +12,7 @@
 
       <% if main_app.respond_to?(Sail.configuration.back_link_path) %>
         <div class="link-holder">
-          <%= link_to('Main app', main_app.method(Sail.configuration.back_link_path).call, method: :get) %>
+          <%= link_to(I18n.t("sail.main_app"), main_app.method(Sail.configuration.back_link_path).call, method: :get) %>
         </div>
       <% end %>
 
