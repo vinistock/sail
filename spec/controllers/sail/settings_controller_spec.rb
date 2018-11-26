@@ -6,6 +6,10 @@ describe Sail::SettingsController, type: :controller do
     subject { get :index, params: params }
     let(:params) {{ page: '1' }}
 
+    before do
+      Sail::Setting.create(name: :setting, cast_type: :string, value: :something)
+    end
+
     it 'queries settings with pagination' do
       expect(Sail::Setting).to receive(:paginated).with('1')
       subject
@@ -15,6 +19,11 @@ describe Sail::SettingsController, type: :controller do
     it 'sets eTag in response headers' do
       subject
       expect(response.headers['ETag']).to_not be_nil
+    end
+
+    it "sets the number of pages" do
+      subject
+      expect(controller.instance_variable_get(:@number_of_pages)).to eq(1)
     end
 
     context 'when passing a query' do

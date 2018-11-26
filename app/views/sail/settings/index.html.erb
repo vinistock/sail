@@ -3,7 +3,12 @@
     <%= render(partial: 'search') %>
 
     <div id="settings-container">
-      <%= render(partial: 'setting', collection: @settings) %>
+      <% if @number_of_pages > 0 %>
+        <%= render(partial: 'setting', collection: @settings) %>
+      <% else %>
+        <h1><%= I18n.t("sail.no_settings") %></h1>
+      <% end %>
+
       <div class="clearfix"></div>
     </div>
 
@@ -18,11 +23,11 @@
 
       <%= link_to('<', settings_path(page: [params[:page].to_i - 1, 0].max), method: :get) %>
 
-      <% (0...number_of_pages).each do |page| %>
+      <% (0...@number_of_pages).each do |page| %>
         <%= link_to(page + 1, settings_path(page: page), method: :get, class: params[:page].to_i == page || params[:page].blank? && page.zero? ? 'active' : '') %>
       <% end %>
 
-      <%= link_to('>', settings_path(page: [params[:page].to_i + 1, number_of_pages - 1].min), method: :get) %>
+      <%= link_to('>', settings_path(page: [params[:page].to_i + 1, @number_of_pages - 1].min), method: :get) %>
     </div>
   <% end %>
 </div>

@@ -3,7 +3,9 @@
 module Sail
   class SettingsController < ApplicationController
     def index
-      @settings = Setting.by_name(params[:query]).paginated(index_params[:page])
+      @settings = Setting.by_name(params[:query])
+      @number_of_pages = (@settings.count.to_f / Sail::Setting::SETTINGS_PER_PAGE).ceil
+      @settings = @settings.paginated(index_params[:page])
       fresh_when(@settings)
     end
 
