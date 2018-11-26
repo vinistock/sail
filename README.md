@@ -37,23 +37,10 @@ Adding the following line to your routes file will make the dashboard available 
 mount Sail::Engine => '/sail'
 ```
 
-Running the generator will create the settings table for your application.
+Running the install generator will create necessary migrations for having the settings in your database.
 
 ```bash
-$ rails g sail my_desired_migration_name
-```
-
-Which generates a migration to create the following table
-
-```ruby
-create_table :sail_settings do |t|
-  t.string :name, null: false
-  t.text :description
-  t.string :value, null: false
-  t.integer :cast_type, null: false, limit: 1
-  t.index ["name"], name: "index_settings_on_name", unique: true
-  t.timetamps
-end
+$ rails g sail:install
 ```
 
 ## Configuration
