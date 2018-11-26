@@ -4,5 +4,13 @@ rvm:
   - 2.3.8
   - 2.4.5
   - 2.5.3
+addons:
+  apt:
+    packages:
+      - google-chrome-stable
+      - chromium-chromedriver
+
+before_script:
+  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
 before_install: gem install bundler
 after_success: bundle exec codeclimate-test-reporter
