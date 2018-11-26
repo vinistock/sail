@@ -12,7 +12,7 @@ Having this ability enables live experiments and tuning to find an application's
 
 Enable/Disable a new feature, turn ON/OFF ab testing for new functionality, change jobs' parameters to tune performance, you name it.
 
-It can either serve as an admin control panel or user settings, depending on how you wish to apply it, and comes with a dashboard for changing configuration on the fly.
+It comes with an admin dashboard for changing configurations on the fly and is lightweight.
 
 ## Installation
 Add this line to your application's Gemfile:
