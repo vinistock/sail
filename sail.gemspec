@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ['Vinicius Stock'].freeze
   s.email       = ['vinicius.stock@outlook.com'].freeze
   s.homepage    = 'https://github.com/vinistock/sail'
-  s.summary     = 'Sail will help you navigate your Rails application.'
-  s.description = 'Sail brings settings into your Rails application for controlling behavior.'
+  s.summary     = 'Sail is a lightweight Rails engine that brings an admin panel for managing configuration settings on a live Rails app.'
+  s.description = 'Sail is a lightweight Rails engine that brings an admin panel for managing configuration settings on a live Rails app.'
   s.license     = 'MIT'
 
   s.files = Dir['{app,config,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
