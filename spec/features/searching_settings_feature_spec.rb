@@ -16,11 +16,7 @@ feature "searching settings", js: true, type: :feature do
 
     it "displays the found setting" do
       within(".card") do
-        expect(page).to have_text(setting.name.titleize)
-        expect(page).to have_text(setting.description.capitalize)
-        expect(page).to have_text("type: #{setting.cast_type}")
-        expect(page).to have_button("SAVE")
-        expect(page).to have_field("value")
+        expect_setting(setting)
       end
     end
   end

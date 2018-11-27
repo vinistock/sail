@@ -39,3 +39,11 @@ RSpec.configure do |config|
   Capybara.javascript_driver = :headless_chrome
   Capybara.server = :webrick
 end
+
+def expect_setting(setting)
+  expect(page).to have_text(setting.name.titleize)
+  expect(page).to have_text(setting.description.capitalize)
+  expect(page).to have_text("type: #{setting.cast_type}")
+  expect(page).to have_button("SAVE")
+  expect(page).to have_field("value")
+end
