@@ -3,15 +3,15 @@
 module Sail
   class SettingsController < ApplicationController
     def index
-      @settings = Setting.by_name(params[:query])
+      @settings = Setting.by_name(s_params[:query])
       @number_of_pages = (@settings.count.to_f / Sail::Setting::SETTINGS_PER_PAGE).ceil
-      @settings = @settings.paginated(index_params[:page])
+      @settings = @settings.paginated(s_params[:page])
       fresh_when(@settings)
     end
 
     def update
       respond_to do |format|
-        @setting, @successful_update = Setting.set(params[:name], params[:value])
+        @setting, @successful_update = Setting.set(s_params[:name], s_params[:value])
         format.js {}
         format.json { @successful_update ? head(:ok) : head(:conflict) }
       end
@@ -20,7 +20,7 @@ module Sail
     def show
       respond_to do |format|
         format.json do
-          setting = Sail::Setting.get(params[:name])
+          setting = Sail::Setting.get(s_params[:name])
           render json: { value: setting }
         end
       end
@@ -28,8 +28,8 @@ module Sail
 
     private
 
-    def index_params
-      params.permit(:page)
+    def s_params
+      params.permit(:page, :query, :name, :value)
     end
   end
 end
