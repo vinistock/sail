@@ -174,6 +174,8 @@ describe Sail::Setting, type: :model do
       { type: "uri", value: "https://google.com", expected_value: URI("https://google.com") },
       { type: 'range', value: '1', expected_value: 1 },
       { type: 'array', value: '1;2;3;4', expected_value: %w[1 2 3 4] },
+      { type: "throttle", value: 100.0, expected_value: true },
+      { type: "throttle", value: 0.0, expected_value: false },
       { type: 'string', value: '1', expected_value: '1' }
     ].each do |test_data|
       context "when setting type is #{test_data[:type]}" do
@@ -181,7 +183,6 @@ describe Sail::Setting, type: :model do
           described_class.create(name: :setting,
                                  value: test_data[:value],
                                  cast_type: described_class.cast_types[test_data[:type]])
-
         end
 
         it { is_expected.to eq(test_data[:expected_value]) }
@@ -211,6 +212,7 @@ describe Sail::Setting, type: :model do
       { type: 'boolean', old: 'false', new: 'true', expected: 'true' },
       { type: 'boolean', old: 'false', new: 'on', expected: 'true' },
       { type: 'boolean', old: 'false', new: true, expected: 'true' },
+      { type: "throttle", old: "30.5", new: 45.0, expected: "45.0" },
       { type: 'date', old: '2010-01-30', new: '2018-01-30', expected: '2018-01-30' }
     ].each do |test_data|
       context "when changing value of a #{test_data[:type]} setting" do

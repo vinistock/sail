@@ -89,6 +89,7 @@ Possible cast types are
 * cron
 * obj_model
 * uri
+* throttle
 * range
 * array
 
@@ -177,6 +178,12 @@ Sail::Setting.get(:my_setting)
 Sail::Setting.create(name: :my_setting, cast_type: :array, description: 'A very important setting', value: 'John;Alfred;Michael')
 Sail::Setting.get(:my_setting)
 => ['John', 'Alfred', 'Michael']
+
+# Throttle setting
+# This setting will randomly return true X % of the time, where X is the setting's value 
+Sail::Setting.create(name: :my_setting, cast_type: :throttle, description: 'A very important setting', value: '50.0')
+Sail::Setting.get(:my_setting)
+=> true
 ```
 
 ## Contributing
