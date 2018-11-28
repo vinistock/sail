@@ -48,6 +48,10 @@ module Sail
       URI(value)
     end
 
+    def throttle_get(value)
+      100 * rand <= value.to_f
+    end
+
     # Section for set value casts
 
     def integer_set(value)
@@ -103,6 +107,10 @@ module Sail
     end
 
     def uri_set(value)
+      value
+    end
+
+    def throttle_set(value)
       value
     end
   end
