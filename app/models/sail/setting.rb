@@ -59,7 +59,7 @@ module Sail
     end
 
     def self.switcher(positive:, negative:, throttled_by:)
-      raise UnexpectedCastType unless select(:cast_type).where(name: throttled_by).first.throttle?
+      raise UnexpectedCastType unless select(:cast_type).where(name: throttled_by).first&.throttle?
       get(throttled_by) ? get(positive) : get(negative)
     end
 
