@@ -116,7 +116,7 @@ Sail::Setting.switch(
 ) 
 ```
 
-Sail also comes with a JSON API for manipulating settings.
+Sail also comes with a JSON API for manipulating settings. It is simply an interface for the methods described above.
 
 ```json
 GET sail/settings/:name
@@ -130,6 +130,13 @@ PUT sail/settings/:name
 
 Response
 200 OK
+
+GET sail/settings/switcher/:positive/:negative/:throttled_by
+
+Response
+{
+  "value": "Some value that depends on the setting combination passed"
+}
 ```
 
 ## Examples

@@ -20,8 +20,25 @@ module Sail
     def show
       respond_to do |format|
         format.json do
-          setting = Sail::Setting.get(s_params[:name])
-          render json: { value: setting }
+          render json: {
+            value: Sail::Setting.get(s_params[:name])
+          }
+        end
+      end
+    end
+
+    def switcher
+      respond_to do |format|
+        format.json do
+          begin
+            render json: {
+              value: Sail::Setting.switcher(positive: s_params[:positive],
+                                            negative: s_params[:negative],
+                                            throttled_by: s_params[:throttled_by])
+            }
+          rescue Sail::Setting::UnexpectedCastType
+            head(:bad_request)
+          end
         end
       end
     end
@@ -29,7 +46,8 @@ module Sail
     private
 
     def s_params
-      params.permit(:page, :query, :name, :value)
+      params.permit(:page, :query, :name,
+                    :value, :positive, :negative, :throttled_by)
     end
   end
 end

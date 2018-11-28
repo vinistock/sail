@@ -93,4 +93,61 @@ describe Sail::SettingsController, type: :controller do
       expect(response.content_type).to eq('application/json')
     end
   end
+
+  describe "GET switcher" do
+    subject { get :switcher, params: params, format: :json }
+    let!(:throttle) { Sail::Setting.create(name: :throttle, cast_type: :throttle, value: '50.0') }
+    let(:params) {{ positive: :positive, negative: :negative, throttled_by: :throttle }}
+
+    before do
+      Rails.cache.delete("setting_get_positive")
+      Rails.cache.delete("setting_get_negative")
+      Rails.cache.delete("setting_get_throttle")
+      Sail::Setting.create!(name: :positive, cast_type: :string, value: "I'm the primary!")
+      Sail::Setting.create!(name: :negative, cast_type: :integer, value: "7")
+      allow(Sail::Setting).to receive(:rand).and_return(random_value)
+    end
+
+    context "when random value is smaller than throttle" do
+      let(:random_value) { 0.25 }
+
+      it "returns ok status" do
+        subject
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "returns value of positive setting" do
+        subject
+
+        body = JSON.parse(response.body)
+        expect(body['value']).to eq("I'm the primary!")
+      end
+    end
+
+    context "when random value is greater than throttle" do
+      let(:random_value) { 0.75 }
+
+      it "returns ok status" do
+        subject
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "returns value of negative setting" do
+        subject
+
+        body = JSON.parse(response.body)
+        expect(body['value']).to eq(7)
+      end
+    end
+
+    context "when throttle setting is of the wrong type" do
+      let!(:throttle) { Sail::Setting.create!(name: :throttle, cast_type: :boolean, value: "true") }
+      let(:random_value) { 0.75 }
+
+      it "returns bad request" do
+        subject
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
+  end
 end
