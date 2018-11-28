@@ -5,6 +5,8 @@ require 'fugit'
 module Sail
   # Setting
   class Setting < ApplicationRecord
+    class UnexpectedCastType < StandardError; end
+
     extend Sail::ValueCast
     FULL_RANGE = (0...100).freeze
     SETTINGS_PER_PAGE = 8
@@ -54,6 +56,11 @@ module Sail
 
     def self.cast_value_for_set(setting, value)
       send("#{setting.cast_type}_set", value)
+    end
+
+    def self.switcher(positive:, negative:, throttled_by:)
+      raise UnexpectedCastType unless select(:cast_type).where(name: throttled_by).first.throttle?
+      get(throttled_by) ? get(positive) : get(negative)
     end
 
     def display_name

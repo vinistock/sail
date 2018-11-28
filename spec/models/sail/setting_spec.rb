@@ -237,6 +237,36 @@ describe Sail::Setting, type: :model do
     end
   end
 
+  describe ".switcher" do
+    subject { described_class.switcher(positive: :positive, negative: :negative, throttled_by: :throttle) }
+    let!(:throttle_setting) { described_class.create!(name: :throttle, cast_type: :throttle, value: "50.0") }
+
+    before do
+      Rails.cache.delete("setting_get_positive")
+      Rails.cache.delete("setting_get_negative")
+      Rails.cache.delete("setting_get_throttle")
+      described_class.create!(name: :positive, cast_type: :string, value: "I'm the primary!")
+      described_class.create!(name: :negative, cast_type: :integer, value: "7")
+      allow(described_class).to receive(:rand).and_return(random_value)
+    end
+
+    context "when random value is smaller than throttle" do
+      let(:random_value) { 0.25 }
+      it { is_expected.to eq("I'm the primary!") }
+    end
+
+    context "when random value is greater than throttle" do
+      let(:random_value) { 0.75 }
+      it { is_expected.to eq(7) }
+    end
+
+    context "when throttle setting is of the wrong type" do
+      let!(:throttle_setting) { described_class.create!(name: :throttle, cast_type: :boolean, value: "true") }
+      let(:random_value) { 0.75 }
+      it { expect { subject }.to raise_error(Sail::Setting::UnexpectedCastType) }
+    end
+  end
+
   describe '#display_name' do
     subject { Sail::Setting.create(name: 'my#setting_with+symbols', cast_type: :string, value: 'whatever').display_name }
     it { expect(subject).to eq('My Setting With Symbols') }
