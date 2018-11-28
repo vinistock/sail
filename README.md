@@ -99,6 +99,21 @@ Sail::Setting.get('name')
 
 # Set setting value
 Sail::Setting.set('name', 'value')
+
+# Switcher
+# This method will take three setting names as parameters
+# positive: This is the name of the setting that will be returned if the throttle setting returns true
+# negative: This is the name of the setting that will be returned if the throttle setting returns false
+# throttle: A setting of cast_type throttle that will switch between positive and negative
+#
+# return: Value with cast of either positive or negative, depending on the randomized value of throttle 
+# Settings positive and negative do not have to be of the same type. However, throttle must be a throttle type setting
+
+Sail::Setting.switch(
+  positive: :setting_name_for_true,
+  negative: :setting_name_for_false,
+  throttle: :throttle_setting_name
+) 
 ```
 
 Sail also comes with a JSON API for manipulating settings.
