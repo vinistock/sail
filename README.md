@@ -141,6 +141,8 @@ Response
 
 ## Examples
 
+Simple examples of usage are displayed below. For more detailed use cases please refer to the [wiki].
+
 ```ruby
 # Integer setting
 Sail::Setting.create(name: :my_setting, cast_type: :integer, description: 'A very important setting', value: '15')
@@ -213,3 +215,4 @@ Sail::Setting.get(:my_setting)
 Please refer to this simple [guideline].
 
 [guideline]: https://github.com/vinistock/sail/blob/master/CONTRIBUTING.md
+[wiki]: https://github.com/vinistock/sail/wiki
