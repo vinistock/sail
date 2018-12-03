@@ -165,6 +165,11 @@
       border: none;
       outline: none;
       font-family: 'Roboto', sans-serif;
+      -webkit-transition: background-color 0.5s;
+      -moz-transition: background-color 0.5s;
+      -ms-transition: background-color 0.5s;
+      -o-transition: background-color 0.5s;
+      transition: background-color 0.5s;
 
       &:active {
         color: $main_black;
