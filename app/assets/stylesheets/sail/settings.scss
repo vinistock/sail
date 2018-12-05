@@ -1,5 +1,14 @@
 @import "colors";
 
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 #settings-dashboard {
   max-height: 100vh;
   color: $main_black;
@@ -35,26 +44,6 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     }
 
-    .setting-message {
-      text-align: center;
-      font-size: 18px;
-      font-weight: bolder;
-      z-index: 5;
-      -webkit-transition: opacity 1s ease;
-      -moz-transition: opacity 1s ease;
-      -ms-transition: opacity 1s ease;
-      -o-transition: opacity 1s ease;
-      transition: opacity 1s ease;
-
-      p.success {
-        color: $dark_green;
-      }
-      
-      p.failure {
-        color: $bright_red;
-      }
-    }
-    
     .card-body-container {
       display: table;
       width: 100%;
@@ -261,6 +250,32 @@
       &:focus {
         border: 2px solid $tangerine;
       }
+    }
+  }
+
+  .notice {
+    background-color: white;
+    font-size: 24px;
+    position: fixed;
+    left: 50px;
+    top: 85px;
+    padding: 25px;
+    width: 150px;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    display: none;
+    -webkit-animation: fadeIn 0.5s;
+    animation: fadeIn 0.5s;
+
+    &.success {
+      color: $dark_green;
+    }
+
+    &.alert {
+      color: $bright_red;
     }
   }
 }

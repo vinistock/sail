@@ -24,13 +24,16 @@ feature "editing settings", js: true, type: :feature do
         within(".card") do
           send("fill_for_#{set[:type]}", set[:new])
           click_button("SAVE")
-          expect(page).to have_content("Updated!")
+        end
 
-          if set[:type] == "date"
-            expect(setting.reload.value).to eq("2018-01-30T00:00")
-          else
-            expect(setting.reload.value).to eq(set[:new])
-          end
+        within(".notice") do
+          expect(page).to have_content("Updated!")
+        end
+
+        if set[:type] == "date"
+          expect(setting.reload.value).to eq("2018-01-30T00:00")
+        else
+          expect(setting.reload.value).to eq(set[:new])
         end
       end
     end

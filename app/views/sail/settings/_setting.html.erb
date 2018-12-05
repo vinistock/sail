@@ -8,7 +8,6 @@
     </div>
 
     <p class="setting-description" title="<%= setting.description %>"><%= setting.description %></p>
-    <div id="<%= "setting-message-#{setting.name}" %>" class="setting-message"></div>
 
     <%= form_tag(setting_path(name: setting.name), method: :put, remote: true) do %>
       <div class="card-body-container">

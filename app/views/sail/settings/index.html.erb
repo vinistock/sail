@@ -1,5 +1,7 @@
 <div id="settings-dashboard">
   <% cache @settings do %>
+    <span id="notice-success" class="notice success"><%= I18n.t("sail.updated") %></span>
+    <span id="notice-alert" class="notice alert"><%= I18n.t("sail.failed") %></span>
     <%= render(partial: 'search') %>
 
     <div id="settings-container">
