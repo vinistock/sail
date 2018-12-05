@@ -17,7 +17,10 @@ module Sail
     end
 
     config.after_initialize do
-      if File.exist?("#{Rails.root}/config/sail.yml")
+      if !Rails.env.test? &&
+          File.exist?("#{Rails.root}/config/sail.yml") &&
+          ActiveRecord::Base.connection.table_exists?("sail_settings")
+
         YAML.load_file("#{Rails.root}/config/sail.yml").each do |name, attrs|
           string_attrs = attrs.merge(name: name)
           string_attrs.update(string_attrs) { |_, v| v.to_s }
