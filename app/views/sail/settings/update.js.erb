@@ -1,15 +1,6 @@
-var messageDiv = document.getElementById("<%= "setting-message-#{@setting.name}" %>");
-var cardDiv = messageDiv.parentNode;
-cardDiv.style.opacity = '.85';
-
-var xCorrection = <%= @successful_update ? 35 : 25 %>;
-
-var centerX = (cardDiv.offsetLeft + cardDiv.offsetWidth / 2) - xCorrection;
-var centerY = (cardDiv.offsetTop + cardDiv.offsetHeight / 2) + 15;
-
-messageDiv.innerHTML = "<p class='<%= @successful_update ? 'success' : 'failure' %>' style='position: absolute; top: " + centerY + "px; left: " + centerX + "px;'><%= @successful_update ? I18n.t('sail.updated') : I18n.t('sail.failed') %></p>";
+var notice = document.getElementById("<%= @successful_update ? "notice-success" : "notice-alert" %>");
+notice.style.display = "block";
 
 setTimeout(function () {
-  cardDiv.style.opacity = '1.0';
-  messageDiv.innerHTML = "";
+    notice.style.display = "none";
 }, 1500);
