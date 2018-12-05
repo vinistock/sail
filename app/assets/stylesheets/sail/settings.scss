@@ -89,7 +89,6 @@
       outline: none;
       border: none;
       border-bottom: 2px solid darken($aluminium, 30%);
-      font-family: 'Roboto', sans-serif;
 
       &:focus {
         border-color: $tangerine;
@@ -105,7 +104,6 @@
       width: 100%;
       text-align: center;
       font-size: 18px;
-      font-family: 'Roboto', sans-serif;
 
       &:focus {
         border-color: $tangerine;
@@ -153,7 +151,6 @@
       background-color: $tangerine;
       border: none;
       outline: none;
-      font-family: 'Roboto', sans-serif;
       -webkit-transition: background-color 0.5s;
       -moz-transition: background-color 0.5s;
       -ms-transition: background-color 0.5s;
