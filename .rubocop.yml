@@ -2,10 +2,10 @@ AllCops:
   Exclude:
   - spec/**/*
   - coverage/**/*
-  - lib/generators/active_record/templates/**/*
+  - lib/generators/sail/install/templates/**/*
 
 Metrics/LineLength:
-  Max: 120
+  Max: 140
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
 Style/DateTime:
