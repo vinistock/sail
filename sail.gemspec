@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir['spec/**/*']
 
   s.add_dependency 'fugit'
+  s.add_dependency 'jquery-rails'
   s.add_dependency 'rails'
   s.add_dependency 'sass-rails'
 

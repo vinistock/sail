@@ -10,5 +10,5 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
+<% Rails::VERSION::MAJOR >= 5 ? require_asset("rails-ujs") : require_asset("jquery") && require_asset("jquery_ujs") %>
 //= require_tree .
