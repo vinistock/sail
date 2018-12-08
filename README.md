@@ -62,6 +62,7 @@ In order to create settings, use the config/sail.yml file (or create your own da
 
 After settings have been created a first time, they will not be updated with the values in the yaml file (otherwise it would defeat the purpose of being able to configure the application without requiring a deploy).
 
+Removing the entries from this file will cause settings to be deleted from the database.
 ```yaml
 # Rails.root/config/sail.yml
 # Setting name with it's information contained inside
