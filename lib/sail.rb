@@ -10,6 +10,18 @@ require 'false_class'
 module Sail
   class << self
     attr_writer :configuration
+
+    def get(name)
+      Sail::Setting.get(name)
+    end
+
+    def set(name, value)
+      Sail::Setting.set(name, value)
+    end
+
+    def switcher(positive:, negative:, throttled_by:)
+      Sail::Setting.switcher(positive: positive, negative: negative, throttled_by: throttled_by)
+    end
   end
 
   def self.configuration

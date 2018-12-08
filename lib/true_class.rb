@@ -2,6 +2,6 @@
 
 class TrueClass
   def to_s
-    'true'
+    Sail::ConstantCollection::TRUE
   end
 end

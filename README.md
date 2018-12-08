@@ -114,7 +114,18 @@ Sail::Setting.switcher(
   positive: :setting_name_for_true,
   negative: :setting_name_for_false,
   throttle: :throttle_setting_name
-) 
+)
+
+# Alternatively, the simplified interface can be used for a shorter syntax
+Sail.get('name')
+
+Sail.set('name', 'value')
+ 
+Sail.switcher(
+  positive: :setting_name_for_true,
+  negative: :setting_name_for_false,
+  throttle: :throttle_setting_name
+)
 ```
 
 Sail also comes with a JSON API for manipulating settings. It is simply an interface for the methods described above.

@@ -2,6 +2,6 @@
 
 class FalseClass
   def to_s
-    'false'
+    Sail::ConstantCollection::FALSE
   end
 end
