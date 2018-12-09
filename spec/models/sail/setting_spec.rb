@@ -265,6 +265,12 @@ describe Sail::Setting, type: :model do
       let(:random_value) { 0.75 }
       it { expect { subject }.to raise_error(Sail::Setting::UnexpectedCastType) }
     end
+
+    context "when throttle setting does not exist" do
+      let!(:throttle_setting) { described_class.create!(name: :wrong_name, cast_type: :boolean, value: "true") }
+      let(:random_value) { 0.75 }
+      it { expect { subject }.to raise_error(ActiveRecord::RecordNotFound) }
+    end
   end
 
   describe '#display_name' do

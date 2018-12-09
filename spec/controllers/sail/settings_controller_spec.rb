@@ -149,5 +149,15 @@ describe Sail::SettingsController, type: :controller do
         expect(response).to have_http_status(:bad_request)
       end
     end
+
+    context "when throttle setting does not exist" do
+      let!(:throttle) { Sail::Setting.create!(name: :wrong_name, cast_type: :boolean, value: "true") }
+      let(:random_value) { 0.75 }
+
+      it "returns not found" do
+        subject
+        expect(response).to have_http_status(:not_found)
+      end
+    end
   end
 end

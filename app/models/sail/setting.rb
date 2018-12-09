@@ -59,7 +59,9 @@ module Sail
     end
 
     def self.switcher(positive:, negative:, throttled_by:)
-      raise UnexpectedCastType unless select(:cast_type).where(name: throttled_by).first&.throttle?
+      setting = select(:cast_type).where(name: throttled_by).first
+      raise ActiveRecord::RecordNotFound, "Can't find throttle setting" if setting.nil?
+      raise UnexpectedCastType unless setting.throttle?
       get(throttled_by) ? get(positive) : get(negative)
     end
 
