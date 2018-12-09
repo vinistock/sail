@@ -38,6 +38,8 @@ module Sail
             }
           rescue Sail::Setting::UnexpectedCastType
             head(:bad_request)
+          rescue ActiveRecord::RecordNotFound
+            head(:not_found)
           end
         end
       end
