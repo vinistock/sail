@@ -18,8 +18,8 @@ module Sail
 
     config.after_initialize do
       if !Rails.env.test? &&
-          File.exist?("#{Rails.root}/config/sail.yml") &&
-          ActiveRecord::Base.connection.table_exists?("sail_settings")
+         File.exist?("#{Rails.root}/config/sail.yml") &&
+         ActiveRecord::Base.connection.table_exists?("sail_settings")
 
         config = YAML.load_file("#{Rails.root}/config/sail.yml")
 

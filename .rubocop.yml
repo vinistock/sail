@@ -6,6 +6,8 @@ AllCops:
 
 Metrics/LineLength:
   Max: 140
+Metrics/MethodLength:
+  Max: 20
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
 Style/DateTime:
@@ -14,7 +16,9 @@ Style/GuardClause:
   Enabled: false
 Style/Documentation:
   Enabled: false
-Style/ExpandPathArguments:
-  Enabled: false
 Style/StringLiterals:
+  Enabled: false
+# Disabled because we want to support
+# versions of Ruby < 2.5.0
+Style/RedundantBegin:
   Enabled: false

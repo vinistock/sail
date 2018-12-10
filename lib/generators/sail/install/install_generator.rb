@@ -7,10 +7,10 @@ module Sail
     class InstallGenerator < ::Rails::Generators::Base
       include Rails::Generators::Migration
 
-      source_root File.expand_path("../templates", __FILE__)
+      source_root File.expand_path('templates', __dir__)
       desc "Create Sail migrations"
 
-      def self.next_migration_number(path)
+      def self.next_migration_number(_path)
         if @prev_migration_nr
           @prev_migration_nr += 1
         else

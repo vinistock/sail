@@ -11,7 +11,7 @@ module Sail
     FULL_RANGE = (0...100).freeze
     SETTINGS_PER_PAGE = 8
     AVAILABLE_MODELS = Dir["#{Rails.root}/app/models/*.rb"]
-                         .map { |dir| dir.split('/').last.camelize.gsub('.rb', '') }.freeze
+                       .map { |dir| dir.split('/').last.camelize.gsub('.rb', '') }.freeze
 
     validates_presence_of :name, :value, :cast_type
     validates_uniqueness_of :name
@@ -25,11 +25,11 @@ module Sail
     validate :date_is_valid, if: -> { date? }
     validate :uri_is_valid, if: -> { uri? }
 
-    scope :paginated, ->(page) do
+    scope :paginated, lambda { |page|
       select(:name, :description, :value, :cast_type, :updated_at)
         .offset(page.to_i * SETTINGS_PER_PAGE)
         .limit(SETTINGS_PER_PAGE)
-    end
+    }
 
     scope :by_name, ->(name) { name.present? ? where('name LIKE ?', "%#{name}%") : all }
 
