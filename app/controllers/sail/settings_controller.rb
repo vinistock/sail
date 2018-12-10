@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module Sail
+  # SettingsController
+  # This is the main controller for settings
+  # Implements all actions for the dashboard
+  # and for the JSON API
   class SettingsController < ApplicationController
     def index
       @settings = Setting.by_name(s_params[:query])

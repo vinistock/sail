@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Sail
+  # Engine
+  # Defines initializers and
+  # after initialize hooks
   class Engine < ::Rails::Engine
     isolate_namespace Sail
 
@@ -8,7 +11,7 @@ module Sail
       g.test_framework :rspec
     end
 
-    initializer 'sail' do
+    initializer "sail" do
       unless Sail.configuration.dashboard_auth_lambda.nil?
         to_prepare do
           Sail::SettingsController.before_action(*Sail.configuration.dashboard_auth_lambda)

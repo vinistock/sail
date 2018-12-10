@@ -2,11 +2,11 @@
   <% cache @settings do %>
     <span id="notice-success" class="notice success"><%= I18n.t("sail.updated") %></span>
     <span id="notice-alert" class="notice alert"><%= I18n.t("sail.failed") %></span>
-    <%= render(partial: 'search') %>
+    <%= render(partial: "search") %>
 
     <div id="settings-container">
       <% if @number_of_pages > 0 %>
-        <%= render(partial: 'setting', collection: @settings) %>
+        <%= render(partial: "setting", collection: @settings) %>
       <% else %>
         <h1><%= I18n.t("sail.no_settings") %></h1>
       <% end %>
@@ -23,13 +23,13 @@
         </div>
       <% end %>
 
-      <%= link_to('<', settings_path(page: [params[:page].to_i - 1, 0].max), method: :get) %>
+      <%= link_to("<", settings_path(page: [params[:page].to_i - 1, 0].max), method: :get) %>
 
       <% (0...@number_of_pages).each do |page| %>
-        <%= link_to(page + 1, settings_path(page: page), method: :get, class: params[:page].to_i == page || params[:page].blank? && page.zero? ? 'active' : '') %>
+        <%= link_to(page + 1, settings_path(page: page), method: :get, class: params[:page].to_i == page || params[:page].blank? && page.zero? ? "active" : "") %>
       <% end %>
 
-      <%= link_to('>', settings_path(page: [params[:page].to_i + 1, @number_of_pages - 1].min), method: :get) %>
+      <%= link_to(">", settings_path(page: [params[:page].to_i + 1, @number_of_pages - 1].min), method: :get) %>
     </div>
   <% end %>
 </div>

@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 module Sail
+  # ValueCast
+  # This module was made to be extended
+  # by the Setting model.
+  # It contains all setting type value
+  # casts so that the model itself can
+  # use dynamic invocation
   module ValueCast
     # Section for get value casts
 

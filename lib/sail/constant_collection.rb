@@ -2,11 +2,11 @@
 
 module Sail
   module ConstantCollection
-    TRUE = 'true'
-    FALSE = 'false'
+    TRUE = "true"
+    FALSE = "false"
     STRING_BOOLEANS = %w[true false].freeze
-    BOOLEAN = 'boolean'
-    ON = 'on'
+    BOOLEAN = "boolean"
+    ON = "on"
     BOOLEANS = [true, false].freeze
   end
 end

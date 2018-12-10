@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
-require 'fugit'
+require "fugit"
 
 module Sail
   # Setting
+  # This is the model used for settings
+  # it contains all data definitions,
+  # validations, scopes and methods
   class Setting < ApplicationRecord
     class UnexpectedCastType < StandardError; end
 
@@ -11,7 +14,7 @@ module Sail
     FULL_RANGE = (0...100).freeze
     SETTINGS_PER_PAGE = 8
     AVAILABLE_MODELS = Dir["#{Rails.root}/app/models/*.rb"]
-                       .map { |dir| dir.split('/').last.camelize.gsub('.rb', '') }.freeze
+                       .map { |dir| dir.split("/").last.camelize.gsub(".rb", "") }.freeze
 
     validates_presence_of :name, :value, :cast_type
     validates_uniqueness_of :name
@@ -31,7 +34,7 @@ module Sail
         .limit(SETTINGS_PER_PAGE)
     }
 
-    scope :by_name, ->(name) { name.present? ? where('name LIKE ?', "%#{name}%") : all }
+    scope :by_name, ->(name) { name.present? ? where("name LIKE ?", "%#{name}%") : all }
 
     def self.get(name)
       Rails.cache.fetch("setting_get_#{name}", expires_in: Sail.configuration.cache_life_span) do
@@ -51,6 +54,7 @@ module Sail
 
     def self.cast_setting_value(setting)
       return if setting.nil?
+
       send("#{setting.cast_type}_get", setting.value)
     end
 
@@ -61,18 +65,20 @@ module Sail
     def self.switcher(positive:, negative:, throttled_by:)
       setting = select(:cast_type).where(name: throttled_by).first
       raise ActiveRecord::RecordNotFound, "Can't find throttle setting" if setting.nil?
+
       raise UnexpectedCastType unless setting.throttle?
+
       get(throttled_by) ? get(positive) : get(negative)
     end
 
     def display_name
-      name.gsub(/[^a-zA-Z\d]/, ' ').titleize
+      name.gsub(/[^a-zA-Z\d]/, " ").titleize
     end
 
     private
 
     def model_exists
-      errors.add(:invalid_model, 'Model does not exist') unless AVAILABLE_MODELS.include?(value)
+      errors.add(:invalid_model, "Model does not exist") unless AVAILABLE_MODELS.include?(value)
     end
 
     def value_is_true_or_false
@@ -92,7 +98,7 @@ module Sail
     def date_is_valid
       DateTime.parse(value)
     rescue ArgumentError
-      errors.add(:invalid_date, 'Date format is invalid')
+      errors.add(:invalid_date, "Date format is invalid")
     end
 
     def cron_is_valid

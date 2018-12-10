@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#4484CE">
   <title><%= I18n.t('sail.page_title') %></title>
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <%= stylesheet_link_tag    'sail/application', media: 'all' %>
-  <%= javascript_include_tag 'sail/application', async: true %>
+  <%= stylesheet_link_tag    "sail/application", media: "all" %>
+  <%= javascript_include_tag "sail/application", async: true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <div>
   <nav id="nav-bar">
-    <%= link_to(settings_path, method: :get, class: 'home-link') do %>
+    <%= link_to(settings_path, method: :get, class: "home-link") do %>
       <h1 class="title"><%= I18n.t('sail.page_title') %></h1>
     <% end %>
   </nav>

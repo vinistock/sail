@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'sail/engine'
-require 'sail/constant_collection'
-require 'sail/configuration'
-require 'sail/value_cast'
-require 'true_class'
-require 'false_class'
+require "sail/engine"
+require "sail/constant_collection"
+require "sail/configuration"
+require "sail/value_cast"
+require "true_class"
+require "false_class"
 
-module Sail
+module Sail # :nodoc:
   class << self
     attr_writer :configuration
 

@@ -14,7 +14,7 @@
         <div class="card-body">
           <% if setting.boolean? || setting.ab_test? %>
             <label class="switch">
-              <input type="checkbox" name="value" <%= setting.value == 'true' ? 'checked' : '' %>>
+              <input type="checkbox" name="value" <%= setting.value == "true" ? "checked" : "" %>>
               <span class="slider round"></span>
             </label>
           <% elsif setting.range? %>

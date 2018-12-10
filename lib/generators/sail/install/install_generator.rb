@@ -4,10 +4,13 @@ require "rails/generators/migration"
 
 module Sail
   module Generators
+    # InstallGenerator
+    # This is the install generator for Sail
+    # which creates the necessary migrations
     class InstallGenerator < ::Rails::Generators::Base
       include Rails::Generators::Migration
 
-      source_root File.expand_path('templates', __dir__)
+      source_root File.expand_path("templates", __dir__)
       desc "Create Sail migrations"
 
       def self.next_migration_number(_path)
