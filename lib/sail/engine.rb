@@ -5,6 +5,7 @@ module Sail
   # Defines initializers and
   # after initialize hooks
   class Engine < ::Rails::Engine
+    require "jquery-rails" if Rails::VERSION::MAJOR < 5
     isolate_namespace Sail
 
     config.generators do |g|
