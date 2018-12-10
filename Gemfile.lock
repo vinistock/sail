@@ -70,6 +70,8 @@ GEM
       selenium-webdriver
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
+    code_analyzer (0.4.8)
+      sexp_processor
     codeclimate-test-reporter (1.0.7)
       simplecov
     concurrent-ruby (1.1.3)
@@ -78,6 +80,7 @@ GEM
     diff-lcs (1.3)
     docile (1.3.1)
     erubi (1.7.1)
+    erubis (2.7.0)
     et-orbi (1.1.6)
       tzinfo
     ffi (1.9.25)
@@ -138,6 +141,14 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails_best_practices (1.19.4)
+      activesupport
+      code_analyzer (>= 0.4.8)
+      erubis
+      i18n
+      json
+      require_all (~> 2.0)
+      ruby-progressbar
     railties (5.2.2)
       actionpack (= 5.2.2)
       activesupport (= 5.2.2)
@@ -150,6 +161,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     regexp_parser (1.3.0)
+    require_all (2.0.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.2)
@@ -191,6 +203,7 @@ GEM
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
+    sexp_processor (4.11.0)
     simplecov (0.16.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -227,6 +240,7 @@ DEPENDENCIES
   codeclimate-test-reporter (~> 1.0)
   database_cleaner
   rack-mini-profiler
+  rails_best_practices
   rspec-rails
   rubocop
   sail!
