@@ -239,7 +239,9 @@ DEPENDENCIES
   capybara-selenium
   codeclimate-test-reporter (~> 1.0)
   database_cleaner
+  jquery-rails
   rack-mini-profiler
+  rails (>= 4.0.0)
   rails_best_practices
   rspec-rails
   rubocop

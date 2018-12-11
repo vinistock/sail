@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "capybara-selenium"
   s.add_development_dependency "codeclimate-test-reporter", "~> 1.0"
   s.add_development_dependency "database_cleaner"
+  s.add_development_dependency "jquery-rails"
   s.add_development_dependency "rack-mini-profiler"
   s.add_development_dependency "rails_best_practices"
   s.add_development_dependency "rspec-rails"
