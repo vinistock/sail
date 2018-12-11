@@ -9,8 +9,12 @@ addons:
     packages:
       - google-chrome-stable
       - chromium-chromedriver
-
+env:
+  - "RAILS_VERSION=4.2.10"
+  - "RAILS_VERSION=5.2.2"
 before_script:
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
-before_install: gem install bundler
+before_install:
+  - rm Gemfile.lock
+  - gem install bundler
 after_success: bundle exec codeclimate-test-reporter
