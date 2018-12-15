@@ -15,7 +15,6 @@ env:
   - "RAILS_VERSION=5.2.2"
 matrix:
   allow_failures:
-    - env: "RAILS_VERSION=5.2.2"
     - rvm: ruby-head
 before_script:
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
