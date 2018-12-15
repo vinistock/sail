@@ -4,6 +4,7 @@ rvm:
   - 2.3.8
   - 2.4.5
   - 2.5.3
+  - ruby-head
 addons:
   apt:
     packages:
@@ -12,6 +13,10 @@ addons:
 env:
   - "RAILS_VERSION=4.2.10"
   - "RAILS_VERSION=5.2.2"
+matrix:
+  allow_failures:
+    - env: "RAILS_VERSION=5.2.2"
+    - rvm: ruby-head
 before_script:
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
 before_install:
