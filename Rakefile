@@ -19,3 +19,5 @@ require "rspec/core/rake_task"
 
 RSpec::Core::RakeTask.new(spec: "app:db:test:prepare")
 task default: :spec
+
+system("cd ./spec/dummy; RAILS_ENV=test rails db:environment:set; cd ../..") if Rails::VERSION::MAJOR >= 5
