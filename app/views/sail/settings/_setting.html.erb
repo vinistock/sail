@@ -8,7 +8,7 @@
     </div>
 
     <div class="label-container">
-      <label class="tag group-label"><%= setting.group %></label>
+      <%= link_to(setting.group, settings_path(query: setting.group), method: :get, class: "tag group-label") %>
     </div>
 
     <p class="setting-description" title="<%= setting.description %>"><%= setting.description %></p>
