@@ -2,7 +2,6 @@ en:
   sail:
     page_title: Sail dashboard
     save: SAVE
-    setting_type: type
     updated: Updated!
     failed: Failed!
     setting_name: Setting name
