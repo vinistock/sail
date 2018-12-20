@@ -5,7 +5,8 @@ feature "viewing settings", js: true, type: :feature do
     10.times.with_index do |index|
       Sail::Setting.create!(name: "setting_#{index}", cast_type: :string,
                             value: :something,
-                            description: "Setting that does something")
+                            description: "Setting that does something",
+                            group: "feature_flags")
     end
 
     visit "/sail"

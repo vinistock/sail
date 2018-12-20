@@ -2,51 +2,64 @@ test_setting:
   description: This setting exists for testing
   value: false
   cast_type: boolean
+  group: test
 enable_something:
   description: Enables something globally
   value: 'true'
   cast_type: boolean
+  group: feature_flags
 number_of_threads:
   description: Number of threads to be used by jobs
   value: '123'
   cast_type: integer
+  group: tuners
 bonus_range:
   description: Percentage of bonus
   value: '41'
   cast_type: range
+  group: tuners
 admin_list:
   description: Admins
   value: John;Ted;Mark
   cast_type: array
+  group: adm
 enable_something_else:
   description: Enables something else, but locally this time
   value: 'true'
   cast_type: boolean
+  group: feature_flags
 enable_something_else_2:
   description: Enables something else
   value: 'false'
   cast_type: boolean
+  group: feature_flags
 enable_something_else_3:
   description: Enables something else
   value: 'true'
   cast_type: boolean
+  group: feature_flags
 enable_something_else_4:
   description: Enables something else
   value: 'true'
   cast_type: boolean
+  group: feature_flags
 enable_something_else_5:
   description: Enables something else
   value: 'true'
   cast_type: boolean
+  group: feature_flags
 float_setting:
   description: A float setting
   value: '2.8739'
   cast_type: float
+  group: feature_flags
 date_setting:
   description: A date setting example
   value: 2018-10-24T18:18
   cast_type: date
+  group: feature_flags
 cron_setting:
   description: A cron type setting
   value: "* * * * *"
   cast_type: cron
+  group: adm

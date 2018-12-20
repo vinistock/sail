@@ -3,7 +3,8 @@
 feature "searching settings", js: true, type: :feature do
   let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :string,
                                               value: :something,
-                                              description: "Setting that does something") }
+                                              description: "Setting that does something",
+                                              group: "feature_flags") }
 
   before do
     visit "/sail"

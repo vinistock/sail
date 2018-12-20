@@ -29,7 +29,7 @@ module Sail
     validate :uri_is_valid, if: -> { uri? }
 
     scope :paginated, lambda { |page|
-      select(:name, :description, :value, :cast_type, :updated_at)
+      select(:name, :description, :group, :value, :cast_type, :updated_at)
         .offset(page.to_i * SETTINGS_PER_PAGE)
         .limit(SETTINGS_PER_PAGE)
     }
