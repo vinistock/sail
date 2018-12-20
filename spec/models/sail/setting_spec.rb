@@ -120,7 +120,7 @@ describe Sail::Setting, type: :model do
       end
     end
 
-    describe '.by_query' do
+    describe '.by_name' do
       subject { described_class.by_name(query) }
       let!(:setting) { described_class.create(name: 'My Setting', cast_type: :integer, value: '0') }
 
@@ -142,6 +142,45 @@ describe Sail::Setting, type: :model do
       context 'when query is empty' do
         let(:query) { '' }
         it { expect(subject).to include(setting) }
+      end
+    end
+
+    describe ".by_group" do
+      subject { described_class.by_group(group) }
+      let!(:setting) { described_class.create(name: "My Setting", cast_type: :boolean, value: "false", group: "feature_flags") }
+
+      context "when passing the correct group" do
+        let(:group) { "feature_flags" }
+        it { expect(subject).to include(setting) }
+      end
+
+      context "when not passing correct group" do
+        let(:group) { "whatever" }
+        it { expect(subject).to_not include(setting) }
+      end
+    end
+
+    describe ".by_query" do
+      subject { described_class.by_query(query) }
+      let!(:setting_1) { described_class.create(name: "My Setting", cast_type: :boolean, value: "false", group: "feature_flags") }
+      let!(:setting_2) { described_class.create(name: "Your Setting", cast_type: :boolean, value: "false", group: "tuners") }
+
+      context "when query is a group" do
+        let(:query) { "feature_flags" }
+
+        it "searches by group and not by name" do
+          expect(subject).to include(setting_1)
+          expect(subject).to_not include(setting_2)
+        end
+      end
+
+      context "when query is a name" do
+        let(:query) { "Your" }
+
+        it "searches by group and not by name" do
+          expect(subject).to_not include(setting_1)
+          expect(subject).to include(setting_2)
+        end
       end
     end
   end

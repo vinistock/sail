@@ -29,12 +29,14 @@ module Sail
     validate :uri_is_valid, if: -> { uri? }
 
     scope :paginated, lambda { |page|
-      select(:name, :description, :value, :cast_type, :updated_at)
+      select(:name, :description, :group, :value, :cast_type, :updated_at)
         .offset(page.to_i * SETTINGS_PER_PAGE)
         .limit(SETTINGS_PER_PAGE)
     }
 
+    scope :by_group, ->(group) { where(group: group) }
     scope :by_name, ->(name) { name.present? ? where("name LIKE ?", "%#{name}%") : all }
+    scope :by_query, ->(query) { select(:id).by_group(query).exists? ? by_group(query) : by_name(query) }
 
     def self.get(name)
       Rails.cache.fetch("setting_get_#{name}", expires_in: Sail.configuration.cache_life_span) do

@@ -56,15 +56,24 @@
       vertical-align: bottom;
     }
 
-    .type-label {
+    .tag {
       font-weight: bold;
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px;
-      background-color: $light_yellow;
       padding: 10px;
       color: $main_black;
       font-size: 14px;
+      margin-left: 5px;
+
+      &.type-label {
+        background-color: $light_yellow;
+      }
+
+      &.group-label {
+        background-color: $cerulean;
+        text-decoration: none;
+      }
     }
 
     .label-container {

@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
 feature "searching settings", js: true, type: :feature do
-  let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :string,
+  let!(:setting_1) { Sail::Setting.create(name: :setting, cast_type: :string,
                                               value: :something,
-                                              description: "Setting that does something") }
+                                              description: "Setting that does something",
+                                              group: "feature_flags") }
+  let!(:setting_2) { Sail::Setting.create(name: :configuration, cast_type: :string,
+                                        value: :something,
+                                        description: "Setting that does something else",
+                                        group: "feature_flags") }
 
   before do
     visit "/sail"
@@ -12,12 +17,21 @@ feature "searching settings", js: true, type: :feature do
   end
 
   context "when name matches a setting" do
-    let(:query) { setting.name }
+    let(:query) { setting_1.name }
 
     it "displays the found setting" do
       within(".card") do
-        expect_setting(setting)
+        expect_setting(setting_1)
       end
+    end
+  end
+
+  context "when searching by group" do
+    let(:query) { "feature_flags" }
+
+    it "displays all found settings for group" do
+      expect_setting(setting_1)
+      expect_setting(setting_2)
     end
   end
 

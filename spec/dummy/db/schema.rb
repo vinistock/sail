@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_05_005346) do
+ActiveRecord::Schema.define(version: 2018_12_20_171659) do
 
   create_table "sail_settings", force: :cascade do |t|
     t.string "name", null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_09_05_005346) do
     t.integer "cast_type", limit: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "group"
     t.index ["name"], name: "index_settings_on_name", unique: true
   end
 
