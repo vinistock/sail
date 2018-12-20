@@ -4,6 +4,6 @@ en:
     save: SAVE
     updated: Updated!
     failed: Failed!
-    setting_name: Setting name
+    search_placeholder: Setting name or group
     main_app: Main app
     no_settings: No settings found
