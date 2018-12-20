@@ -14,6 +14,8 @@ Enable/Disable a new feature, turn ON/OFF ab testing for new functionality, chan
 
 It comes with a lightweight responsive admin dashboard for searching and changing configurations on the fly.
 
+Searching can be done by group, cast type or name.
+
 ## Installation
 Add this line to your application's Gemfile:
 
