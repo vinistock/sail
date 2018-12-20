@@ -36,4 +36,10 @@ feature "viewing settings", js: true, type: :feature do
 
     expect(page).to have_css(".card", count: 5)
   end
+
+  it "has a main app link" do
+    expect(page).to have_link("Main app")
+    click_link("Main app")
+    expect(page).to have_text("Inside dummy app")
+  end
 end

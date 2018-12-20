@@ -34,9 +34,17 @@ html, body {
   .home-link {
     text-decoration: none;
     color: white;
+    -webkit-transition : color .25s ease-in;
+    -moz-transition : color .25s ease-in;
+    -o-transition : color .25s ease-in;
+    transition : color .25s ease-in;
 
     &:visited {
       color: white;
+    }
+
+    &:hover {
+      color: $tangerine;
     }
 
     .title {
