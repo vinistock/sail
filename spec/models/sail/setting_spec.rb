@@ -163,7 +163,7 @@ describe Sail::Setting, type: :model do
     describe ".by_query" do
       subject { described_class.by_query(query) }
       let!(:setting_1) { described_class.create(name: "My Setting", cast_type: :boolean, value: "false", group: "feature_flags") }
-      let!(:setting_2) { described_class.create(name: "Your Setting", cast_type: :boolean, value: "false", group: "tuners") }
+      let!(:setting_2) { described_class.create(name: "Your Setting", cast_type: :string, value: "something", group: "tuners") }
 
       context "when query is a group" do
         let(:query) { "feature_flags" }
@@ -176,6 +176,15 @@ describe Sail::Setting, type: :model do
 
       context "when query is a name" do
         let(:query) { "Your" }
+
+        it "searches by group and not by name" do
+          expect(subject).to_not include(setting_1)
+          expect(subject).to include(setting_2)
+        end
+      end
+
+      context "when query is a type" do
+        let(:query) { "string" }
 
         it "searches by group and not by name" do
           expect(subject).to_not include(setting_1)
