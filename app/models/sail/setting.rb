@@ -35,7 +35,7 @@ module Sail
     }
 
     scope :by_query, lambda { |query|
-      if cast_types.keys.include?(query)
+      if cast_types.key?(query)
         send(query)
       elsif select(:id).by_group(query).exists?
         by_group(query)
