@@ -34,9 +34,18 @@ module Sail
         .limit(SETTINGS_PER_PAGE)
     }
 
+    scope :by_query, lambda { |query|
+      if cast_types.keys.include?(query)
+        send(query)
+      elsif select(:id).by_group(query).exists?
+        by_group(query)
+      else
+        by_name(query)
+      end
+    }
+
     scope :by_group, ->(group) { where(group: group) }
     scope :by_name, ->(name) { name.present? ? where("name LIKE ?", "%#{name}%") : all }
-    scope :by_query, ->(query) { select(:id).by_group(query).exists? ? by_group(query) : by_name(query) }
 
     def self.get(name)
       Rails.cache.fetch("setting_get_#{name}", expires_in: Sail.configuration.cache_life_span) do

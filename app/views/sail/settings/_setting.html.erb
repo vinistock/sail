@@ -4,7 +4,7 @@
     <hr/>
 
     <div class="label-container">
-      <label class="tag type-label"><%= setting.cast_type %></label>
+      <%= link_to(setting.cast_type, settings_path(query: setting.cast_type), method: :get, class: "tag type-label") %>
     </div>
 
     <div class="label-container">

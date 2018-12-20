@@ -10,8 +10,8 @@ feature "viewing settings", js: true, type: :feature do
     end
 
     5.times.with_index do |index|
-      Sail::Setting.create!(name: "setting_#{index + 5}", cast_type: :string,
-                            value: :something,
+      Sail::Setting.create!(name: "setting_#{index + 5}", cast_type: :integer,
+                            value: "5",
                             description: "Setting that does something",
                             group: "tuners")
     end
@@ -32,6 +32,14 @@ feature "viewing settings", js: true, type: :feature do
   it "allows clicking on groups to filter" do
     within(all(".card").first) do
       click_link("feature_flags")
+    end
+
+    expect(page).to have_css(".card", count: 5)
+  end
+
+  it "allows clicking on types to filter" do
+    within(all(".card").first) do
+      click_link("string")
     end
 
     expect(page).to have_css(".card", count: 5)
