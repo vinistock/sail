@@ -15,6 +15,12 @@ require 'selenium/webdriver'
 SimpleCov.start
 DatabaseCleaner.strategy = :truncation
 
+class User
+  def admin?
+    true
+  end
+end
+
 RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
@@ -25,6 +31,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.clean
+    allow_any_instance_of(Sail::SettingsController).to receive(:user).and_return(User.new)
   end
 
   Capybara.register_driver :chrome do |app|
