@@ -9,13 +9,14 @@ module Sail
   # file or application.rb
   class Configuration
     attr_accessor :cache_life_span, :array_separator, :dashboard_auth_lambda,
-                  :back_link_path
+                  :back_link_path, :enable_search_auto_submit
 
     def initialize
       @cache_life_span = 10.minutes
       @array_separator = ";"
       @dashboard_auth_lambda = nil
       @back_link_path = "root_path"
+      @enable_search_auto_submit = true
     end
   end
 end

@@ -1,0 +1,33 @@
+"use strict";
+
+let submitTimer, submitInterval, intervals = 1;
+let queryElement = document.getElementById("query");
+let enabled = "<%= Sail.configuration.enable_search_auto_submit %>";
+let progress = document.getElementById("search-submit-progress");
+
+function submitSearch() {
+    document.getElementById("search-form").submit();
+}
+
+function advanceProgress() {
+    progress.value = intervals;
+    intervals += 1;
+}
+
+function clearTimer() {
+    clearTimeout(submitTimer);
+    clearTimeout(submitInterval);
+    intervals = 1;
+}
+
+function afterTypingQuery() {
+    progress.style.display = "inline-block";
+    clearTimer();
+    submitTimer = setTimeout(submitSearch, 2000);
+    submitInterval = setInterval(advanceProgress, 20);
+}
+
+if (enabled === "true") {
+    queryElement.addEventListener("keyup", afterTypingQuery);
+    queryElement.addEventListener("keydown", clearTimer);
+}
