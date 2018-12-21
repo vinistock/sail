@@ -49,6 +49,13 @@ module Sail
       end
     end
 
+    def reset
+      respond_to do |format|
+        @setting, @successful_update = Setting.reset(s_params[:name])
+        format.js { render :update }
+      end
+    end
+
     private
 
     def s_params

@@ -82,6 +82,15 @@ module Sail
       get(throttled_by) ? get(positive) : get(negative)
     end
 
+    def self.reset(name)
+      path = "#{Rails.root}/config/sail.yml"
+
+      if File.exist?(path)
+        defaults = YAML.load_file(path)
+        set(name, defaults.dig(name, "value"))
+      end
+    end
+
     def display_name
       name.gsub(/[^a-zA-Z\d]/, " ").titleize
     end

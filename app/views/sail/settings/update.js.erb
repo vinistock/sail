@@ -4,3 +4,13 @@ notice.style.display = "block";
 setTimeout(function () {
     notice.style.display = "none";
 }, 1500);
+
+if ("<%= @successful_update %>" === "true") {
+    var input = document.getElementById("<%= "input_for_#{@setting.name}" %>");
+
+    if ("<%= @setting.boolean? %>" === "true") {
+        input.checked = "<%= @setting.value %>" === "true";
+    } else {
+        input.value = "<%= @setting.value %>";
+    }
+}

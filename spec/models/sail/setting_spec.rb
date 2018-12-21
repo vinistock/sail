@@ -325,4 +325,37 @@ describe Sail::Setting, type: :model do
     subject { Sail::Setting.create(name: 'my#setting_with+symbols', cast_type: :string, value: 'whatever').display_name }
     it { expect(subject).to eq('My Setting With Symbols') }
   end
+
+  describe ".reset" do
+    subject { described_class.reset("setting") }
+    let!(:setting) { described_class.create!(name: :setting, cast_type: :string, value: "first string") }
+    let(:file_contents) {{ "setting" => { "value" => "second string" } }}
+
+    before do
+      allow(File).to receive(:exist?).with("#{Rails.root}/config/sail.yml").and_return(file_exists)
+      allow(YAML).to receive(:load_file).with("#{Rails.root}/config/sail.yml").and_return(file_contents)
+    end
+
+    context "when file exists" do
+      let(:file_exists) { true }
+
+      it "resets value based on config file" do
+        expect(Sail::Setting).to receive(:set).with("setting", "second string").and_call_original
+        expect(Rails.cache).to receive(:delete).with("setting_get_setting")
+        subject
+        expect(setting.reload.value).to eq("second string")
+      end
+    end
+
+    context "when file doesn't exist" do
+      let(:file_exists) { false }
+
+      it "does nothing" do
+        expect(Sail::Setting).to_not receive(:set).with("setting", "second string").and_call_original
+        expect(Rails.cache).to_not receive(:delete).with("setting_get_setting")
+        subject
+        expect(setting.reload.value).to eq("first string")
+      end
+    end
+  end
 end

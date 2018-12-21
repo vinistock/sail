@@ -1,8 +1,12 @@
 "use strict";
 
+/*
+Search related functions
+*/
+
 let submitTimer, submitInterval, intervals = 1;
 let queryElement = document.getElementById("query");
-let enabled = "<%= Sail.configuration.enable_search_auto_submit %>";
+let autoSearchEnabled = "<%= Sail.configuration.enable_search_auto_submit %>";
 let progress = document.getElementById("search-submit-progress");
 
 function submitSearch() {
@@ -27,7 +31,24 @@ function afterTypingQuery() {
     submitInterval = setInterval(advanceProgress, 20);
 }
 
-if (enabled === "true") {
+if (autoSearchEnabled === "true") {
     queryElement.addEventListener("keyup", afterTypingQuery);
     queryElement.addEventListener("keydown", clearTimer);
 }
+
+/*
+Refresh related functions
+ */
+
+let refreshButtons = document.getElementsByClassName("refresh-button");
+
+function refreshClick() {
+    let button = this;
+
+    if (!button.className.includes("active")) {
+        button.classList.add("active");
+        setTimeout(function() { button.classList.remove("active"); }, 500);
+    }
+}
+
+for(var i = 0; i < refreshButtons.length; i++) refreshButtons[i].addEventListener("click", refreshClick);

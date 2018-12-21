@@ -204,4 +204,32 @@ describe Sail::SettingsController, type: :controller do
       end
     end
   end
+
+  describe "PUT reset" do
+    # :nocov:
+    subject do
+      if Rails::VERSION::MAJOR >= 5
+        put :reset, params: { name: setting.name }, format: :js
+      else
+        put :reset, name: setting.name, format: :js
+      end
+    end
+    # :nocov:
+
+    let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :string, value: "old value") }
+    let(:file_contents) {{ "setting" => { "value" => "new value" } }}
+
+    before do
+      allow(File).to receive(:exist?)
+      allow(File).to receive(:exist?).with("#{Rails.root}/config/sail.yml").and_return(true)
+      allow(YAML).to receive(:load_file).with("#{Rails.root}/config/sail.yml").and_return(file_contents)
+    end
+
+    it "resets setting value" do
+      expect(Sail::Setting).to receive(:reset).with("setting").and_call_original
+      subject
+      expect(response).to have_http_status(:ok)
+      expect(setting.reload.value).to eq("new value")
+    end
+  end
 end
