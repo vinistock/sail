@@ -58,6 +58,14 @@ Sail.configure do |config|
 end
 ```
 
+A possible authorization lambda is defined below.
+
+```ruby
+Sail.configure do |config|
+  config.dashboard_auth_lambda = -> { redirect_to("/") unless current_user.admin? }
+end
+```
+
 ## Populating the database
 
 In order to create settings, use the config/sail.yml file (or create your own data migrations).
