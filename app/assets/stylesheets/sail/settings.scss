@@ -288,4 +288,26 @@
       color: $bright_red;
     }
   }
+
+  #progress-container {
+    text-align: center;
+
+    #search-submit-progress {
+      display: none;
+      width: 50%;
+      -webkit-appearance: none;
+      height: 3px;
+      position: relative;
+      bottom: 22px;
+
+      &::-webkit-progress-bar {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+        background-color: white;
+      }
+
+      &::-webkit-progress-value {
+        background-color: $cerulean;
+      }
+    }
+  }
 }
