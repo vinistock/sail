@@ -27,4 +27,13 @@ describe Sail, type: :lib do
       subject
     end
   end
+
+  describe ".switcher" do
+    subject { described_class.reset("name") }
+
+    it "delegates to setting" do
+      expect(Sail::Setting).to receive(:reset).with("name")
+      subject
+    end
+  end
 end
