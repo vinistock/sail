@@ -13,7 +13,7 @@ addons:
       - google-chrome-stable
       - chromium-chromedriver
 env:
-  - "RAILS_VERSION=4.2.10"
+  - "RAILS_VERSION=4.2.11"
   - "RAILS_VERSION=5.2.2"
 matrix:
   allow_failures:
