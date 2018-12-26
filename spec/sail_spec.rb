@@ -28,7 +28,7 @@ describe Sail, type: :lib do
     end
   end
 
-  describe ".switcher" do
+  describe ".reset" do
     subject { described_class.reset("name") }
 
     it "delegates to setting" do
