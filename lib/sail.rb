@@ -19,6 +19,10 @@ module Sail # :nodoc:
       Sail::Setting.set(name, value)
     end
 
+    def reset(name)
+      Sail::Setting.reset(name)
+    end
+
     def switcher(positive:, negative:, throttled_by:)
       Sail::Setting.switcher(positive: positive, negative: negative, throttled_by: throttled_by)
     end

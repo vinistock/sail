@@ -12,6 +12,10 @@ module Sail
       g.test_framework :rspec
     end
 
+    initializer "sail.assets.precompile" do |app|
+      app.config.assets.precompile += %w[sail/refresh.png]
+    end
+
     initializer "sail" do
       unless Sail.configuration.dashboard_auth_lambda.nil?
         to_prepare do

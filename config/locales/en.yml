@@ -7,3 +7,4 @@ en:
     search_placeholder: Setting name, group or cast type
     main_app: Main app
     no_settings: No settings found
+    refresh_tooltip: Reset setting value

@@ -3,6 +3,12 @@
     <h3 class="title"><%= setting.display_name %></h3>
     <hr/>
 
+    <%= form_tag(reset_setting_path(name: setting.name), method: :put, remote: true) do %>
+      <button class="refresh-button" title="<%= I18n.t("sail.refresh_tooltip") %>">
+        <%= image_tag("sail/refresh.png") %>
+      </button>
+    <% end %>
+
     <div class="label-container">
       <%= link_to(setting.cast_type, settings_path(query: setting.cast_type), method: :get, class: "tag type-label") %>
     </div>
@@ -18,15 +24,15 @@
         <div class="card-body">
           <% if setting.boolean? || setting.ab_test? %>
             <label class="switch">
-              <input type="checkbox" name="value" <%= setting.value == "true" ? "checked" : "" %>>
+              <input id="<%= "input_for_#{setting.name}" %>" type="checkbox" name="value" <%= setting.value == "true" ? "checked" : "" %>>
               <span class="slider round"></span>
             </label>
           <% elsif setting.range? %>
-            <input type="range" min="0" max="99" value="<%= setting.value %>" name="value" class="value-slider">
+            <input id="<%= "input_for_#{setting.name}" %>" type="range" min="0" max="99" value="<%= setting.value %>" name="value" class="value-slider">
           <% elsif setting.date? %>
-            <input type="datetime-local" value="<%= setting.value %>" name="value" class="date-picker">
+            <input id="<%= "input_for_#{setting.name}" %>" type="datetime-local" value="<%= setting.value %>" name="value" class="date-picker">
           <% else %>
-            <input type="text" name="value" class="value-input" value="<%= setting.value %>"/>
+            <input id="<%= "input_for_#{setting.name}" %>" type="text" name="value" class="value-input" value="<%= setting.value %>"/>
           <% end %>
 
           <button type="submit" class="btn-value-submit"><%= I18n.t('sail.save') %></button>

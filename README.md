@@ -79,6 +79,8 @@ Settings can be aggregated by using groups. Searching by a group name will retur
 ```yaml
 # Rails.root/config/sail.yml
 # Setting name with it's information contained inside
+# These values are used for the reset functionality as well
+
 first_setting:
   description: My very first setting
   value: some_important_string
@@ -116,6 +118,9 @@ Sail::Setting.get('name')
 # Set setting value
 Sail::Setting.set('name', 'value')
 
+# Reset setting value (requires the sail.yml file!)
+Sail::Setting.reset('name')
+
 # Switcher
 # This method will take three setting names as parameters
 # positive: This is the name of the setting that will be returned if the throttle setting returns true
@@ -135,6 +140,8 @@ Sail::Setting.switcher(
 Sail.get('name')
 
 Sail.set('name', 'value')
+
+Sail.reset('name')
  
 Sail.switcher(
   positive: :setting_name_for_true,
