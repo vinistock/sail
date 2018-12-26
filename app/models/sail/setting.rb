@@ -87,7 +87,7 @@ module Sail
 
       if File.exist?(path)
         defaults = YAML.load_file(path)
-        set(name, defaults.dig(name, "value"))
+        set(name, defaults[name]["value"])
       end
     end
 
