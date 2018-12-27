@@ -244,6 +244,10 @@ Sail::Setting.get(:my_setting)
 => true
 ```
 
+## Localization
+
+Sail's few strings are all localized for English in [en.yml], making it easy to create translations for the desired languages.
+
 ## Contributing
 
 Contributions are very welcome! Don't hesitate to ask if you wish to contribute, but don't yet know how.
@@ -256,3 +260,4 @@ If you'd like to help Sail become a featured project of [awesome-ruby], please d
 [wiki]: https://github.com/vinistock/sail/wiki
 [awesome-ruby]: https://github.com/markets/awesome-ruby
 [this pr]: https://github.com/markets/awesome-ruby/pull/882
+[en.yml]: https://github.com/vinistock/sail/blob/master/config/locales/en.yml
