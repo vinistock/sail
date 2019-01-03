@@ -55,3 +55,16 @@ def expect_setting(setting)
   expect(page).to have_button("SAVE")
   expect(page).to have_field("value")
 end
+
+# Patch to avoid failures for
+# Ruby 2.6.x combined with Rails 4.x.x
+# More details in https://github.com/rails/rails/issues/34790
+if RUBY_VERSION >= "2.6.0" && Rails.version < "5"
+  class ActionController::TestResponse < ActionDispatch::TestResponse
+    def recycle!
+      @mon_mutex_owner_object_id = nil
+      @mon_mutex = nil
+      initialize
+    end
+  end
+end
