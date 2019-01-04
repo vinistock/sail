@@ -1,6 +1,6 @@
 AllCops:
   Exclude:
-  - spec/**/*
+  - spec/dummy/**/*
   - coverage/**/*
   - lib/generators/sail/install/templates/**/*
 
@@ -10,6 +10,9 @@ Metrics/MethodLength:
   Max: 20
 Metrics/BlockLength:
   Max: 30
+  Enabled: true
+  Exclude:
+    - spec/**/*
 Metrics/ClassLength:
   Max: 150
 Style/GuardClause:

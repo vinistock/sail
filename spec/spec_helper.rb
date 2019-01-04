@@ -1,16 +1,17 @@
 # frozen_string_literal: true
-ENV['RAILS_ENV'] = 'test'
-require File.expand_path('../dummy/config/environment.rb',  __FILE__)
-require 'bundler/setup'
-require 'byebug'
-require 'rspec/rails'
-require 'simplecov'
-require 'rails/all'
-require 'database_cleaner'
-require 'capybara/rspec'
-require 'capybara/rails'
-require 'sail'
-require 'selenium/webdriver'
+
+ENV["RAILS_ENV"] = "test"
+require File.expand_path("dummy/config/environment.rb", __dir__)
+require "bundler/setup"
+require "byebug"
+require "rspec/rails"
+require "simplecov"
+require "rails/all"
+require "database_cleaner"
+require "capybara/rspec"
+require "capybara/rails"
+require "sail"
+require "selenium/webdriver"
 
 SimpleCov.start
 DatabaseCleaner.strategy = :truncation
@@ -39,7 +40,10 @@ RSpec.configure do |config|
   end
 
   Capybara.register_driver :headless_chrome do |app|
-    capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(chromeOptions: { args: %w(headless disable-gpu no-sandbox disable-dev-shm-usage) })
+    capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+      chromeOptions: { args: %w[headless disable-gpu no-sandbox disable-dev-shm-usage] }
+    )
+
     Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: capabilities)
   end
 
@@ -47,6 +51,7 @@ RSpec.configure do |config|
   Capybara.server = :webrick
 end
 
+# rubocop:disable AbcSize
 def expect_setting(setting)
   expect(page).to have_text(setting.name.titleize)
   expect(page).to have_text(setting.description.capitalize)
@@ -55,16 +60,19 @@ def expect_setting(setting)
   expect(page).to have_button("SAVE")
   expect(page).to have_field("value")
 end
+# rubocop:enable AbcSize
 
 # Patch to avoid failures for
 # Ruby 2.6.x combined with Rails 4.x.x
 # More details in https://github.com/rails/rails/issues/34790
 if RUBY_VERSION >= "2.6.0" && Rails.version < "5"
-  class ActionController::TestResponse < ActionDispatch::TestResponse
-    def recycle!
-      @mon_mutex_owner_object_id = nil
-      @mon_mutex = nil
-      initialize
+  module ActionController
+    class TestResponse < ActionDispatch::TestResponse
+      def recycle!
+        @mon_mutex_owner_object_id = nil
+        @mon_mutex = nil
+        initialize
+      end
     end
   end
 end

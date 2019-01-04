@@ -2,14 +2,14 @@
 
 feature "viewing settings", js: true, type: :feature do
   before do
-    5.times.with_index do |index|
+    5.times do |index|
       Sail::Setting.create!(name: "setting_#{index}", cast_type: :string,
                             value: :something,
                             description: "Setting that does something",
                             group: "feature_flags")
     end
 
-    5.times.with_index do |index|
+    5.times do |index|
       Sail::Setting.create!(name: "setting_#{index + 5}", cast_type: :integer,
                             value: "5",
                             description: "Setting that does something",

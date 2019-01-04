@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Sail::ApplicationHelper, type: :helper do
   include described_class
 
