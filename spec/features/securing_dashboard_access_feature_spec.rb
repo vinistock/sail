@@ -21,7 +21,10 @@ feature "securing dashboard access", js: true, type: :feature do
   context "when user is not admin" do
     it "is redirect to root path" do
       user = User.new
-      def user.admin?; false; end
+
+      def user.admin?
+        false
+      end
 
       allow_any_instance_of(Sail::SettingsController).to receive(:user).and_return(user)
 

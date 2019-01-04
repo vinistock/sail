@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 feature "resetting settings", js: true, type: :feature do
-  let!(:setting) { Sail::Setting.create!(name: name, cast_type: cast_type,
-                                        value: setting_value,
-                                        description: "Setting that does something",
-                                        group: "feature_flags") }
+  let!(:setting) do
+    Sail::Setting.create!(name: name, cast_type: cast_type,
+                          value: setting_value,
+                          description: "Setting that does something",
+                          group: "feature_flags")
+  end
 
   before do
     visit "/sail"

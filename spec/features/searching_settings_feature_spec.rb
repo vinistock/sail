@@ -1,14 +1,19 @@
 # frozen_string_literal: true
 
 feature "searching settings", js: true, type: :feature do
-  let!(:setting_1) { Sail::Setting.create(name: :setting, cast_type: :string,
-                                              value: :something,
-                                              description: "Setting that does something",
-                                              group: "feature_flags") }
-  let!(:setting_2) { Sail::Setting.create(name: :configuration, cast_type: :string,
-                                        value: :something,
-                                        description: "Setting that does something else",
-                                        group: "feature_flags") }
+  let!(:setting_1) do
+    Sail::Setting.create(name: :setting, cast_type: :string,
+                         value: :something,
+                         description: "Setting that does something",
+                         group: "feature_flags")
+  end
+
+  let!(:setting_2) do
+    Sail::Setting.create(name: :configuration, cast_type: :string,
+                         value: :something,
+                         description: "Setting that does something else",
+                         group: "feature_flags")
+  end
 
   before do
     visit "/sail"

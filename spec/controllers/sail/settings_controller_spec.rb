@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 describe Sail::SettingsController, type: :controller do
   routes { Sail::Engine.routes }
-  before { Rails.cache.delete('setting_get_setting') }
+  before { Rails.cache.delete("setting_get_setting") }
 
-  describe 'GET index' do
+  describe "GET index" do
     # :nocov:
     subject do
       if Rails::VERSION::MAJOR >= 5
@@ -13,21 +15,21 @@ describe Sail::SettingsController, type: :controller do
     end
     # :nocov:
 
-    let(:params) {{ page: '1' }}
+    let(:params) { { page: "1" } }
 
     before do
       Sail::Setting.create(name: :setting, cast_type: :string, value: :something)
     end
 
-    it 'queries settings with pagination' do
-      expect(Sail::Setting).to receive(:paginated).with('1')
+    it "queries settings with pagination" do
+      expect(Sail::Setting).to receive(:paginated).with("1")
       subject
       expect(response).to have_http_status(:ok)
     end
 
-    it 'sets eTag in response headers' do
+    it "sets eTag in response headers" do
       subject
-      expect(response.headers['ETag']).to_not be_nil
+      expect(response.headers["ETag"]).to_not be_nil
     end
 
     it "sets the number of pages" do
@@ -35,17 +37,17 @@ describe Sail::SettingsController, type: :controller do
       expect(controller.instance_variable_get(:@number_of_pages)).to eq(1)
     end
 
-    context 'when passing a query' do
-      let(:params) {{ query: 'test' }}
+    context "when passing a query" do
+      let(:params) { { query: "test" } }
 
-      it 'invokes proper scope with query' do
-        expect(Sail::Setting).to receive(:by_name).with('test').and_call_original
+      it "invokes proper scope with query" do
+        expect(Sail::Setting).to receive(:by_name).with("test").and_call_original
         subject
       end
     end
   end
 
-  describe 'PUT update' do
+  describe "PUT update" do
     # :nocov:
     subject do
       if Rails::VERSION::MAJOR >= 5
@@ -56,29 +58,29 @@ describe Sail::SettingsController, type: :controller do
     end
     # :nocov:
 
-    let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :string, value: 'old value') }
-    let(:new_value) { 'new value' }
+    let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :string, value: "old value") }
+    let(:new_value) { "new value" }
 
-    it 'updates setting value' do
-      expect(setting.value).to eq('old value')
+    it "updates setting value" do
+      expect(setting.value).to eq("old value")
       subject
       expect(response).to have_http_status(:ok)
-      expect(setting.reload.value).to eq('new value')
+      expect(setting.reload.value).to eq("new value")
     end
 
-    context 'when setting is boolean' do
-      let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :boolean, value: 'false') }
-      let(:new_value) { 'on' }
+    context "when setting is boolean" do
+      let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :boolean, value: "false") }
+      let(:new_value) { "on" }
 
-      it 'updates setting value' do
-        expect(setting.value).to eq('false')
+      it "updates setting value" do
+        expect(setting.value).to eq("false")
         subject
         expect(response).to have_http_status(:ok)
-        expect(setting.reload.value).to eq('true')
+        expect(setting.reload.value).to eq("true")
       end
     end
 
-    context 'when format is JSON' do
+    context "when format is JSON" do
       # :nocov:
       subject do
         if Rails::VERSION::MAJOR >= 5
@@ -89,16 +91,16 @@ describe Sail::SettingsController, type: :controller do
       end
       # :nocov:
 
-      it 'updates setting value' do
-        expect(setting.value).to eq('old value')
+      it "updates setting value" do
+        expect(setting.value).to eq("old value")
         subject
         expect(response).to have_http_status(:ok)
-        expect(setting.reload.value).to eq('new value')
+        expect(setting.reload.value).to eq("new value")
       end
     end
   end
 
-  describe 'GET show' do
+  describe "GET show" do
     # :nocov:
     subject do
       if Rails::VERSION::MAJOR >= 5
@@ -109,23 +111,23 @@ describe Sail::SettingsController, type: :controller do
     end
     # :nocov:
 
-    let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :string, value: 'some value') }
-    let(:params) {{ name: setting.name }}
+    let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :string, value: "some value") }
+    let(:params) { { name: setting.name } }
 
-    it 'returns setting value' do
+    it "returns setting value" do
       subject
       body = JSON.parse(response.body)
-      expect(body['value']).to eq(setting.value)
+      expect(body["value"]).to eq(setting.value)
     end
 
-    it 'returns 200 status' do
+    it "returns 200 status" do
       subject
       expect(response).to have_http_status(:ok)
     end
 
-    it 'responds in json format' do
+    it "responds in json format" do
       subject
-      expect(response.content_type).to eq('application/json')
+      expect(response.content_type).to eq("application/json")
     end
   end
 
@@ -140,8 +142,8 @@ describe Sail::SettingsController, type: :controller do
     end
     # :nocov:
 
-    let!(:throttle) { Sail::Setting.create(name: :throttle, cast_type: :throttle, value: '50.0') }
-    let(:params) {{ positive: :positive, negative: :negative, throttled_by: :throttle }}
+    let!(:throttle) { Sail::Setting.create(name: :throttle, cast_type: :throttle, value: "50.0") }
+    let(:params) { { positive: :positive, negative: :negative, throttled_by: :throttle } }
 
     before do
       Rails.cache.delete("setting_get_positive")
@@ -164,7 +166,7 @@ describe Sail::SettingsController, type: :controller do
         subject
 
         body = JSON.parse(response.body)
-        expect(body['value']).to eq("I'm the primary!")
+        expect(body["value"]).to eq("I'm the primary!")
       end
     end
 
@@ -180,7 +182,7 @@ describe Sail::SettingsController, type: :controller do
         subject
 
         body = JSON.parse(response.body)
-        expect(body['value']).to eq(7)
+        expect(body["value"]).to eq(7)
       end
     end
 
@@ -217,7 +219,7 @@ describe Sail::SettingsController, type: :controller do
     # :nocov:
 
     let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :string, value: "old value") }
-    let(:file_contents) {{ "setting" => { "value" => "new value" } }}
+    let(:file_contents) { { "setting" => { "value" => "new value" } } }
 
     before do
       allow(File).to receive(:exist?)
