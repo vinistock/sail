@@ -22,6 +22,6 @@ before_script:
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
 before_install:
   - rm Gemfile.lock
-  - gem install bundler -v 1.17.3 --no-rdoc --no-ri
+  - gem install bundler -v 1.17.3
   - bundle _1.17.3_ install
 after_success: bundle exec codeclimate-test-reporter
