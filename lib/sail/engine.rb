@@ -25,21 +25,7 @@ module Sail
     end
 
     config.after_initialize do
-      if !Rails.env.test? &&
-         File.exist?("#{Rails.root}/config/sail.yml") &&
-         ActiveRecord::Base.connection.table_exists?("sail_settings")
-
-        config = YAML.load_file("#{Rails.root}/config/sail.yml")
-
-        config.each do |name, attrs|
-          string_attrs = attrs.merge(name: name)
-          string_attrs.update(string_attrs) { |_, v| v.to_s }
-          Sail::Setting.where(name: name).first_or_create(string_attrs)
-        end
-
-        deleted_settings = Sail::Setting.pluck(:name) - config.keys
-        Sail::Setting.where(name: deleted_settings).destroy_all
-      end
+      Sail::Setting.load_defaults unless Rails.env.test?
     end
 
     private

@@ -8,5 +8,6 @@ module Sail
     BOOLEAN = "boolean"
     ON = "on"
     BOOLEANS = [true, false].freeze
+    CONFIG_FILE_PATH = "./config/sail.yml"
   end
 end
