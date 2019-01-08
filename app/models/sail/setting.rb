@@ -117,6 +117,9 @@ module Sail
       end
     end
 
+    private_class_method :config_file_path, :destroy_missing_settings,
+                         :find_or_create_settings
+
     def display_name
       name.gsub(/[^a-zA-Z\d]/, " ").titleize
     end

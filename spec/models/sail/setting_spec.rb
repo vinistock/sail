@@ -398,7 +398,7 @@ describe Sail::Setting, type: :model do
   end
 
   describe ".destroy_missing_settings" do
-    subject { described_class.destroy_missing_settings(keys) }
+    subject { described_class.send(:destroy_missing_settings, keys) }
     let!(:setting) { described_class.create!(name: :setting, cast_type: :string, value: "string_value") }
     let!(:setting_2) { described_class.create!(name: :setting_2, cast_type: :string, value: "string_value") }
     let(:keys) { %w[setting_2] }
@@ -411,11 +411,16 @@ describe Sail::Setting, type: :model do
   end
 
   describe ".find_or_create_settings" do
-    subject { described_class.find_or_create_settings(config) }
+    subject { described_class.send(:find_or_create_settings, config) }
     let(:config) { { "setting" => { "value" => "string_value", "cast_type" => "string" } } }
 
     it "creates the settings in the database" do
       expect { subject }.to change(Sail::Setting, :count).by(1)
     end
+  end
+
+  describe ".config_file_path" do
+    subject { described_class.send(:config_file_path) }
+    it { is_expected.to eq("./config/sail.yml") }
   end
 end
