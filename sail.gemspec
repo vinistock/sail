@@ -3,6 +3,7 @@
 $LOAD_PATH.push File.expand_path("lib", __dir__)
 require "sail/version"
 
+# rubocop:disable BlockLength
 Gem::Specification.new do |s|
   s.name        = "sail"
   s.version     = Sail::VERSION
@@ -15,6 +16,15 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
+
+  s.post_install_message = <<~MESSAGE
+    **************************************************************************
+    Sail 2.0.0!
+
+    If you're upgrading from older versions check breaking changes in release
+    notes https://github.com/vinistock/sail/releases/tag/2.0.0
+    **************************************************************************
+  MESSAGE
 
   s.add_dependency "fugit"
   s.add_dependency "jquery-rails"
@@ -35,3 +45,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency "simplecov", "~> 0.16.1"
   s.add_development_dependency "sqlite3"
 end
+# rubocop:enable BlockLength
