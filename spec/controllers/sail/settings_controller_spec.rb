@@ -223,8 +223,9 @@ describe Sail::SettingsController, type: :controller do
 
     before do
       allow(File).to receive(:exist?)
-      allow(File).to receive(:exist?).with("#{Rails.root}/config/sail.yml").and_return(true)
-      allow(YAML).to receive(:load_file).with("#{Rails.root}/config/sail.yml").and_return(file_contents)
+      allow(Sail::Setting).to receive(:config_file_path).and_return("./config/sail.yml")
+      allow(File).to receive(:exist?).with("./config/sail.yml").and_return(true)
+      allow(YAML).to receive(:load_file).with("./config/sail.yml").and_return(file_contents)
     end
 
     it "resets setting value" do

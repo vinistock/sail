@@ -83,11 +83,37 @@ module Sail
     end
 
     def self.reset(name)
-      path = "#{Rails.root}/config/sail.yml"
-
-      if File.exist?(path)
-        defaults = YAML.load_file(path)
+      if File.exist?(config_file_path)
+        defaults = YAML.load_file(config_file_path)
         set(name, defaults[name]["value"])
+      end
+    end
+
+    def self.load_defaults(override = false)
+      if File.exist?(config_file_path) &&
+         ActiveRecord::Base.connection.table_exists?(table_name)
+
+        destroy_all if override
+        config = YAML.load_file(config_file_path)
+        find_or_create_settings(config)
+        destroy_missing_settings(config.keys)
+      end
+    end
+
+    def self.config_file_path
+      Sail::ConstantCollection::CONFIG_FILE_PATH
+    end
+
+    def self.destroy_missing_settings(keys)
+      deleted_settings = pluck(:name) - keys
+      where(name: deleted_settings).destroy_all
+    end
+
+    def self.find_or_create_settings(config)
+      config.each do |name, attrs|
+        string_attrs = attrs.merge(name: name)
+        string_attrs.update(string_attrs) { |_, v| v.to_s }
+        where(name: name).first_or_create(string_attrs)
       end
     end
 

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-# desc "Explaining what the task does"
-# task :sail do
-#   # Task goes here
-# end
+namespace :sail do
+  desc "Loads default setting configurations from sail.yml"
+  task :load_defaults do
+    Sail::Setting.load_defaults(true)
+  end
+end

@@ -338,8 +338,9 @@ describe Sail::Setting, type: :model do
     let(:file_contents) { { "setting" => { "value" => "second string" } } }
 
     before do
-      allow(File).to receive(:exist?).with("#{Rails.root}/config/sail.yml").and_return(file_exists)
-      allow(YAML).to receive(:load_file).with("#{Rails.root}/config/sail.yml").and_return(file_contents)
+      allow(Sail::Setting).to receive(:config_file_path).and_return("./config/sail.yml")
+      allow(File).to receive(:exist?).with("./config/sail.yml").and_return(file_exists)
+      allow(YAML).to receive(:load_file).with("./config/sail.yml").and_return(file_contents)
     end
 
     context "when file exists" do
@@ -362,6 +363,59 @@ describe Sail::Setting, type: :model do
         subject
         expect(setting.reload.value).to eq("first string")
       end
+    end
+  end
+
+  describe ".load_defaults" do
+    subject { described_class.load_defaults(override) }
+    let(:file_contents) { { "setting" => { "value" => "string_value", "cast_type" => "string" } } }
+
+    before do
+      allow(Sail::Setting).to receive(:config_file_path).and_return("./config/sail.yml")
+      allow(File).to receive(:exist?).with("./config/sail.yml").and_return(true)
+      allow(YAML).to receive(:load_file).with("./config/sail.yml").and_return(file_contents)
+    end
+
+    context "when overriding" do
+      let(:override) { true }
+
+      it "destroys all settings and re-populates database" do
+        expect(Sail::Setting).to receive(:destroy_all)
+        subject
+        expect(Sail::Setting.last.value).to eq("string_value")
+      end
+    end
+
+    context "when not overriding" do
+      let(:override) { false }
+
+      it "populates database without deleting" do
+        expect(Sail::Setting).to_not receive(:destroy_all)
+        subject
+        expect(Sail::Setting.last.value).to eq("string_value")
+      end
+    end
+  end
+
+  describe ".destroy_missing_settings" do
+    subject { described_class.destroy_missing_settings(keys) }
+    let!(:setting) { described_class.create!(name: :setting, cast_type: :string, value: "string_value") }
+    let!(:setting_2) { described_class.create!(name: :setting_2, cast_type: :string, value: "string_value") }
+    let(:keys) { %w[setting_2] }
+
+    it "destroys all settings except the ones included in keys" do
+      expect(Sail::Setting).to receive(:where).with(name: %w[setting]).and_call_original
+      expect_any_instance_of(ActiveRecord::Relation).to receive(:destroy_all)
+      subject
+    end
+  end
+
+  describe ".find_or_create_settings" do
+    subject { described_class.find_or_create_settings(config) }
+    let(:config) { { "setting" => { "value" => "string_value", "cast_type" => "string" } } }
+
+    it "creates the settings in the database" do
+      expect { subject }.to change(Sail::Setting, :count).by(1)
     end
   end
 end
