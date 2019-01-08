@@ -78,7 +78,7 @@ module Sail
 
     def boolean_set(value)
       if value.is_a?(String)
-        value == Sail::ConstantCollection::ON ? Sail::ConstantCollection::TRUE : value
+        check_for_on_or_boolean(value)
       elsif value.nil?
         Sail::ConstantCollection::FALSE
       else
@@ -88,7 +88,7 @@ module Sail
 
     def ab_test_set(value)
       if value.is_a?(String)
-        value == Sail::ConstantCollection::ON ? Sail::ConstantCollection::TRUE : value
+        check_for_on_or_boolean(value)
       elsif value.nil?
         Sail::ConstantCollection::FALSE
       else
@@ -118,6 +118,12 @@ module Sail
 
     def throttle_set(value)
       value
+    end
+
+    private
+
+    def check_for_on_or_boolean(value)
+      value == Sail::ConstantCollection::ON ? Sail::ConstantCollection::TRUE : value
     end
   end
 end
