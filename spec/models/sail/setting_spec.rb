@@ -164,8 +164,22 @@ describe Sail::Setting, type: :model do
 
     describe ".by_query" do
       subject { described_class.by_query(query) }
-      let!(:setting_1) { described_class.create(name: "My Setting", cast_type: :boolean, value: "false", group: "feature_flags") }
-      let!(:setting_2) { described_class.create(name: "Your Setting", cast_type: :string, value: "something", group: "tuners") }
+
+      let!(:setting_1) do
+        described_class.create(name: "My Setting",
+                               cast_type: :boolean,
+                               value: "false",
+                               group: "feature_flags",
+                               updated_at: 75.days.ago)
+      end
+
+      let!(:setting_2) do
+        described_class.create(name: "Your Setting",
+                               cast_type: :string,
+                               value: "something",
+                               group: "tuners",
+                               updated_at: 15.days.ago)
+      end
 
       context "when query is a group" do
         let(:query) { "feature_flags" }
@@ -192,6 +206,28 @@ describe Sail::Setting, type: :model do
           expect(subject).to_not include(setting_1)
           expect(subject).to include(setting_2)
         end
+      end
+
+      context "when query is stale" do
+        let(:query) { "stale" }
+
+        it "searches by stale settings" do
+          expect(subject).to include(setting_1)
+          expect(subject).to_not include(setting_2)
+        end
+      end
+    end
+
+    describe ".stale" do
+      subject { described_class.stale }
+      let!(:setting_1) { described_class.create(name: "My Setting", cast_type: :boolean, value: "false", updated_at: 75.days.ago) }
+      let!(:setting_2) { described_class.create(name: "Your Setting", cast_type: :string, value: "something", updated_at: 15.days.ago) }
+
+      it "returns stale settings" do
+        result = subject
+
+        expect(result).to include(setting_1)
+        expect(result).to_not include(setting_2)
       end
     end
   end

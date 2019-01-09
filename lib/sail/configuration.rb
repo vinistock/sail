@@ -17,7 +17,7 @@ module Sail
       @dashboard_auth_lambda = nil
       @back_link_path = "root_path"
       @enable_search_auto_submit = true
-      @days_until_stale = 45.days
+      @days_until_stale = 60
     end
   end
 end

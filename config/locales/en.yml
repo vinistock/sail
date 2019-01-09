@@ -8,3 +8,5 @@ en:
     main_app: Main app
     no_settings: No settings found
     refresh_tooltip: Reset setting value
+    stale: stale
+    stale_tooltip: This setting has not been updated in %{days} days. Consider removing it and refactoring the code.

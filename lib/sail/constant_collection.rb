@@ -9,5 +9,6 @@ module Sail
     ON = "on"
     BOOLEANS = [true, false].freeze
     CONFIG_FILE_PATH = "./config/sail.yml"
+    STALE = "stale"
   end
 end

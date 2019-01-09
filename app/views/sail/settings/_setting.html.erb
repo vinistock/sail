@@ -17,6 +17,12 @@
       <%= link_to(setting.group, settings_path(query: setting.group), method: :get, class: "tag group-label") %>
     </div>
 
+    <% if setting.stale? %>
+      <div class="label-container">
+        <%= link_to(I18n.t("sail.stale"), settings_path(query: Sail::ConstantCollection::STALE), method: :get, class: "tag stale-label", title: I18n.t("sail.stale_tooltip", days: Sail.configuration.days_until_stale)) %>
+      </div>
+    <% end %>
+
     <p class="setting-description" title="<%= setting.description %>"><%= setting.description %></p>
 
     <%= form_tag(setting_path(name: setting.name), method: :put, remote: true) do %>
