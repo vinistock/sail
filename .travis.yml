@@ -1,5 +1,6 @@
 sudo: false
 language: ruby
+cache: bundler
 rvm:
   - 2.2.10
   - 2.3.8
@@ -23,5 +24,6 @@ before_script:
 before_install:
   - rm Gemfile.lock
   - gem install bundler -v 1.17.3
+install:
   - bundle _1.17.3_ install
 after_success: bundle exec codeclimate-test-reporter
