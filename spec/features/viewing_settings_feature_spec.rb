@@ -13,7 +13,8 @@ feature "viewing settings", js: true, type: :feature do
       Sail::Setting.create!(name: "setting_#{index + 5}", cast_type: :integer,
                             value: "5",
                             description: "Setting that does something",
-                            group: "tuners")
+                            group: "tuners",
+                            updated_at: 75.days.ago)
     end
 
     visit "/sail"
@@ -40,6 +41,14 @@ feature "viewing settings", js: true, type: :feature do
   it "allows clicking on types to filter" do
     within(all(".card").first) do
       click_link("string")
+    end
+
+    expect(page).to have_css(".card", count: 5)
+  end
+
+  it "allows clicking on stale to filter" do
+    within(all(".card").last) do
+      click_link("stale")
     end
 
     expect(page).to have_css(".card", count: 5)

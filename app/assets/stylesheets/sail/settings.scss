@@ -74,6 +74,10 @@
       &.group-label {
         background-color: $cerulean;
       }
+
+      &.stale-label {
+        background-color: $bright_red;
+      }
     }
 
     .label-container {

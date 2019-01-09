@@ -39,6 +39,8 @@ module Sail
         send(query)
       elsif select(:id).by_group(query).exists?
         by_group(query)
+      elsif query == Sail::ConstantCollection::STALE
+        stale
       else
         by_name(query)
       end
@@ -46,6 +48,7 @@ module Sail
 
     scope :by_group, ->(group) { where(group: group) }
     scope :by_name, ->(name) { name.present? ? where("name LIKE ?", "%#{name}%") : all }
+    scope :stale, -> { where("updated_at < ?", Sail.configuration.days_until_stale.days.ago) }
 
     def self.get(name)
       Rails.cache.fetch("setting_get_#{name}", expires_in: Sail.configuration.cache_life_span) do
@@ -122,6 +125,12 @@ module Sail
 
     def display_name
       name.gsub(/[^a-zA-Z\d]/, " ").titleize
+    end
+
+    def stale?
+      return unless Sail.configuration.days_until_stale.present?
+
+      updated_at < Sail.configuration.days_until_stale.days.ago
     end
 
     private

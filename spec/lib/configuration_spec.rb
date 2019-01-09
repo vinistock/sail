@@ -10,6 +10,7 @@ describe Sail::Configuration, type: :lib do
       expect(subject.instance_variable_get(:@dashboard_auth_lambda)).to be_nil
       expect(subject.instance_variable_get(:@back_link_path)).to eq('root_path')
       expect(subject.instance_variable_get(:@enable_search_auto_submit)).to be_truthy
+      expect(subject.instance_variable_get(:@days_until_stale)).to eq(60)
     end
   end
 end
