@@ -56,6 +56,7 @@ Sail.configure do |config|
   config.dashboard_auth_lambda = nil      # Defines an authorization lambda to access the dashboard as a before action. Rendering or redirecting is included here if desired.
   config.back_link_path = 'root_path'     # Path method as string for the "Main app" button in the dashboard. Any non-existent path will make the button disappear
   config.enable_search_auto_submit = true # Enables search auto submit after 2 seconds without typing
+  config.days_until_stale = 45.days       # Days with no updates until a setting is considered stale and is a candidate to be removed from code (leave nil to disable checks)
 end
 ```
 
