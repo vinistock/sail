@@ -423,4 +423,18 @@ describe Sail::Setting, type: :model do
     subject { described_class.send(:config_file_path) }
     it { is_expected.to eq("./config/sail.yml") }
   end
+
+  describe "#stale?" do
+    subject { setting.stale? }
+
+    context "when setting is older than days configured" do
+      let(:setting) { described_class.create!(name: :setting, value: :value, cast_type: :string, updated_at: 100.days.ago) }
+      it { is_expected.to be_truthy }
+    end
+
+    context "when setting is newer than days configured" do
+      let(:setting) { described_class.create!(name: :setting, value: :value, cast_type: :string, updated_at: 15.days.ago) }
+      it { is_expected.to be_falsey }
+    end
+  end
 end

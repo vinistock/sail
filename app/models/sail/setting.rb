@@ -124,6 +124,12 @@ module Sail
       name.gsub(/[^a-zA-Z\d]/, " ").titleize
     end
 
+    def stale?
+      return unless Sail.configuration.days_until_stale.present?
+
+      updated_at < Sail.configuration.days_until_stale.ago
+    end
+
     private
 
     def model_exists
