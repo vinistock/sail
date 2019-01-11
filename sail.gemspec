@@ -31,6 +31,7 @@ notes https://github.com/vinistock/sail/releases/tag/2.0.0
   s.add_dependency "rails"
   s.add_dependency "sass-rails"
 
+  s.add_development_dependency "brakeman"
   s.add_development_dependency "bundler"
   s.add_development_dependency "byebug"
   s.add_development_dependency "capybara"
