@@ -1,5 +1,7 @@
 <%= form_tag(settings_path, method: :get, id: "search-form") do %>
-  <input type="text" name="query" id="query" placeholder="<%= I18n.t("sail.search_placeholder") %>">
+  <input type="text" name="query" id="query"
+         placeholder="<%= I18n.t("sail.search_placeholder") %>"
+         title="<%= I18n.t("sail.search_tooltip") %>">
 <% end %>
 
 <div id="progress-container">

@@ -216,6 +216,15 @@ describe Sail::Setting, type: :model do
           expect(subject).to_not include(setting_2)
         end
       end
+
+      context "when query is recent" do
+        let(:query) { "recent 380 " }
+
+        it "searches by settings recently updated" do
+          expect(subject).to include(setting_2)
+          expect(subject).to_not include(setting_1)
+        end
+      end
     end
 
     describe ".stale" do
@@ -228,6 +237,45 @@ describe Sail::Setting, type: :model do
 
         expect(result).to include(setting_1)
         expect(result).to_not include(setting_2)
+      end
+    end
+
+    describe ".recently_updated" do
+      subject { described_class.recently_updated(amount_of_hours) }
+      let!(:setting_1) { described_class.create(name: "My Setting", cast_type: :boolean, value: "false", updated_at: 2.hours.ago) }
+      let!(:setting_2) { described_class.create(name: "Your Setting", cast_type: :string, value: "something", updated_at: 48.hours.ago) }
+
+      context "when amount is 1" do
+        let(:amount_of_hours) { 1 }
+
+        it "does not include settings that haven't been updated in the last hour" do
+          result = subject
+
+          expect(result).to_not include(setting_1)
+          expect(result).to_not include(setting_2)
+        end
+      end
+
+      context "when amount is 3" do
+        let(:amount_of_hours) { 3 }
+
+        it "includes settings that have been updated in the last 3 hours" do
+          result = subject
+
+          expect(result).to include(setting_1)
+          expect(result).to_not include(setting_2)
+        end
+      end
+
+      context "when amount is 50" do
+        let(:amount_of_hours) { 50 }
+
+        it "includes settings that have been updated in the last 50 hours" do
+          result = subject
+
+          expect(result).to include(setting_1)
+          expect(result).to include(setting_2)
+        end
       end
     end
   end

@@ -4,7 +4,8 @@ en:
     save: SAVE
     updated: Updated!
     failed: Failed!
-    search_placeholder: Setting name, group or cast type
+    search_placeholder: Setting name, group, cast type, stale or recent x
+    search_tooltip: "When searching for recently updated settings, x is the number of hours since the update (e.g.: recent 2)"
     main_app: Main app
     no_settings: No settings found
     refresh_tooltip: Reset setting value
