@@ -35,12 +35,10 @@ module Sail
     }
 
     scope :by_query, lambda { |query|
-      if cast_types.key?(query)
+      if cast_types.key?(query) || query == Sail::ConstantCollection::STALE
         send(query)
       elsif select(:id).by_group(query).exists?
         by_group(query)
-      elsif query == Sail::ConstantCollection::STALE
-        stale
       else
         by_name(query)
       end
