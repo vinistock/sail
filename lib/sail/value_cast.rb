@@ -6,9 +6,12 @@ module Sail
   # by the Setting model.
   # It contains all setting type value
   # casts so that the model itself can
-  # use dynamic invocation
+  # use dynamic invocation.
   module ValueCast
     # Section for get value casts
+    #
+    # All methods must follow the naming
+    # convention of "#{cast_type}_get(value)"
 
     def integer_get(value)
       value.to_i
@@ -59,6 +62,9 @@ module Sail
     end
 
     # Section for set value casts
+    #
+    # All methods must follow the naming
+    # convention of "#{cast_type}_set(value)"
 
     def integer_set(value)
       value.to_i

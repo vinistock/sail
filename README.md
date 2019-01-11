@@ -94,6 +94,12 @@ second_setting:
   group: feature_flags
 ``` 
 
+To clear the database and reload the contents of your sail.yml file, invoke this rake task.
+
+```bash
+$ rake sail:load_defaults
+```
+
 ## Manipulating settings in the code
 
 Settings can be read or set via their interface. Notice that when reading a setting's value, it will be cast to the appropriate type using the "cast_type" field.
