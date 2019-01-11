@@ -101,7 +101,7 @@
       font-size: 18px;
       outline: none;
       border: none;
-      border-bottom: 2px solid darken($aluminium, 30%);
+      border-bottom: 2px solid $aluminium;
       -webkit-transition : border .25s ease-in;
       -moz-transition : border .25s ease-in;
       -o-transition : border .25s ease-in;
@@ -117,7 +117,7 @@
       position: relative;
       bottom: 10px;
       border: none;
-      border-bottom: 2px solid darken($aluminium, 30%);
+      border-bottom: 2px solid $aluminium;
       width: 100%;
       text-align: center;
       font-size: 18px;
