@@ -15,5 +15,6 @@ module Sail
     BOOLEANS = [true, false].freeze
     CONFIG_FILE_PATH = "./config/sail.yml"
     STALE = "stale"
+    RECENT = "recent"
   end
 end

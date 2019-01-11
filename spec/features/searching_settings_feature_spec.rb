@@ -5,14 +5,16 @@ feature "searching settings", js: true, type: :feature do
     Sail::Setting.create(name: :setting, cast_type: :string,
                          value: :something,
                          description: "Setting that does something",
-                         group: "feature_flags")
+                         group: "feature_flags",
+                         updated_at: 75.days.ago)
   end
 
   let!(:setting_2) do
     Sail::Setting.create(name: :configuration, cast_type: :string,
                          value: :something,
                          description: "Setting that does something else",
-                         group: "feature_flags")
+                         group: "feature_flags",
+                         updated_at: 15.days.ago)
   end
 
   before do
@@ -38,6 +40,22 @@ feature "searching settings", js: true, type: :feature do
 
       it "displays all found settings for group" do
         expect_setting(setting_1)
+        expect_setting(setting_2)
+      end
+    end
+
+    context "when searching by stale" do
+      let(:query) { "stale" }
+
+      it "displays all stale settings" do
+        expect_setting(setting_1)
+      end
+    end
+
+    context "when searching by recent" do
+      let(:query) { "recent 380" }
+
+      it "displays all found settings for group" do
         expect_setting(setting_2)
       end
     end

@@ -14,8 +14,6 @@ Enable/Disable a new feature, turn ON/OFF ab testing for new functionality, chan
 
 It comes with a lightweight responsive admin dashboard for searching and changing configurations on the fly.
 
-Searching can be done by group, cast type or name.
-
 ## Installation
 Add this line to your application's Gemfile:
 
@@ -99,6 +97,16 @@ To clear the database and reload the contents of your sail.yml file, invoke this
 ```bash
 $ rake sail:load_defaults
 ```
+
+## Searching
+
+Searching for settings in the dashboard can be done in the following ways:
+
+* By name: matches a substring of the setting's name
+* By group: matches all settings with the same group (exact match)
+* By cast type: matches all settings with the same cast type (exact match)
+* By stale: type 'stale' and get all settings that haven't been updated in X days (X is defined in the configuration)
+* By recent: type 'recent X' where X is the number of hours and get all settings that have been updated since X hours ago
 
 ## Manipulating settings in the code
 
