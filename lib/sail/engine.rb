@@ -25,7 +25,11 @@ module Sail
     end
 
     config.after_initialize do
-      Sail::Setting.load_defaults unless Rails.env.test?
+      begin
+        Sail::Setting.load_defaults unless Rails.env.test?
+      rescue ActiveRecord::NoDatabaseError
+        warn "Skipping setting creation because database doesn't exist"
+      end
     end
 
     private
