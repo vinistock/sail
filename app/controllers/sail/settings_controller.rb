@@ -6,6 +6,8 @@ module Sail
   # Implements all actions for the dashboard
   # and for the JSON API
   class SettingsController < ApplicationController
+    after_action :log_update, only: %i[update reset], if: -> { Sail.configuration.enable_logging && @successful_update }
+
     def index
       @settings = Setting.by_query(s_params[:query])
       @number_of_pages = (@settings.count.to_f / Sail::Setting::SETTINGS_PER_PAGE).ceil
@@ -61,6 +63,14 @@ module Sail
     def s_params
       params.permit(:page, :query, :name,
                     :value, :positive, :negative, :throttled_by)
+    end
+
+    def log_update
+      message = +"#{DateTime.now.strftime("%Y/%m/%d %H:%M")} [Sail] #{action_name.capitalize} setting='#{@setting.name}' " \
+                 "value='#{@setting.value}'"
+
+      message << " author_user_id=#{current_user.id}" if defined?(current_user)
+      Rails.logger.info(message)
     end
   end
 end
