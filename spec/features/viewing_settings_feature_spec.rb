@@ -59,4 +59,18 @@ feature "viewing settings", js: true, type: :feature do
     click_link("Main app")
     expect(page).to have_text("Inside dummy app")
   end
+
+  context "when setting has no group" do
+    before do
+      Sail::Setting.first.update_attributes!(group: nil)
+      visit "/sail"
+    end
+
+    it "does not display group label" do
+      within(all(".card").first) do
+        expect(page).to have_css(".label-container", count: 1)
+        expect(page).to have_no_content("feature_flags")
+      end
+    end
+  end
 end

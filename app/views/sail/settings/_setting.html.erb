@@ -13,9 +13,11 @@
       <%= link_to(setting.cast_type, settings_path(query: setting.cast_type), method: :get, class: "tag type-label") %>
     </div>
 
-    <div class="label-container">
-      <%= link_to(setting.group, settings_path(query: setting.group), method: :get, class: "tag group-label") %>
-    </div>
+    <% if setting.group.present? %>
+      <div class="label-container">
+        <%= link_to(setting.group, settings_path(query: setting.group), method: :get, class: "tag group-label") %>
+      </div>
+    <% end %>
 
     <% if setting.stale? %>
       <div class="label-container">
