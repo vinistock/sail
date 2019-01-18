@@ -20,3 +20,5 @@ Style/StringLiterals:
   Enabled: false
 Style/RedundantBegin:
   Enabled: false
+Style/StringLiteralsInInterpolation:
+  Enabled: false

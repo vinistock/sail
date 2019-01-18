@@ -17,14 +17,16 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
-  s.post_install_message = %(
-**************************************************************************
-Sail 2.0.0!
+  s.post_install_message = <<~MSG
+    **************************************************************************
+    Sail 2.0.0!
+    
+    If you're upgrading from older versions check breaking changes in release
+    notes https://github.com/vinistock/sail/releases/tag/2.0.0
+    **************************************************************************
+  MSG
 
-If you're upgrading from older versions check breaking changes in release
-notes https://github.com/vinistock/sail/releases/tag/2.0.0
-**************************************************************************
-  )
+  s.required_ruby_version = ">= 2.3.0"
 
   s.add_dependency "fugit"
   s.add_dependency "jquery-rails"

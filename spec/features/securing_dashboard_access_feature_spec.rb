@@ -2,7 +2,7 @@
 
 feature "securing dashboard access", js: true, type: :feature do
   before do
-    dashboard_auth_lambda = -> { redirect_to("/") unless user.admin? }
+    dashboard_auth_lambda = -> { redirect_to("/") unless current_user.admin? }
     Sail::SettingsController.before_action(*dashboard_auth_lambda)
 
     Sail::Setting.create!(name: "setting", cast_type: :string,
@@ -26,7 +26,7 @@ feature "securing dashboard access", js: true, type: :feature do
         false
       end
 
-      allow_any_instance_of(Sail::SettingsController).to receive(:user).and_return(user)
+      allow_any_instance_of(Sail::SettingsController).to receive(:current_user).and_return(user)
 
       visit "/sail"
       expect(page).to have_text("Inside dummy app")

@@ -20,6 +20,10 @@ class User
   def admin?
     true
   end
+
+  def id
+    1
+  end
 end
 
 RSpec.configure do |config|
@@ -32,7 +36,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.clean
-    allow_any_instance_of(Sail::SettingsController).to receive(:user).and_return(User.new)
+    allow_any_instance_of(Sail::SettingsController).to receive(:current_user).and_return(User.new)
   end
 
   Capybara.register_driver :chrome do |app|

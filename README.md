@@ -55,6 +55,7 @@ Sail.configure do |config|
   config.back_link_path = 'root_path'     # Path method as string for the "Main app" button in the dashboard. Any non-existent path will make the button disappear
   config.enable_search_auto_submit = true # Enables search auto submit after 2 seconds without typing
   config.days_until_stale = 60            # Days with no updates until a setting is considered stale and is a candidate to be removed from code (leave nil to disable checks)
+  config.enable_logging = true            # Enable logging for update and reset actions. Logs include timestamp, setting name, new value and author_user_id (if current_user is defined)
 end
 ```
 

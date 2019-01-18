@@ -2,7 +2,10 @@
 
 describe Sail::SettingsController, type: :controller do
   routes { Sail::Engine.routes }
-  before { Rails.cache.delete("setting_get_setting") }
+  before do
+    Rails.cache.delete("setting_get_setting")
+    allow(Rails.logger).to receive(:info)
+  end
 
   describe "GET index" do
     # :nocov:
@@ -68,6 +71,11 @@ describe Sail::SettingsController, type: :controller do
       expect(setting.reload.value).to eq("new value")
     end
 
+    it "logs change information" do
+      expect(Rails.logger).to receive(:info).with(/.* \[Sail\] Update setting='setting' value='new value' author_user_id=1/)
+      subject
+    end
+
     context "when setting is boolean" do
       let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :boolean, value: "false") }
       let(:new_value) { "on" }
@@ -96,6 +104,22 @@ describe Sail::SettingsController, type: :controller do
         subject
         expect(response).to have_http_status(:ok)
         expect(setting.reload.value).to eq("new value")
+      end
+
+      context "when update fails" do
+        before do
+          allow(Sail::Setting).to receive(:set).and_return([nil, false])
+        end
+
+        it "returns http status conflict" do
+          subject
+          expect(response).to have_http_status(:conflict)
+        end
+
+        it "does not log changes" do
+          expect(Rails.logger).to_not receive(:info).with(/.* \[Sail\] Update setting='setting' value='new value' author_user_id=1/)
+          subject
+        end
       end
     end
   end
@@ -233,6 +257,22 @@ describe Sail::SettingsController, type: :controller do
       subject
       expect(response).to have_http_status(:ok)
       expect(setting.reload.value).to eq("new value")
+    end
+
+    it "logs change information" do
+      expect(Rails.logger).to receive(:info).with(/.* \[Sail\] Reset setting='setting' value='new value' author_user_id=1/)
+      subject
+    end
+
+    context "when update fails" do
+      before do
+        allow(Sail::Setting).to receive(:set).and_return([nil, false])
+      end
+
+      it "does not log changes" do
+        expect(Rails.logger).to_not receive(:info).with(/.* \[Sail\] Update setting='setting' value='new value' author_user_id=1/)
+        subject
+      end
     end
   end
 end
