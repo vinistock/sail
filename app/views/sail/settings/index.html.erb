@@ -17,7 +17,7 @@
     <div id="pagination">
       <div class="clearfix"></div>
 
-      <% if main_app.respond_to?(Sail.configuration.back_link_path) %>
+      <% if main_app.respond_to?(Sail.configuration.back_link_path.to_s) %>
         <div class="link-holder">
           <%= link_to(I18n.t("sail.main_app"), main_app.method(Sail.configuration.back_link_path).call, method: :get) %>
         </div>

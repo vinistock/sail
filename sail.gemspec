@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.post_install_message = <<~MSG
     **************************************************************************
     Sail 2.0.0!
-    
+
     If you're upgrading from older versions check breaking changes in release
     notes https://github.com/vinistock/sail/releases/tag/2.0.0
     **************************************************************************
