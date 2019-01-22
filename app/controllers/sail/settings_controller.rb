@@ -9,7 +9,7 @@ module Sail
     after_action :log_update, only: %i[update reset], if: -> { Sail.configuration.enable_logging && @successful_update }
 
     def index
-      @settings = Setting.by_query(s_params[:query])
+      @settings = Setting.by_query(s_params[:query]).ordered_by(s_params[:order_field])
       @number_of_pages = (@settings.count.to_f / Sail::Setting::SETTINGS_PER_PAGE).ceil
       @settings = @settings.paginated(s_params[:page])
       fresh_when(@settings)
@@ -62,7 +62,8 @@ module Sail
 
     def s_params
       params.permit(:page, :query, :name,
-                    :value, :positive, :negative, :throttled_by)
+                    :value, :positive, :negative,
+                    :throttled_by, :order_field)
     end
 
     def log_update

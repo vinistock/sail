@@ -48,6 +48,15 @@ describe Sail::SettingsController, type: :controller do
         subject
       end
     end
+
+    context "when passing a field for ordering" do
+      let(:params) { { order_field: "updated_at" } }
+
+      it "invokes ordered_by properly" do
+        expect(Sail::Setting).to receive(:ordered_by).with("updated_at").and_call_original
+        subject
+      end
+    end
   end
 
   describe "PUT update" do

@@ -278,6 +278,45 @@ describe Sail::Setting, type: :model do
         end
       end
     end
+
+    describe ".ordered_by_update" do
+      subject { described_class.ordered_by(field) }
+      let!(:setting_1) { described_class.create(name: "My Setting", cast_type: :boolean, value: "false", updated_at: 75.days.ago) }
+      let!(:setting_2) { described_class.create(name: "Your Setting", cast_type: :string, value: "something", updated_at: 15.days.ago) }
+
+      context "when field exists" do
+        let(:field) { "updated_at" }
+
+        it "orders by most recent update" do
+          result = subject
+
+          expect(result.first).to eq(setting_2)
+          expect(result.second).to eq(setting_1)
+        end
+      end
+
+      context "when field does not exist" do
+        let(:field) { "whatever" }
+
+        it "doesn't order result" do
+          result = subject
+
+          expect(result.first).to eq(setting_1)
+          expect(result.second).to eq(setting_2)
+        end
+      end
+
+      context "when field is nil" do
+        let(:field) { nil }
+
+        it "doesn't order result" do
+          result = subject
+
+          expect(result.first).to eq(setting_1)
+          expect(result.second).to eq(setting_2)
+        end
+      end
+    end
   end
 
   describe ".get" do
