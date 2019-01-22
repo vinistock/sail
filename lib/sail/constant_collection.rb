@@ -16,5 +16,6 @@ module Sail
     CONFIG_FILE_PATH = "./config/sail.yml"
     STALE = "stale"
     RECENT = "recent"
+    FIELDS_FOR_SORT = %w[name updated_at cast_type group].freeze
   end
 end

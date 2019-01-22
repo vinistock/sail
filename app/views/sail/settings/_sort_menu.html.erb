@@ -1,0 +1,7 @@
+<div id="sort-menu" style="display: none;">
+  <% Sail::ConstantCollection::FIELDS_FOR_SORT.each do |field| %>
+    <%= form_tag(settings_path(order_field: field), method: :get) do %>
+      <button type="submit"><%= field %></button>
+    <% end %>
+  <% end %>
+</div>
