@@ -1,9 +1,18 @@
-<%= form_tag(settings_path, method: :get, id: "search-form") do %>
-  <input type="text" name="query" id="query"
-         placeholder="<%= I18n.t("sail.search_placeholder") %>"
-         title="<%= I18n.t("sail.search_tooltip") %>">
-<% end %>
+<div id="search-container">
+  <div class="offset-container"></div>
 
-<div id="progress-container">
-  <progress id="search-submit-progress" value="0" max="100"></progress>
+  <div class="inner-container">
+    <%= form_tag(settings_path, method: :get, id: "search-form") do %>
+      <input type="text" name="query" id="query"
+             placeholder="<%= I18n.t("sail.search_placeholder") %>"
+             title="<%= I18n.t("sail.search_tooltip") %>">
+    <% end %>
+
+    <div id="progress-container">
+      <progress id="search-submit-progress" value="0" max="100"></progress>
+    </div>
+  </div>
+
+  <button id="btn-order"><%= image_tag("sail/sort.svg") %></button>
+  <div class="clearfix"></div>
 </div>
