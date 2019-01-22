@@ -350,6 +350,7 @@
       button {
         outline: none;
         border: none;
+        width: 100%;
         font-size: 20px;
         background: transparent;
         padding: 5px;
@@ -395,11 +396,12 @@
 
     #search-submit-progress {
       display: none;
-      width: 50%;
+      width: 100%;
       -webkit-appearance: none;
       height: 3px;
       position: relative;
       bottom: 22px;
+      left: 3px;
 
       &::-webkit-progress-bar {
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;

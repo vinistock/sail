@@ -11,3 +11,4 @@ en:
     refresh_tooltip: Reset setting value
     stale: stale
     stale_tooltip: This setting has not been updated in %{days} days. Consider removing it and refactoring the code.
+    order_button_tooltip: Sort settings in descending order by the selected field.

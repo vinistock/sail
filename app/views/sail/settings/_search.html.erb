@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <button id="btn-order"><%= image_tag("sail/sort.svg") %></button>
+  <button id="btn-order" title="<%= I18n.t("sail.order_button_tooltip") %>"><%= image_tag("sail/sort.svg") %></button>
   <%= render(partial: "sort_menu") %>
   <div class="clearfix"></div>
 </div>
