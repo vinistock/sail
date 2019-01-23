@@ -17,6 +17,7 @@ addons:
 env:
   - "RAILS_VERSION=4.2.11"
   - "RAILS_VERSION=5.2.2"
+  - "RAILS_VERSION=6.0.0.beta1"
 matrix:
   allow_failures:
     - rvm: ruby-head
