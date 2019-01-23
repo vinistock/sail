@@ -21,7 +21,7 @@ describe Sail::SettingsController, type: :controller do
     let(:params) { { page: "1" } }
 
     before do
-      Sail::Setting.create(name: :setting, cast_type: :string, value: :something)
+      Sail::Setting.create!(name: :setting, cast_type: :string, value: :something)
     end
 
     it "queries settings with pagination" do
@@ -46,6 +46,16 @@ describe Sail::SettingsController, type: :controller do
       it "invokes proper scope with query" do
         expect(Sail::Setting).to receive(:by_name).with("test").and_call_original
         subject
+      end
+    end
+
+    context "when passing a field for ordering" do
+      let(:params) { { order_field: "updated_at" } }
+      let!(:setting) { Sail::Setting.create!(name: :setting_2, cast_type: :string, value: :something_else, updated_at: 2.days.ago) }
+
+      it "invokes ordered_by properly" do
+        subject
+        expect(controller.instance_variable_get(:@settings).last.name).to eq(setting.name)
       end
     end
   end

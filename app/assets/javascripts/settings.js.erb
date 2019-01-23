@@ -8,6 +8,8 @@ let submitTimer, submitInterval, intervals = 1;
 let queryElement = document.getElementById("query");
 let autoSearchEnabled = "<%= Sail.configuration.enable_search_auto_submit %>";
 let progress = document.getElementById("search-submit-progress");
+let menu = document.getElementById("sort-menu");
+let orderButton = document.getElementById("btn-order");
 
 function submitSearch() {
     document.getElementById("search-form").submit();
@@ -31,10 +33,31 @@ function afterTypingQuery() {
     submitInterval = setInterval(advanceProgress, 20);
 }
 
+function toggleSortMenu() {
+    if (menu.style.display === "none") {
+        menu.style.display = "block";
+    } else {
+        menu.style.display = "none";
+    }
+}
+
+function handleGenericClick(event) {
+    let target = event.target;
+
+    if (target === menu || menu.contains(target) || target === orderButton || orderButton.contains(target)) {
+        return;
+    }
+
+    menu.style.display = "none";
+}
+
 if (autoSearchEnabled === "true") {
     queryElement.addEventListener("keyup", afterTypingQuery);
     queryElement.addEventListener("keydown", clearTimer);
 }
+
+orderButton.addEventListener("click", toggleSortMenu);
+document.body.addEventListener("click", handleGenericClick);
 
 /*
 Refresh related functions

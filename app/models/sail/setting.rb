@@ -50,6 +50,7 @@ module Sail
     scope :by_name, ->(name) { name.present? ? where("name LIKE ?", "%#{name}%") : all }
     scope :stale, -> { where("updated_at < ?", Sail.configuration.days_until_stale.days.ago) }
     scope :recently_updated, ->(amount) { where("updated_at >= ?", amount.to_i.hours.ago) }
+    scope :ordered_by, ->(field) { column_names.include?(field) ? order("#{field}": :desc) : all }
 
     def self.get(name)
       Rails.cache.fetch("setting_get_#{name}", expires_in: Sail.configuration.cache_life_span) do

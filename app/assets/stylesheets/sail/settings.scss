@@ -269,27 +269,98 @@
     }
   }
 
-  #search-form {
-    text-align: center;
-    padding-top: 25px;
+  #search-container {
+    #search-form {
+      text-align: center;
+      padding-top: 25px;
 
-    #query {
+      #query {
+        height: 50px;
+        width: 100%;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        border: 3px solid transparent;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        font-size: 18px;
+        text-align: center;
+        -webkit-transition : border .25s ease-in;
+        -moz-transition : border .25s ease-in;
+        -o-transition : border .25s ease-in;
+        transition : border .25s ease-in;
+
+        &:focus {
+          border: 3px solid $tangerine;
+        }
+      }
+    }
+
+    .offset-container {
+      float: left;
+      width: 25%;
       height: 50px;
+    }
+
+    .inner-container {
       width: 50%;
+      float: left;
+    }
+
+    #btn-order {
+      float: left;
+      margin: 25px 0 0 15px;
+      outline: none;
+      border: 3px solid transparent;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px;
-      border: 3px solid transparent;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-      font-size: 18px;
-      text-align: center;
       -webkit-transition : border .25s ease-in;
       -moz-transition : border .25s ease-in;
       -o-transition : border .25s ease-in;
       transition : border .25s ease-in;
+      height: 58px;
 
-      &:focus {
+      img {
+        height: 100%;
+      }
+
+      &:hover {
         border: 3px solid $tangerine;
+      }
+    }
+
+    #sort-menu {
+      background: white;
+      position: absolute;
+      left: 50%;
+      top: 25%;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      -webkit-animation: fadeIn 0.5s;
+      animation: fadeIn 0.5s;
+      padding: 10px;
+
+      @media (min-width: 767px) { top: 16%; left: 60%; }
+      @media (min-width: 992px) { top: 12%; left: 65%; }
+      @media (min-width: 1200px) { top: 18%; left: 70%; }
+
+      button {
+        outline: none;
+        border: none;
+        width: 100%;
+        font-size: 20px;
+        background: transparent;
+        padding: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: $tangerine;
+        }
       }
     }
   }
@@ -325,11 +396,12 @@
 
     #search-submit-progress {
       display: none;
-      width: 50%;
+      width: 100%;
       -webkit-appearance: none;
       height: 3px;
       position: relative;
       bottom: 22px;
+      left: 3px;
 
       &::-webkit-progress-bar {
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
