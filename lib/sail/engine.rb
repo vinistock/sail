@@ -13,7 +13,7 @@ module Sail
     end
 
     initializer "sail.assets.precompile" do |app|
-      app.config.assets.precompile += %w[sail/refresh.png sail/sort.svg]
+      app.config.assets.precompile += %w[sail/refresh.svg sail/sort.svg]
     end
 
     initializer "sail" do

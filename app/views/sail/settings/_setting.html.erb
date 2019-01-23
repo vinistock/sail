@@ -5,7 +5,7 @@
 
     <%= form_tag(reset_setting_path(name: setting.name), method: :put, remote: true) do %>
       <button class="refresh-button" title="<%= I18n.t("sail.refresh_tooltip") %>">
-        <%= image_tag("sail/refresh.png") %>
+        <%= image_tag("sail/refresh.svg") %>
       </button>
     <% end %>
 
