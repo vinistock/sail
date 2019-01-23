@@ -20,6 +20,8 @@ env:
 matrix:
   allow_failures:
     - rvm: ruby-head
+    - env: "RAILS_VERSION=6.0.0.beta1"
+      rvm: 2.6.0
 before_script:
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
 before_install:
