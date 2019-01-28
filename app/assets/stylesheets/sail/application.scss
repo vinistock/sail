@@ -84,13 +84,13 @@ html, body {
     }
 
     #angle-left-link {
-      background: white url(angle-left.svg) center no-repeat;
+      background: white image-url("sail/angle-left.svg") center no-repeat;
       margin-right: 6px;
       padding: 20px 24px 20px 24px;
     }
   
     #angle-right-link {
-      background: white url(angle-right.svg) center no-repeat;
+      background: white image-url("sail/angle-right.svg") center no-repeat;
       padding: 20px 24px 20px 24px;
     }
   }
