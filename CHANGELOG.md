@@ -1,3 +1,5 @@
+## 2.1.0 ##
+
 * Add stale labels to settings older than the configured number of days
 
 *[@vinistock]*
@@ -47,6 +49,10 @@
 *[@johnthethird]*
 
 * Update pagination icons
+
+*[@vinistock]*
+
+* Refactor and move main app icon to the search portion of the dashboard
 
 *[@vinistock]*
 
