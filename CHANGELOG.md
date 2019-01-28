@@ -46,6 +46,10 @@
 
 *[@johnthethird]*
 
+* Update pagination icons
+
+*[@vinistock]*
+
 ## 2.0.0 ##
 
 ### Regular changes ###
