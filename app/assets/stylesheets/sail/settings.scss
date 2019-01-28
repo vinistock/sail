@@ -320,6 +320,7 @@
       -o-transition : border .25s ease-in;
       transition : border .25s ease-in;
       height: 58px;
+      background: white;
 
       img {
         height: 100%;
@@ -362,6 +363,30 @@
         &:hover {
           background-color: $tangerine;
         }
+      }
+    }
+
+    #main-app-link {
+      float: left;
+      margin: 25px 0 0 8px;
+      height: 53px;
+      border: 3px solid transparent;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      -webkit-transition : border .25s ease-in;
+      -moz-transition : border .25s ease-in;
+      -o-transition : border .25s ease-in;
+      transition : border .25s ease-in;
+      background: white;
+
+      img {
+        height: 100%;
+      }
+
+      &:hover {
+        border: 3px solid $tangerine;
       }
     }
   }

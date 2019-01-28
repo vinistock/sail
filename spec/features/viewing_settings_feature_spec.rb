@@ -61,8 +61,8 @@ feature "viewing settings", js: true, type: :feature do
   end
 
   it "has a main app link" do
-    expect(page).to have_link("Main app")
-    click_link("Main app")
+    expect(page).to have_css("#main-app-link", count: 1)
+    find("#main-app-link").click
     expect(page).to have_text("Inside dummy app")
   end
 
