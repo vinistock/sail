@@ -28,6 +28,12 @@ feature "viewing settings", js: true, type: :feature do
     end
 
     Sail::Setting.last(2).each { |setting| expect_setting(setting) }
+
+    find("#angle-left-link").click
+    Sail::Setting.first(8).each { |setting| expect_setting(setting) }
+
+    find("#angle-right-link").click
+    Sail::Setting.last(2).each { |setting| expect_setting(setting) }
   end
 
   it "allows clicking on groups to filter" do
