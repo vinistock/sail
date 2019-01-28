@@ -1,3 +1,9 @@
+## 2.1.1 ##
+
+* Fix image URLs in css
+
+*[@vinistock]*
+
 ## 2.1.0 ##
 
 * Add stale labels to settings older than the configured number of days
