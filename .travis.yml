@@ -15,8 +15,8 @@ addons:
       - google-chrome-stable
       - chromium-chromedriver
 env:
-  - "RAILS_VERSION=4.2.11"
-  - "RAILS_VERSION=5.2.2"
+  - "RAILS_VERSION=4.2.11 BUNDLER_VERSION=1.17.3"
+  - "RAILS_VERSION=5.2.2 BUNDLER_VERSION=2.0.1"
 matrix:
   allow_failures:
     - rvm: ruby-head
@@ -24,7 +24,7 @@ before_script:
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
 before_install:
   - rm Gemfile.lock
-  - gem install bundler
+  - gem install bundler -v ${BUNDLER_VERSION}
 install:
-  - bundle install --path vendor/bundle
+  - bundle _${BUNDLER_VERSION}_ install --path vendor/bundle
 after_success: bundle exec codeclimate-test-reporter
