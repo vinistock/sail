@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe Sail::Configuration, type: :lib do
-  describe "#initialize" do
+  describe ".initialize" do
     subject { described_class.new }
 
     it "assigns the proper default values to configs" do

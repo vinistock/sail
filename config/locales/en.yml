@@ -12,3 +12,4 @@ en:
     stale: stale
     stale_tooltip: This setting has not been updated in %{days} days. Consider removing it and refactoring the code.
     order_button_tooltip: Sort settings in descending order by the selected field.
+    relevancy_tooltip: The relevancy score is a relative indicator of how critical for the application each setting is.

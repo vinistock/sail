@@ -1,6 +1,11 @@
-<% cache setting do %>
+<% cache setting, expires_in: Sail.configuration.cache_life_span do %>
   <div class="card">
-    <h3 class="title"><%= setting.display_name %></h3>
+    <h3>
+      <%= setting.display_name %>
+
+      <span class="relevancy-score" title="<%= I18n.t("sail.relevancy_tooltip") %>"><%= setting.relevancy %></span>
+      <div class="clearfix"></div>
+    </h3>
     <hr/>
 
     <%= form_tag(reset_setting_path(name: setting.name), method: :put, remote: true) do %>

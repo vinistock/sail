@@ -16,11 +16,11 @@ feature "viewing settings", js: true, type: :feature do
                             group: "tuners",
                             updated_at: 75.days.ago)
     end
-
-    visit "/sail"
   end
 
   it "displays setting information and allows navigation" do
+    visit "/sail"
+
     Sail::Setting.first(8).each { |setting| expect_setting(setting) }
 
     within("#pagination") do
@@ -37,6 +37,8 @@ feature "viewing settings", js: true, type: :feature do
   end
 
   it "allows clicking on groups to filter" do
+    visit "/sail"
+
     within(all(".card").first) do
       click_link("feature_flags")
     end
@@ -45,6 +47,8 @@ feature "viewing settings", js: true, type: :feature do
   end
 
   it "allows clicking on types to filter" do
+    visit "/sail"
+
     within(all(".card").first) do
       click_link("string")
     end
@@ -53,6 +57,8 @@ feature "viewing settings", js: true, type: :feature do
   end
 
   it "allows clicking on stale to filter" do
+    visit "/sail"
+
     within(all(".card").last) do
       click_link("stale")
     end
@@ -61,9 +67,23 @@ feature "viewing settings", js: true, type: :feature do
   end
 
   it "has a main app link" do
+    visit "/sail"
+
     expect(page).to have_css("#main-app-link", count: 1)
     find("#main-app-link").click
     expect(page).to have_text("Inside dummy app")
+  end
+
+  it "displays relevancy score" do
+    Sail.instrumenter.instance_variable_set(:@statistics, Hash.new(0).with_indifferent_access)
+    2.times { Sail.get("setting_0") }
+    2.times { Sail.get("setting_1") }
+
+    visit "/sail"
+
+    within(all(".card").first) do
+      expect(find("h3")).to have_content("5.0")
+    end
   end
 
   context "when setting has no group" do
