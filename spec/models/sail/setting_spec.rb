@@ -573,4 +573,20 @@ describe Sail::Setting, type: :model do
       it { is_expected.to be_falsey }
     end
   end
+
+  describe "#relevancy" do
+    subject { setting.relevancy }
+    let(:setting) { described_class.create!(name: :setting, cast_type: :string, value: "Some string") }
+
+    before do
+      allow(Sail.instrumenter).to receive(:relative_usage_of).with("setting").and_return(60.0)
+
+      described_class.create!(name: :setting_2, cast_type: :string, value: "Some string")
+      described_class.create!(name: :setting_3, cast_type: :string, value: "Some string")
+    end
+
+    it "returns relative usage divided by total number of settings" do
+      expect(subject).to eq(20.0)
+    end
+  end
 end

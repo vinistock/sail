@@ -137,6 +137,10 @@ module Sail
       updated_at < Sail.configuration.days_until_stale.days.ago
     end
 
+    def relevancy
+      Sail.instrumenter.relative_usage_of(name) / Sail::Setting.count
+    end
+
     private
 
     def model_exists
