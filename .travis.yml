@@ -26,5 +26,5 @@ before_install:
   - rm Gemfile.lock
   - gem install bundler -v 1.17.3
 install:
-  - bundle install --path vendor/bundle
+  - bundle exec bundle _1.17.3_ install --path vendor/bundle
 after_success: bundle exec codeclimate-test-reporter
