@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe Sail::Configuration, type: :lib do
-  describe "#initialize" do
+  describe ".initialize" do
     subject { described_class.new }
 
     it "assigns the proper default values to configs" do
@@ -12,6 +12,7 @@ describe Sail::Configuration, type: :lib do
       expect(subject.instance_variable_get(:@enable_search_auto_submit)).to be_truthy
       expect(subject.instance_variable_get(:@days_until_stale)).to eq(60)
       expect(subject.instance_variable_get(:@enable_logging)).to be_truthy
+      expect(subject.instance_variable_get(:@enable_instrumentation)).to be_falsey
     end
   end
 end

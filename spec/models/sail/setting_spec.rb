@@ -366,6 +366,19 @@ describe Sail::Setting, type: :model do
       subject { described_class.get(:whatever) }
       it { is_expected.to be_nil }
     end
+
+    context "when instrumentation is enabled" do
+      subject { described_class.get(:whatever) }
+
+      before do
+        allow(Sail.configuration).to receive(:enable_instrumentation).and_return(true)
+      end
+
+      it "keeps track of setting calls" do
+        expect(Sail.instrumenter).to receive(:increment_usage_of).with(:whatever)
+        subject
+      end
+    end
   end
 
   describe ".set" do

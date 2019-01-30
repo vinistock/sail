@@ -53,6 +53,8 @@ module Sail
     scope :ordered_by, ->(field) { column_names.include?(field) ? order("#{field}": :desc) : all }
 
     def self.get(name)
+      Sail.instrumenter.increment_usage_of(name) if Sail.configuration.enable_instrumentation
+
       Rails.cache.fetch("setting_get_#{name}", expires_in: Sail.configuration.cache_life_span) do
         cast_setting_value(
           Setting.select(:value, :cast_type).where(name: name).first

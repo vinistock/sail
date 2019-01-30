@@ -3,6 +3,7 @@
 require "sail/engine"
 require "sail/constant_collection"
 require "sail/configuration"
+require "sail/instrumenter"
 require "sail/value_cast"
 require "true_class"
 require "false_class"
@@ -66,6 +67,10 @@ module Sail # :nodoc:
 
     def configure
       yield(configuration)
+    end
+
+    def instrumenter
+      @instrumenter ||= Instrumenter.new
     end
   end
 end
