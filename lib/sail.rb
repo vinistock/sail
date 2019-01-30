@@ -59,13 +59,13 @@ module Sail # :nodoc:
     def switcher(positive:, negative:, throttled_by:)
       Sail::Setting.switcher(positive: positive, negative: negative, throttled_by: throttled_by)
     end
-  end
 
-  def self.configuration
-    @configuration ||= Configuration.new
-  end
+    def configuration
+      @configuration ||= Configuration.new
+    end
 
-  def self.configure
-    yield(configuration)
+    def configure
+      yield(configuration)
+    end
   end
 end
