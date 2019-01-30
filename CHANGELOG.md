@@ -1,3 +1,7 @@
+* Add relevancy score to settings
+
+*[@vinistock]*
+
 ## 2.1.1 ##
 
 * Fix image URLs in css
