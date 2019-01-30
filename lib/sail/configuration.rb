@@ -10,7 +10,7 @@ module Sail
   class Configuration
     attr_accessor :cache_life_span, :array_separator, :dashboard_auth_lambda,
                   :back_link_path, :enable_search_auto_submit, :days_until_stale,
-                  :enable_logging, :enable_instrumentation
+                  :enable_logging
 
     def initialize
       @cache_life_span = 10.minutes
@@ -20,7 +20,6 @@ module Sail
       @enable_search_auto_submit = true
       @days_until_stale = 60
       @enable_logging = true
-      @enable_instrumentation = false
     end
   end
 end

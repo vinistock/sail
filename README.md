@@ -56,7 +56,6 @@ Sail.configure do |config|
   config.enable_search_auto_submit = true # Enables search auto submit after 2 seconds without typing
   config.days_until_stale = 60            # Days with no updates until a setting is considered stale and is a candidate to be removed from code (leave nil to disable checks)
   config.enable_logging = true            # Enable logging for update and reset actions. Logs include timestamp, setting name, new value and author_user_id (if current_user is defined)
-  config.enable_instrumentation = false   # Enable keeping track of setting invocations to calculate relevancy score
 end
 ```
 
