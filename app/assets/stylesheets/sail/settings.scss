@@ -44,6 +44,15 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     }
 
+    h3 {
+      margin-left: 25px;
+
+      .relevancy-score {
+        float: right;
+        color: darken($aluminium, 5%);
+      }
+    }
+
     .card-body-container {
       display: table;
       width: 100%;

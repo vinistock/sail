@@ -138,7 +138,7 @@ module Sail
     end
 
     def relevancy
-      Sail.instrumenter.relative_usage_of(name) / Sail::Setting.count
+      (Sail.instrumenter.relative_usage_of(name) / Sail::Setting.count).round(1)
     end
 
     private

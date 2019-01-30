@@ -35,5 +35,13 @@ describe Sail::Instrumenter, type: :lib do
     it "calculates percentage ratio of usage" do
       expect(subject).to eq(50.0)
     end
+
+    context "when statistics are still empty" do
+      before do
+        instrumenter.instance_variable_set(:@statistics, {})
+      end
+
+      it { is_expected.to be_zero }
+    end
   end
 end

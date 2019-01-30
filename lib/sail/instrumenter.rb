@@ -12,7 +12,7 @@ module Sail
     # Declare basic hash containing setting
     # statistics
     def initialize
-      @statistics = {}
+      @statistics = Hash.new(0).with_indifferent_access
     end
 
     # increment_usage
@@ -20,7 +20,6 @@ module Sail
     # Simply increments the number of
     # times a setting has been called
     def increment_usage_of(setting_name)
-      @statistics[setting_name] ||= 0
       @statistics[setting_name] += 1
     end
 
@@ -30,6 +29,8 @@ module Sail
     # a setting compared to all others
     # in percentage
     def relative_usage_of(setting_name)
+      return 0.0 if @statistics.empty?
+
       (100.0 * @statistics[setting_name]) / @statistics.values.reduce(:+)
     end
   end
