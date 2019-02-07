@@ -27,6 +27,10 @@ module Sail
         migration_template "create_sail_settings.rb",
                            "db/migrate/create_sail_settings.rb",
                            migration_version: migration_version
+
+        migration_template "create_sail_profiles.rb",
+                           "db/migrate/create_sail_profiles.rb",
+                           migration_version: migration_version
       end
 
       def migration_version
