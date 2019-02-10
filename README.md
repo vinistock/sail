@@ -189,6 +189,13 @@ Response
 {
   "value": "Some value that depends on the setting combination passed"
 }
+
+Switching to a specific settings profile
+
+PUT sail/profiles/:name/switch
+
+Response
+200 OK
 ```
 
 ## Examples
