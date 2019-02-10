@@ -11,5 +11,11 @@ module Sail
     belongs_to :setting
     belongs_to :profile
     validates_presence_of :value, :setting, :profile
+
+    scope :by_profile_name, ->(name) { joins(:profile).where("sail_profiles.name = ?", name) }
+
+    def name
+      setting.name
+    end
   end
 end

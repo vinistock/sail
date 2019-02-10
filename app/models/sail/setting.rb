@@ -16,6 +16,8 @@ module Sail
     AVAILABLE_MODELS = Dir["#{Rails.root}/app/models/*.rb"]
                        .map { |dir| dir.split("/").last.camelize.gsub(".rb", "") }.freeze
 
+    has_many :entries, dependent: :destroy
+
     validates_presence_of :name, :value, :cast_type
     validates_uniqueness_of :name
     enum cast_type: %i[integer string boolean range array float

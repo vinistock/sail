@@ -319,6 +319,19 @@ describe Sail::Setting, type: :model do
     end
   end
 
+  describe "callbacks" do
+    describe "destroy" do
+      subject(:destroy) { setting.destroy }
+
+      let!(:setting) { Sail::Setting.create!(name: :setting, cast_type: :integer, value: 1) }
+      before { Sail::Profile.create_or_update_self(:profile) }
+
+      it "destroys entries as well" do
+        expect { destroy }.to change(Sail::Entry, :count).by(-1)
+      end
+    end
+  end
+
   describe ".get" do
     subject { described_class.get(:setting) }
 
