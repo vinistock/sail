@@ -8,7 +8,7 @@ describe Sail::Profile, type: :model do
     describe "destroy" do
       subject(:destroy) { profile.destroy }
 
-      let!(:profile) { described_class.create_self(:profile) }
+      let!(:profile) { described_class.create_or_update_self(:profile).first }
 
       it "destroys entries as well" do
         expect { destroy }.to change(Sail::Entry, :count).by(-2)
@@ -16,21 +16,27 @@ describe Sail::Profile, type: :model do
     end
   end
 
-  describe ".create_self" do
-    subject(:create_self) { described_class.create_self(:profile) }
+  describe ".create_or_update_self" do
+    subject(:create_or_update_self) { described_class.create_or_update_self(:profile) }
 
     it "creates entries for each setting" do
-      expect { create_self }.to change(Sail::Entry, :count).by(2)
+      expect { create_or_update_self }.to change(Sail::Entry, :count).by(2)
     end
 
     it "creates the profile" do
-      expect { create_self }.to change(Sail::Profile, :count).by(1)
+      expect { create_or_update_self }.to change(Sail::Profile, :count).by(1)
     end
 
     it "saves entries with current setting values" do
-      create_self
+      create_or_update_self
       expect(Sail::Entry.find_by(setting: setting_1).value).to eq(setting_1.value)
       expect(Sail::Entry.find_by(setting: setting_2).value).to eq(setting_2.value)
+    end
+
+    it "updates values if profile already exists" do
+      create_or_update_self
+      setting_1.update_attributes!(value: "5")
+      expect { create_or_update_self }.to change(Sail::Profile, :count).by(0)
     end
   end
 
@@ -38,7 +44,7 @@ describe Sail::Profile, type: :model do
     subject(:switch) { described_class.switch(:profile) }
 
     before do
-      Sail::Profile.create_self(:profile)
+      Sail::Profile.create_or_update_self(:profile)
       Sail.set(:setting_1, 3)
       Sail.set(:setting_2, 5)
     end

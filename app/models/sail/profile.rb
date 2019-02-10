@@ -12,23 +12,27 @@ module Sail
     has_many :settings, through: :entries
     validates_presence_of :name
 
-    # create_self
+    # create_or_update_self
     #
-    # Creates a profile with name +name+
-    # saving the values of all settings
+    # Creates or updates a profile with name
+    # +name+ saving the values of all settings
     # in the database.
-    def self.create_self(name)
-      profile = create!(name: name)
+    def self.create_or_update_self(name)
+      profile = first_or_initialize(name: name)
+      new_record = profile.new_record?
 
       Sail::Setting.select(:id, :value).each do |setting|
-        Sail::Entry.create!(
+        Sail::Entry.where(
+          setting: setting,
+          profile: profile
+        ).first_or_create!(
           setting: setting,
           value: setting.value,
           profile: profile
         )
       end
 
-      profile
+      [profile, new_record]
     end
 
     # switch

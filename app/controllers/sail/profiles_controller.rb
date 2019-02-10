@@ -11,12 +11,8 @@ module Sail
     def create
       respond_to do |format|
         format.json do
-          begin
-            Sail::Profile.create_self(s_params[:name])
-            head(:created)
-          rescue ActiveRecord::RecordNotUnique
-            head(:conflict)
-          end
+          _, new_record = Sail::Profile.create_or_update_self(s_params[:name])
+          new_record ? head(:created) : head(:ok)
         end
       end
     end

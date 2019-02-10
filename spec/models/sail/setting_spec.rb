@@ -324,7 +324,7 @@ describe Sail::Setting, type: :model do
       subject(:destroy) { setting.destroy }
 
       let!(:setting) { Sail::Setting.create!(name: :setting, cast_type: :integer, value: 1) }
-      before { Sail::Profile.create_self(:profile) }
+      before { Sail::Profile.create_or_update_self(:profile) }
 
       it "destroys entries as well" do
         expect { destroy }.to change(Sail::Entry, :count).by(-1)

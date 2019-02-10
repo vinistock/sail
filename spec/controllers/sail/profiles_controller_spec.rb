@@ -11,8 +11,8 @@ describe Sail::ProfilesController, type: :controller do
       expect(response).to have_http_status(:created)
     end
 
-    it "invokes create_self from profiles" do
-      expect(Sail::Profile).to receive(:create_self).with("profile")
+    it "invokes create_or_update_self from profiles" do
+      expect(Sail::Profile).to receive(:create_or_update_self).with("profile").and_call_original
       request
     end
 
@@ -21,9 +21,9 @@ describe Sail::ProfilesController, type: :controller do
         Sail::Profile.create!(name: :profile)
       end
 
-      it "returns conflict" do
+      it "returns ok for an update" do
         request
-        expect(response).to have_http_status(:conflict)
+        expect(response).to have_http_status(:ok)
       end
     end
   end
