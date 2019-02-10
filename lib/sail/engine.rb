@@ -26,9 +26,13 @@ module Sail
     end
 
     config.after_initialize do
+      errors = [ActiveRecord::NoDatabaseError]
+      errors << PG::ConnectionBad if defined?(PG)
+      errors
+
       begin
         Sail::Setting.load_defaults unless Rails.env.test?
-      rescue ActiveRecord::NoDatabaseError, PG::ConnectionBad
+      rescue *errors
         warn "Skipping setting creation because database doesn't exist"
       end
     end
