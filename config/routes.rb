@@ -10,4 +10,6 @@ Sail::Engine.routes.draw do
   end
 
   get "settings/switcher/:positive/:negative/:throttled_by" => "settings#switcher"
+
+  resources :profiles, only: %i[create]
 end
