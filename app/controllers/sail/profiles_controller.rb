@@ -30,6 +30,15 @@ module Sail
       end
     end
 
+    def destroy
+      respond_to do |format|
+        format.json do
+          Sail::Profile.find_by(name: s_params[:name]).destroy
+          head(:ok)
+        end
+      end
+    end
+
     private
 
     def s_params

@@ -41,4 +41,19 @@ describe Sail::ProfilesController, type: :controller do
       request
     end
   end
+
+  describe "DELETE destroy" do
+    subject(:request) { delete :destroy, params: { name: :profile }, format: :json }
+
+    let!(:profile) { Sail::Profile.create!(name: :profile) }
+
+    it "returns ok" do
+      request
+      expect(response).to have_http_status(:ok)
+    end
+
+    it "destroys profile" do
+      expect { request }.to change(Sail::Profile, :count).by(-1)
+    end
+  end
 end
