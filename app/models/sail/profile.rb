@@ -12,6 +12,11 @@ module Sail
     has_many :settings, through: :entries
     validates_presence_of :name
 
+    # create_self
+    #
+    # Creates a profile with name +name+
+    # saving the values of all settings
+    # in the database.
     def self.create_self(name)
       profile = create!(name: name)
 
