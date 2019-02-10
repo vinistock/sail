@@ -8,7 +8,7 @@ module Sail
   # of settings' values saved. It allows
   # switching between different collections.
   class Profile < ApplicationRecord
-    has_many :entries
+    has_many :entries, dependent: :destroy
     has_many :settings, through: :entries
     validates_presence_of :name
 
@@ -22,6 +22,8 @@ module Sail
           profile: profile
         )
       end
+
+      profile
     end
 
     # switch

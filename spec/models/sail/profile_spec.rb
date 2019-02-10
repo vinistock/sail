@@ -4,6 +4,18 @@ describe Sail::Profile, type: :model do
   let!(:setting_1) { Sail::Setting.create!(name: :setting_1, cast_type: :integer, value: 1) }
   let!(:setting_2) { Sail::Setting.create!(name: :setting_2, cast_type: :integer, value: 2) }
 
+  describe "callbacks" do
+    describe "destroy" do
+      subject(:destroy) { profile.destroy }
+
+      let!(:profile) { described_class.create_self(:profile) }
+
+      it "destroys entries as well" do
+        expect { destroy }.to change(Sail::Entry, :count).by(-2)
+      end
+    end
+  end
+
   describe ".create_self" do
     subject(:create_self) { described_class.create_self(:profile) }
 
