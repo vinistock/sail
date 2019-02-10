@@ -28,7 +28,6 @@ module Sail
     config.after_initialize do
       errors = [ActiveRecord::NoDatabaseError]
       errors << PG::ConnectionBad if defined?(PG)
-      errors
 
       begin
         Sail::Setting.load_defaults unless Rails.env.test?
