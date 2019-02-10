@@ -27,4 +27,18 @@ describe Sail::ProfilesController, type: :controller do
       end
     end
   end
+
+  describe "PUT switch" do
+    subject(:request) { put :switch, params: { name: :profile }, format: :json }
+
+    it "returns ok" do
+      request
+      expect(response).to have_http_status(:ok)
+    end
+
+    it "invokes switch from profiles" do
+      expect(Sail::Profile).to receive(:switch).with("profile")
+      request
+    end
+  end
 end

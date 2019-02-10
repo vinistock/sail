@@ -21,6 +21,15 @@ module Sail
       end
     end
 
+    def switch
+      respond_to do |format|
+        format.json do
+          Sail::Profile.switch(s_params[:name])
+          head(:ok)
+        end
+      end
+    end
+
     private
 
     def s_params
