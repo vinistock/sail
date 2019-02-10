@@ -23,5 +23,15 @@ module Sail
         )
       end
     end
+
+    # switch
+    #
+    # Switch to a different setting profile. Set the value
+    # of every setting to what was previously saved.
+    def self.switch(name)
+      Sail::Entry.by_profile_name(name).each do |entry|
+        Sail::Setting.set(entry.name, entry.value)
+      end
+    end
   end
 end
