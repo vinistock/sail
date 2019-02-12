@@ -95,3 +95,19 @@ html, body {
     }
   }
 }
+
+#profiles-modal {
+  position: fixed;
+  height: 50%;
+  width: 50%;
+  top: 25%;
+  left: 25%;
+  background-color: white;
+  z-index: 1;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s;
+}

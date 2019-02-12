@@ -8,8 +8,11 @@ let submitTimer, submitInterval, intervals = 1;
 let queryElement = document.getElementById("query");
 let autoSearchEnabled = "<%= Sail.configuration.enable_search_auto_submit %>";
 let progress = document.getElementById("search-submit-progress");
-let menu = document.getElementById("sort-menu");
+let sortMenu = document.getElementById("sort-menu");
 let orderButton = document.getElementById("btn-order");
+let profilesMenu = document.getElementById("profiles-modal");
+let profilesButton = document.getElementById("btn-profiles");
+let dashboardBody = document.getElementById("settings-dashboard");
 
 function submitSearch() {
     document.getElementById("search-form").submit();
@@ -34,21 +37,37 @@ function afterTypingQuery() {
 }
 
 function toggleSortMenu() {
-    if (menu.style.display === "none") {
-        menu.style.display = "block";
+    if (sortMenu.style.display === "none") {
+        sortMenu.style.display = "block";
     } else {
-        menu.style.display = "none";
+        sortMenu.style.display = "none";
+    }
+}
+
+function toggleProfilesMenu() {
+    if (profilesMenu.style.display === "none") {
+        dashboardBody.style.filter = "opacity(70%) blur(2px)";
+
+        document.body.style.filter = "alpha(opacity=60)";
+        profilesMenu.style.display = "block";
+    } else {
+        profilesMenu.style.display = "none";
+        dashboardBody.style.filter = "none";
     }
 }
 
 function handleGenericClick(event) {
     let target = event.target;
 
-    if (target === menu || menu.contains(target) || target === orderButton || orderButton.contains(target)) {
+    if (target === sortMenu || sortMenu.contains(target) || target === orderButton || orderButton.contains(target) ||
+        target === profilesMenu || profilesMenu.contains(target) || target === profilesButton ||
+        profilesButton.contains(target)) {
         return;
     }
 
-    menu.style.display = "none";
+    sortMenu.style.display = "none";
+    profilesMenu.style.display = "none";
+    dashboardBody.style.filter = "none";
 }
 
 if (autoSearchEnabled === "true") {
@@ -57,6 +76,7 @@ if (autoSearchEnabled === "true") {
 }
 
 orderButton.addEventListener("click", toggleSortMenu);
+profilesButton.addEventListener("click", toggleProfilesMenu);
 document.body.addEventListener("click", handleGenericClick);
 
 /*
