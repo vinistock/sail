@@ -37,13 +37,6 @@
     @media (min-width: 992px) { width: 44%; }
     @media (min-width: 1200px) { width: 21%; }
 
-    hr {
-      border: 0;
-      height: 1px;
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
     h3 {
       margin-left: 25px;
 
@@ -169,28 +162,9 @@
     }
 
     .btn-value-submit {
+      @extend .btn-sail;
       width: 100%;
       height: 35px;
-      text-align: center;
-      font-size: 18px;
-      border-radius: .25rem;
-      background-color: $tangerine;
-      border: none;
-      outline: none;
-      -webkit-transition: background-color 0.5s;
-      -moz-transition: background-color 0.5s;
-      -ms-transition: background-color 0.5s;
-      -o-transition: background-color 0.5s;
-      transition: background-color 0.5s;
-
-      &:active {
-        color: $main_black;
-        opacity: .8;
-      }
-
-      &:hover {
-        background-color: darken($tangerine, 20%);
-      }
     }
 
     .switch {
@@ -300,6 +274,7 @@
 
         &:focus {
           border: 3px solid $tangerine;
+          outline: none;
         }
       }
     }
@@ -436,5 +411,30 @@
         background-color: $cerulean;
       }
     }
+  }
+}
+
+.btn-sail {
+  text-align: center;
+  font-size: 18px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: $tangerine;
+  border: none;
+  outline: none;
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -ms-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+
+  &:active {
+    color: $main_black;
+    opacity: .8;
+  }
+
+  &:hover {
+    background-color: darken($tangerine, 20%);
   }
 }
