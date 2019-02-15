@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "fugit"
+require "sail/types"
 
 module Sail
   # Setting
@@ -10,13 +11,13 @@ module Sail
   class Setting < ApplicationRecord
     class UnexpectedCastType < StandardError; end
 
-    extend Sail::ValueCast
     FULL_RANGE = (0...100).freeze
     SETTINGS_PER_PAGE = 8
     AVAILABLE_MODELS = Dir["#{Rails.root}/app/models/*.rb"]
                        .map { |dir| dir.split("/").last.camelize.gsub(".rb", "") }.freeze
 
     has_many :entries, dependent: :destroy
+    attr_reader :caster
 
     validates_presence_of :name, :value, :cast_type
     validates_uniqueness_of :name
@@ -29,6 +30,8 @@ module Sail
     validate :model_exists, if: -> { obj_model? }
     validate :date_is_valid, if: -> { date? }
     validate :uri_is_valid, if: -> { uri? }
+
+    after_initialize :instantiate_caster
 
     scope :paginated, lambda { |page|
       select(:name, :description, :group, :value, :cast_type, :updated_at)
@@ -58,28 +61,21 @@ module Sail
       Sail.instrumenter.increment_usage_of(name)
 
       Rails.cache.fetch("setting_get_#{name}", expires_in: Sail.configuration.cache_life_span) do
-        cast_setting_value(
-          Setting.select(:value, :cast_type).where(name: name).first
-        )
+        Setting
+          .select(:value, :cast_type)
+          .where(name: name)
+          .first
+          .try(:caster)
+          .try(:to_value)
       end
     end
 
     def self.set(name, value)
       setting = Setting.find_by(name: name)
-      value_cast = cast_value_for_set(setting, value)
+      value_cast = setting.caster.from(value)
       success = setting.update_attributes(value: value_cast)
       Rails.cache.delete("setting_get_#{name}") if success
       [setting, success]
-    end
-
-    def self.cast_setting_value(setting)
-      return if setting.nil?
-
-      send("#{setting.cast_type}_get", setting.value)
-    end
-
-    def self.cast_value_for_set(setting, value)
-      send("#{setting.cast_type}_set", value)
     end
 
     def self.switcher(positive:, negative:, throttled_by:)
@@ -145,6 +141,14 @@ module Sail
 
     private
 
+    def instantiate_caster
+      return unless has_attribute?(:cast_type)
+
+      @caster = "Sail::Types::#{cast_type.camelize}"
+                .constantize
+                .new(self)
+    end
+
     def model_exists
       errors.add(:invalid_model, "Model does not exist") unless AVAILABLE_MODELS.include?(value)
     end
@@ -157,7 +161,7 @@ module Sail
     end
 
     def value_is_within_range
-      unless FULL_RANGE.cover?(self.class.cast_setting_value(self))
+      unless FULL_RANGE.cover?(caster.to_value)
         errors.add(:outside_range_error,
                    "Range settings only take values inside range #{FULL_RANGE}")
       end

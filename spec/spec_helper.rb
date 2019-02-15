@@ -11,6 +11,7 @@ require "database_cleaner"
 require "capybara/rspec"
 require "capybara/rails"
 require "sail"
+require "sail/types"
 require "selenium/webdriver"
 
 SimpleCov.start
