@@ -185,7 +185,7 @@ describe Sail::SettingsController, type: :controller do
       Rails.cache.delete("setting_get_throttle")
       Sail::Setting.create!(name: :positive, cast_type: :string, value: "I'm the primary!")
       Sail::Setting.create!(name: :negative, cast_type: :integer, value: "7")
-      allow(Sail::Setting).to receive(:rand).and_return(random_value)
+      allow_any_instance_of(Sail::Types::Throttle).to receive(:rand).and_return(random_value)
     end
 
     context "when random value is smaller than throttle" do

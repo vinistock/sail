@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "fugit"
+require "sail/types"
 
 module Sail
   # Setting
@@ -10,7 +11,6 @@ module Sail
   class Setting < ApplicationRecord
     class UnexpectedCastType < StandardError; end
 
-    extend Sail::ValueCast
     FULL_RANGE = (0...100).freeze
     SETTINGS_PER_PAGE = 8
     AVAILABLE_MODELS = Dir["#{Rails.root}/app/models/*.rb"]
@@ -75,11 +75,17 @@ module Sail
     def self.cast_setting_value(setting)
       return if setting.nil?
 
-      send("#{setting.cast_type}_get", setting.value)
+      "Sail::Types::#{setting.cast_type.camelize}"
+        .constantize
+        .new(setting)
+        .to_value
     end
 
     def self.cast_value_for_set(setting, value)
-      send("#{setting.cast_type}_set", value)
+      "Sail::Types::#{setting.cast_type.camelize}"
+        .constantize
+        .new(setting)
+        .from(value)
     end
 
     def self.switcher(positive:, negative:, throttled_by:)
