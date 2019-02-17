@@ -10,9 +10,8 @@ module Sail
   class ProfilesController < ApplicationController
     def create
       respond_to do |format|
-        format.json do
-          _, new_record = Sail::Profile.create_or_update_self(s_params[:name])
-          new_record ? head(:created) : head(:ok)
+        format.js do
+          _, @new_record = Sail::Profile.create_or_update_self(s_params[:name])
         end
       end
     end

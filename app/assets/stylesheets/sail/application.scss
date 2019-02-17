@@ -114,6 +114,21 @@ html, body {
   padding: 15px;
   overflow: scroll;
 
+  h1 {
+    margin-left: 35px;
+
+    #response-message {
+      float: right;
+      font-size: 18px;
+      margin-right: 3px;
+      position: relative;
+      top: 5px;
+      min-width: 50px;
+      min-height: 20px;
+      color: $dark_green;
+    }
+  }
+
   .profile-entry {
     padding: 10px;
     font-size: 20px;
@@ -126,6 +141,10 @@ html, body {
 
     &:hover {
       border-color: $tangerine;
+    }
+
+    .inline-form {
+      float: right;
     }
 
     button {

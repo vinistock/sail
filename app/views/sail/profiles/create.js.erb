@@ -1,0 +1,6 @@
+let messageContainer = document.getElementById("response-message");
+messageContainer.innerText = "<%= @new_record ? I18n.t("sail.profile_created") : I18n.t("sail.profile_updated") %>";
+
+setTimeout(function () {
+    messageContainer.innerText = "";
+}, 1500);

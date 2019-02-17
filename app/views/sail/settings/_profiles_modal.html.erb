@@ -1,10 +1,18 @@
 <div id="profiles-modal" style="display: none;">
-  <h1>Profiles</h1>
+  <h1>
+    Profiles
+    <span id="response-message"></span>
+  </h1>
+
+  <div class="clearfix"></div>
   <hr>
 
   <div class="profile-entry">
-    <input id="new-profile-input" type="text" placeholder="New profile: save a current snapshot of your settings">
-    <button class="btn-sail">SAVE</button>
+    <%= form_tag(profiles_path, method: :post, remote: true) do %>
+      <input id="new-profile-input" type="text" name="name" placeholder="New profile: save a current snapshot of your settings">
+      <button class="btn-sail" type="submit">SAVE</button>
+    <% end %>
+
     <div class="clearfix"></div>
   </div>
 
@@ -15,7 +23,12 @@
 
         <button class="btn-sail">DELETE</button>
         <button class="btn-sail">ACTIVATE</button>
-        <button class="btn-sail">SAVE</button>
+
+        <%= form_tag(profiles_path, method: :post, remote: true, class: "inline-form") do %>
+          <input type="hidden" name="name" value="<%= profile.name %>">
+          <button class="btn-sail" type="submit">SAVE</button>
+        <% end %>
+
         <div class="clearfix"></div>
       </div>
     <% end %>

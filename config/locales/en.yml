@@ -14,3 +14,5 @@ en:
     order_button_tooltip: Sort settings in descending order by the selected field.
     relevancy_tooltip: The relevancy score is a relative indicator of how critical for the application each setting is.
     profiles_tooltip: Edit application profiles
+    profile_created: Created
+    profile_updated: Saved
