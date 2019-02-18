@@ -1,4 +1,4 @@
-<div class="profile-entry">
+<div id="<%= profile.name %>" class="profile-entry">
   <span class="entry-name"><%= profile.name.titleize %></span>
 
   <%= form_tag(profile_path(name: profile.name), method: :delete, remote: true, class: "inline-form") do %>

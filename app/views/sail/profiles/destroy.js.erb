@@ -1,5 +1,9 @@
+window.removedProfile = document.getElementById("<%= @profile.name %>");
 window.messageContainer = document.getElementById("response-message");
+window.profilesContainer = document.getElementById("profiles-container");
+
 window.messageContainer.innerText = "<%= I18n.t("sail.profile_deleted") %>";
+window.profilesContainer.removeChild(window.removedProfile);
 
 setTimeout(function () {
     window.messageContainer.innerText = "";
