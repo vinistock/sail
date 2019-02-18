@@ -18,9 +18,8 @@ module Sail
 
     def switch
       respond_to do |format|
-        format.js do
-          Sail::Profile.switch(s_params[:name])
-        end
+        format.js { Sail::Profile.switch(s_params[:name]) }
+        format.json { Sail::Profile.switch(s_params[:name]) }
       end
     end
 
