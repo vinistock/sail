@@ -2,6 +2,8 @@ en:
   sail:
     page_title: Sail dashboard
     save: SAVE
+    activate: ACTIVATE
+    delete: DELETE
     updated: Updated!
     failed: Failed!
     search_placeholder: Setting name, group, cast type, stale or recent x
@@ -18,3 +20,5 @@ en:
     profile_updated: Saved
     profile_switched: Switched
     profile_deleted: Deleted
+    profiles: Profiles
+    new_profile_tooltip: "New profile: save a current snapshot of your settings"
