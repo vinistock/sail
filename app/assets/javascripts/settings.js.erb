@@ -70,6 +70,14 @@ function handleGenericClick(event) {
     dashboardBody.style.filter = "none";
 }
 
+function closeAllModals(event) {
+    if (event.key === "Escape") {
+        sortMenu.style.display = "none";
+        profilesMenu.style.display = "none";
+        dashboardBody.style.filter = "none";
+    }
+}
+
 if (autoSearchEnabled === "true") {
     queryElement.addEventListener("keyup", afterTypingQuery);
     queryElement.addEventListener("keydown", clearTimer);
@@ -78,6 +86,7 @@ if (autoSearchEnabled === "true") {
 orderButton.addEventListener("click", toggleSortMenu);
 profilesButton.addEventListener("click", toggleProfilesMenu);
 document.body.addEventListener("click", handleGenericClick);
+document.addEventListener("keydown", closeAllModals);
 
 /*
 Refresh related functions
