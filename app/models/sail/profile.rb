@@ -18,7 +18,7 @@ module Sail
     # +name+ saving the values of all settings
     # in the database.
     def self.create_or_update_self(name)
-      profile = first_or_initialize(name: name)
+      profile = where(name: name).first_or_initialize
       new_record = profile.new_record?
 
       Sail::Setting.select(:id, :value).each do |setting|

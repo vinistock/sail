@@ -1,0 +1,24 @@
+<div id="profiles-modal" style="display: none;">
+  <h1>
+    <%= I18n.t("sail.profiles") %>
+    <span id="response-message"></span>
+  </h1>
+
+  <div class="clearfix"></div>
+  <hr>
+
+  <div class="profile-entry">
+    <%= form_tag(profiles_path, method: :post, remote: true) do %>
+      <input id="new-profile-input" type="text" name="name" placeholder="<%= I18n.t("sail.new_profile_tooltip") %>">
+      <button class="btn-sail" type="submit"><%= I18n.t("sail.save") %></button>
+    <% end %>
+
+    <div class="clearfix"></div>
+  </div>
+
+  <div id="profiles-container">
+    <% Sail::Profile.select(:name).each do |profile| %>
+      <%= render(partial: "sail/profiles/profile", locals: { profile: profile }) %>
+    <% end %>
+  </div>
+</div>

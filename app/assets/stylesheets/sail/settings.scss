@@ -37,13 +37,6 @@
     @media (min-width: 992px) { width: 44%; }
     @media (min-width: 1200px) { width: 21%; }
 
-    hr {
-      border: 0;
-      height: 1px;
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
     h3 {
       margin-left: 25px;
 
@@ -169,28 +162,9 @@
     }
 
     .btn-value-submit {
+      @extend .btn-sail;
       width: 100%;
       height: 35px;
-      text-align: center;
-      font-size: 18px;
-      border-radius: .25rem;
-      background-color: $tangerine;
-      border: none;
-      outline: none;
-      -webkit-transition: background-color 0.5s;
-      -moz-transition: background-color 0.5s;
-      -ms-transition: background-color 0.5s;
-      -o-transition: background-color 0.5s;
-      transition: background-color 0.5s;
-
-      &:active {
-        color: $main_black;
-        opacity: .8;
-      }
-
-      &:hover {
-        background-color: darken($tangerine, 20%);
-      }
     }
 
     .switch {
@@ -300,6 +274,7 @@
 
         &:focus {
           border: 3px solid $tangerine;
+          outline: none;
         }
       }
     }
@@ -315,9 +290,8 @@
       float: left;
     }
 
-    #btn-order {
+    .search-button {
       float: left;
-      margin: 25px 0 0 15px;
       outline: none;
       border: 3px solid transparent;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
@@ -328,7 +302,6 @@
       -moz-transition : border .25s ease-in;
       -o-transition : border .25s ease-in;
       transition : border .25s ease-in;
-      height: 58px;
       background: white;
 
       img {
@@ -338,6 +311,11 @@
       &:hover {
         border: 3px solid $tangerine;
       }
+    }
+
+    #btn-order {
+      margin: 25px 0 0 15px;
+      height: 58px;
     }
 
     #sort-menu {
@@ -376,27 +354,13 @@
     }
 
     #main-app-link {
-      float: left;
       margin: 25px 0 0 8px;
       height: 53px;
-      border: 3px solid transparent;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px;
-      -webkit-transition : border .25s ease-in;
-      -moz-transition : border .25s ease-in;
-      -o-transition : border .25s ease-in;
-      transition : border .25s ease-in;
-      background: white;
+    }
 
-      img {
-        height: 100%;
-      }
-
-      &:hover {
-        border: 3px solid $tangerine;
-      }
+    #btn-profiles {
+      height: 58px;
+      margin: 25px 0 0 8px;
     }
   }
 
@@ -447,5 +411,30 @@
         background-color: $cerulean;
       }
     }
+  }
+}
+
+.btn-sail {
+  text-align: center;
+  font-size: 18px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: $tangerine;
+  border: none;
+  outline: none;
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -ms-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+
+  &:active {
+    color: $main_black;
+    opacity: .8;
+  }
+
+  &:hover {
+    background-color: darken($tangerine, 20%);
   }
 }

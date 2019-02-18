@@ -95,3 +95,90 @@ html, body {
     }
   }
 }
+
+#profiles-modal {
+  position: fixed;
+  height: 50%;
+  width: 50%;
+  top: 25%;
+  left: 25%;
+  background-color: white;
+  z-index: 1;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s;
+  text-align: center;
+  padding: 15px;
+  overflow: scroll;
+
+  h1 {
+    margin-left: 35px;
+
+    #response-message {
+      float: right;
+      font-size: 18px;
+      margin-right: 3px;
+      position: relative;
+      top: 5px;
+      min-width: 50px;
+      min-height: 20px;
+      color: $dark_green;
+    }
+  }
+
+  .profile-entry {
+    padding: 10px;
+    font-size: 20px;
+    -webkit-transition : border .25s ease-in;
+    -moz-transition : border .25s ease-in;
+    -o-transition : border .25s ease-in;
+    transition : border .25s ease-in;
+    border-bottom: 2px solid transparent;
+    margin-bottom: 15px;
+
+    &:hover {
+      border-color: $tangerine;
+    }
+
+    .inline-form {
+      float: right;
+    }
+
+    button {
+      float: right;
+      margin-left: 5px;
+      padding: 10px;
+    }
+
+    .entry-name {
+      position: relative;
+      top: 10px;
+      @media (max-width: 1199px) { float: left; }
+      @media (min-width: 1200px) { margin-left: 250px; }
+    }
+  }
+
+  #new-profile-input {
+    height: 100%;
+    border: none;
+    font-size: 20px;
+    width: 90%;
+    font-family: 'Raleway', sans-serif;
+    position: relative;
+    top: 10px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}

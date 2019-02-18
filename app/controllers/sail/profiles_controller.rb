@@ -10,27 +10,23 @@ module Sail
   class ProfilesController < ApplicationController
     def create
       respond_to do |format|
-        format.json do
-          _, new_record = Sail::Profile.create_or_update_self(s_params[:name])
-          new_record ? head(:created) : head(:ok)
+        format.js do
+          @profile, @new_record = Sail::Profile.create_or_update_self(s_params[:name])
         end
       end
     end
 
     def switch
       respond_to do |format|
-        format.json do
-          Sail::Profile.switch(s_params[:name])
-          head(:ok)
-        end
+        format.js { Sail::Profile.switch(s_params[:name]) }
+        format.json { Sail::Profile.switch(s_params[:name]) }
       end
     end
 
     def destroy
       respond_to do |format|
-        format.json do
-          Sail::Profile.find_by(name: s_params[:name]).destroy
-          head(:ok)
+        format.js do
+          @profile = Sail::Profile.find_by(name: s_params[:name]).destroy
         end
       end
     end

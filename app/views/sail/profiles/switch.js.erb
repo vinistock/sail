@@ -1,0 +1,6 @@
+window.messageContainer = document.getElementById("response-message");
+window.messageContainer.innerText = "<%= I18n.t("sail.profile_switched") %>";
+
+setTimeout(function () {
+    window.messageContainer.innerText = "";
+}, 1500);

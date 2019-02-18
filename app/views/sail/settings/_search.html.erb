@@ -13,11 +13,17 @@
     </div>
   </div>
 
-  <button id="btn-order" title="<%= I18n.t("sail.order_button_tooltip") %>"><%= image_tag("sail/sort.svg") %></button>
+  <button id="btn-order" class="search-button" title="<%= I18n.t("sail.order_button_tooltip") %>">
+    <%= image_tag("sail/sort.svg") %>
+  </button>
   <%= render(partial: "sort_menu") %>
 
+  <button id="btn-profiles" class="search-button" title="<%= I18n.t("sail.profiles_tooltip") %>">
+    <%= image_tag("sail/cog.svg") %>
+  </button>
+
   <% if main_app.respond_to?(Sail.configuration.back_link_path.to_s) %>
-    <%= link_to(main_app.method(Sail.configuration.back_link_path).call, method: :get, id: "main-app-link", title: I18n.t("sail.main_app")) do %>
+    <%= link_to(main_app.method(Sail.configuration.back_link_path).call, method: :get, id: "main-app-link", class: "search-button", title: I18n.t("sail.main_app")) do %>
       <%= image_tag("sail/link.svg") %>
     <% end %>
   <% end %>
