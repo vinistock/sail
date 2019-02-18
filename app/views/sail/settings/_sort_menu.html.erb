@@ -1,7 +1,7 @@
 <div id="sort-menu" style="display: none;">
   <% Sail::ConstantCollection::FIELDS_FOR_SORT.each do |field| %>
     <%= form_tag(settings_path, method: :get) do %>
-      <%= hidden_field_tag(:order_field, field) %>
+      <input type="hidden" name="order_field" value="<%= field %>">
       <button type="submit"><%= field %></button>
     <% end %>
   <% end %>
