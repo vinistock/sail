@@ -1,0 +1,35 @@
+@import "colors";
+
+.rounded {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.border-transition {
+  -webkit-transition : border .25s ease-in;
+  -moz-transition : border .25s ease-in;
+  -o-transition : border .25s ease-in;
+  transition : border .25s ease-in;
+  outline: none;
+
+  &:focus,
+  &:hover {
+    border-color: $tangerine;
+    outline: none;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s;
+}

@@ -15,6 +15,7 @@
  */
 
 @import "colors";
+@import "shared";
 
 html, body {
   height: 100vh;
@@ -65,9 +66,7 @@ html, body {
     text-decoration: none;
     background-color: white;
     padding: 20px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    @extend .rounded;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     font-weight: bold;
 
@@ -105,11 +104,8 @@ html, body {
   background-color: white;
   z-index: 1;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  -webkit-animation: fadeIn 0.5s;
-  animation: fadeIn 0.5s;
+  @extend .rounded;
+  @extend .fade-in;
   text-align: center;
   padding: 15px;
   overflow: scroll;
@@ -132,16 +128,9 @@ html, body {
   .profile-entry {
     padding: 10px;
     font-size: 20px;
-    -webkit-transition : border .25s ease-in;
-    -moz-transition : border .25s ease-in;
-    -o-transition : border .25s ease-in;
-    transition : border .25s ease-in;
     border-bottom: 2px solid transparent;
     margin-bottom: 15px;
-
-    &:hover {
-      border-color: $tangerine;
-    }
+    @extend .border-transition;
 
     .inline-form {
       float: right;

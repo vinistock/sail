@@ -1,13 +1,5 @@
 @import "colors";
-
-@-webkit-keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+@import "shared";
 
 #settings-dashboard {
   max-height: 100vh;
@@ -30,9 +22,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    @extend .rounded;
 
     @media (min-width: 992px) { width: 44%; }
     @media (min-width: 1200px) { width: 21%; }
@@ -60,9 +50,7 @@
 
     .tag {
       font-weight: bold;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px;
+      @extend .rounded;
       padding: 10px;
       color: $main_black;
       font-size: 14px;
@@ -101,18 +89,9 @@
       margin-bottom: 10px;
       height: 20px;
       font-size: 18px;
-      outline: none;
       border: none;
       border-bottom: 2px solid $aluminium;
-      -webkit-transition : border .25s ease-in;
-      -moz-transition : border .25s ease-in;
-      -o-transition : border .25s ease-in;
-      transition : border .25s ease-in;
-
-      &:focus {
-        border-color: $tangerine;
-        outline: none;
-      }
+      @extend .border-transition;
     }
 
     .date-picker {
@@ -123,11 +102,7 @@
       width: 100%;
       text-align: center;
       font-size: 18px;
-
-      &:focus {
-        border-color: $tangerine;
-        outline: none;
-      }
+      @extend .border-transition;
     }
 
     .value-slider {
@@ -260,22 +235,12 @@
       #query {
         height: 50px;
         width: 100%;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
         border: 3px solid transparent;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
         font-size: 18px;
         text-align: center;
-        -webkit-transition : border .25s ease-in;
-        -moz-transition : border .25s ease-in;
-        -o-transition : border .25s ease-in;
-        transition : border .25s ease-in;
-
-        &:focus {
-          border: 3px solid $tangerine;
-          outline: none;
-        }
+        @extend .rounded;
+        @extend .border-transition;
       }
     }
 
@@ -292,24 +257,14 @@
 
     .search-button {
       float: left;
-      outline: none;
       border: 3px solid transparent;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px;
-      -webkit-transition : border .25s ease-in;
-      -moz-transition : border .25s ease-in;
-      -o-transition : border .25s ease-in;
-      transition : border .25s ease-in;
+      @extend .rounded;
+      @extend .border-transition;
       background: white;
 
       img {
         height: 100%;
-      }
-
-      &:hover {
-        border: 3px solid $tangerine;
       }
     }
 
@@ -324,11 +279,8 @@
       left: 50%;
       top: 25%;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px;
-      -webkit-animation: fadeIn 0.5s;
-      animation: fadeIn 0.5s;
+      @extend .rounded;
+      @extend .fade-in;
       padding: 10px;
 
       @media (min-width: 767px) { top: 16%; left: 60%; }
@@ -343,9 +295,7 @@
         font-family: 'Raleway', sans-serif;
         background: transparent;
         padding: 5px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
+        @extend .rounded;
 
         &:hover {
           background-color: $tangerine;
@@ -372,14 +322,11 @@
     top: 85px;
     padding: 25px;
     width: 150px;
-    -webkit-border-radius: 0.5rem;
-    -moz-border-radius: 0.5rem;
-    border-radius: 0.5rem;
     text-align: center;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     display: none;
-    -webkit-animation: fadeIn 0.5s;
-    animation: fadeIn 0.5s;
+    @extend .rounded;
+    @extend .fade-in;
 
     &.success {
       color: $dark_green;
@@ -417,9 +364,7 @@
 .btn-sail {
   text-align: center;
   font-size: 18px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  @extend .rounded;
   background-color: $tangerine;
   border: none;
   outline: none;
