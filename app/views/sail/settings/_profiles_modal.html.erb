@@ -16,12 +16,14 @@
     <div class="clearfix"></div>
   </div>
 
-  <div>
+  <div id="profiles-container">
     <% Sail::Profile.select(:name).each do |profile| %>
       <div class="profile-entry">
         <span class="entry-name"><%= profile.name.titleize %></span>
 
-        <button class="btn-sail">DELETE</button>
+        <%= form_tag(profile_path(name: profile.name), method: :delete, remote: true, class: "inline-form") do %>
+          <button class="btn-sail">DELETE</button>
+        <% end %>
 
         <%= form_tag(switch_profile_path(name: profile.name), method: :put, remote: true, class: "inline-form") do %>
           <button class="btn-sail" type="submit">ACTIVATE</button>
