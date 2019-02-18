@@ -11,6 +11,8 @@ en:
     main_app: Main app
     no_settings: No settings found
     refresh_tooltip: Reset setting value
+    next_page: Next page
+    previous_page: Previous page
     stale: stale
     stale_tooltip: This setting has not been updated in %{days} days. Consider removing it and refactoring the code.
     order_button_tooltip: Sort settings in descending order by the selected field.
