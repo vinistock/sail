@@ -18,18 +18,16 @@ module Sail
 
     def switch
       respond_to do |format|
-        format.json do
+        format.js do
           Sail::Profile.switch(s_params[:name])
-          head(:ok)
         end
       end
     end
 
     def destroy
       respond_to do |format|
-        format.json do
+        format.js do
           Sail::Profile.find_by(name: s_params[:name]).destroy
-          head(:ok)
         end
       end
     end

@@ -40,9 +40,9 @@ describe Sail::ProfilesController, type: :controller do
     # :nocov:
     subject(:request) do
       if Rails::VERSION::MAJOR >= 5
-        put :switch, params: { name: "profile" }, format: :json
+        put :switch, params: { name: "profile" }, format: :js
       else
-        put :switch, name: "profile", format: :json
+        put :switch, name: "profile", format: :js
       end
     end
     # :nocov:
@@ -62,9 +62,9 @@ describe Sail::ProfilesController, type: :controller do
     # :nocov:
     subject(:request) do
       if Rails::VERSION::MAJOR >= 5
-        delete :destroy, params: { name: "profile" }, format: :json
+        delete :destroy, params: { name: "profile" }, format: :js
       else
-        delete :destroy, name: "profile", format: :json
+        delete :destroy, name: "profile", format: :js
       end
     end
     # :nocov:
