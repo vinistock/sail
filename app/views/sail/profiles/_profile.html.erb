@@ -1,0 +1,18 @@
+<div class="profile-entry">
+  <span class="entry-name"><%= profile.name.titleize %></span>
+
+  <%= form_tag(profile_path(name: profile.name), method: :delete, remote: true, class: "inline-form") do %>
+    <button class="btn-sail">DELETE</button>
+  <% end %>
+
+  <%= form_tag(switch_profile_path(name: profile.name), method: :put, remote: true, class: "inline-form") do %>
+    <button class="btn-sail" type="submit">ACTIVATE</button>
+  <% end %>
+
+  <%= form_tag(profiles_path, method: :post, remote: true, class: "inline-form") do %>
+    <input type="hidden" name="name" value="<%= profile.name %>">
+    <button class="btn-sail" type="submit">SAVE</button>
+  <% end %>
+
+  <div class="clearfix"></div>
+</div>

@@ -1,6 +1,6 @@
-let messageContainer = document.getElementById("response-message");
-messageContainer.innerText = "<%= I18n.t("sail.profile_deleted") %>";
+window.messageContainer = document.getElementById("response-message");
+window.messageContainer.innerText = "<%= I18n.t("sail.profile_deleted") %>";
 
 setTimeout(function () {
-    messageContainer.innerText = "";
+    window.messageContainer.innerText = "";
 }, 1500);

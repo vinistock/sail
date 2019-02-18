@@ -11,7 +11,7 @@ module Sail
     def create
       respond_to do |format|
         format.js do
-          _, @new_record = Sail::Profile.create_or_update_self(s_params[:name])
+          @profile, @new_record = Sail::Profile.create_or_update_self(s_params[:name])
         end
       end
     end
@@ -27,7 +27,7 @@ module Sail
     def destroy
       respond_to do |format|
         format.js do
-          Sail::Profile.find_by(name: s_params[:name]).destroy
+          @profile = Sail::Profile.find_by(name: s_params[:name]).destroy
         end
       end
     end
