@@ -19,7 +19,7 @@
   <%= render(partial: "sort_menu") %>
 
   <button id="btn-profiles" class="search-button" title="<%= I18n.t("sail.profiles_tooltip") %>">
-    <%= image_tag("sail/cog.svg") %>
+    <%= image_tag("sail/cog.svg", alt: I18n.t("sail.profiles_tooltip")) %>
   </button>
 
   <% if main_app.respond_to?(Sail.configuration.back_link_path.to_s) %>
