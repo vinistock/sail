@@ -8,6 +8,14 @@ describe Sail, type: :lib do
       expect(Sail::Setting).to receive(:get).with("name")
       subject
     end
+
+    it "allows using settings in block format" do
+      allow(Sail::Setting).to receive(:get).with("name").and_return("something")
+
+      subject do |setting_value|
+        expect(setting_value).to eq("something")
+      end
+    end
   end
 
   describe ".set" do

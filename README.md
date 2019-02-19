@@ -132,13 +132,19 @@ Possible cast types are
 
 ```ruby
 # Get setting value with appropriate cast type
-Sail::Setting.get('name')
+#
+# Returns setting value with cast or yields it if passed a block
+Sail.get("name")
+
+Sail.get("name") do |setting_value|
+  my_code(setting_value)
+end
 
 # Set setting value
-Sail::Setting.set('name', 'value')
+Sail.set("name", "value")
 
 # Reset setting value (requires the sail.yml file!)
-Sail::Setting.reset('name')
+Sail.reset("name")
 
 # Switcher
 # This method will take three setting names as parameters
@@ -149,19 +155,6 @@ Sail::Setting.reset('name')
 # return: Value with cast of either positive or negative, depending on the randomized value of throttle 
 # Settings positive and negative do not have to be of the same type. However, throttle must be a throttle type setting
 
-Sail::Setting.switcher(
-  positive: :setting_name_for_true,
-  negative: :setting_name_for_false,
-  throttle: :throttle_setting_name
-)
-
-# Alternatively, the simplified interface can be used for a shorter syntax
-Sail.get('name')
-
-Sail.set('name', 'value')
-
-Sail.reset('name')
- 
 Sail.switcher(
   positive: :setting_name_for_true,
   negative: :setting_name_for_false,

@@ -12,13 +12,24 @@ module Sail # :nodoc:
     attr_writer :configuration
 
     # Gets the value of a setting casted with the
-    # appropriate type.
+    # appropriate type. Can be used with a block.
     #
     # Response is cached until the setting's value
     # is updated or until the time specific in
     # the configuration expires.
+    #
+    # Examples:
+    #
+    # Sail.get("my_setting")
+    # => true
+    #
+    # Sail.get("my_setting") do |setting_value|
+    #   execute_code if setting_value
+    # end
     def get(name)
-      Sail::Setting.get(name)
+      setting_value = Sail::Setting.get(name)
+      yield(setting_value) if block_given?
+      setting_value
     end
 
     # Sets the value of a setting
