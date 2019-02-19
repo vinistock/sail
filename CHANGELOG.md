@@ -1,3 +1,7 @@
+* Allow Sail.get to be used with a block. Start yielding setting value to passed block.
+
+*[@vinistock]*
+
 * Create update generator to assist user upgrading major versions
 
 *[@vinistock]*
