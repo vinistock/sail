@@ -28,11 +28,6 @@ And then execute:
 $ bundle
 ```
 
-Or install it yourself as:
-```bash
-$ gem install sail
-```
-
 Adding the following line to your routes file will make the dashboard available at <base_url>/sail
 
 ```ruby
@@ -43,6 +38,12 @@ Running the install generator will create necessary migrations for having the se
 
 ```bash
 $ rails g sail:install
+```
+
+When going through a major version upgrade, be sure to check the [changelog] and run the update generator. It will create whatever migrations are needed to move from any other major version to the latest.
+
+```bash
+$ rails g sail:update
 ```
 
 ## Configuration
@@ -286,3 +287,4 @@ If you'd like to help Sail become a featured project of [awesome-ruby], please d
 [awesome-ruby]: https://github.com/markets/awesome-ruby
 [this pr]: https://github.com/markets/awesome-ruby/pull/882
 [en.yml]: https://github.com/vinistock/sail/blob/master/config/locales/en.yml
+[changelog]: https://github.com/vinistock/sail/blob/master/CHANGELOG.md

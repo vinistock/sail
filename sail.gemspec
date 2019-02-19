@@ -21,8 +21,11 @@ Gem::Specification.new do |s|
     **************************************************************************
     Sail #{Sail::VERSION}!
 
-    For major version upgrades, check the CHANGELOG for guidance on breaking
-    changes: https://github.com/vinistock/sail/blob/master/CHANGELOG.md
+    For major version upgrades, check the CHANGELOG and run the updater to
+    create necessary migrations.
+
+    * https://github.com/vinistock/sail/blob/master/CHANGELOG.md
+    * rails g sail:update
     **************************************************************************
   MSG
 
