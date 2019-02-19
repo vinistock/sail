@@ -116,19 +116,7 @@ Searching for settings in the dashboard can be done in the following ways:
 
 Settings can be read or set via their interface. Notice that when reading a setting's value, it will be cast to the appropriate type using the "cast_type" field.
 
-Possible cast types are
-* integer
-* float
-* date
-* string
-* boolean
-* ab_test
-* cron
-* obj_model
-* uri
-* throttle
-* range
-* array
+All possible cast types as well as detailed examples of usage can be found in the [wiki].
 
 ```ruby
 # Get setting value with appropriate cast type
@@ -190,77 +178,6 @@ PUT sail/profiles/:name/switch
 
 Response
 200 OK
-```
-
-## Examples
-
-Simple examples of usage are displayed below. For more detailed use cases please refer to the [wiki].
-
-```ruby
-# Integer setting
-Sail::Setting.create(name: :my_setting, cast_type: :integer, description: 'A very important setting', value: '15', group: :setting_group)
-Sail::Setting.get(:my_setting)
-=> 15
-
-# Float setting
-Sail::Setting.create(name: :my_setting, cast_type: :float, description: 'A very important setting', value: '1.532', group: :setting_group)
-Sail::Setting.get(:my_setting)
-=> 1.532
-
-# Date setting
-Sail::Setting.create(name: :my_setting, cast_type: :date, description: 'A very important setting', value: '2018-01-30', group: :setting_group)
-Sail::Setting.get(:my_setting)
-=> Tue, 30 Jan 2018 00:00:00 +0000
-
-# String setting
-Sail::Setting.create(name: :my_setting, cast_type: :string, description: 'A very important setting', value: '15', group: :setting_group)
-Sail::Setting.get(:my_setting)
-=> '15'
-
-# Boolean setting
-Sail::Setting.create(name: :my_setting, cast_type: :boolean, description: 'A very important setting', value: 'true', group: :setting_group)
-Sail::Setting.get(:my_setting)
-=> true
-
-# AB test setting
-# When true, returns true or false randomly. When false, always returns false
-Sail::Setting.create(name: :my_setting, cast_type: :ab_test, description: 'A very important setting', value: 'true', group: :setting_group)
-Sail::Setting.get(:my_setting)
-=> true
-
-# Cron setting
-# if DateTime.now.utc matches the configured cron expression returns true. Returns false for no matches.
-Sail::Setting.create(name: :my_setting, cast_type: :cron, description: 'A very important setting', value: '* 15 1 * *', group: :setting_group)
-Sail::Setting.get(:my_setting)
-=> true
-
-# Obj model setting
-# Will return the model based on the string value
-Sail::Setting.create(name: :my_setting, cast_type: :obj_model, description: 'A very important setting', value: 'Post', group: :setting_group)
-Sail::Setting.get(:my_setting)
-=> Post
-
-# URI setting
-# Returns the URI object for a given string
-Sail::Setting.create(name: :my_setting, cast_type: :uri, description: 'A very important setting', value: 'https://google.com', group: :setting_group)
-Sail::Setting.get(:my_setting)
-=> <URI::HTTPS https://google.com>
-
-# Range setting (ranges only accept values between 0...100)
-Sail::Setting.create(name: :my_setting, cast_type: :range, description: 'A very important setting', value: '99', group: :setting_group)
-Sail::Setting.get(:my_setting)
-=> 99
-
-# Array setting
-Sail::Setting.create(name: :my_setting, cast_type: :array, description: 'A very important setting', value: 'John;Alfred;Michael', group: :setting_group)
-Sail::Setting.get(:my_setting)
-=> ['John', 'Alfred', 'Michael']
-
-# Throttle setting
-# This setting will randomly return true X % of the time, where X is the setting's value 
-Sail::Setting.create(name: :my_setting, cast_type: :throttle, description: 'A very important setting', value: '50.0', group: :setting_group)
-Sail::Setting.get(:my_setting)
-=> true
 ```
 
 ## Localization
