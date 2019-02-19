@@ -12,7 +12,7 @@ describe Sail, type: :lib do
     it "allows using settings in block format" do
       allow(Sail::Setting).to receive(:get).with("name").and_return("something")
 
-      subject do |setting_value|
+      described_class.get("name") do |setting_value|
         expect(setting_value).to eq("something")
       end
     end
