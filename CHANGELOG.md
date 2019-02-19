@@ -1,3 +1,44 @@
+* Create update generator to assist user upgrading major versions
+
+*[@vinistock]*
+
+* Add profiles with API and modal
+  - Creating, updating, deleting and switching profiles
+  - API for switching in JSON
+  - All operations implemented as part of the dashboard
+
+In order to create profiles in the application, run the update generator. Even if upgrading from 1.x.x (generator will detect current state of the database and add the appropriate migrations).
+
+```bash
+$ rails g sail:update
+```
+
+Or create the migration manually.
+
+```ruby
+class CreateSailProfiles < ActiveRecord::Migration[5.2]
+  def change
+    create_table :sail_entries do |t|
+      t.string :value, null: false
+      t.references :setting, index: true
+      t.references :profile, index: true
+      t.timestamps
+    end
+
+    create_table :sail_profiles do |t|
+      t.string :name, null: false
+      t.index ["name"], name: "index_sail_profiles_on_name", unique: true
+      t.timestamps
+    end
+
+    add_foreign_key(:sail_entries, :sail_settings, column: :setting_id)
+    add_foreign_key(:sail_entries, :sail_profiles, column: :profile_id)
+  end
+end
+```
+
+*[@vinistock]*
+
 * Add relevancy score to settings
 
 *[@vinistock]*
