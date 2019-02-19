@@ -16,6 +16,16 @@ It comes with a lightweight responsive admin dashboard for searching and changin
 
 Sail assigns to each setting a *relevancy score*. This metric is calculated while the application is running and is based on the relative number of times a setting is invoked and on the total number of settings. The goal is to have an indicator of how critical changing a setting's value can be based on its frequency of usage. 
 
+## Contents
+
+1. [Installation](#installation)
+2. [Configuration](#configuration)
+3. [Populating the database](#populating-the-database)
+4. [Searching](#searching)
+5. [Manipulating settings](#manipulating-settings-in-the-code)
+6. [Localization](#localization)
+7. [Contributing](#contributing)
+
 ## Installation
 Add this line to your application's Gemfile:
 
