@@ -2,7 +2,7 @@ AllCops:
   Exclude:
   - spec/dummy/**/*
   - coverage/**/*
-  - lib/generators/sail/install/templates/**/*
+  - lib/generators/sail/**/templates/**/*
 
 Metrics/LineLength:
   Max: 140
