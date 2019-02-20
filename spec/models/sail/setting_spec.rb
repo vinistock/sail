@@ -611,7 +611,7 @@ describe Sail::Setting, type: :model do
       allow(File).to receive(:open).with("./config/sail.yml", "w").and_yield(file)
 
       expect(file).to receive(:write).with(
-        "---\nsetting:\n  description: My setting\n  value: '1'\n  cast_type: integer\n  group: tuners\n"
+        "---\nsetting:\n  description: My setting\n  value: '1'\n  group: tuners\n  cast_type: integer\n"
       )
 
       subject

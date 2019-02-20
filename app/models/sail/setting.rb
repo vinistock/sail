@@ -126,8 +126,8 @@ module Sail
       attributes = {}
 
       Setting.all.each do |setting|
-        setting_attrs = setting.attributes.except("id", "name", "created_at", "updated_at")
-        attributes[setting.name] = setting_attrs
+        setting_attrs = setting.attributes.except("id", "name", "created_at", "updated_at", "cast_type")
+        attributes[setting.name] = setting_attrs.merge("cast_type" => setting.cast_type)
       end
 
       File.open(config_file_path, "w") { |f| f.write(attributes.to_yaml) }
