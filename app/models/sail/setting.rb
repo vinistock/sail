@@ -122,6 +122,17 @@ module Sail
       end
     end
 
+    def self.database_to_file
+      attributes = {}
+
+      Setting.all.each do |setting|
+        setting_attrs = setting.attributes.except("id", "name", "created_at", "updated_at", "cast_type")
+        attributes[setting.name] = setting_attrs.merge("cast_type" => setting.cast_type)
+      end
+
+      File.open(config_file_path, "w") { |f| f.write(attributes.to_yaml) }
+    end
+
     private_class_method :config_file_path, :destroy_missing_settings,
                          :find_or_create_settings
 

@@ -1,3 +1,7 @@
+* Create rake task to export database settings to config file
+
+*[@vinistock]*
+
 * Allow Sail.get to be used with a block. Start yielding setting value to passed block.
 
 *[@vinistock]*
