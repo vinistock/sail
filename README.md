@@ -84,6 +84,12 @@ end
 
 In order to create settings, use the config/sail.yml file (or create your own data migrations).
 
+If the sail.yml file was not created, it can be generated with the current state of the database using the following rake task.
+
+```bash
+$ rake sail:create_config_file
+```
+
 After settings have been created a first time, they will not be updated with the values in the yaml file (otherwise it would defeat the purpose of being able to configure the application without requiring a deploy).
 
 Removing the entries from this file will cause settings to be deleted from the database.
