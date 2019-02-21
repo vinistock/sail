@@ -10,7 +10,7 @@ module Sail
   class Profile < ApplicationRecord
     has_many :entries, dependent: :destroy
     has_many :settings, through: :entries
-    validates_presence_of :name
+    validates :name, presence: true, uniqueness: { case_sensitive: false }
 
     # create_or_update_self
     #
@@ -54,7 +54,7 @@ module Sail
     # set the selected profile to active true.
     def self.handle_profile_activation(name)
       select(:id).where(active: true).update_all(active: false)
-      select(:id, :name).where(name: name).update(active: true)
+      select(:id, :name).where(name: name).update_all(active: true)
     end
 
     private_class_method :handle_profile_activation
