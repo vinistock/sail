@@ -276,16 +276,14 @@
     #sort-menu {
       background: white;
       position: absolute;
-      left: 50%;
-      top: 25%;
+      right: 18%;
+      top: 165px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
       @extend .rounded;
       @extend .fade-in;
       padding: 10px;
 
-      @media (min-width: 767px) { top: 16%; left: 60%; }
-      @media (min-width: 992px) { top: 12%; left: 65%; }
-      @media (min-width: 1200px) { top: 18%; left: 70%; }
+      @media (min-width: 1980px) { right: 22%; }
 
       button {
         outline: none;
