@@ -27,4 +27,22 @@ describe Sail::Entry, type: :model do
 
     it { is_expected.to eq(setting_1.name) }
   end
+
+  describe "#dirty?" do
+    subject { entry.dirty? }
+
+    let!(:profile) { Sail::Profile.create!(name: :profile) }
+    let!(:setting) { Sail::Setting.create!(name: :setting, cast_type: :integer, value: setting_value) }
+    let!(:entry) { Sail::Entry.create!(setting: setting, profile: profile, value: 1) }
+
+    context "when setting and entry values match" do
+      let(:setting_value) { 1 }
+      it { is_expected.to be_falsey }
+    end
+
+    context "when setting and entry values do not match" do
+      let(:setting_value) { 2 }
+      it { is_expected.to be_truthy }
+    end
+  end
 end
