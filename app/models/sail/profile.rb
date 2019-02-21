@@ -65,7 +65,7 @@ module Sail
     # but setting values have been changed and do
     # not match the entries definitions.
     def dirty?
-      entries.any?(&:dirty?)
+      @dirty ||= entries.any?(&:dirty?)
     end
   end
 end

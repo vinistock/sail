@@ -56,6 +56,15 @@ feature "managing profiles", js: true, type: :feature do
       expect(page).to have_content("Switching..")
       expect(setting_1.reload.value).to eq("something")
     end
+
+    expect(page).to have_no_css("#profiles-modal")
+
+    find("#btn-profiles").click
+
+    within("#profiles-modal") do
+      expect(page).to have_css(".active-indicator")
+      expect(page).to have_css(".green")
+    end
   end
 
   it "allows deleting profiles" do
