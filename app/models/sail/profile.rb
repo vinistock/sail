@@ -10,7 +10,7 @@ module Sail
   class Profile < ApplicationRecord
     has_many :entries, dependent: :destroy
     has_many :settings, through: :entries
-    validates_presence_of :name
+    validates :name, presence: true, uniqueness: { case_sensitive: false }
 
     # create_or_update_self
     #
@@ -32,6 +32,7 @@ module Sail
         )
       end
 
+      handle_profile_activation(name)
       [profile, new_record]
     end
 
@@ -43,6 +44,28 @@ module Sail
       Sail::Entry.by_profile_name(name).each do |entry|
         Sail::Setting.set(entry.name, entry.value)
       end
+
+      handle_profile_activation(name)
+    end
+
+    # handle_profile_activation
+    #
+    # Set other profiles to active false and
+    # set the selected profile to active true.
+    def self.handle_profile_activation(name)
+      select(:id).where(active: true).update_all(active: false)
+      select(:id, :name).where(name: name).update_all(active: true)
+    end
+
+    private_class_method :handle_profile_activation
+
+    # dirty?
+    #
+    # A profile is considered dirty if it is active
+    # but setting values have been changed and do
+    # not match the entries definitions.
+    def dirty?
+      @dirty ||= entries.any?(&:dirty?)
     end
   end
 end

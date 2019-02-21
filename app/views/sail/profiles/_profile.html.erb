@@ -1,4 +1,11 @@
 <div id="<%= profile.name %>" class="profile-entry">
+  <% if profile.active? %>
+    <span class="active-indicator <%= profile.dirty? ? "yellow" : "green" %>"
+          title="<%= profile.dirty? ? I18n.t("sail.dirty_profile_tooltip") : I18n.t("sail.clean_profile_tooltip") %>">
+      ⬤
+    </span>
+  <% end %>
+
   <span class="entry-name"><%= profile.name.titleize %></span>
 
   <%= form_tag(profile_path(name: profile.name), method: :delete, remote: true, class: "inline-form") do %>

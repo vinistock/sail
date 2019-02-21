@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_07_182505) do
+ActiveRecord::Schema.define(version: 2019_02_21_151558) do
 
   create_table "sail_entries", force: :cascade do |t|
     t.string "value", null: false
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_182505) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: false
     t.index ["name"], name: "index_sail_profiles_on_name", unique: true
   end
 

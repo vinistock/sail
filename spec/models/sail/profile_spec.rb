@@ -41,20 +41,45 @@ describe Sail::Profile, type: :model do
   end
 
   describe ".switch" do
-    subject(:switch) { described_class.switch(:profile) }
+    subject(:switch) { described_class.switch(:profile_1) }
+
+    let(:profile_1) { Sail::Profile.find_by(name: :profile_1) }
+    let(:profile_2) { Sail::Profile.find_by(name: :profile_2) }
 
     before do
-      Sail::Profile.create_or_update_self(:profile)
+      Sail::Profile.create_or_update_self(:profile_1)
       Sail.set(:setting_1, 3)
       Sail.set(:setting_2, 5)
+      Sail::Profile.create_or_update_self(:profile_2)
     end
 
     it "switches between two profiles" do
+      expect(profile_1.active).to be_falsey
+      expect(profile_2.active).to be_truthy
       expect(setting_1.reload.value).to eq("3")
       expect(setting_2.reload.value).to eq("5")
       switch
       expect(setting_1.reload.value).to eq("1")
       expect(setting_2.reload.value).to eq("2")
+      expect(profile_1.reload.active).to be_truthy
+      expect(profile_2.reload.active).to be_falsey
+    end
+  end
+
+  describe "#dirty?" do
+    subject { profile.dirty? }
+
+    let!(:profile) { Sail::Profile.create_or_update_self(:profile).first }
+
+    it { is_expected.to be_falsey }
+
+    context "when a setting has been changed" do
+      before do
+        Sail.set(:setting_1, 3)
+        profile.reload
+      end
+
+      it { is_expected.to be_truthy }
     end
   end
 end

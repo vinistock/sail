@@ -24,3 +24,5 @@ en:
     profile_deleted: Deleted
     profiles: Profiles
     new_profile_tooltip: "New profile: save a current snapshot of your settings"
+    clean_profile_tooltip: Active profile. All changes saved.
+    dirty_profile_tooltip: Active profile. Recent setting changes have not been saved.

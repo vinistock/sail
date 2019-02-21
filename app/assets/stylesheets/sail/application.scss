@@ -148,6 +148,20 @@ html, body {
       @media (max-width: 1199px) { float: left; }
       @media (min-width: 1200px) { margin-left: 250px; }
     }
+
+    .active-indicator {
+      float: left;
+      position: relative;
+      top: 7px;
+
+      &.yellow {
+        color: $light_yellow;
+      }
+
+      &.green {
+        color: $light_green;
+      }
+    }
   }
 
   #new-profile-input {
