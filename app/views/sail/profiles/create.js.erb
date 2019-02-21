@@ -1,10 +1,14 @@
 window.messageContainer = document.getElementById("response-message");
 window.profilesContainer = document.getElementById("profiles-container");
+window.indicator = document.getElementsByClassName("active-indicator")[0];
 
 window.messageContainer.innerText = "<%= @new_record ? I18n.t("sail.profile_created") : I18n.t("sail.profile_updated") %>";
 
 <% if @new_record %>
   window.profilesContainer.insertAdjacentHTML('beforeend', '<%= j render(partial: "sail/profiles/profile", locals: { profile: @profile }) %>');
+<% elsif @profile.active? %>
+  window.indicator.classList.remove("yellow");
+  window.indicator.classList.add("green");
 <% end %>
 
 setTimeout(function () {
