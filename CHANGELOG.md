@@ -1,3 +1,7 @@
+* Reload page after profile switching
+
+*[@vinistock]*
+
 * Create rake task to export database settings to config file
 
 *[@vinistock]*

@@ -53,10 +53,7 @@ feature "managing profiles", js: true, type: :feature do
       setting_1.update_attributes!(value: :something_else)
 
       click_button("ACTIVATE")
-      expect(page).to have_content("Switched")
-      expect(page).to have_content("Profile 1")
-      expect(page).to have_button("ACTIVATE")
-      expect(page).to have_button("DELETE")
+      expect(page).to have_content("Switching..")
       expect(setting_1.reload.value).to eq("something")
     end
   end
