@@ -88,7 +88,8 @@
       width: 98%;
       margin-bottom: 10px;
       height: 20px;
-      font-size: 18px;
+      font-size: 22px;
+      text-align: center;
       border: none;
       border-bottom: 2px solid $aluminium;
       @extend .border-transition;
@@ -101,7 +102,7 @@
       border-bottom: 2px solid $aluminium;
       width: 100%;
       text-align: center;
-      font-size: 18px;
+      font-size: 22px;
       @extend .border-transition;
     }
 
