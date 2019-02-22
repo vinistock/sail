@@ -14,7 +14,10 @@ Gem::Specification.new do |s|
   s.description = "Sail is a lightweight Rails engine that brings an admin panel for managing configuration settings on a live Rails app."
   s.license     = "MIT"
 
-  s.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  s.files = Dir["{app,config,lib}/**/*",
+                "MIT-LICENSE",
+                "Rakefile",
+                "README.md"].reject { |path| path.include?("videos/") }
   s.test_files = Dir["spec/**/*"]
 
   s.post_install_message = <<~MSG
