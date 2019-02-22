@@ -43,7 +43,7 @@
           <% elsif setting.range? %>
             <input id="<%= "input_for_#{setting.name}" %>" type="range" min="0" max="99" value="<%= setting.value %>" name="value" class="value-slider">
           <% elsif setting.date? %>
-            <input id="<%= "input_for_#{setting.name}" %>" type="datetime-local" value="<%= setting.value %>" name="value" class="date-picker">
+            <input id="<%= "input_for_#{setting.name}" %>" type="datetime-local" value="<%= DateTime.parse(setting.value).strftime("%Y-%m-%dT%H:%m:%S") %>" name="value" class="date-picker">
           <% else %>
             <input id="<%= "input_for_#{setting.name}" %>" type="text" name="value" class="value-input" value="<%= setting.value %>"/>
           <% end %>

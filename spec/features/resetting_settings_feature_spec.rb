@@ -17,24 +17,24 @@ feature "resetting settings", js: true, type: :feature do
 
   context "for a non boolean setting" do
     let(:cast_type) { :integer }
-    let(:setting_value) { "321" }
-    let(:name) { "number_of_threads" }
+    let(:setting_value) { "3" }
+    let(:name) { "number_of_parallel_jobs" }
 
     it "resets value and refreshes input" do
       expect(page).to have_content("Updated!")
 
       within(".card") do
-        expect(find("#input_for_#{setting.name}", visible: false)[:value]).to eq("123")
+        expect(find("#input_for_#{setting.name}", visible: false)[:value]).to eq("2")
       end
 
-      expect(setting.reload.value).to eq("123")
+      expect(setting.reload.value).to eq("2")
     end
   end
 
   context "for a boolean setting" do
     let(:cast_type) { :boolean }
     let(:setting_value) { "false" }
-    let(:name) { "enable_something" }
+    let(:name) { "enable_awesome_feature" }
 
     it "resets value and refreshes input" do
       expect(page).to have_content("Updated!")
