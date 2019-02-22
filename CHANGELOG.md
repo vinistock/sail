@@ -1,3 +1,7 @@
+* Enhance sort menu placement for responsive layouts
+
+*[@vinistock]*
+
 * Add active profile indicators
 
 *[@vinistock]*
