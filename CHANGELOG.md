@@ -1,3 +1,15 @@
+## 3.0.0 ##
+
+There are some breaking changes in this new major version. Please read through the changelog and execute the update generator to create the necessary migrations.
+
+```bash
+$ rails g sail:update
+```
+
+* Enhance sort menu placement for responsive layouts
+
+*[@vinistock]*
+
 * Add active profile indicators
 
 *[@vinistock]*
