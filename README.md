@@ -206,11 +206,7 @@ Contributions are very welcome! Don't hesitate to ask if you wish to contribute,
 
 Please refer to this simple [guideline].
 
-If you'd like to help Sail become a featured project of [awesome-ruby], please drop a thumbs up in [this pr].
-
 [guideline]: https://github.com/vinistock/sail/blob/master/CONTRIBUTING.md
 [wiki]: https://github.com/vinistock/sail/wiki
-[awesome-ruby]: https://github.com/markets/awesome-ruby
-[this pr]: https://github.com/markets/awesome-ruby/pull/882
 [en.yml]: https://github.com/vinistock/sail/blob/master/config/locales/en.yml
 [changelog]: https://github.com/vinistock/sail/blob/master/CHANGELOG.md
