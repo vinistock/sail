@@ -13,7 +13,7 @@ module Sail
                   :enable_logging
 
     def initialize
-      @cache_life_span = 10.minutes
+      @cache_life_span = 6.hours
       @array_separator = ";"
       @dashboard_auth_lambda = nil
       @back_link_path = "root_path"
