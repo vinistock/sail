@@ -1,3 +1,13 @@
+## 3.0.1 ##
+
+* Initialize Rails application when running rake tasks (bug)
+
+*[@vinistock]*
+
+* Change cache life span to 6 hours
+
+*[@vinistock]*
+
 ## 3.0.0 ##
 
 There are some breaking changes in this new major version. Please read through the changelog and execute the update generator to create the necessary migrations.
