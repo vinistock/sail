@@ -7,6 +7,8 @@ module Sail
   # setting usage and provide insights to
   # dashboard users.
   class Instrumenter
+    USAGES_UNTIL_CACHE_EXPIRE = 500
+
     # initialize
     #
     # Declare basic hash containing setting
@@ -21,6 +23,7 @@ module Sail
     # times a setting has been called
     def increment_usage_of(setting_name)
       @statistics[setting_name] += 1
+      expire_cache_fragment(setting_name) if (@statistics[setting_name] % USAGES_UNTIL_CACHE_EXPIRE).zero?
     end
 
     # relative_usage_of
@@ -32,6 +35,12 @@ module Sail
       return 0.0 if @statistics.empty?
 
       (100.0 * @statistics[setting_name]) / @statistics.values.reduce(:+)
+    end
+
+    private
+
+    def expire_cache_fragment(setting_name)
+      ActionController::Base.new.expire_fragment(/name: "#{setting_name}"/)
     end
   end
 end
