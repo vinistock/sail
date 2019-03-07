@@ -176,7 +176,7 @@ Response
   "value": true
 }
 
-PUT sail/settings/:name
+PUT sail/settings/:name?value=something
 
 Response
 200 OK
