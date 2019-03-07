@@ -1,3 +1,8 @@
+* Expire cache fragments after 500 new usages of each setting
+  so that the relevancy score actually updates.
+  
+*[@vinistock]*  
+
 ## 3.0.1 ##
 
 * Initialize Rails application when running rake tasks (bug)
