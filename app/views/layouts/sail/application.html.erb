@@ -15,8 +15,12 @@
 <div>
   <nav id="nav-bar">
     <%= link_to(settings_path, method: :get, class: "home-link") do %>
-      <h1 class="title"><%= I18n.t('sail.page_title') %></h1>
+      <h1 class="title"><%= I18n.t("sail.page_title") %></h1>
     <% end %>
+
+    <button id="btn-guide" type="button">
+      <%= I18n.t("sail.guide") %>
+    </button>
   </nav>
 
   <%= yield %>
