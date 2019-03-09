@@ -55,6 +55,23 @@ html, body {
       padding: .75rem 0;
     }
   }
+
+  #btn-guide {
+    float: right;
+    position: relative;
+    bottom: 50px;
+    right: 110px;
+    font-size: 20px;
+    font-family: "Raleway", sans-serif;
+    outline: none;
+    background: transparent;
+    color: $aluminium;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 #pagination {
@@ -95,7 +112,7 @@ html, body {
   }
 }
 
-#profiles-modal {
+.modal {
   position: fixed;
   height: 50%;
   width: 50%;
@@ -109,6 +126,10 @@ html, body {
   text-align: center;
   padding: 15px;
   overflow: scroll;
+}
+
+#profiles-modal {
+  @extend .modal;
 
   h1 {
     margin-left: 35px;
@@ -177,6 +198,10 @@ html, body {
       outline: none;
     }
   }
+}
+
+#guide-modal {
+  @extend .modal;
 }
 
 hr {
