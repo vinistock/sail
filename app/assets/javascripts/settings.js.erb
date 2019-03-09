@@ -13,6 +13,8 @@ let orderButton = document.getElementById("btn-order");
 let profilesMenu = document.getElementById("profiles-modal");
 let profilesButton = document.getElementById("btn-profiles");
 let dashboardBody = document.getElementById("settings-dashboard");
+let guideButton = document.getElementById("btn-guide");
+let guide = document.getElementById("guide-modal");
 
 function submitSearch() {
     document.getElementById("search-form").submit();
@@ -44,14 +46,14 @@ function toggleSortMenu() {
     }
 }
 
-function toggleProfilesMenu() {
-    if (profilesMenu.style.display === "none") {
+function toggleModal(modal) {
+    if (modal.style.display === "none") {
         dashboardBody.style.filter = "opacity(70%) blur(2px)";
 
         document.body.style.filter = "alpha(opacity=60)";
-        profilesMenu.style.display = "block";
+        modal.style.display = "block";
     } else {
-        profilesMenu.style.display = "none";
+        modal.style.display = "none";
         dashboardBody.style.filter = "none";
     }
 }
@@ -61,12 +63,13 @@ function handleGenericClick(event) {
 
     if (target === sortMenu || sortMenu.contains(target) || target === orderButton || orderButton.contains(target) ||
         target === profilesMenu || profilesMenu.contains(target) || target === profilesButton ||
-        profilesButton.contains(target)) {
+        profilesButton.contains(target) || target === guide || guide.contains(target) || target === guideButton) {
         return;
     }
 
     sortMenu.style.display = "none";
     profilesMenu.style.display = "none";
+    guide.style.display = "none";
     dashboardBody.style.filter = "none";
 }
 
@@ -74,6 +77,7 @@ function closeAllModals(event) {
     if (event.key === "Escape") {
         sortMenu.style.display = "none";
         profilesMenu.style.display = "none";
+        guide.style.display = "none";
         dashboardBody.style.filter = "none";
     }
 }
@@ -84,7 +88,8 @@ if (autoSearchEnabled === "true") {
 }
 
 orderButton.addEventListener("click", toggleSortMenu);
-profilesButton.addEventListener("click", toggleProfilesMenu);
+profilesButton.addEventListener("click", function () { toggleModal(profilesMenu) });
+guideButton.addEventListener("click", function () { toggleModal(guide) });
 document.body.addEventListener("click", handleGenericClick);
 document.addEventListener("keydown", closeAllModals);
 
