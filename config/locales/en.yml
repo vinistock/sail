@@ -27,3 +27,11 @@ en:
     clean_profile_tooltip: Active profile. All changes saved.
     dirty_profile_tooltip: Active profile. Recent setting changes have not been saved.
     guide: Guide
+    searching: Searching
+    settings_can_be_found: "Searching for settings can be done in the following ways:"
+    by_setting_name_html: <b>By the setting name:</b> will look for partial matches
+    by_group_html: "<b>By group:</b> will find all settings in the same group (must be exact match)"
+    by_cast_type_html: "<b>By cast type:</b> will find all settings with the same type (must be exact match)"
+    by_stale_html: "<b>By stale:</b> will find settings that are stale (haven't been updated recently)"
+    by_recent_html: "<b>By recent:</b> will find settings updated in the last X hours (.e.g: recent 50)" 
+
