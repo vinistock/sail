@@ -123,13 +123,13 @@ html, body {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   @extend .rounded;
   @extend .fade-in;
-  text-align: center;
   padding: 15px;
   overflow: scroll;
 }
 
 #profiles-modal {
   @extend .modal;
+  text-align: center;
 
   h1 {
     margin-left: 35px;
@@ -202,6 +202,55 @@ html, body {
 
 #guide-modal {
   @extend .modal;
+
+  h1 {
+    text-align: center;
+  }
+
+  details {
+    padding: 15px;
+
+    summary {
+      font-size: 20px;
+      outline: none;
+
+      &::-webkit-details-marker {
+        float: left;
+        position: relative;
+        top: 5px;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    p, .items-container {
+      text-align: center;
+      font-size: 20px;
+
+      ul {
+        list-style-type: none;
+
+        li {
+          padding: 10px;
+        }
+      }
+    }
+  }
+
+  details[open] {
+    summary {
+      div {
+        font-size: 28px;
+        text-align: center;
+      }
+    }
+
+    p, p ~ * {
+      @extend .fade-in;
+    }
+  }
 }
 
 hr {
