@@ -20,6 +20,23 @@
   }
 }
 
+.color-transition {
+  -webkit-transition : color .25s ease-in;
+  -moz-transition : color .25s ease-in;
+  -o-transition : color .25s ease-in; 
+  transition : color .25s ease-in;
+  color: white;
+  text-decoration: none;
+
+  &:visited {
+    color: white;
+  }
+
+  &:hover {
+    color: $tangerine;
+  }
+}
+
 @-webkit-keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

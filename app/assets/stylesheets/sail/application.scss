@@ -33,20 +33,7 @@ html, body {
   background-color: $lead;
 
   .home-link {
-    text-decoration: none;
-    color: white;
-    -webkit-transition : color .25s ease-in;
-    -moz-transition : color .25s ease-in;
-    -o-transition : color .25s ease-in;
-    transition : color .25s ease-in;
-
-    &:visited {
-      color: white;
-    }
-
-    &:hover {
-      color: $tangerine;
-    }
+    @extend .color-transition;
 
     .title {
       margin: 0;
@@ -65,8 +52,8 @@ html, body {
     font-family: "Raleway", sans-serif;
     outline: none;
     background: transparent;
-    color: $aluminium;
     border: none;
+    @extend .color-transition;
 
     &:hover {
       cursor: pointer;
