@@ -213,15 +213,23 @@ html, body {
     summary {
       font-size: 20px;
       outline: none;
+      border-bottom: 1px solid transparent;
+      @extend .border-transition;
+
+      div {
+        padding-bottom: 10px;
+      }
 
       &::-webkit-details-marker {
-        float: left;
-        position: relative;
-        top: 5px;
+        display: none;
       }
 
       &:hover {
         cursor: pointer;
+      }
+
+      &:focus {
+        border-color: transparent;
       }
     }
 
@@ -241,6 +249,8 @@ html, body {
 
   details[open] {
     summary {
+      border-bottom: 1px solid $tangerine;
+
       div {
         font-size: 28px;
         text-align: center;

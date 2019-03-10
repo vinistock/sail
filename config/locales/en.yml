@@ -28,7 +28,6 @@ en:
     dirty_profile_tooltip: Active profile. Recent setting changes have not been saved.
     guide: Guide
     searching: Searching
-    settings_can_be_found: "Searching for settings can be done in the following ways:"
     by_setting_name_html: <b>By the setting name:</b> will look for partial matches
     by_group_html: "<b>By group:</b> will find all settings in the same group (must be exact match)"
     by_cast_type_html: "<b>By cast type:</b> will find all settings with the same type (must be exact match)"
@@ -37,7 +36,7 @@ en:
     profiles_can_be_used: Profiles can be used to configure many states of settings. They save the values of all settings in a given moment.
     profile_configuring: Configure settings as desired and create a new profile. Activate profiles to change the value of all settings at once.
     relevancy_score: Relevancy Score
-    relevancy_score_explanation: Settings have a number on the top right portion indicating their relevancy score. This metric is calculated based on the relative number of times the setting is used while the application is running. It is an indication of how critical changing the setting's value might be.
+    relevancy_score_explanation: Settings have a number on the top right portion indicating their relevancy score. This metric is calculated based on the relative number of times the setting is used while the application is running. The higher the value the more the setting is used.
     available_groups_and_types: Available groups and types
     groups_are: "The groups currently used are:"
     types_are: "The cast types currently used are:"
