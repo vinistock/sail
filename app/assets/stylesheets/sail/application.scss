@@ -216,6 +216,8 @@ html, body {
 
       &::-webkit-details-marker {
         float: left;
+        position: relative;
+        top: 5px;
       }
 
       &:hover {
@@ -241,10 +243,13 @@ html, body {
     summary {
       div {
         font-size: 28px;
-        transition: transform 0.5s ease;
-        transform: translateX(40%);
+        text-align: center;
       }
-    }  
+    }
+
+    p, p ~ * {
+      @extend .fade-in;
+    }
   }
 }
 
