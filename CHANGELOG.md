@@ -1,3 +1,7 @@
+* Add reference guide to dashboard containing usage instructions
+
+*[@vinistock]*
+
 * Expire cache fragments after 500 new usages of each setting
   so that the relevancy score actually updates.
   
