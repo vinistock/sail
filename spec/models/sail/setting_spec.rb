@@ -317,6 +317,21 @@ describe Sail::Setting, type: :model do
         end
       end
     end
+
+    describe ".for_value_by_name" do
+      subject { described_class.for_value_by_name(name) }
+      let!(:setting) { described_class.create!(name: :setting, value: 1, cast_type: :integer) }
+
+      context "when name matches" do
+        let(:name) { :setting }
+        it { expect(subject.map(&:value)).to include(setting.value) }
+      end
+
+      context "when name does not match" do
+        let(:name) { :invalid }
+        it { expect(subject.map(&:value)).not_to include(setting.value) }
+      end
+    end
   end
 
   describe "callbacks" do
@@ -341,8 +356,14 @@ describe Sail::Setting, type: :model do
     end
 
     it "caches response" do
+      described_class.create!(name: :setting, value: 1, cast_type: :integer)
       expect(Rails.cache).to receive(:fetch).with("setting_get_setting", expires_in: Sail.configuration.cache_life_span)
       subject
+    end
+
+    it "returns nil if setting does not exist" do
+      expect(Rails.cache).not_to receive(:fetch).with("setting_get_invalid", expires_in: Sail.configuration.cache_life_span)
+      expect(subject).to be_nil
     end
 
     [
@@ -616,5 +637,36 @@ describe Sail::Setting, type: :model do
 
       subject
     end
+  end
+
+  describe "#should_not_cache?" do
+    subject { setting.should_not_cache? }
+
+    context "when type is ab test" do
+      let(:setting) { described_class.create!(name: :setting, value: "true", cast_type: :ab_test) }
+      it { is_expected.to be_truthy }
+    end
+
+    context "when type is throttle" do
+      let(:setting) { described_class.create!(name: :setting, value: "30.0", cast_type: :throttle) }
+      it { is_expected.to be_truthy }
+    end
+
+    context "when type is cron" do
+      let(:setting) { described_class.create!(name: :setting, value: "* * * * *", cast_type: :cron) }
+      it { is_expected.to be_truthy }
+    end
+
+    context "when type is any other" do
+      let(:setting) { described_class.create!(name: :setting, value: "2", cast_type: :integer) }
+      it { is_expected.to be_falsey }
+    end
+  end
+
+  describe "#safe_cast" do
+    subject { setting.safe_cast }
+    let(:setting) { described_class.create!(name: :setting, value: "true", cast_type: :boolean) }
+
+    it { is_expected.to eq(true) }
   end
 end
