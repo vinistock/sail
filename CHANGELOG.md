@@ -1,3 +1,7 @@
+* Fix dynamic setting types being incorrectly cached
+
+*[@vinistock]*
+
 * Add reference guide to dashboard containing usage instructions
 
 *[@vinistock]*
