@@ -13,7 +13,7 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*
 Metrics/ClassLength:
-  Max: 150
+  Max: 175
 Style/GuardClause:
   Enabled: false
 Style/StringLiterals:

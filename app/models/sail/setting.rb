@@ -56,17 +56,19 @@ module Sail
     scope :stale, -> { where("updated_at < ?", Sail.configuration.days_until_stale.days.ago) }
     scope :recently_updated, ->(amount) { where("updated_at >= ?", amount.to_i.hours.ago) }
     scope :ordered_by, ->(field) { column_names.include?(field) ? order("#{field}": :desc) : all }
+    scope :for_value_by_name, ->(name) { select(:value, :cast_type).where(name: name) }
 
     def self.get(name)
       Sail.instrumenter.increment_usage_of(name)
+      setting = Setting.for_value_by_name(name).first
+      return if setting.nil?
 
-      Rails.cache.fetch("setting_get_#{name}", expires_in: Sail.configuration.cache_life_span) do
-        Setting
-          .select(:value, :cast_type)
-          .where(name: name)
-          .first
-          .try(:caster)
-          .try(:to_value)
+      if setting.should_not_cache?
+        setting.safe_cast
+      else
+        Rails.cache.fetch("setting_get_#{name}", expires_in: Sail.configuration.cache_life_span) do
+          setting.safe_cast
+        end
       end
     end
 
@@ -148,6 +150,14 @@ module Sail
 
     def relevancy
       (Sail.instrumenter.relative_usage_of(name) / Sail::Setting.count).round(1)
+    end
+
+    def should_not_cache?
+      ab_test? || cron? || throttle?
+    end
+
+    def safe_cast
+      try(:caster).try(:to_value)
     end
 
     private
