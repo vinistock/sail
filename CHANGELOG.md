@@ -1,3 +1,7 @@
+* Add monitor mode to dashboard displaying minimalistic cards
+
+*[@vinistock]*
+
 * Fix dynamic setting types being incorrectly cached
 
 *[@vinistock]*
