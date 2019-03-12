@@ -75,7 +75,7 @@ GEM
       sexp_processor
     codeclimate-test-reporter (1.0.7)
       simplecov
-    concurrent-ruby (1.1.4)
+    concurrent-ruby (1.1.5)
     crass (1.0.4)
     database_cleaner (1.7.0)
     diff-lcs (1.3)
