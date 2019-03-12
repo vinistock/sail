@@ -1,0 +1,6 @@
+<% cache setting_minimal, expires_in: Sail.configuration.cache_life_span do %>
+  <div class="card minimal">
+    <h2><%= setting_minimal.display_name %></h2>
+    <label><%= setting_minimal.value %></label>
+  </div>
+<% end %>

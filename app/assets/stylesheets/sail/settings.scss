@@ -226,12 +226,20 @@
       @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
       @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
     }
+
+    &.minimal {
+      min-height: 50px;
+      padding-top: 0;
+
+      label {
+        font-size: 22px;
+      }
+    }
   }
 
   #search-container {
     #search-form {
       text-align: center;
-      padding-top: 25px;
 
       #query {
         height: 50px;
@@ -270,7 +278,7 @@
     }
 
     #btn-order {
-      margin: 25px 0 0 15px;
+      margin: 0 0 0 15px;
       height: 58px;
     }
 
@@ -303,13 +311,13 @@
     }
 
     #main-app-link {
-      margin: 25px 0 0 8px;
+      margin: 0 0 0 8px;
       height: 53px;
     }
 
     #btn-profiles {
       height: 58px;
-      margin: 25px 0 0 8px;
+      margin: 0 0 0 8px;
     }
   }
 

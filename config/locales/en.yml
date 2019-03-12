@@ -40,4 +40,5 @@ en:
     available_groups_and_types: Available groups and types
     groups_are: "The groups currently used are:"
     types_are: "The cast types currently used are:"
-
+    regular_mode: Regular mode
+    monitor_mode: Monitor mode

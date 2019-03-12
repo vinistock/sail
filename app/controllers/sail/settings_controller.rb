@@ -10,12 +10,14 @@ module Sail
   class SettingsController < ApplicationController
     after_action :log_update, only: %i[update reset], if: -> { Sail.configuration.enable_logging && @successful_update }
 
+    # rubocop:disable AbcSize
     def index
       @settings = Setting.by_query(s_params[:query]).ordered_by(s_params[:order_field])
-      @number_of_pages = (@settings.count.to_f / Sail::Setting::SETTINGS_PER_PAGE).ceil
-      @settings = @settings.paginated(s_params[:page])
+      @number_of_pages = (@settings.count.to_f / settings_per_page).ceil
+      @settings = @settings.paginated(s_params[:page], settings_per_page)
       fresh_when(@settings)
     end
+    # rubocop:enable AbcSize
 
     def update
       respond_to do |format|
@@ -61,6 +63,14 @@ module Sail
     end
 
     private
+
+    def settings_per_page
+      if params[:monitor_mode] == Sail::ConstantCollection::TRUE
+        Sail::ConstantCollection::MINIMAL_SETTINGS_PER_PAGE
+      else
+        Sail::ConstantCollection::SETTINGS_PER_PAGE
+      end
+    end
 
     def s_params
       params.permit(:page, :query, :name,

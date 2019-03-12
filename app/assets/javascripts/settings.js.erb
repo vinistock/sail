@@ -61,13 +61,20 @@ function toggleModal(modal) {
 function handleGenericClick(event) {
     let target = event.target;
 
-    if (target === sortMenu || sortMenu.contains(target) || target === orderButton || orderButton.contains(target) ||
-        target === profilesMenu || profilesMenu.contains(target) || target === profilesButton ||
-        profilesButton.contains(target) || target === guide || guide.contains(target) || target === guideButton) {
+    if (orderButton !== null && (target === sortMenu || sortMenu.contains(target) || target === orderButton || orderButton.contains(target))) {
         return;
     }
 
-    sortMenu.style.display = "none";
+    if (profilesButton !== null && (target === profilesMenu || profilesMenu.contains(target) || target === profilesButton ||
+        profilesButton.contains(target))) {
+        return;
+    }
+
+    if (target === guide || guide.contains(target) || target === guideButton) {
+        return;
+    }
+
+    if (sortMenu !== null) sortMenu.style.display = "none";
     profilesMenu.style.display = "none";
     guide.style.display = "none";
     dashboardBody.style.filter = "none";
@@ -75,20 +82,23 @@ function handleGenericClick(event) {
 
 function closeAllModals(event) {
     if (event.key === "Escape") {
-        sortMenu.style.display = "none";
+        if (sortMenu !== null) sortMenu.style.display = "none";
         profilesMenu.style.display = "none";
         guide.style.display = "none";
         dashboardBody.style.filter = "none";
     }
 }
 
-if (autoSearchEnabled === "true") {
-    queryElement.addEventListener("keyup", afterTypingQuery);
-    queryElement.addEventListener("keydown", clearTimer);
+if (queryElement !== null) {
+    if (autoSearchEnabled === "true") {
+        queryElement.addEventListener("keyup", afterTypingQuery);
+        queryElement.addEventListener("keydown", clearTimer);
+    }
+
+    orderButton.addEventListener("click", toggleSortMenu);
+    profilesButton.addEventListener("click", function () { toggleModal(profilesMenu) });
 }
 
-orderButton.addEventListener("click", toggleSortMenu);
-profilesButton.addEventListener("click", function () { toggleModal(profilesMenu) });
 guideButton.addEventListener("click", function () { toggleModal(guide) });
 document.body.addEventListener("click", handleGenericClick);
 document.addEventListener("keydown", closeAllModals);

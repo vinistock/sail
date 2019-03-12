@@ -43,11 +43,10 @@ html, body {
     }
   }
 
-  #btn-guide {
+  .nav-button {
     float: right;
     position: relative;
     bottom: 50px;
-    right: 110px;
     font-size: 20px;
     font-family: "Raleway", sans-serif;
     outline: none;
@@ -58,6 +57,16 @@ html, body {
     &:hover {
       cursor: pointer;
     }
+  }
+
+  #btn-guide {
+    right: 110px;
+  }
+
+  #btn-monitor-mode,
+  #btn-regular-mode {
+    right: 120px;
+    padding: 1px 7px 2px 7px;
   }
 }
 
