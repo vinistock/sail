@@ -12,7 +12,6 @@ module Sail
     class UnexpectedCastType < StandardError; end
 
     FULL_RANGE = (0...100).freeze
-    SETTINGS_PER_PAGE = 8
     AVAILABLE_MODELS = Dir["#{Rails.root}/app/models/*.rb"]
                        .map { |dir| dir.split("/").last.camelize.gsub(".rb", "") }.freeze
 
@@ -33,10 +32,10 @@ module Sail
 
     after_initialize :instantiate_caster
 
-    scope :paginated, lambda { |page|
+    scope :paginated, lambda { |page, per_page|
       select(:name, :description, :group, :value, :cast_type, :updated_at)
-        .offset(page.to_i * SETTINGS_PER_PAGE)
-        .limit(SETTINGS_PER_PAGE)
+        .offset(page.to_i * per_page)
+        .limit(per_page)
     }
 
     scope :by_query, lambda { |query|
