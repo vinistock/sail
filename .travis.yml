@@ -21,7 +21,7 @@ matrix:
   allow_failures:
     - rvm: ruby-head
     - env: "RAILS_VERSION=4.2.11 BUNDLER_VERSION=1.17.3"
-      rvm: 2.6.1
+      rvm: 2.6.2
 before_script:
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
 before_install:
