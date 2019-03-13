@@ -50,7 +50,7 @@ feature "managing profiles", js: true, type: :feature do
       expect(page).to have_button("DELETE")
       expect(Sail::Profile.count).to eq(1)
 
-      setting_1.update_attributes!(value: :something_else)
+      setting_1.update!(value: :something_else)
 
       click_button("ACTIVATE")
       expect(page).to have_content("Switching..")
@@ -98,7 +98,7 @@ feature "managing profiles", js: true, type: :feature do
       expect(page).to have_button("DELETE")
       expect(Sail::Profile.count).to eq(1)
 
-      setting_1.update_attributes!(value: :something_else)
+      setting_1.update!(value: :something_else)
 
       within(all(".profile-entry")[1]) do
         click_button("SAVE")

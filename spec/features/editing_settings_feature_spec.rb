@@ -11,7 +11,7 @@ feature "editing settings", js: true, type: :feature do
     { type: "obj_model", old: "Test2", new: "Test" },
     { type: "uri", old: "https://youtube.com", new: "https://google.com" },
     { type: "boolean", old: "false", new: "true" },
-    { type: "date", old: "2010-01-30", new: DateTime.parse("2018-01-30") }
+    { type: "date", old: "2010-01-30", new: DateTime.parse("2018-01-30").utc }
   ].each do |set|
     context "when setting is of type #{set[:type]}" do
       let!(:setting) { Sail::Setting.create(name: :setting, cast_type: set[:type], value: set[:old]) }

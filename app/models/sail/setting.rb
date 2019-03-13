@@ -12,14 +12,14 @@ module Sail
     class UnexpectedCastType < StandardError; end
 
     FULL_RANGE = (0...100).freeze
-    AVAILABLE_MODELS = Dir["#{Rails.root}/app/models/*.rb"]
+    AVAILABLE_MODELS = Dir[Rails.root.join("app", "models", "*.rb")]
                        .map { |dir| dir.split("/").last.camelize.gsub(".rb", "") }.freeze
 
     has_many :entries, dependent: :destroy
     attr_reader :caster
 
-    validates_presence_of :name, :value, :cast_type
-    validates_uniqueness_of :name
+    validates :value, :cast_type, presence: true
+    validates :name, presence: true, uniqueness: { case_sensitive: false }
     enum cast_type: %i[integer string boolean range array float
                        ab_test cron obj_model date uri throttle].freeze
 
@@ -74,13 +74,13 @@ module Sail
     def self.set(name, value)
       setting = Setting.find_by(name: name)
       value_cast = setting.caster.from(value)
-      success = setting.update_attributes(value: value_cast)
+      success = setting.update(value: value_cast)
       Rails.cache.delete("setting_get_#{name}") if success
       [setting, success]
     end
 
     def self.switcher(positive:, negative:, throttled_by:)
-      setting = select(:cast_type).where(name: throttled_by).first
+      setting = select(:cast_type).find_by(name: throttled_by)
       raise ActiveRecord::RecordNotFound, "Can't find throttle setting" if setting.nil?
 
       raise UnexpectedCastType unless setting.throttle?
@@ -126,7 +126,7 @@ module Sail
     def self.database_to_file
       attributes = {}
 
-      Setting.all.each do |setting|
+      Setting.all.find_each do |setting|
         setting_attrs = setting.attributes.except("id", "name", "created_at", "updated_at", "cast_type")
         attributes[setting.name] = setting_attrs.merge("cast_type" => setting.cast_type)
       end
@@ -142,7 +142,7 @@ module Sail
     end
 
     def stale?
-      return unless Sail.configuration.days_until_stale.present?
+      return if Sail.configuration.days_until_stale.blank?
 
       updated_at < Sail.configuration.days_until_stale.days.ago
     end
@@ -188,7 +188,7 @@ module Sail
     end
 
     def date_is_valid
-      DateTime.parse(value)
+      DateTime.parse(value).utc
     rescue ArgumentError
       errors.add(:invalid_date, "Date format is invalid")
     end

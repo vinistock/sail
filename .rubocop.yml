@@ -3,7 +3,11 @@ AllCops:
   - spec/dummy/**/*
   - coverage/**/*
   - lib/generators/sail/**/templates/**/*
-
+Rails:
+  Enabled: true
+Rails/HttpPositionalArguments:
+  Exclude:
+    - spec/controllers/**/*
 Metrics/LineLength:
   Max: 140
 Metrics/MethodLength:

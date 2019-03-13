@@ -53,8 +53,8 @@ module Sail
     # Set other profiles to active false and
     # set the selected profile to active true.
     def self.handle_profile_activation(name)
-      select(:id).where(active: true).update_all(active: false)
-      select(:id, :name).where(name: name).update_all(active: true)
+      select(:id, :name).where(active: true).update(active: false)
+      select(:id, :name).where(name: name).update(active: true)
     end
 
     private_class_method :handle_profile_activation

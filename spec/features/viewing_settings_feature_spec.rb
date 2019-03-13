@@ -88,7 +88,7 @@ feature "viewing settings", js: true, type: :feature do
 
   context "when setting has no group" do
     before do
-      Sail::Setting.first.update_attributes!(group: nil)
+      Sail::Setting.first.update!(group: nil)
       visit "/sail"
     end
 

@@ -2,7 +2,7 @@
 
 feature "resetting settings", js: true, type: :feature do
   let!(:setting) do
-    allow(Sail::Setting).to receive(:config_file_path).and_return("#{Rails.root}/config/sail.yml")
+    allow(Sail::Setting).to receive(:config_file_path).and_return(Rails.root.join("config", "sail.yml"))
 
     Sail::Setting.create!(name: name, cast_type: cast_type,
                           value: setting_value,

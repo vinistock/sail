@@ -79,7 +79,7 @@ module Sail
     end
 
     def log_update
-      message = +"#{DateTime.now.strftime("%Y/%m/%d %H:%M")} [Sail] #{action_name.capitalize} setting='#{@setting.name}' " \
+      message = +"#{DateTime.now.utc.strftime("%Y/%m/%d %H:%M")} [Sail] #{action_name.capitalize} setting='#{@setting.name}' " \
                  "value='#{@setting.value}'"
 
       message << " author_user_id=#{current_user.id}" if defined?(current_user)

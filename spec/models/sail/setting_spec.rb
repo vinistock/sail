@@ -352,7 +352,7 @@ describe Sail::Setting, type: :model do
 
     before do
       Rails.cache.delete("setting_get_setting")
-      allow(DateTime).to receive(:now).and_return(DateTime.parse("2018-10-05 20:00"))
+      allow(DateTime).to receive(:now).and_return(DateTime.parse("2018-10-05 20:00").utc)
     end
 
     it "caches response" do
