@@ -7,7 +7,7 @@ describe Sail::Types::Cron, type: :lib do
     let(:setting) { Sail::Setting.create!(name: :setting, cast_type: :cron, value: "0 * * * *") }
 
     before do
-      allow(DateTime).to receive(:now).and_return(DateTime.parse(date_string))
+      allow(DateTime).to receive(:now).and_return(DateTime.parse(date_string).utc)
     end
 
     context "when cron matches" do

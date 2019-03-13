@@ -35,7 +35,7 @@ describe Sail::Profile, type: :model do
 
     it "updates values if profile already exists" do
       create_or_update_self
-      setting_1.update_attributes!(value: "5")
+      setting_1.update!(value: "5")
       expect { create_or_update_self }.to change(Sail::Profile, :count).by(0)
     end
   end

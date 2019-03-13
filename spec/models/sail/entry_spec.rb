@@ -18,16 +18,6 @@ describe Sail::Entry, type: :model do
     end
   end
 
-  describe "#name" do
-    subject { entry_1.name }
-
-    let!(:profile_1) { Sail::Profile.create!(name: :profile) }
-    let!(:setting_1) { Sail::Setting.create!(name: :setting, cast_type: :integer, value: 1) }
-    let!(:entry_1) { Sail::Entry.create!(setting: setting_1, profile: profile_1, value: 2) }
-
-    it { is_expected.to eq(setting_1.name) }
-  end
-
   describe "#dirty?" do
     subject { entry.dirty? }
 

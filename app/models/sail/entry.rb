@@ -10,13 +10,11 @@ module Sail
   class Entry < ApplicationRecord
     belongs_to :setting
     belongs_to :profile
-    validates_presence_of :value, :setting, :profile
+    validates :value, :setting, :profile, presence: true
 
     scope :by_profile_name, ->(name) { joins(:profile).where("sail_profiles.name = ?", name) }
 
-    def name
-      setting.name
-    end
+    delegate :name, to: :setting
 
     # dirty?
     #

@@ -8,7 +8,7 @@ module Sail
     # string into a DateTime object.
     class Date < Type
       def to_value
-        DateTime.parse(@setting.value)
+        DateTime.parse(@setting.value).utc
       end
     end
   end
