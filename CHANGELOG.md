@@ -1,3 +1,7 @@
+* Make engine compatible with Rails API only mode
+
+*[@vinistock]*
+
 * Add monitor mode to dashboard displaying minimalistic cards
 
 *[@vinistock]*
