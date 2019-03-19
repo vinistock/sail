@@ -1,24 +1,23 @@
 # frozen_string_literal: true
 
-require_relative "types/type"
-require_relative "types/boolean"
-require_relative "types/integer"
-require_relative "types/ab_test"
-require_relative "types/array"
-require_relative "types/cron"
-require_relative "types/date"
-require_relative "types/float"
-require_relative "types/obj_model"
-require_relative "types/range"
-require_relative "types/string"
-require_relative "types/throttle"
-require_relative "types/uri"
-
 module Sail
   # Types
   #
   # This module holds all setting types
   # classes
   module Types
+    autoload :Type, "sail/types/type"
+    autoload :Boolean, "sail/types/boolean"
+    autoload :Integer, "sail/types/integer"
+    autoload :AbTest, "sail/types/ab_test"
+    autoload :Array, "sail/types/array"
+    autoload :Cron, "sail/types/cron"
+    autoload :Date, "sail/types/date"
+    autoload :Float, "sail/types/float"
+    autoload :ObjModel, "sail/types/obj_model"
+    autoload :Range, "sail/types/range"
+    autoload :String, "sail/types/string"
+    autoload :Throttle, "sail/types/throttle"
+    autoload :Uri, "sail/types/uri"
   end
 end

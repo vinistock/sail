@@ -8,6 +8,9 @@ require "true_class"
 require "false_class"
 
 module Sail # :nodoc:
+  autoload :Instrumenter, "sail/instrumenter"
+  autoload :Types, "sail/types"
+
   class << self
     attr_writer :configuration
 
