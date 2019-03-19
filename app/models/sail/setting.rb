@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "fugit"
-require "sail/types"
 
 module Sail
   # Setting
