@@ -15,5 +15,7 @@ module Dummy
     Sail.configure do |config|
       config.enable_search_auto_submit = true
     end
+
+    I18n.available_locales = %i[en es fr]
   end
 end
