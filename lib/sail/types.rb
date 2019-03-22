@@ -14,6 +14,7 @@ module Sail
     autoload :Cron, "sail/types/cron"
     autoload :Date, "sail/types/date"
     autoload :Float, "sail/types/float"
+    autoload :Locales, "sail/types/locales"
     autoload :ObjModel, "sail/types/obj_model"
     autoload :Range, "sail/types/range"
     autoload :String, "sail/types/string"
