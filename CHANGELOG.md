@@ -1,3 +1,7 @@
+* Create locales setting type
+
+*[@vinistock]*
+
 * Make engine compatible with Rails API only mode
 
 *[@vinistock]*
