@@ -4,7 +4,10 @@
 
   <details>
     <summary>
-      <div><%= I18n.t("sail.searching") %></div>
+      <div>
+        <%= I18n.t("sail.searching") %>
+        <label><%= I18n.t("sail.how_to_find_settings") %></label>
+      </div>
     </summary>
 
     <p>
@@ -19,27 +22,39 @@
       </div>
     </p>
   </details>
+  <div class="clearfix"></div>
 
   <details>
     <summary>
-      <div><%= I18n.t("sail.profiles") %></div>
+      <div>
+        <%= I18n.t("sail.profiles") %>
+        <label><%= I18n.t("sail.how_to_profiles") %></label>
+      </div>
     </summary>
 
     <p><%= I18n.t("sail.profiles_can_be_used") %></p>
     <p><%= I18n.t("sail.profile_configuring") %></p>
   </details>
+  <div class="clearfix"></div>
 
   <details>
     <summary>
-      <div><%= I18n.t("sail.relevancy_score") %></div>
+      <div>
+        <%= I18n.t("sail.relevancy_score") %>
+        <label><%= I18n.t("sail.how_to_relevancy_score") %></label>
+      </div>
     </summary>
 
     <p><%= I18n.t("sail.relevancy_score_explanation") %></p>
   </details>
+  <div class="clearfix"></div>
 
   <details>
     <summary>
-      <div><%= I18n.t("sail.available_groups_and_types") %></div>
+      <div>
+        <%= I18n.t("sail.available_groups_and_types") %>
+        <label><%= I18n.t("sail.how_to_groups_and_types") %></label>
+      </div>
     </summary>
 
     <p>
@@ -52,4 +67,5 @@
       <b><%= settings.pluck(:group).uniq.join(", ") %></b>
     </p>
   </details>
+  <div class="clearfix"></div>
 </div>

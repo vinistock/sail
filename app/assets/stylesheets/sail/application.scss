@@ -216,6 +216,12 @@ html, body {
         padding-bottom: 10px;
       }
 
+      label {
+        color: darken($aluminium, 30%);
+        font-size: 18px;
+        float: right;
+      }
+
       &::-webkit-details-marker {
         display: none;
       }
@@ -250,6 +256,10 @@ html, body {
       div {
         font-size: 28px;
         text-align: center;
+      }
+
+      label {
+        display: none;
       }
     }
 
