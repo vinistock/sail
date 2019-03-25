@@ -1,3 +1,9 @@
+## 3.1.0 ##
+
+* Add tooltips for guide sections
+
+*[@vinistock]*
+
 * Create locales setting type
 
 *[@vinistock]*
