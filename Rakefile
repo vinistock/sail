@@ -21,7 +21,7 @@ RSpec::Core::RakeTask.new(spec: "app:db:test:prepare")
 task default: :spec
 
 task :all do
-  system("brakeman && rake && rubocop --parallel && rails_best_practices")
+  system("brakeman --no-pager && rake && rubocop --parallel && rails_best_practices")
 end
 
 system("cd ./spec/dummy; RAILS_ENV=test rails db:environment:set; cd ../..") if Rails::VERSION::MAJOR >= 5
