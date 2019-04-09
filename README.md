@@ -69,6 +69,7 @@ Sail.configure do |config|
   config.enable_search_auto_submit = true # Enables search auto submit after 2 seconds without typing
   config.days_until_stale = 60            # Days with no updates until a setting is considered stale and is a candidate to be removed from code (leave nil to disable checks)
   config.enable_logging = true            # Enable logging for update and reset actions. Logs include timestamp, setting name, new value and author_user_id (if current_user is defined)
+  config.failures_until_reset = 50        # Number of times Sail.get can fail with unexpected errors until resetting the setting value
 end
 ```
 
@@ -142,6 +143,17 @@ Sail.get("name")
 
 Sail.get("name") do |setting_value|
   my_code(setting_value)
+end
+
+# When the optional argument expected_errors is passed,
+# Sail will count the number of unexpected errors raised inside a given block.
+# After the number of unexpected errors reaches the amount configured in
+# failures_until_reset, it will automatically trigger a Sail.reset for that setting.
+
+# For example, this will ignore ExampleError, but any other error raised will increase
+# the count until the setting "name" is reset. 
+Sail.get("name", expected_errors: [ExampleError]) do |value|
+  code_that_can_raise_example_error(value) 
 end
 
 # Set setting value

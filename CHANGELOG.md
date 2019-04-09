@@ -1,3 +1,13 @@
+## 3.2.0 ##
+
+* Use Rails environment instead of manually initializing applications for rake tasks
+
+*[@chaadow]*
+
+* Add expected_errors and auto reset for Sail.get
+
+*[@vinistock]*
+
 ## 3.1.0 ##
 
 * Add tooltips for guide sections
@@ -398,3 +408,4 @@ end
 [@zvlex]: https://github.com/zvlex
 [@rohandaxini]: https://github.com/rohandaxini
 [@johnthethird]: https://github.com/johnthethird
+[@chaadow]: https://github.com/chaadow
