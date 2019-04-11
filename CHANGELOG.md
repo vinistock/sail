@@ -8,6 +8,10 @@
 
 *[@vinistock]*
 
+* Make Sail.get with block return the block result instead of the setting value
+
+*[@vinistock]*
+
 ## 3.1.0 ##
 
 * Add tooltips for guide sections

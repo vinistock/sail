@@ -141,6 +141,7 @@ All possible cast types as well as detailed examples of usage can be found in th
 # Returns setting value with cast or yields it if passed a block
 Sail.get("name")
 
+# This usage will return the result of the block
 Sail.get("name") do |setting_value|
   my_code(setting_value)
 end
