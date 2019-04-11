@@ -17,6 +17,16 @@ describe Sail, type: :lib do
       end
     end
 
+    it "returns the value of the evaluated block" do
+      allow(Sail::Setting).to receive(:get).with("name").and_return(5)
+
+      result = described_class.get("name") do |setting_value|
+        setting_value * 5
+      end
+
+      expect(result).to eq(25)
+    end
+
     context "when passing expected errors" do
       subject { described_class.get("name", expected_errors: [ArgumentError]) }
 

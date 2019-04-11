@@ -32,8 +32,7 @@ module Sail # :nodoc:
     def get(name, expected_errors: [])
       setting_value = Sail::Setting.get(name)
 
-      yield(setting_value) if block_given?
-      setting_value
+      block_given? ? yield(setting_value) : setting_value
     rescue StandardError => e
       instrumenter.increment_failure_of(name) unless expected_errors.blank? || expected_errors.include?(e.class)
       raise e
