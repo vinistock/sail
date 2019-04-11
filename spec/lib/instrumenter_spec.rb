@@ -17,7 +17,7 @@ describe Sail::Instrumenter, type: :lib do
       expect(instrumenter.instance_variable_get(:@statistics)).to eq({})
 
       subject
-      expect(instrumenter.instance_variable_get(:@statistics)).to eq("setting" => 1)
+      expect(instrumenter.instance_variable_get(:@statistics)).to eq("setting" => { "usages" => 1, "failures" => 0 })
     end
 
     it "deletes cache fragment after reaching increment limit" do
@@ -47,6 +47,24 @@ describe Sail::Instrumenter, type: :lib do
       end
 
       it { is_expected.to be_zero }
+    end
+  end
+
+  describe "#increment_failure_of" do
+    subject { instrumenter.increment_failure_of("setting") }
+    let(:instrumenter) { described_class.new }
+
+    it "increments failure count" do
+      expect(instrumenter.instance_variable_get(:@statistics)).to eq({})
+
+      subject
+      expect(instrumenter.instance_variable_get(:@statistics)).to eq("setting" => { "usages" => 0, "failures" => 1 })
+    end
+
+    it "resets setting after 50 failures" do
+      expect(Sail).to receive(:reset).with("setting")
+
+      51.times { instrumenter.increment_failure_of("setting") }
     end
   end
 end

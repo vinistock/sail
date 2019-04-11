@@ -75,7 +75,7 @@ feature "viewing settings", js: true, type: :feature do
   end
 
   it "displays relevancy score" do
-    Sail.instrumenter.instance_variable_set(:@statistics, Hash.new(0).with_indifferent_access)
+    Sail.instrumenter.instance_variable_set(:@statistics, {}.with_indifferent_access)
     2.times { Sail.get("setting_0") }
     2.times { Sail.get("setting_1") }
 

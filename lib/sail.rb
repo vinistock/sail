@@ -29,10 +29,14 @@ module Sail # :nodoc:
     # Sail.get("my_setting") do |setting_value|
     #   execute_code if setting_value
     # end
-    def get(name)
+    def get(name, expected_errors: [])
       setting_value = Sail::Setting.get(name)
+
       yield(setting_value) if block_given?
       setting_value
+    rescue StandardError => e
+      instrumenter.increment_failure_of(name) unless expected_errors.blank? || expected_errors.include?(e.class)
+      raise e
     end
 
     # Sets the value of a setting

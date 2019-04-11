@@ -14,7 +14,16 @@ module Sail
     # Declare basic hash containing setting
     # statistics
     def initialize
-      @statistics = Hash.new(0).with_indifferent_access
+      @statistics = {}.with_indifferent_access
+    end
+
+    # []
+    #
+    # Accessor method for the statistics to guarantee
+    # proper initialization of hashes.
+    def [](name)
+      @statistics[name] = { usages: 0, failures: 0 }.with_indifferent_access if @statistics[name].blank?
+      @statistics[name]
     end
 
     # increment_usage
@@ -22,8 +31,8 @@ module Sail
     # Simply increments the number of
     # times a setting has been called
     def increment_usage_of(setting_name)
-      @statistics[setting_name] += 1
-      expire_cache_fragment(setting_name) if (@statistics[setting_name] % USAGES_UNTIL_CACHE_EXPIRE).zero?
+      self[setting_name][:usages] += 1
+      expire_cache_fragment(setting_name) if (self[setting_name][:usages] % USAGES_UNTIL_CACHE_EXPIRE).zero?
     end
 
     # relative_usage_of
@@ -34,7 +43,17 @@ module Sail
     def relative_usage_of(setting_name)
       return 0.0 if @statistics.empty?
 
-      (100.0 * @statistics[setting_name]) / @statistics.values.reduce(:+)
+      (100.0 * self[setting_name][:usages]) / @statistics.map { |_, entry| entry[:usages] }.reduce(:+)
+    end
+
+    # increment_failure_of
+    #
+    # Counts the number of failed code block executions
+    # enveloped by a given setting. If the number of failures
+    # exceeds the amount configured, resets the setting value
+    def increment_failure_of(setting_name)
+      self[setting_name][:failures] += 1
+      Sail.reset(setting_name) if self[setting_name][:failures] > Sail.configuration.failures_until_reset
     end
 
     private
