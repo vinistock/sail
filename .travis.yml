@@ -17,6 +17,7 @@ addons:
 env:
   - "RAILS_VERSION=4.2.11.1 BUNDLER_VERSION=1.17.3"
   - "RAILS_VERSION=5.2.3 BUNDLER_VERSION=2.0.1"
+  - "RAILS_VERSION=6.0.0.rc1 BUNDLER_VERSION=2.0.1"
 matrix:
   allow_failures:
     - rvm: ruby-head
