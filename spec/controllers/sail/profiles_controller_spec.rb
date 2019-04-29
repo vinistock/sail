@@ -6,7 +6,9 @@ describe Sail::ProfilesController, type: :controller do
   describe "POST create" do
     # :nocov:
     subject(:request) do
-      if Rails::VERSION::MAJOR >= 5
+      if Rails::VERSION::MAJOR == 6
+        post :create, params: { name: "profile", format: :js }
+      elsif Rails::VERSION::MAJOR >= 5
         post :create, params: { name: "profile" }, format: :js
       else
         post :create, name: "profile", format: :js
@@ -39,7 +41,9 @@ describe Sail::ProfilesController, type: :controller do
   describe "PUT switch" do
     # :nocov:
     subject(:request) do
-      if Rails::VERSION::MAJOR >= 5
+      if Rails::VERSION::MAJOR == 6
+        put :switch, params: { name: "profile", format: :js }
+      elsif Rails::VERSION::MAJOR >= 5
         put :switch, params: { name: "profile" }, format: :js
       else
         put :switch, name: "profile", format: :js
@@ -61,7 +65,9 @@ describe Sail::ProfilesController, type: :controller do
   describe "DELETE destroy" do
     # :nocov:
     subject(:request) do
-      if Rails::VERSION::MAJOR >= 5
+      if Rails::VERSION::MAJOR == 6
+        delete :destroy, params: { name: "profile", format: :js }
+      elsif Rails::VERSION::MAJOR >= 5
         delete :destroy, params: { name: "profile" }, format: :js
       else
         delete :destroy, name: "profile", format: :js

@@ -73,7 +73,9 @@ describe Sail::SettingsController, type: :controller do
   describe "PUT update" do
     # :nocov:
     subject do
-      if Rails::VERSION::MAJOR >= 5
+      if Rails::VERSION::MAJOR == 6
+        put :update, params: { name: setting.name, value: new_value, cast_type: setting.cast_type, format: :js }
+      elsif Rails::VERSION::MAJOR >= 5
         put :update, params: { name: setting.name, value: new_value, cast_type: setting.cast_type }, format: :js
       else
         put :update, name: setting.name, value: new_value, cast_type: setting.cast_type, format: :js
@@ -111,7 +113,9 @@ describe Sail::SettingsController, type: :controller do
     context "when format is JSON" do
       # :nocov:
       subject do
-        if Rails::VERSION::MAJOR >= 5
+        if Rails::VERSION::MAJOR == 6
+          put :update, params: { name: setting.name, value: new_value, cast_type: setting.cast_type, format: :json }
+        elsif Rails::VERSION::MAJOR >= 5
           put :update, params: { name: setting.name, value: new_value, cast_type: setting.cast_type }, format: :json
         else
           put :update, name: setting.name, value: new_value, cast_type: setting.cast_type, format: :json
@@ -147,7 +151,9 @@ describe Sail::SettingsController, type: :controller do
   describe "GET show" do
     # :nocov:
     subject do
-      if Rails::VERSION::MAJOR >= 5
+      if Rails::VERSION::MAJOR == 6
+        get :show, params: params.merge(format: :json)
+      elsif Rails::VERSION::MAJOR >= 5
         get :show, params: params, format: :json
       else
         get :show, params.merge(format: :json)
@@ -178,7 +184,9 @@ describe Sail::SettingsController, type: :controller do
   describe "GET switcher" do
     # :nocov:
     subject do
-      if Rails::VERSION::MAJOR >= 5
+      if Rails::VERSION::MAJOR == 6
+        get :switcher, params: params.merge(format: :json)
+      elsif Rails::VERSION::MAJOR >= 5
         get :switcher, params: params, format: :json
       else
         get :switcher, params.merge(format: :json)
@@ -254,7 +262,9 @@ describe Sail::SettingsController, type: :controller do
   describe "PUT reset" do
     # :nocov:
     subject do
-      if Rails::VERSION::MAJOR >= 5
+      if Rails::VERSION::MAJOR == 6
+        put :reset, params: { name: setting.name, format: :js }
+      elsif Rails::VERSION::MAJOR >= 5
         put :reset, params: { name: setting.name }, format: :js
       else
         put :reset, name: setting.name, format: :js
