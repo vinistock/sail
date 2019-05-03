@@ -1,0 +1,48 @@
+th:
+  sail:
+    page_title: Sail dashboard
+    save: บันทึก
+    activate: เปิดใช้งาน
+    delete: ลบ
+    updated: บันทึกสำเร็จ!
+    failed: บันทึกล้มเหลว!
+    search_placeholder: Setting name, group, cast type, stale or recent x
+    search_tooltip: "When searching for recently updated settings, x is the number of hours since the update (e.g.: recent 2)"
+    main_app: Main app
+    no_settings: No settings found
+    refresh_tooltip: Reset setting value
+    next_page: Next page
+    previous_page: Previous page
+    stale: stale
+    stale_tooltip: This setting has not been updated in %{days} days. Consider removing it and refactoring the code.
+    order_button_tooltip: Sort settings in descending order by the selected field.
+    relevancy_tooltip: The relevancy score is a relative indicator of how critical for the application each setting is.
+    profiles_tooltip: Edit application profiles
+    profile_created: Created
+    profile_updated: Saved
+    profile_switching: Switching..
+    profile_deleted: Deleted
+    profiles: Profiles
+    new_profile_tooltip: "New profile: save a current snapshot of your settings"
+    clean_profile_tooltip: Active profile. All changes saved.
+    dirty_profile_tooltip: Active profile. Recent setting changes have not been saved.
+    guide: Guide
+    searching: Searching
+    by_setting_name_html: <b>By the setting name:</b> will look for partial matches
+    by_group_html: "<b>By group:</b> will find all settings in the same group (must be exact match)"
+    by_cast_type_html: "<b>By cast type:</b> will find all settings with the same type (must be exact match)"
+    by_stale_html: "<b>By stale:</b> will find settings that are stale (haven't been updated recently)"
+    by_recent_html: "<b>By recent:</b> will find settings updated in the last X hours (.e.g: recent 50)"
+    profiles_can_be_used: Profiles can be used to configure many states of settings. They save the values of all settings in a given moment.
+    profile_configuring: Configure settings as desired and create a new profile. Activate profiles to change the value of all settings at once.
+    relevancy_score: Relevancy Score
+    relevancy_score_explanation: Settings have a number on the top right portion indicating their relevancy score. This metric is calculated based on the relative number of times the setting is used while the application is running. The higher the value the more the setting is used.
+    available_groups_and_types: Available groups and types
+    groups_are: "The groups currently used are:"
+    types_are: "The cast types currently used are:"
+    regular_mode: Regular mode
+    monitor_mode: Monitor mode
+    how_to_find_settings: How to find settings you are looking for
+    how_to_profiles: How to organize your settings in profiles
+    how_to_relevancy_score: What is the relevancy score and how to use it
+    how_to_groups_and_types: List of available groups and types
