@@ -1,3 +1,7 @@
+* Fix accessing devise's current user for logging
+
+*[@vinistock]*
+
 ## 3.2.0 ##
 
 * Use Rails environment instead of manually initializing applications for rake tasks

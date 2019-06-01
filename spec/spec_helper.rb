@@ -27,6 +27,12 @@ class User
   end
 end
 
+class WardenObject
+  def user
+    User.new
+  end
+end
+
 RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
@@ -37,7 +43,14 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.clean
-    allow_any_instance_of(Sail::SettingsController).to receive(:current_user).and_return(User.new)
+  end
+
+  config.before(:each, type: :controller) do
+    controller.request.env["warden"] = WardenObject.new
+  end
+
+  config.before(:each, type: :feature) do
+    allow_any_instance_of(Sail::ApplicationController).to receive(:current_user).and_return(User.new)
   end
 
   Capybara.register_driver :chrome do |app|
