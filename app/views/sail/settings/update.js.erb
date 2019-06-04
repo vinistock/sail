@@ -11,6 +11,6 @@ if ("<%= @successful_update %>" === "true") {
     if ("<%= @setting.boolean? %>" === "true") {
         input.checked = "<%= @setting.value %>" === "true";
     } else {
-        input.value = "<%= @setting.value %>";
+        input.value = "<%= @setting.date? ? formatted_date(@setting) : @setting.value %>";
     }
 }
