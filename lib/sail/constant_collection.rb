@@ -19,5 +19,6 @@ module Sail
     FIELDS_FOR_SORT = %w[name updated_at cast_type group].freeze
     SETTINGS_PER_PAGE = 8
     MINIMAL_SETTINGS_PER_PAGE = 24
+    INPUT_DATE_FORMAT = "%Y-%m-%dT%H:%m:%S"
   end
 end

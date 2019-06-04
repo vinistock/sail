@@ -1,3 +1,7 @@
+* Fix input UI style after resetting date settings
+
+*[@vinistock]*
+
 * Fix accessing devise's current user for logging
 
 *[@vinistock]*
