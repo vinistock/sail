@@ -1,3 +1,7 @@
+* Fix profile updates not saving entries
+
+*[@vinistock]*
+
 * Fix input UI style after resetting date settings
 
 *[@vinistock]*

@@ -35,8 +35,11 @@ describe Sail::Profile, type: :model do
 
     it "updates values if profile already exists" do
       create_or_update_self
+      expect(setting_1.entries.first.value).to eq("1")
       setting_1.update!(value: "5")
-      expect { create_or_update_self }.to change(Sail::Profile, :count).by(0)
+
+      expect { described_class.create_or_update_self(:profile) }.to change(Sail::Profile, :count).by(0)
+      expect(setting_1.entries.reload.first.value).to eq("5")
     end
   end
 

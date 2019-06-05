@@ -22,16 +22,12 @@ module Sail
       new_record = profile.new_record?
 
       Sail::Setting.select(:id, :value).each do |setting|
-        Sail::Entry.where(
-          setting: setting,
-          profile: profile
-        ).first_or_create!(
-          setting: setting,
-          value: setting.value,
-          profile: profile
-        )
+        entry = setting.entries.where(profile: profile).first_or_initialize(profile: profile, setting: setting)
+        entry.value = setting.value
+        entry.save!
       end
 
+      profile.save!
       handle_profile_activation(name)
       [profile, new_record]
     end
