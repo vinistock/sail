@@ -1,3 +1,7 @@
+* Fix setting N+1 query in profiles modal
+
+*[@vinistock]*
+
 * Fix profile updates not saving entries
 
 *[@vinistock]*

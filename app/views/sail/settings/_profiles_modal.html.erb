@@ -17,7 +17,7 @@
   </div>
 
   <div id="profiles-container">
-    <% Sail::Profile.select(:id, :name, :active).each do |profile| %>
+    <% Sail::Profile.select(:id, :name, :active).includes(:settings, :entries).each do |profile| %>
       <%= render(partial: "sail/profiles/profile", locals: { profile: profile }) %>
     <% end %>
   </div>
