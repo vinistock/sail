@@ -529,7 +529,7 @@ describe Sail::Setting, type: :model do
   end
 
   describe ".load_defaults" do
-    subject { described_class.load_defaults(override) }
+    subject { described_class.includes(:entries).load_defaults(override) }
     let(:file_contents) { { "setting" => { "value" => "string_value", "cast_type" => "string" } } }
 
     before do

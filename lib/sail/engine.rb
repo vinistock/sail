@@ -42,7 +42,7 @@ module Sail
 
       # rubocop:disable Naming/RescuedExceptionsVariableName
       begin
-        Sail::Setting.load_defaults unless Rails.env.test?
+        Sail::Setting.includes(:entries).load_defaults unless Rails.env.test?
       rescue *errors
         warn "Skipping setting creation because database doesn't exist"
       end
