@@ -1,3 +1,5 @@
+# Initialize the Rails application.
+
 %w(
   .ruby-version
   .rbenv-vars
