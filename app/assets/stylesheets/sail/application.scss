@@ -57,16 +57,22 @@ html, body {
     &:hover {
       cursor: pointer;
     }
+
+    @media (max-width: 991px) { display: none; }
   }
 
   #btn-guide {
-    right: 110px;
+    right: 70px;
+
+    @media (min-width: 1200px) { right: 110px; }
   }
 
   #btn-monitor-mode,
   #btn-regular-mode {
-    right: 120px;
+    right: 80px;
     padding: 1px 7px 2px 7px;
+
+    @media (min-width: 1200px) { right: 120px; }
   }
 }
 
