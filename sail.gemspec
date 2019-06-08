@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
                 "MIT-LICENSE",
                 "Rakefile",
                 "README.md"].reject { |path| path.include?("sail.png") }
-  s.test_files = Dir["spec/**/*"]
 
   s.post_install_message = <<~MSG
     **************************************************************************

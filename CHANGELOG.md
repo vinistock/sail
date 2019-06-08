@@ -1,3 +1,5 @@
+## 3.2.1 ##
+
 * Fix responsive layout for profiles modal, sort menu, search input and buttons
 
 *[@vinistock]*
