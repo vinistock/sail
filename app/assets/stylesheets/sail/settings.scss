@@ -360,6 +360,11 @@
     &.alert {
       color: $bright_red;
     }
+
+    @media (max-width: 767px) {
+      width: 85%;
+      left: 1.5%;
+    }
   }
 
   #progress-container {

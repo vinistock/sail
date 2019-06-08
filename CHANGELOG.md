@@ -1,3 +1,7 @@
+* Fix responsive layout for profiles modal, sort menu, search input and buttons
+
+*[@vinistock]*
+
 * Fix setting N+1 query in profiles modal
 
 *[@vinistock]*
