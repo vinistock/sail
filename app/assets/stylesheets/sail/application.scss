@@ -127,6 +127,16 @@ html, body {
   @extend .fade-in;
   padding: 15px;
   overflow: scroll;
+
+  @media (max-width: 1200px) {
+    width: 90%;
+    left: 3%;
+  }
+
+  @media (max-width: 767px) {
+    width: 90%;
+    left: 1%;
+  }
 }
 
 #profiles-modal {
@@ -165,9 +175,27 @@ html, body {
       padding: 10px;
     }
 
+    .inline-form {
+      @media (max-width: 767px) {
+        margin-right: 3%;
+      }
+
+      &:first-child {
+        @media (max-width: 767px) {
+          clear: both;
+        }
+      }
+    }
+
     .entry-name {
       position: relative;
       top: 10px;
+
+      @media (max-width: 767px) {
+        width: 90%;
+        margin-bottom: 15px;
+      }
+
       @media (max-width: 1199px) { float: left; }
       @media (min-width: 1200px) { margin-left: 250px; }
     }
@@ -195,10 +223,14 @@ html, body {
     font-family: 'Raleway', sans-serif;
     position: relative;
     top: 10px;
+    text-overflow: ellipsis;
 
     &:focus {
       outline: none;
     }
+
+    @media (max-width: 1200px) { width: 88%; }
+    @media (max-width: 767px) { width: 70%; }
   }
 }
 
