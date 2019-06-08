@@ -300,14 +300,17 @@
     #sort-menu {
       background: white;
       position: absolute;
-      right: 18%;
+      right: 30%;
       top: 165px;
+      z-index: 2;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
       @extend .rounded;
       @extend .fade-in;
       padding: 10px;
 
-      @media (min-width: 1980px) { right: 22%; }
+      @media (min-width: 768px) { right: 41%; }
+      @media (min-width: 1024px) { right: 18%; }
+      @media (min-width: 1200px) { right: 22%; }
 
       button {
         outline: none;
