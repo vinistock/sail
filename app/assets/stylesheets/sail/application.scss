@@ -63,7 +63,8 @@ html, body {
 
   #btn-guide {
     right: 70px;
-
+    padding: 0;
+    margin: 0;
     @media (min-width: 1200px) { right: 110px; }
   }
 
