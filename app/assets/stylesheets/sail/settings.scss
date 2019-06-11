@@ -91,6 +91,7 @@
       text-align: center;
       border: none;
       border-bottom: 2px solid $aluminium;
+      padding: 0;
       @extend .border-transition;
     }
 
@@ -102,6 +103,7 @@
       width: 100%;
       text-align: center;
       font-size: 22px;
+      padding: 0;
       @extend .border-transition;
     }
 
