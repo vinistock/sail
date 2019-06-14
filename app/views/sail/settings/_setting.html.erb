@@ -30,7 +30,9 @@
       </div>
     <% end %>
 
-    <p class="setting-description" title="<%= setting.description %>"><%= setting.description %></p>
+    <p class="setting-description" title="<%= setting.description %>">
+      <label for="<%= "input_for_#{setting.name}" %>"><%= setting.description %></label>
+    </p>
 
     <%= form_tag(setting_path(name: setting.name), method: :put, remote: true) do %>
       <div class="card-body-container">
