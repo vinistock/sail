@@ -1,3 +1,11 @@
+* Fix font styling issues
+
+*[@vinistock]*
+
+* Fix styling issues on inputs and links for Safari desktop and mobile
+
+*[@vinistock]*
+
 ## 3.2.1 ##
 
 * Fix responsive layout for profiles modal, sort menu, search input and buttons
