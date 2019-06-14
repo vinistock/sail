@@ -24,6 +24,8 @@
       </div>
     <% end %>
 
+    <div class="clear-xs"></div>
+
     <% if setting.stale? %>
       <div class="label-container">
         <%= link_to(I18n.t("sail.stale"), settings_path(query: Sail::ConstantCollection::STALE), method: :get, class: "tag stale-label", title: I18n.t("sail.stale_tooltip", days: Sail.configuration.days_until_stale)) %>
