@@ -17,12 +17,19 @@
 @import "colors";
 @import "shared";
 
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif;
+}
+
 html, body {
   height: 100vh;
   margin: 0;
   padding: 0;
   background-color: $cerulean;
-  font-family: 'Raleway', sans-serif;
 }
 
 .clearfix {
@@ -31,6 +38,7 @@ html, body {
 
 #nav-bar {
   background-color: $lead;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15), 0 5px 12px rgba(0, 0, 0, 0.1);
 
   .home-link {
     @extend .color-transition;
@@ -48,7 +56,6 @@ html, body {
     position: relative;
     bottom: 50px;
     font-size: 20px;
-    font-family: "Raleway", sans-serif;
     outline: none;
     background: transparent;
     border: none;
@@ -221,7 +228,6 @@ html, body {
     border: none;
     font-size: 20px;
     width: 90%;
-    font-family: 'Raleway', sans-serif;
     position: relative;
     top: 10px;
     text-overflow: ellipsis;

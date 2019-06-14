@@ -1,6 +1,6 @@
 <% cache setting, expires_in: Sail.configuration.cache_life_span do %>
   <div class="card">
-    <h3>
+    <h3 class="title">
       <%= setting.display_name %>
 
       <span class="relevancy-score" title="<%= I18n.t("sail.relevancy_tooltip") %>"><%= setting.relevancy %></span>
