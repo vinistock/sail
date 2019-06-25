@@ -40,13 +40,11 @@ module Sail
       errors = [ActiveRecord::NoDatabaseError]
       errors << PG::ConnectionBad if defined?(PG)
 
-      # rubocop:disable Naming/RescuedExceptionsVariableName
       begin
         Sail::Setting.load_defaults unless Rails.env.test?
       rescue *errors
         warn "Skipping setting creation because database doesn't exist"
       end
-      # rubocop:enable Naming/RescuedExceptionsVariableName
     end
 
     private
