@@ -18,18 +18,22 @@ feature "quick guide", js: true, type: :feature do
 
       find("summary", text: "Searching").click
       expect(page).to have_content("By the setting name")
+      expect(page).to have_css("summary", count: 1)
       find("summary", text: "Searching").click
 
       find("summary", text: "Profiles").click
       expect(page).to have_content("Profiles can be used")
+      expect(page).to have_css("summary", count: 1)
       find("summary", text: "Profiles").click
 
       find("summary", text: "Relevancy Score").click
       expect(page).to have_content("Settings have a number on")
+      expect(page).to have_css("summary", count: 1)
       find("summary", text: "Relevancy Score").click
 
       find("summary", text: "Available groups and types").click
       expect(page).to have_content("The cast types currently")
+      expect(page).to have_css("summary", count: 1)
     end
 
     find("body").native.send_keys(:escape)

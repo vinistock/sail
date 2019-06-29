@@ -15,6 +15,8 @@ let profilesButton = document.getElementById("btn-profiles");
 let dashboardBody = document.getElementById("settings-dashboard");
 let guideButton = document.getElementById("btn-guide");
 let guide = document.getElementById("guide-modal");
+let guideSections = guide.getElementsByTagName("summary");
+var i;
 
 function submitSearch() {
     document.getElementById("search-form").submit();
@@ -118,4 +120,18 @@ function refreshClick() {
     }
 }
 
-for(var i = 0; i < refreshButtons.length; i++) refreshButtons[i].addEventListener("click", refreshClick);
+for(i = 0; i < refreshButtons.length; i++) refreshButtons[i].addEventListener("click", refreshClick);
+
+// Guide related functions
+
+function sectionClick() {
+    for(i = 0; i < guideSections.length; i++) {
+        if (this.parentElement.open) {
+            guideSections[i].parentElement.style.display = "block";
+        } else if (this !== guideSections[i]) {
+            guideSections[i].parentElement.style.display = "none";
+        }
+    }
+}
+
+for(i = 0; i < guideSections.length; i++) guideSections[i].addEventListener("click", sectionClick);
