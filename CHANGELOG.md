@@ -1,3 +1,7 @@
+* Hide guide sections that are not being viewed
+
+*[@vinistock]*
+
 * Fix font styling issues
 
 *[@vinistock]*
