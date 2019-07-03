@@ -1,3 +1,5 @@
+## 3.2.2 ##
+
 * Properly set the locale for localization
 
 *[@vinistock]*
