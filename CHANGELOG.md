@@ -1,3 +1,7 @@
+* Properly set the locale for localization
+
+*[@vinistock]*
+
 * Hide guide sections that are not being viewed
 
 *[@vinistock]*

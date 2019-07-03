@@ -8,6 +8,7 @@ module Sail
   # Implements all actions for the dashboard
   # and for the JSON API
   class SettingsController < ApplicationController
+    before_action :set_locale, only: :index
     after_action :log_update, only: %i[update reset], if: -> { Sail.configuration.enable_logging && @successful_update }
 
     # rubocop:disable AbcSize

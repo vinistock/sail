@@ -213,6 +213,8 @@ Response
 
 Sail's few strings are all localized for English in [en.yml], making it easy to create translations for the desired languages.
 
+Make sure to pass in the desired locale as a parameter.
+
 ## Contributing
 
 Contributions are very welcome! Don't hesitate to ask if you wish to contribute, but don't yet know how.
