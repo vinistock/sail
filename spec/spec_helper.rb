@@ -57,11 +57,15 @@ RSpec.configure do |config|
   end
 
   Capybara.register_driver :headless_chrome do |app|
-    capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-      chromeOptions: { args: %w[headless disable-gpu no-sandbox disable-setuid-sandbox disable-dev-shm-usage window-size=1920,1180] }
-    )
+    options = ::Selenium::WebDriver::Chrome::Options.new
 
-    Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: capabilities)
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--window-size=1920,1180')
+    options.add_argument('--disable-gpu')
+
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
   end
 
   Capybara.javascript_driver = :headless_chrome
