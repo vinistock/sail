@@ -227,6 +227,10 @@ GEM
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unicode-display_width (1.6.0)
+    webdrivers (4.1.2)
+      nokogiri (~> 1.6)
+      rubyzip (~> 1.0)
+      selenium-webdriver (>= 3.0, < 4.0)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
@@ -255,6 +259,7 @@ DEPENDENCIES
   sail!
   simplecov (~> 0.16.1)
   sqlite3 (< 1.4.0)
+  webdrivers
 
 BUNDLED WITH
    2.0.2

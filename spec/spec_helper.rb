@@ -12,6 +12,7 @@ require "capybara/rspec"
 require "capybara/rails"
 require "sail"
 require "selenium/webdriver"
+require "webdrivers/chromedriver"
 
 SimpleCov.start
 DatabaseCleaner.strategy = :truncation
@@ -59,17 +60,18 @@ RSpec.configure do |config|
   Capybara.register_driver :headless_chrome do |app|
     options = ::Selenium::WebDriver::Chrome::Options.new
 
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--window-size=1920,1180')
-    options.add_argument('--disable-gpu')
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--window-size=1920,1180")
+    options.add_argument("--disable-gpu")
 
     Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
   end
 
   Capybara.javascript_driver = :headless_chrome
   Capybara.server = :webrick
+  Webdrivers.install_dir = "~/bin/chromedriver" if ENV["TRAVIS_RUBY_VERSION"].present?
 end
 
 # rubocop:disable AbcSize

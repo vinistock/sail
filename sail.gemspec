@@ -54,5 +54,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rubocop-rails"
   s.add_development_dependency "simplecov", "~> 0.16.1"
   s.add_development_dependency "sqlite3", "< 1.4.0"
+  s.add_development_dependency "webdrivers"
 end
 # rubocop:enable BlockLength
