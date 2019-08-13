@@ -111,7 +111,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     nio4r (2.4.0)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     parallel (1.17.0)
     parser (2.6.3.0)
@@ -139,7 +139,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.1.0)
+    rails-html-sanitizer (1.2.0)
       loofah (~> 2.2, >= 2.2.2)
     rails_best_practices (1.19.4)
       activesupport
