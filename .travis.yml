@@ -20,6 +20,11 @@ env:
 matrix:
   allow_failures:
     - rvm: ruby-head
+  exclude:
+    - rvm: 2.3.8
+      env: "RAILS_VERSION=6.0.0 BUNDLER_VERSION=2.0.2"
+    - rvm: 2.4.6
+      env: "RAILS_VERSION=6.0.0 BUNDLER_VERSION=2.0.2"
 before_install:
   - rm Gemfile.lock
   - gem install bundler -v ${BUNDLER_VERSION}
