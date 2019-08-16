@@ -33,10 +33,10 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 2.3.0"
 
-  s.add_dependency "fugit"
+  s.add_dependency "sassc-rails"
+  s.add_dependency "fugit" # rubocop:disable Gemspec/OrderedDependencies
   s.add_dependency "jquery-rails"
   s.add_dependency "rails"
-  s.add_dependency "sass-rails"
 
   s.add_development_dependency "brakeman"
   s.add_development_dependency "bundler"
@@ -53,7 +53,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rubocop-performance"
   s.add_development_dependency "rubocop-rails"
   s.add_development_dependency "simplecov", "~> 0.16.1"
-  s.add_development_dependency "sqlite3", "< 1.4.0"
+  s.add_development_dependency "sqlite3"
   s.add_development_dependency "webdrivers"
 end
 # rubocop:enable BlockLength
