@@ -71,6 +71,7 @@ RSpec.configure do |config|
 
   Capybara.javascript_driver = :headless_chrome
   Capybara.server = :webrick
+  Capybara.default_max_wait_time = 5
   Webdrivers.install_dir = "~/bin/chromedriver" if ENV["TRAVIS_RUBY_VERSION"].present?
 end
 
