@@ -171,7 +171,10 @@ describe Sail::SettingsController, type: :controller do
 
     it "responds in json format" do
       subject
-      expect(response.content_type).to eq("application/json")
+
+      type = Rails::VERSION::MAJOR < 6 ? response.content_type : response.media_type
+
+      expect(type).to eq("application/json")
     end
   end
 
