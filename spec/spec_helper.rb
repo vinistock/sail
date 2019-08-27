@@ -13,6 +13,7 @@ require "capybara/rails"
 require "sail"
 require "selenium/webdriver"
 require "webdrivers/chromedriver"
+require "rspec/retry"
 
 SimpleCov.start
 DatabaseCleaner.strategy = :truncation
@@ -53,6 +54,10 @@ RSpec.configure do |config|
     allow_any_instance_of(Sail::ApplicationController).to receive(:current_user).and_return(User.new)
   end
 
+  config.around :each, :js do |ex|
+    ex.run_with_retry retry: 3
+  end
+
   Capybara.register_driver :chrome do |app|
     Capybara::Selenium::Driver.new(app, browser: :chrome)
   end
@@ -71,6 +76,7 @@ RSpec.configure do |config|
 
   Capybara.javascript_driver = :headless_chrome
   Capybara.server = :webrick
+  Capybara.default_max_wait_time = 5
   Webdrivers.install_dir = "~/bin/chromedriver" if ENV["TRAVIS_RUBY_VERSION"].present?
 end
 

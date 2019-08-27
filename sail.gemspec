@@ -49,6 +49,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rack-mini-profiler"
   s.add_development_dependency "rails_best_practices"
   s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "rspec-retry"
   s.add_development_dependency "rubocop"
   s.add_development_dependency "rubocop-performance"
   s.add_development_dependency "rubocop-rails"
