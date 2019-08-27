@@ -13,6 +13,7 @@ require "capybara/rails"
 require "sail"
 require "selenium/webdriver"
 require "webdrivers/chromedriver"
+require "rspec/retry"
 
 SimpleCov.start
 DatabaseCleaner.strategy = :truncation
@@ -51,6 +52,10 @@ RSpec.configure do |config|
 
   config.before(:each, type: :feature) do
     allow_any_instance_of(Sail::ApplicationController).to receive(:current_user).and_return(User.new)
+  end
+
+  config.around :each, :js do |ex|
+    ex.run_with_retry retry: 3
   end
 
   Capybara.register_driver :chrome do |app|
