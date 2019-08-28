@@ -5,9 +5,9 @@ cache:
     - vendor/bundle
 rvm:
   - 2.3.8
-  - 2.4.6
-  - 2.5.5
-  - 2.6.3
+  - 2.4.7
+  - 2.5.6
+  - 2.6.4
   - ruby-head
 addons:
   apt:
@@ -23,7 +23,7 @@ matrix:
   exclude:
     - rvm: 2.3.8
       env: "RAILS_VERSION=6.0.0 BUNDLER_VERSION=2.0.2"
-    - rvm: 2.4.6
+    - rvm: 2.4.7
       env: "RAILS_VERSION=6.0.0 BUNDLER_VERSION=2.0.2"
 before_install:
   - rm Gemfile.lock
