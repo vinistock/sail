@@ -59,15 +59,20 @@ module Sail
 
     def self.get(name)
       Sail.instrumenter.increment_usage_of(name)
+      cached_setting = Rails.cache.read("setting_get_#{name}")
+
+      return cached_setting unless cached_setting.nil?
+
       setting = Setting.for_value_by_name(name).first
+
       return if setting.nil?
 
       if setting.should_not_cache?
         setting.safe_cast
       else
-        Rails.cache.fetch("setting_get_#{name}", expires_in: Sail.configuration.cache_life_span) do
-          setting.safe_cast
-        end
+        setting_value = setting.safe_cast
+        Rails.cache.write("setting_get_#{name}", setting_value, expires_in: Sail.configuration.cache_life_span)
+        setting_value
       end
     end
 

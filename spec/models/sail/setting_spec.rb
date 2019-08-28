@@ -357,7 +357,7 @@ describe Sail::Setting, type: :model do
 
     it "caches response" do
       described_class.create!(name: :setting, value: 1, cast_type: :integer)
-      expect(Rails.cache).to receive(:fetch).with("setting_get_setting", expires_in: Sail.configuration.cache_life_span)
+      expect(Rails.cache).to receive(:write).with("setting_get_setting", 1, expires_in: Sail.configuration.cache_life_span)
       subject
     end
 
