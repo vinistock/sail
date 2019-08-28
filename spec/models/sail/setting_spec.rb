@@ -361,6 +361,19 @@ describe Sail::Setting, type: :model do
       subject
     end
 
+    it "does not query the database twice" do
+      described_class.create!(name: :setting, value: 1, cast_type: :integer)
+
+      expect(described_class).to receive(:for_value_by_name).once.with(:setting).and_call_original
+      expect(Rails.cache).to receive(:write)
+        .once
+        .with("setting_get_setting", 1, expires_in: Sail.configuration.cache_life_span)
+        .and_call_original
+
+      described_class.get(:setting)
+      described_class.get(:setting)
+    end
+
     it "returns nil if setting does not exist" do
       expect(Rails.cache).not_to receive(:fetch).with("setting_get_invalid", expires_in: Sail.configuration.cache_life_span)
       expect(subject).to be_nil
