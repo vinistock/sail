@@ -70,9 +70,9 @@ module Sail
       if setting.should_not_cache?
         setting.safe_cast
       else
-        Rails.cache.fetch("setting_get_#{name}", expires_in: Sail.configuration.cache_life_span) do
-          setting.safe_cast
-        end
+        setting_value = setting.safe_cast
+        Rails.cache.write("setting_get_#{name}", setting_value, expires_in: Sail.configuration.cache_life_span)
+        setting_value
       end
     end
 
