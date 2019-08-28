@@ -59,7 +59,12 @@ module Sail
 
     def self.get(name)
       Sail.instrumenter.increment_usage_of(name)
+      cached_setting = Rails.cache.read("setting_get_#{name}")
+
+      return cached_setting unless cached_setting.nil?
+
       setting = Setting.for_value_by_name(name).first
+
       return if setting.nil?
 
       if setting.should_not_cache?
