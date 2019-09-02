@@ -111,4 +111,28 @@ feature "managing profiles", js: true, type: :feature do
       expect(Sail::Profile.count).to eq(1)
     end
   end
+
+  it "displays number of uncaught errors" do
+    within("#profiles-modal") do
+      expect(Sail::Profile.count).to be_zero
+      fill_in("new-profile-input", with: "Profile 1")
+      click_button("SAVE")
+      expect(page).to have_content("Created")
+      expect(page).to have_content("Profile 1")
+      expect(page).to have_button("ACTIVATE")
+      expect(page).to have_button("DELETE")
+      expect(Sail::Profile.count).to eq(1)
+
+      Sail.instrumenter.increment_profile_failure_of("Profile 1")
+    end
+
+    find("body").native.send_keys(:escape)
+    click_link("Sail dashboard")
+
+    find("#btn-profiles").click
+
+    within("#profiles-modal") do
+      expect(page).to have_content("1 error")
+    end
+  end
 end

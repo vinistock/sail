@@ -4,6 +4,12 @@
           title="<%= profile.dirty? ? I18n.t("sail.dirty_profile_tooltip") : I18n.t("sail.clean_profile_tooltip") %>">
       ⬤
     </span>
+
+    <% unless Sail.instrumenter.profile(profile.name).zero? %>
+      <span class="errors-indicator" title="<%= I18n.t("sail.profile_error_tooltip") %>">
+        <%= I18n.t("sail.profile_errors", count: Sail.instrumenter.profile(profile.name)) %>
+      </span>
+    <% end %>
   <% end %>
 
   <span class="entry-name"><%= profile.name.titleize %></span>

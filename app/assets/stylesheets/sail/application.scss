@@ -228,6 +228,15 @@ html, body {
         color: $light_green;
       }
     }
+
+    .errors-indicator {
+      float: left;
+      position: relative;
+      top: 9px;
+      left: 15px;
+      font-style: italic;
+      color: darken($aluminium, 30%);
+    }
   }
 
   #new-profile-input {
