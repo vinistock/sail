@@ -16,6 +16,21 @@ describe Sail::Profile, type: :model do
     end
   end
 
+  describe "validations" do
+    describe "only_one_active_profile" do
+      it "prevents two or more active profiles" do
+        described_class.create_or_update_self(:profile)
+        profile = described_class.new(name: "new_profile", active: true)
+        expect(profile).to be_invalid
+      end
+
+      it "allows regular profile activation" do
+        profile = described_class.new(name: "new_profile", active: true)
+        expect(profile).to be_valid
+      end
+    end
+  end
+
   describe ".create_or_update_self" do
     subject(:create_or_update_self) { described_class.create_or_update_self(:profile) }
 

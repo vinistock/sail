@@ -11,6 +11,7 @@ module Sail
     has_many :entries, dependent: :destroy
     has_many :settings, through: :entries
     validates :name, presence: true, uniqueness: { case_sensitive: false }
+    validate :only_one_active_profile
 
     # create_or_update_self
     #
@@ -64,6 +65,14 @@ module Sail
     # not match the entries definitions.
     def dirty?
       @dirty ||= entries.any?(&:dirty?)
+    end
+
+    private
+
+    def only_one_active_profile
+      if active? && Profile.where(active: true).where.not(id: id).count.positive?
+        errors.add(:single_active_profile, "Cannot have two active profiles at once")
+      end
     end
   end
 end
