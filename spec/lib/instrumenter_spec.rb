@@ -5,7 +5,7 @@ describe Sail::Instrumenter, type: :lib do
     subject { described_class.new }
 
     it "sets default instrumenter values" do
-      expect(subject.instance_variable_get(:@statistics)).to eq({})
+      expect(subject.instance_variable_get(:@statistics)).to eq("settings" => {})
     end
   end
 
@@ -14,10 +14,10 @@ describe Sail::Instrumenter, type: :lib do
     let(:instrumenter) { described_class.new }
 
     it "increments usage count" do
-      expect(instrumenter.instance_variable_get(:@statistics)).to eq({})
+      expect(instrumenter.instance_variable_get(:@statistics)).to eq("settings" => {})
 
       subject
-      expect(instrumenter.instance_variable_get(:@statistics)).to eq("setting" => { "usages" => 1, "failures" => 0 })
+      expect(instrumenter.instance_variable_get(:@statistics)).to eq("settings" => { "setting" => { "usages" => 1, "failures" => 0 } })
     end
 
     it "deletes cache fragment after reaching increment limit" do
@@ -43,7 +43,7 @@ describe Sail::Instrumenter, type: :lib do
 
     context "when statistics are still empty" do
       before do
-        instrumenter.instance_variable_set(:@statistics, {})
+        instrumenter.instance_variable_set(:@statistics, { settings: {} }.with_indifferent_access)
       end
 
       it { is_expected.to be_zero }
@@ -55,10 +55,10 @@ describe Sail::Instrumenter, type: :lib do
     let(:instrumenter) { described_class.new }
 
     it "increments failure count" do
-      expect(instrumenter.instance_variable_get(:@statistics)).to eq({})
+      expect(instrumenter.instance_variable_get(:@statistics)).to eq("settings" => {})
 
       subject
-      expect(instrumenter.instance_variable_get(:@statistics)).to eq("setting" => { "usages" => 0, "failures" => 1 })
+      expect(instrumenter.instance_variable_get(:@statistics)).to eq("settings" => { "setting" => { "usages" => 0, "failures" => 1 } })
     end
 
     it "resets setting after 50 failures" do

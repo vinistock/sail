@@ -14,7 +14,7 @@ module Sail
     # Declare basic hash containing setting
     # statistics
     def initialize
-      @statistics = {}.with_indifferent_access
+      @statistics = { settings: {} }.with_indifferent_access
     end
 
     # []
@@ -22,8 +22,8 @@ module Sail
     # Accessor method for the statistics to guarantee
     # proper initialization of hashes.
     def [](name)
-      @statistics[name] = { usages: 0, failures: 0 }.with_indifferent_access if @statistics[name].blank?
-      @statistics[name]
+      @statistics[:settings][name] = { usages: 0, failures: 0 }.with_indifferent_access if @statistics[:settings][name].blank?
+      @statistics[:settings][name]
     end
 
     # increment_usage
@@ -41,9 +41,9 @@ module Sail
     # a setting compared to all others
     # in percentage
     def relative_usage_of(setting_name)
-      return 0.0 if @statistics.empty?
+      return 0.0 if @statistics[:settings].empty?
 
-      (100.0 * self[setting_name][:usages]) / @statistics.map { |_, entry| entry[:usages] }.reduce(:+)
+      (100.0 * self[setting_name][:usages]) / @statistics[:settings].map { |_, entry| entry[:usages] }.reduce(:+)
     end
 
     # increment_failure_of
