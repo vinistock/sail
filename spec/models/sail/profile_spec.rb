@@ -100,4 +100,11 @@ describe Sail::Profile, type: :model do
       it { is_expected.to be_truthy }
     end
   end
+
+  describe ".current" do
+    let!(:profile) { Sail::Profile.create_or_update_self(:profile).first }
+    let!(:profile_2) { Sail::Profile.create_or_update_self(:profile_2).first }
+
+    it { expect(described_class.current).to eq(profile_2) }
+  end
 end

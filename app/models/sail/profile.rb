@@ -56,6 +56,13 @@ module Sail
     end
     # rubocop:enable Rails/SkipsModelValidations
 
+    # current
+    #
+    # Returns the currently activated profile
+    def self.current
+      find_by(active: true)
+    end
+
     private_class_method :handle_profile_activation
 
     # dirty?
