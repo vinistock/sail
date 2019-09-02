@@ -46,3 +46,7 @@ en:
     how_to_profiles: How to organize your settings in profiles
     how_to_relevancy_score: What is the relevancy score and how to use it
     how_to_groups_and_types: List of available groups and types
+    profile_errors:
+      one: 1 error
+      other: "%{count} errors"
+    profile_error_tooltip: This is the number of unexpected errors raised for all settings while this profile was active

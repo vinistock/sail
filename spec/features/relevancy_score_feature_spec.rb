@@ -16,7 +16,7 @@ feature "relevancy score", js: true, type: :feature do
   end
 
   before do
-    Sail.instrumenter.instance_variable_set(:@statistics, {}.with_indifferent_access)
+    Sail.instrumenter.instance_variable_set(:@statistics, { settings: {}, profiles: {} }.with_indifferent_access)
     visit "/sail"
   end
 
