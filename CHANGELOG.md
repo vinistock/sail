@@ -1,3 +1,7 @@
+* Start displaying the count of uncaught errors while a profile is active
+
+*[@vinistock]*
+
 * Fix Sail::Setting.get caching
 
 *[@oleg-kiviljov]*
