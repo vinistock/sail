@@ -14,16 +14,32 @@ module Sail
     # Declare basic hash containing setting
     # statistics
     def initialize
-      @statistics = { settings: {} }.with_indifferent_access
+      @statistics = { settings: {}, profiles: {} }.with_indifferent_access
     end
 
     # []
     #
-    # Accessor method for the statistics to guarantee
+    # Accessor method for setting statistics to guarantee
     # proper initialization of hashes.
     def [](name)
       @statistics[:settings][name] = { usages: 0, failures: 0 }.with_indifferent_access if @statistics[:settings][name].blank?
       @statistics[:settings][name]
+    end
+
+    # increment_profile_failure_of
+    #
+    # Increments the number of failures
+    # for settings while a profile is active
+    def increment_profile_failure_of(name)
+      @statistics[:profiles][name] ||= 0
+      @statistics[:profiles][name] += 1
+    end
+
+    # profile
+    #
+    # Profile statistics accessor
+    def profile(name)
+      @statistics[:profiles][name] ||= 0
     end
 
     # increment_usage
@@ -53,6 +69,10 @@ module Sail
     # exceeds the amount configured, resets the setting value
     def increment_failure_of(setting_name)
       self[setting_name][:failures] += 1
+
+      current_profile = Profile.current
+      increment_profile_failure_of(current_profile.name) if current_profile
+
       Sail.reset(setting_name) if self[setting_name][:failures] > Sail.configuration.failures_until_reset
     end
 
