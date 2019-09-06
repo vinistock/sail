@@ -1,3 +1,5 @@
+## 3.2.3 ##
+
 * Start displaying the count of uncaught errors while a profile is active
 
 *[@vinistock]*
