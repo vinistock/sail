@@ -25,7 +25,7 @@ Metrics/ClassLength:
 Style/GuardClause:
   Enabled: false
 Style/StringLiterals:
-  Enabled: false
+  EnforcedStyle: double_quotes
 Style/RedundantBegin:
   Enabled: false
 Style/StringLiteralsInInterpolation:
