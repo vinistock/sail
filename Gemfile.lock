@@ -219,7 +219,7 @@ GEM
       childprocess (>= 0.5, < 3.0)
       rubyzip (~> 1.2, >= 1.2.2)
     sexp_processor (4.12.1)
-    simplecov (0.17.0)
+    simplecov (0.17.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
