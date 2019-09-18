@@ -20,5 +20,6 @@ module Sail
     autoload :String, "sail/types/string"
     autoload :Throttle, "sail/types/throttle"
     autoload :Uri, "sail/types/uri"
+    autoload :Set, "sail/types/set"
   end
 end
