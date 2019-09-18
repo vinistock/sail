@@ -394,6 +394,7 @@ describe Sail::Setting, type: :model do
       { type: "uri", value: "https://google.com", expected_value: URI("https://google.com") },
       { type: "range", value: "1", expected_value: 1 },
       { type: "array", value: "1;2;3;4", expected_value: %w[1 2 3 4] },
+      { type: "set", value: "1;2;3;4", expected_value: Set["1", "2", "3", "4"] },
       { type: "throttle", value: 100.0, expected_value: true },
       { type: "throttle", value: 0.0, expected_value: false },
       { type: "string", value: "1", expected_value: "1" }
@@ -427,6 +428,7 @@ describe Sail::Setting, type: :model do
       { type: "float", old: "1.532", new: 1.324, expected: "1.324" },
       { type: "integer", old: "15", new: 8, expected: "8" },
       { type: "array", old: "John;Ted", new: %w[John Ted Mark], expected: "John;Ted;Mark" },
+      { type: "set", old: "John;Ted", new: %w[John Ted Mark], expected: "John;Ted;Mark" },
       { type: "string", old: "old_value", new: "new_value", expected: "new_value" },
       { type: "ab_test", old: "true", new: "false", expected: "false" },
       { type: "ab_test", old: "true", new: false, expected: "false" },

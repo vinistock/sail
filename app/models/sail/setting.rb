@@ -21,7 +21,7 @@ module Sail
     validates :name, presence: true, uniqueness: { case_sensitive: false }
     enum cast_type: %i[integer string boolean range array float
                        ab_test cron obj_model date uri throttle
-                       locales].freeze
+                       locales set].freeze
 
     validate :value_is_within_range, if: -> { range? }
     validate :value_is_true_or_false, if: -> { boolean? || ab_test? }
