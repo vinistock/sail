@@ -1,8 +1,5 @@
 <div id="settings-dashboard">
   <% cache [@settings, params[:monitor_mode]] do %>
-    <span id="notice-success" class="notice success"><%= I18n.t("sail.updated") %></span>
-    <span id="notice-alert" class="notice alert"><%= I18n.t("sail.failed") %></span>
-
     <% unless params[:monitor_mode] == Sail::ConstantCollection::TRUE %>
       <%= render(partial: "search") %>
     <% end %>

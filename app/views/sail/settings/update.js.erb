@@ -1,8 +1,12 @@
-var notice = document.getElementById("<%= @successful_update ? "notice-success" : "notice-alert" %>");
+var notice = document.getElementById("<%= @successful_update ? "success-#{@setting.name}" : "alert-#{@setting.name}" %>");
+var description = document.getElementById("description-<%= @setting.name %>");
+
 notice.style.display = "block";
+description.style.display = "none";
 
 setTimeout(function () {
     notice.style.display = "none";
+    description.style.display = "block";
 }, 1500);
 
 if ("<%= @successful_update %>" === "true") {

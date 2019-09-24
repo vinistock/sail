@@ -32,7 +32,15 @@
       </div>
     <% end %>
 
-    <p class="setting-description" title="<%= setting.description %>">
+    <p id="success-<%= setting.name %>" class="notice success">
+      <label><%= I18n.t("sail.updated") %></label>
+    </p>
+
+    <p id="alert-<%= setting.name %>" class="notice alert">
+      <label><%= I18n.t("sail.failed") %></label>
+    </p>
+
+    <p id="description-<%= setting.name %>" class="setting-description" title="<%= setting.description %>">
       <label for="<%= "input_for_#{setting.name}" %>"><%= setting.description %></label>
     </p>
 
