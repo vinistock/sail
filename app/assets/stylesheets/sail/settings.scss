@@ -67,6 +67,11 @@
 
       &.stale-label {
         background-color: $bright_red;
+
+        @media (max-width: 413px) {
+          position: relative;
+          top: 8px;
+        }
       }
     }
 

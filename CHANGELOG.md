@@ -1,3 +1,7 @@
+* Fix stale label position for xs screens
+
+*[@vinistock]*
+
 * Start displaying the update and failure alerts inside the setting cards
 
 *[@vinistock]*
