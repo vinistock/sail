@@ -24,10 +24,10 @@ feature "editing settings", js: true, type: :feature do
         within(".card") do
           send("fill_for_#{set[:type]}", set[:new])
           click_button("SAVE")
-        end
 
-        within(".notice") do
-          expect(page).to have_content("Updated!")
+          within(".notice") do
+            expect(page).to have_content("Updated!")
+          end
         end
 
         if set[:type] == "date"

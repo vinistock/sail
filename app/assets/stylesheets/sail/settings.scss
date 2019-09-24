@@ -81,6 +81,7 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      @extend .fade-in;
       color: darken($aluminium, 45%);
     }
 
@@ -347,17 +348,14 @@
   }
 
   .notice {
-    background-color: white;
-    font-size: 24px;
-    position: fixed;
-    left: 50px;
-    top: 85px;
-    padding: 25px;
-    width: 150px;
-    text-align: center;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     display: none;
-    @extend .rounded;
+    clear: both;
+    padding: 25px 15px 15px 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: bolder;
+    text-align: center;
     @extend .fade-in;
 
     &.success {
@@ -366,11 +364,6 @@
 
     &.alert {
       color: $bright_red;
-    }
-
-    @media (max-width: 767px) {
-      width: 85%;
-      left: 1.5%;
     }
   }
 

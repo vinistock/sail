@@ -1,3 +1,11 @@
+* Start displaying the update and failure alerts inside the setting cards
+
+*[@vinistock]*
+
+* Add Set setting type
+
+*[@vinistock]*
+
 ## 3.2.3 ##
 
 * Start displaying the count of uncaught errors while a profile is active
