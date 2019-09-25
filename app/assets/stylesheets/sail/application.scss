@@ -102,7 +102,7 @@ html, body {
     background-color: white;
     padding: 20px;
     @extend .rounded;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     font-weight: bold;
 
     &.active {
@@ -125,6 +125,7 @@ html, body {
   
     #angle-right-link {
       background: white image-url("sail/angle-right.svg") center no-repeat;
+      margin-left: 6px;
       padding: 20px 24px 20px 24px;
     }
   }
