@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 require "sail/engine"
-require "sail/constant_collection"
-require "sail/configuration"
-require "sail/instrumenter"
 require "true_class"
 require "false_class"
 
 module Sail # :nodoc:
+  autoload :ConstantCollection, "sail/constant_collection"
+  autoload :Configuration, "sail/configuration"
   autoload :Instrumenter, "sail/instrumenter"
   autoload :Types, "sail/types"
 
