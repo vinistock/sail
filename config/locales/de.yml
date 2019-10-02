@@ -1,0 +1,52 @@
+en:
+  sail:
+    page_title: Sail Dashboard
+    save: SPEICHERN
+    activate: AKTIVIEREN
+    delete: LÖSCHEN
+    updated: Aktualisiert!
+    failed: Fehlgeschlagen!
+    search_placeholder: Name einer Einstellung, Gruppe, Typ, alt oder recent x
+    search_tooltip: "Wenn nach einer kürzlich geänderten Einstellung gesucht wird, ist x die Anzahl der vergangenen Stunden seit der Änderung (z.B.: recent 2)"
+    main_app: Hauptanwendung
+    no_settings: Keine Einstellungen gefunden
+    refresh_tooltip: Einstellung zurücksetzen
+    next_page: Nächste Seite
+    previous_page: Vorherige Seite
+    stale: alt
+    stale_tooltip: Diese Einstellung wurde seit %{days} Tagen nicht geändert. Erwägen sie, sie zu entfernen und den Code zu überarbeiten.
+    order_button_tooltip: Einstellungen nach dem ausgewählten Feld absteigend sortieren.
+    relevancy_tooltip: Die Relevanzwertung ist ein relativer Indikator wie bedeutend eine Einstellung für die Anwendung ist.
+    profiles_tooltip: Anwendungsprofile bearbeiten
+    profile_created: Erstellt
+    profile_updated: Gespeichert
+    profile_switching: Wechseln...
+    profile_deleted: Gelöscht
+    profiles: Profile
+    new_profile_tooltip: "Neues Profil: Einen aktuellen Snapshot ihrer Einstellungen speichern"
+    clean_profile_tooltip: Aktives Profil. Alle Einstellungen gespeichert
+    dirty_profile_tooltip: Aktives Profil. Kürzliche Änderungen von Einstellungen wurden nicht gespeichert.
+    guide: Anleitung
+    searching: Suchen
+    by_setting_name_html: <b>Anhand des Namens der Einstellung:</b> Sucht nach teilweisen Übereinstimmungen
+    by_group_html: "<b>Anhand der Gruppe:</b> Findet alle Einstellungen in der selben Gruppe (muss eine exakte Übereinstimmung sein)"
+    by_cast_type_html: "<b>Anhand des Types:</b> Findet alle Einstellungen des selben Types (muss eine exakte Übereinstimmung sein)
+    by_stale_html: "<b>Alte:</b> Findet lange nicht geänderte Einstellungen"
+    by_recent_html: "<b>Kürzlich aktualisierte:</b> Findet in den letzten x Stunden geänderte Einstellungen (z.B.: recent 50)"
+    profiles_can_be_used: Profile können genutzt werden, um die Zustände von Einstellungen zu konfigurieren. Sie sichern alle Einstellungen zu einem gewissen Zeitpunkt.
+    profile_configuring: Treffen sie ihre gewünschten Einstellungen und erstellen sie ein Profil. Aktivieren sie Profile, um mehrere Einstellungen auf einmal zu ändern.
+    relevancy_score: Relevanzwertung
+    relevancy_score_explanation: Im oberen rechten Bereich einer Einstellung befindet sich ihre Relevanzwertung. Diese wird auf Basis der Anzahl der Benutzungen dieser Einstellung durch eine laufende Anwendung berechnen. Je höher, desto öfter wird die Einstellung benutzt.
+    available_groups_and_types: Verfügbare Gruppen und Typen
+    groups_are: "Die momentan benutzten Gruppen sind:"
+    types_are: "Die momentan benutzten Typen sind:"
+    regular_mode: Regulärer Modus
+    monitor_mode: Monitor Modus
+    how_to_find_settings: Die von ihnen gesuchten Einstellungen finden
+    how_to_profiles: Einstellungen in Profilen organisieren
+    how_to_relevancy_score: Die Relevanzwertung und ihre Benutzung
+    how_to_groups_and_types: Liste aller verfügbaren Gruppen und Typen
+    profile_errors:
+      one: Ein Fehler
+      other: "%{count} Fehler"
+    profile_error_tooltip: Die Anzahl von unerwarteten Fehlern die aufgetreten sind während dieses Profil aktiv war
