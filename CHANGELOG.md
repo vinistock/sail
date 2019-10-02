@@ -1,3 +1,5 @@
+## 3.2.4 ##
+
 * Fix migration generation for Rails 6
 
 *[@vinistock]*
