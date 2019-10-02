@@ -80,7 +80,7 @@ RSpec.configure do |config|
   Webdrivers.install_dir = "~/bin/chromedriver" if ENV["TRAVIS_RUBY_VERSION"].present?
 end
 
-# rubocop:disable AbcSize
+# rubocop:disable Metrics/AbcSize
 def expect_setting(setting)
   expect(page).to have_text(setting.name.titleize)
   expect(page).to have_text(setting.description.capitalize)
@@ -94,7 +94,7 @@ def expect_setting(setting)
     expect(page).to have_field("value")
   end
 end
-# rubocop:enable AbcSize
+# rubocop:enable Metrics/AbcSize
 
 # Patch to avoid failures for
 # Ruby 2.6.x combined with Rails 4.x.x
