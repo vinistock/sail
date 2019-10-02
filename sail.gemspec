@@ -3,7 +3,7 @@
 $LOAD_PATH.push File.expand_path("lib", __dir__)
 require "sail/version"
 
-# rubocop:disable BlockLength
+# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |s|
   s.name        = "sail"
   s.version     = Sail::VERSION
@@ -57,4 +57,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "webdrivers"
 end
-# rubocop:enable BlockLength
+# rubocop:enable Metrics/BlockLength

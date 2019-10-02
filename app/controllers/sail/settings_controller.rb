@@ -11,14 +11,14 @@ module Sail
     before_action :set_locale, only: :index
     after_action :log_update, only: %i[update reset], if: -> { Sail.configuration.enable_logging && @successful_update }
 
-    # rubocop:disable AbcSize
+    # rubocop:disable Metrics/AbcSize
     def index
       @settings = Setting.by_query(s_params[:query]).ordered_by(s_params[:order_field])
       @number_of_pages = (@settings.count.to_f / settings_per_page).ceil
       @settings = @settings.paginated(s_params[:page], settings_per_page)
       fresh_when(@settings)
     end
-    # rubocop:enable AbcSize
+    # rubocop:enable Metrics/AbcSize
 
     def update
       respond_to do |format|
