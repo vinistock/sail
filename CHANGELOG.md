@@ -1,3 +1,7 @@
+* Fix migration generation for Rails 6
+
+*[@vinistock*
+
 * Fix stale label position for xs screens
 
 *[@vinistock]*
