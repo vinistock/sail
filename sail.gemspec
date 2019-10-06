@@ -40,7 +40,6 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "brakeman"
   s.add_development_dependency "bundler"
-  s.add_development_dependency "byebug"
   s.add_development_dependency "capybara"
   s.add_development_dependency "capybara-selenium"
   s.add_development_dependency "codeclimate-test-reporter", "~> 1.0"
