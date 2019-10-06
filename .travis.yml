@@ -4,11 +4,11 @@ cache:
   directories:
     - vendor/bundle
 rvm:
-  - 2.3.8
-  - 2.4.8
+  - 2.4.9
   - 2.5.7
   - 2.6.5
   - ruby-head
+  - jruby-9.2.8.0
 addons:
   apt:
     packages:
@@ -21,9 +21,7 @@ matrix:
   allow_failures:
     - rvm: ruby-head
   exclude:
-    - rvm: 2.3.8
-      env: "RAILS_VERSION=6.0.0 BUNDLER_VERSION=2.0.2"
-    - rvm: 2.4.8
+    - rvm: 2.4.9
       env: "RAILS_VERSION=6.0.0 BUNDLER_VERSION=2.0.2"
     - rvm: ruby-head
       env: "RAILS_VERSION=4.2.11.1 BUNDLER_VERSION=1.17.3"
