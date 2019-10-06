@@ -253,6 +253,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-jdbcmysql-adapter
   brakeman
   bundler
   byebug

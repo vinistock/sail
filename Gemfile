@@ -3,6 +3,7 @@
 source "https://rubygems.org"
 gemspec
 
+gem "activerecord-jdbcmysql-adapter", platform: :jruby
 gem "byebug", platforms: %i[mri mingw x64_mingw]
 gem "capybara", "< 3.19.0" unless ENV["TRAVIS_RUBY_VERSION"].nil? || ENV["TRAVIS_RUBY_VERSION"] >= "2.4.0"
 gem "sassc-rails"
