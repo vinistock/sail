@@ -3,7 +3,9 @@
 source "https://rubygems.org"
 gemspec
 
-gem "activerecord-jdbcsqlite3-adapter", platform: :jruby
+gem "activerecord-jdbcsqlite3-adapter",
+    (ENV["RAILS_VERSION"].nil? || ENV["RAILS_VERSION"].to_s >= "5.0.0" ? ">= 50.0" : "~> 1.3"),
+    platform: :jruby
 gem "byebug", platforms: %i[mri mingw x64_mingw]
 gem "capybara", "< 3.19.0" unless ENV["TRAVIS_RUBY_VERSION"].nil? || ENV["TRAVIS_RUBY_VERSION"] >= "2.4.0"
 gem "sassc-rails"
