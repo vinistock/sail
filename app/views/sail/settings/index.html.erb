@@ -22,13 +22,13 @@
       <div class="clearfix"></div>
 
       <div class="page-links">
-        <%= link_to("", settings_path(page: [params[:page].to_i - 1, 0].max, monitor_mode: params[:monitor_mode]), method: :get, id: "angle-left-link", title: I18n.t("sail.previous_page")) %>
+        <%= link_to("", settings_path(page: [params[:page].to_i - 1, 0].max, monitor_mode: params[:monitor_mode], query: params[:query]), method: :get, id: "angle-left-link", title: I18n.t("sail.previous_page")) %>
 
         <% (0...@number_of_pages).each do |page| %>
-          <%= link_to(page + 1, settings_path(page: page, monitor_mode: params[:monitor_mode]), method: :get, class: params[:page].to_i == page || params[:page].blank? && page.zero? ? "active" : "") %>
+          <%= link_to(page + 1, settings_path(page: page, monitor_mode: params[:monitor_mode], query: params[:query]), method: :get, class: params[:page].to_i == page || params[:page].blank? && page.zero? ? "active" : "") %>
         <% end %>
 
-        <%= link_to("", settings_path(page: [params[:page].to_i + 1, @number_of_pages - 1].min, monitor_mode: params[:monitor_mode]), method: :get, id: "angle-right-link", title: I18n.t("sail.next_page")) %>
+        <%= link_to("", settings_path(page: [params[:page].to_i + 1, @number_of_pages - 1].min, monitor_mode: params[:monitor_mode], query: params[:query]), method: :get, id: "angle-right-link", title: I18n.t("sail.next_page")) %>
       </div>
     </div>
   <% end %>
