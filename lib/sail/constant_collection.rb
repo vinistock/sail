@@ -20,5 +20,6 @@ module Sail
     SETTINGS_PER_PAGE = 8
     MINIMAL_SETTINGS_PER_PAGE = 24
     INPUT_DATE_FORMAT = "%Y-%m-%dT%H:%m:%S"
+    MAX_PAGES = 5
   end
 end
