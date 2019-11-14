@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         rails_version: [5.2.3, 6.0.1]
-        ruby_version: [2.5.x, 2.6.x, master]
+        ruby_version: [2.5.x, 2.6.x]
 
     steps:
     - uses: actions/checkout@v1
