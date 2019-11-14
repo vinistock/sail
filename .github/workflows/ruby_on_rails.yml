@@ -1,0 +1,34 @@
+name: Ruby on Rails
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rails_version: [5.2.3, 6.0.1]
+        ruby_version: [2.5.x, 2.6.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Cache
+      uses: actions/cache@v1.0.1
+      with:
+        path: vendor/bundle
+        key: ${{ matrix.ruby_version }}_${{ matrix.rails_version }}
+    - name: Set up Ruby
+      uses: actions/setup-ruby@v1.0.2
+      with:
+        ruby-version: ${{ matrix.ruby_version }}
+    - name: Build and test with Rake
+      run: |
+        sudo apt-get install libsqlite3-dev
+        rm Gemfile.lock
+        gem install bundler
+        bundle install --path vendor/bundle --jobs 4 --retry 3
+        bundle exec rake
+        bundle exec rubocop
+      env:
+        RAILS_VERSION: ${{ matrix.rails_version }}
+        ON_CI: true
