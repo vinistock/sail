@@ -7,6 +7,7 @@ AllCops:
   - spec/dummy/**/*
   - coverage/**/*
   - lib/generators/sail/**/templates/**/*
+  - vendor/bundle/**/*
 Rails:
   Enabled: true
 Rails/HttpPositionalArguments:
