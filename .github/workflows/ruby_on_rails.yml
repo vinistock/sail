@@ -32,3 +32,6 @@ jobs:
       env:
         RAILS_VERSION: ${{ matrix.rails_version }}
         ON_CI: true
+    - uses: codecov/codecov-action@v1.0.3
+      with:
+        token: ${{secrets.CODECOV_TOKEN}}
