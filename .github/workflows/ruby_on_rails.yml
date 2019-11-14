@@ -21,6 +21,7 @@ jobs:
       uses: actions/cache@v1.0.1
       with:
         path: vendor/bundle
+        key: ${{ matrix.ruby_version }}_${{ matrix.rails_version }}
     - name: Set up Ruby
       uses: actions/setup-ruby@v1
       with:
