@@ -7,13 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        rails_version: [5.2.x, 6.0.x, master]
-        ruby_version: [2.5.x, 2.6.x, master]
-        exclude:
-          - rails_version: master
-            ruby_version: 2.4.x
-          - rails_version: 6.0.x
-            ruby_version: 2.4.x
+        rails_version: [5.2.3, 6.0.1]
+        ruby_version: [2.5.7, 2.6.5, master]
 
     steps:
     - uses: actions/checkout@v1
@@ -35,3 +30,4 @@ jobs:
         bundle exec rubocop
       env:
         RAILS_VERSION: ${{ matrix.rails_version }}
+        ON_CI: true
