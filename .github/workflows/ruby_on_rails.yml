@@ -1,6 +1,6 @@
 name: Ruby on Rails
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
@@ -32,3 +32,4 @@ jobs:
       env:
         RAILS_VERSION: ${{ matrix.rails_version }}
         ON_CI: true
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

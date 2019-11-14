@@ -90,8 +90,6 @@ GEM
     childprocess (3.0.0)
     code_analyzer (0.4.8)
       sexp_processor
-    codeclimate-test-reporter (1.0.7)
-      simplecov
     concurrent-ruby (1.1.5)
     crass (1.0.5)
     database_cleaner (1.7.0)
@@ -273,7 +271,6 @@ DEPENDENCIES
   byebug
   capybara
   capybara-selenium
-  codeclimate-test-reporter (~> 1.0)
   database_cleaner
   jquery-rails
   rack-mini-profiler

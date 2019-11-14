@@ -15,6 +15,12 @@ require "webdrivers/chromedriver"
 require "rspec/retry"
 
 SimpleCov.start
+
+if ENV["ON_CI"].present?
+  require "codecov"
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+end
+
 DatabaseCleaner.strategy = :truncation
 
 class User
