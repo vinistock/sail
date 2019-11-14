@@ -99,4 +99,24 @@ feature "viewing settings", js: true, type: :feature do
       end
     end
   end
+
+  it "adjusts pagination if there are too many settings" do
+    50.times do |index|
+      Sail::Setting.create!(name: "new_setting_#{index}", cast_type: :string,
+                            value: :something,
+                            description: "Setting that does something",
+                            group: "feature_flags")
+    end
+
+    visit "/sail"
+
+    within("#pagination") do
+      expect(page).to have_content("1 2 3 4 5 ●●● 8")
+      click_link("8")
+    end
+
+    within("#pagination") do
+      expect(page).to have_content("1 ●●● 3 4 5 6 7 8")
+    end
+  end
 end
