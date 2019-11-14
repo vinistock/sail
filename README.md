@@ -1,6 +1,6 @@
 ![dashboard](https://raw.githubusercontent.com/vinistock/sail/master/app/assets/images/sail/sail.png)
 
-[![Build Status](https://github.com/vinistock/sail/workflows/Ruby%20on%20Rails/badge.svg)](https://github.com/vinistock/sail/workflows) [![Maintainability](https://api.codeclimate.com/v1/badges/00ed468acd8b93f66478/maintainability)](https://codeclimate.com/github/vinistock/sail/maintainability) [![Test Coverage](https://codeclimate.com/github/vinistock/sail/badges/coverage.svg)](https://codeclimate.com/github/vinistock/sail/coverage) [![Gem Version](https://badge.fury.io/rb/sail.svg)](https://badge.fury.io/rb/sail) ![](http://ruby-gem-downloads-badge.herokuapp.com/sail?color=brightgreen&type=total) [![Mentioned in Awesome Ruby](https://awesome.re/mentioned-badge.svg)](https://github.com/markets/awesome-ruby)
+[![Build Status](https://github.com/vinistock/sail/workflows/Ruby%20on%20Rails/badge.svg)](https://github.com/vinistock/sail/workflows) [![codecov](https://codecov.io/gh/vinistock/sail/branch/master/graph/badge.svg)](https://codecov.io/gh/vinistock/sail) [![Gem Version](https://badge.fury.io/rb/sail.svg)](https://badge.fury.io/rb/sail) ![](http://ruby-gem-downloads-badge.herokuapp.com/sail?color=brightgreen&type=total) [![Mentioned in Awesome Ruby](https://awesome.re/mentioned-badge.svg)](https://github.com/markets/awesome-ruby)
 
 # Sail
 
