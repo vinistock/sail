@@ -19,6 +19,8 @@ jobs:
     - uses: actions/checkout@v1
     - name: Cache
       uses: actions/cache@v1.0.1
+      with:
+        path: vendor/bundle
     - name: Set up Ruby
       uses: actions/setup-ruby@v1
       with:
@@ -27,7 +29,7 @@ jobs:
       run: |
         rm Gemfile.lock
         gem install bundler
-        bundle install --jobs 4 --retry 3
+        bundle install --path vendor/bundle --jobs 4 --retry 3
         bundle exec rake
         bundle exec rubocop
       env:
