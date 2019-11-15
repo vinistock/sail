@@ -139,10 +139,10 @@ All possible cast types as well as detailed examples of usage can be found in th
 # Get setting value with appropriate cast type
 #
 # Returns setting value with cast or yields it if passed a block
-Sail.get("name")
+Sail.get(:name)
 
 # This usage will return the result of the block
-Sail.get("name") do |setting_value|
+Sail.get(:name) do |setting_value|
   my_code(setting_value)
 end
 
@@ -153,15 +153,15 @@ end
 
 # For example, this will ignore ExampleError, but any other error raised will increase
 # the count until the setting "name" is reset. 
-Sail.get("name", expected_errors: [ExampleError]) do |value|
+Sail.get(:name, expected_errors: [ExampleError]) do |value|
   code_that_can_raise_example_error(value) 
 end
 
 # Set setting value
-Sail.set("name", "value")
+Sail.set(:name, "value")
 
 # Reset setting value (requires the sail.yml file!)
-Sail.reset("name")
+Sail.reset(:name)
 
 # Switcher
 # This method will take three setting names as parameters
