@@ -1,3 +1,11 @@
+* Preserve query parameters in pagination links
+
+*[@oleg-kiviljov]*
+
+* Start displaying a limited sliding number of links in pagination
+
+*[@vinistock]*
+
 ## 3.2.4 ##
 
 * Fix migration generation for Rails 6
