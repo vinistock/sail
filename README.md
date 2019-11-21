@@ -209,6 +209,28 @@ Response
 200 OK
 ```
 
+### GraphQL
+
+For GraphQL APIs, a Sail setting type is defined for convenience. Include Sail's Graphql module to get the appropriate type.
+
+```ruby
+# app/graphql/types/query_type.rb
+
+module Types
+  class QueryType < Types::BaseObject
+    include Sail::Graphql
+  end
+end
+```
+
+To query settings via GraphQL, use the following pattern.
+
+```graphql
+query {
+    sailGet(name: "my_setting")
+}
+```
+
 ## Localization
 
 Sail's few strings are all localized for English in [en.yml], making it easy to create translations for the desired languages.
