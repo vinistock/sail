@@ -9,6 +9,7 @@ module Sail # :nodoc:
   autoload :Configuration, "sail/configuration"
   autoload :Instrumenter, "sail/instrumenter"
   autoload :Types, "sail/types"
+  autoload :Graphql, "sail/graphql"
 
   class << self
     attr_writer :configuration
