@@ -7,6 +7,8 @@ module Sail
   # Module to include type definitions
   # for GraphQL APIs.
   module Graphql
+    autoload :Mutations, "sail/mutations"
+
     module Types # :nodoc:
       extend ActiveSupport::Concern
 
