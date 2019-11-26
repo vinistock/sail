@@ -218,7 +218,7 @@ For GraphQL APIs, a Sail setting type is defined for convenience. Include Sail's
 
 module Types
   class QueryType < Types::BaseObject
-    include Sail::Graphql
+    include Sail::Graphql::Types
   end
 end
 ```
@@ -228,6 +228,7 @@ To query settings via GraphQL, use the following pattern.
 ```graphql
 query {
     sailGet(name: "my_setting")
+    sailSwitcher(positive: "positive_case_setting", negative: "negative_case_setting", throttledBy: "throttle_setting")
 }
 ```
 
