@@ -7,7 +7,7 @@ module Sail
   # Module to include type definitions
   # for GraphQL APIs.
   module Graphql
-    module Types
+    module Types # :nodoc:
       extend ActiveSupport::Concern
 
       included do
