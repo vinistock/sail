@@ -211,7 +211,7 @@ Response
 
 ### GraphQL
 
-For GraphQL APIs, a Sail setting type is defined for convenience. Include Sail's Graphql module to get the appropriate type.
+For GraphQL APIs, types and mutations are defined for convenience. Include Sail's Graphql modules to get the appropriate fields.
 
 ```ruby
 # app/graphql/types/query_type.rb
@@ -219,6 +219,14 @@ For GraphQL APIs, a Sail setting type is defined for convenience. Include Sail's
 module Types
   class QueryType < Types::BaseObject
     include Sail::Graphql::Types
+  end
+end
+
+# app/graphql/types/mutation_type.rb
+
+module Types
+  class MutationType < Types::BaseObject
+    include Sail::Graphql::Mutations
   end
 end
 ```
@@ -229,6 +237,16 @@ To query settings via GraphQL, use the following pattern.
 query {
     sailGet(name: "my_setting")
     sailSwitcher(positive: "positive_case_setting", negative: "negative_case_setting", throttledBy: "throttle_setting")
+}
+
+mutation {
+    sailSet(name: "my_setting", value: "value") {
+        success
+    }
+    
+    sailProfileSwitch(name: "my_profile") {
+        success
+    }
 }
 ```
 

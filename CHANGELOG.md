@@ -6,6 +6,18 @@
 
 *[@vinistock]*
 
+* Add GraphQL support for fetching settings
+
+*[@vinistock]*
+
+* Add deprecation warning for Rails 4. The next major version of Sail will support Rails > 5
+
+*[@vinistock]*
+
+* Add GraphQL mutations for updating settings and switching profiles
+
+*[@vinistock]*
+
 ## 3.2.4 ##
 
 * Fix migration generation for Rails 6
