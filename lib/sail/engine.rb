@@ -37,6 +37,12 @@ module Sail
     end
 
     config.after_initialize do
+      if Rails::VERSION::MAJOR < 5
+        warn(
+          "DEPRECATION WARNING: Sail will no longer support Rails versions < 5"
+        )
+      end
+
       errors = [ActiveRecord::NoDatabaseError]
       errors << PG::ConnectionBad if defined?(PG)
 
