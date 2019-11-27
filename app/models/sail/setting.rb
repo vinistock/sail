@@ -33,7 +33,7 @@ module Sail
     after_initialize :instantiate_caster
 
     scope :paginated, lambda { |page, per_page|
-      select(:name, :description, :group, :value, :cast_type, :updated_at)
+      select(:id, :name, :description, :group, :value, :cast_type, :updated_at)
         .offset(page.to_i * per_page)
         .limit(per_page)
     }
