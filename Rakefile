@@ -20,7 +20,7 @@ require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(spec: "app:db:test:prepare")
 task default: :spec
 
-task :all do
+task all: :environment do
   system("brakeman --no-pager && rake && rubocop --auto-correct && rails_best_practices")
 end
 
