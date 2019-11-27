@@ -11,7 +11,7 @@ module Sail
     class UnexpectedCastType < StandardError; end
 
     FULL_RANGE = (0...100).freeze
-    AVAILABLE_MODELS = Dir[Rails.root.join("app", "models", "*.rb")]
+    AVAILABLE_MODELS = Dir[Rails.root.join("app/models/*.rb")]
                        .map { |dir| dir.split("/").last.camelize.gsub(".rb", "") }.freeze
 
     has_many :entries, dependent: :destroy
