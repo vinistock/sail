@@ -1,3 +1,5 @@
+## 3.3.0 ##
+
 * Fix caching issue with settings pagination 
 
 *[@asko-ohmann]*
