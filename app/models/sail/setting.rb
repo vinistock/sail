@@ -32,11 +32,7 @@ module Sail
 
     after_initialize :instantiate_caster
 
-    scope :paginated, lambda { |page, per_page|
-      select(:id, :name, :description, :group, :value, :cast_type, :updated_at)
-        .offset(page.to_i * per_page)
-        .limit(per_page)
-    }
+    scope :paginated, lambda { |page, per_page| offset(page.to_i * per_page).limit(per_page) }
 
     scope :by_query, lambda { |query|
       if cast_types.key?(query) || query == Sail::ConstantCollection::STALE
