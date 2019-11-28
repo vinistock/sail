@@ -1,3 +1,7 @@
+* Fix caching issue with settings pagination 
+
+*[@asko-ohmann]*
+
 * Preserve query parameters in pagination links
 
 *[@oleg-kiviljov]*
