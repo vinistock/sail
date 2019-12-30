@@ -88,7 +88,7 @@ GEM
       capybara
       selenium-webdriver
     childprocess (3.0.0)
-    code_analyzer (0.4.8)
+    code_analyzer (0.5.1)
       sexp_processor
     concurrent-ruby (1.1.5)
     crass (1.0.5)
@@ -164,13 +164,13 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
-    rails_best_practices (1.19.4)
+    rails_best_practices (1.19.5)
       activesupport
-      code_analyzer (>= 0.4.8)
+      code_analyzer (>= 0.5.1)
       erubis
       i18n
       json
-      require_all (~> 2.0)
+      require_all (~> 3.0)
       ruby-progressbar
     railties (6.0.2.1)
       actionpack (= 6.0.2.1)
@@ -181,7 +181,7 @@ GEM
     rainbow (3.0.0)
     rake (13.0.1)
     regexp_parser (1.6.0)
-    require_all (2.0.0)
+    require_all (3.0.0)
     rspec-core (3.9.0)
       rspec-support (~> 3.9.0)
     rspec-expectations (3.9.0)
@@ -244,7 +244,7 @@ GEM
     thread_safe (0.3.6)
     thread_safe (0.3.6-java)
     tilt (2.0.10)
-    tzinfo (1.2.5)
+    tzinfo (1.2.6)
       thread_safe (~> 0.1)
     unicode-display_width (1.6.0)
     webdrivers (4.1.3)
