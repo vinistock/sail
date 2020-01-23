@@ -13,7 +13,7 @@ Rails:
 Rails/HttpPositionalArguments:
   Exclude:
     - spec/controllers/**/*
-Metrics/LineLength:
+Layout/LineLength:
   Max: 140
 Metrics/MethodLength:
   Max: 20
