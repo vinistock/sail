@@ -140,7 +140,7 @@ GEM
     public_suffix (4.0.3)
     raabro (1.1.6)
     rack (2.1.2)
-    rack-mini-profiler (1.1.5)
+    rack-mini-profiler (1.1.6)
       rack (>= 1.2.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
