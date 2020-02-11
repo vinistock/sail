@@ -8,15 +8,7 @@ describe Sail::SettingsController, type: :controller do
   end
 
   describe "GET index" do
-    # :nocov:
-    subject do
-      if Rails::VERSION::MAJOR >= 5
-        get :index, params: params
-      else
-        get :index, params
-      end
-    end
-    # :nocov:
+    subject { get :index, params: params }
 
     let(:params) { { page: "1" } }
 
@@ -71,15 +63,7 @@ describe Sail::SettingsController, type: :controller do
   end
 
   describe "PUT update" do
-    # :nocov:
-    subject do
-      if Rails::VERSION::MAJOR >= 5
-        put :update, params: { name: setting.name, value: new_value, cast_type: setting.cast_type }, format: :js
-      else
-        put :update, name: setting.name, value: new_value, cast_type: setting.cast_type, format: :js
-      end
-    end
-    # :nocov:
+    subject { put :update, params: { name: setting.name, value: new_value, cast_type: setting.cast_type }, format: :js }
 
     let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :string, value: "old value") }
     let(:new_value) { "new value" }
@@ -109,15 +93,7 @@ describe Sail::SettingsController, type: :controller do
     end
 
     context "when format is JSON" do
-      # :nocov:
-      subject do
-        if Rails::VERSION::MAJOR >= 5
-          put :update, params: { name: setting.name, value: new_value, cast_type: setting.cast_type }, format: :json
-        else
-          put :update, name: setting.name, value: new_value, cast_type: setting.cast_type, format: :json
-        end
-      end
-      # :nocov:
+      subject { put :update, params: { name: setting.name, value: new_value, cast_type: setting.cast_type }, format: :json }
 
       it "updates setting value" do
         expect(setting.value).to eq("old value")
@@ -145,15 +121,7 @@ describe Sail::SettingsController, type: :controller do
   end
 
   describe "GET show" do
-    # :nocov:
-    subject do
-      if Rails::VERSION::MAJOR >= 5
-        get :show, params: params, format: :json
-      else
-        get :show, params.merge(format: :json)
-      end
-    end
-    # :nocov:
+    subject { get :show, params: params, format: :json }
 
     let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :string, value: "some value") }
     let(:params) { { name: setting.name } }
@@ -179,15 +147,7 @@ describe Sail::SettingsController, type: :controller do
   end
 
   describe "GET switcher" do
-    # :nocov:
-    subject do
-      if Rails::VERSION::MAJOR >= 5
-        get :switcher, params: params, format: :json
-      else
-        get :switcher, params.merge(format: :json)
-      end
-    end
-    # :nocov:
+    subject { get :switcher, params: params, format: :json }
 
     let!(:throttle) { Sail::Setting.create(name: :throttle, cast_type: :throttle, value: "50.0") }
     let(:params) { { positive: :positive, negative: :negative, throttled_by: :throttle } }
@@ -255,15 +215,7 @@ describe Sail::SettingsController, type: :controller do
   end
 
   describe "PUT reset" do
-    # :nocov:
-    subject do
-      if Rails::VERSION::MAJOR >= 5
-        put :reset, params: { name: setting.name }, format: :js
-      else
-        put :reset, name: setting.name, format: :js
-      end
-    end
-    # :nocov:
+    subject { put :reset, params: { name: setting.name }, format: :js }
 
     let!(:setting) { Sail::Setting.create(name: :setting, cast_type: :string, value: "old value") }
     let(:file_contents) { { "setting" => { "value" => "new value" } } }

@@ -9,13 +9,8 @@ require 'sail'
 
 module Dummy
   class Application < Rails::Application
-    if Rails::VERSION::MAJOR >= 5
-      config.load_defaults 5.1
-    end
-
-    if Rails::VERSION::MAJOR == 5
-      config.active_record.sqlite3.represent_boolean_as_integer = true
-    end
+    config.load_defaults 6.0
+    config.active_record.sqlite3.represent_boolean_as_integer = true
 
     Sail.configure do |config|
       config.enable_search_auto_submit = true

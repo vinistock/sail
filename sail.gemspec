@@ -19,23 +19,10 @@ Gem::Specification.new do |s|
                 "Rakefile",
                 "README.md"].reject { |path| path.include?("sail.png") }
 
-  s.post_install_message = <<~MSG
-    **************************************************************************
-    Sail #{Sail::VERSION}!
-
-    For major version upgrades, check the CHANGELOG and run the updater to
-    create necessary migrations.
-
-    * https://github.com/vinistock/sail/blob/master/CHANGELOG.md
-    * rails g sail:update
-    **************************************************************************
-  MSG
-
   s.required_ruby_version = ">= 2.3.0"
 
   s.add_dependency "sassc-rails"
   s.add_dependency "fugit" # rubocop:disable Gemspec/OrderedDependencies
-  s.add_dependency "jquery-rails"
   s.add_dependency "rails"
 
   s.add_development_dependency "brakeman"
@@ -43,7 +30,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "capybara"
   s.add_development_dependency "capybara-selenium"
   s.add_development_dependency "database_cleaner"
-  s.add_development_dependency "jquery-rails"
   s.add_development_dependency "rack-mini-profiler"
   s.add_development_dependency "rails_best_practices"
   s.add_development_dependency "rspec-rails"

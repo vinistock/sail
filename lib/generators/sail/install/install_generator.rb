@@ -34,7 +34,7 @@ module Sail
       end
 
       def migration_version
-        "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]" if Rails.version >= "5.0.0"
+        "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]"
       end
     end
   end

@@ -5,7 +5,6 @@ module Sail
   # Defines initializers and
   # after initialize hooks
   class Engine < ::Rails::Engine
-    require "jquery-rails" if Rails::VERSION::MAJOR < 5
     require "sprockets/railtie"
     isolate_namespace Sail
 
@@ -37,12 +36,6 @@ module Sail
     end
 
     config.after_initialize do
-      if Rails::VERSION::MAJOR < 5
-        warn(
-          "DEPRECATION WARNING: Sail will no longer support Rails versions < 5"
-        )
-      end
-
       errors = [ActiveRecord::NoDatabaseError]
       errors << PG::ConnectionBad if defined?(PG)
 
