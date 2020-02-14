@@ -14,8 +14,22 @@
  *= require_self
  */
 
-@import "colors";
 @import "shared";
+
+:root {
+  --main-black: #0B0C10;
+  --dark-green: #306B34;
+  --light-green: #44AF69;
+  --cerulean: #4484CE;
+  --aluminium: #D9D9D9;
+  --dark-aluminium: #8D8D8D;
+  --darker-aluminium: #666666;
+  --light-yellow: #F9CF00;
+  --tangerine: #F19F4D;
+  --dark-tangerine: #C86C10;
+  --lead: #003049;
+  --bright-red: #E63946;
+}
 
 * {
   font-family: 'Open Sans', sans-serif;
@@ -30,7 +44,7 @@ html, body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  background-color: $cerulean;
+  background-color: var(--cerulean);
 }
 
 .clearfix {
@@ -45,7 +59,7 @@ html, body {
 }
 
 #nav-bar {
-  background-color: $lead;
+  background-color: var(--lead);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15), 0 5px 12px rgba(0, 0, 0, 0.1);
 
   .home-link {
@@ -97,7 +111,7 @@ html, body {
   margin-top: 2rem;
 
   a {
-    color: $main_black;
+    color: var(--main-black);
     text-decoration: none;
     background-color: white;
     padding: 20px;
@@ -106,7 +120,7 @@ html, body {
     font-weight: bold;
 
     &.active {
-      background-color: $tangerine;
+      background-color: var(--tangerine);
       color: white;
     }
   }
@@ -171,7 +185,7 @@ html, body {
       top: 5px;
       min-width: 50px;
       min-height: 20px;
-      color: $dark_green;
+      color: var(--dark-green);
     }
   }
 
@@ -223,11 +237,11 @@ html, body {
       top: 7px;
 
       &.yellow {
-        color: $light_yellow;
+        color: var(--light-yellow);
       }
 
       &.green {
-        color: $light_green;
+        color: var(--light-green);
       }
     }
 
@@ -237,7 +251,7 @@ html, body {
       top: 9px;
       left: 15px;
       font-style: italic;
-      color: darken($aluminium, 30%);
+      color: var(--dark-aluminium);
     }
   }
 
@@ -280,7 +294,7 @@ html, body {
       }
 
       label {
-        color: darken($aluminium, 30%);
+        color: var(--dark-aluminium);
         font-size: 18px;
         float: right;
       }
@@ -318,7 +332,7 @@ html, body {
 
   details[open] {
     summary {
-      border-bottom: 1px solid $tangerine;
+      border-bottom: 1px solid var(--tangerine);
 
       div {
         font-size: 28px;

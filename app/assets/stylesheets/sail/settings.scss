@@ -1,9 +1,8 @@
-@import "colors";
 @import "shared";
 
 #settings-dashboard {
   max-height: 100vh;
-  color: $main_black;
+  color: var(--main-black);
 
   #settings-container {
     margin-top: 1rem;
@@ -32,7 +31,7 @@
 
       .relevancy-score {
         float: right;
-        color: darken($aluminium, 30%);
+        color: var(--dark-aluminium);
       }
     }
 
@@ -51,7 +50,7 @@
     .tag {
       @extend .rounded;
       padding: 10px;
-      color: $main_black;
+      color: var(--main-black);
       font-size: 14px;
       margin-left: 5px;
       text-decoration: none;
@@ -59,15 +58,15 @@
       box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
       &.type-label {
-        background-color: $light_yellow;
+        background-color: var(--light-yellow);
       }
 
       &.group-label {
-        background-color: $cerulean;
+        background-color: var(--cerulean);
       }
 
       &.stale-label {
-        background-color: $bright_red;
+        background-color: var(--bright-red);
 
         @media (max-width: 413px) {
           position: relative;
@@ -88,7 +87,7 @@
       white-space: nowrap;
       overflow: hidden;
       @extend .fade-in;
-      color: darken($aluminium, 45%);
+      color: var(--darker-aluminium);
     }
 
     .value-input {
@@ -97,7 +96,7 @@
       font-size: 22px;
       text-align: center;
       border: none;
-      border-bottom: 2px solid $aluminium;
+      border-bottom: 2px solid var(--aluminium);
       -webkit-border-radius: 0;
       -moz-border-radius: 0;
       border-radius: 0;
@@ -109,7 +108,7 @@
       position: relative;
       bottom: 10px;
       border: none;
-      border-bottom: 2px solid $aluminium;
+      border-bottom: 2px solid var(--aluminium);
       -webkit-border-radius: 0;
       -moz-border-radius: 0;
       border-radius: 0;
@@ -138,7 +137,7 @@
         width: 25px;
         height: 25px;
         border-radius: 50%;
-        background: $tangerine;
+        background: var(--tangerine);
         cursor: pointer;
       }
 
@@ -146,7 +145,7 @@
         width: 25px;
         height: 25px;
         border-radius: 50%;
-        background: $tangerine;
+        background: var(--tangerine);
         cursor: pointer;
       }
     }
@@ -193,11 +192,11 @@
     }
 
     input:checked + .slider {
-      background-color: $tangerine;
+      background-color: var(--tangerine);
     }
 
     input:focus + .slider {
-      box-shadow: 0 0 1px $tangerine;
+      box-shadow: 0 0 1px var(--tangerine);
     }
 
     input:checked + .slider:before {
@@ -337,7 +336,7 @@
         @extend .rounded;
 
         &:hover {
-          background-color: $tangerine;
+          background-color: var(--tangerine);
         }
       }
     }
@@ -365,11 +364,11 @@
     @extend .fade-in;
 
     &.success {
-      color: $dark_green;
+      color: var(--dark-green);
     }
 
     &.alert {
-      color: $bright_red;
+      color: var(--bright-red);
     }
   }
 
@@ -391,7 +390,7 @@
       }
 
       &::-webkit-progress-value {
-        background-color: $cerulean;
+        background-color: var(--cerulean);
       }
     }
   }
@@ -401,7 +400,7 @@
   text-align: center;
   font-size: 18px;
   @extend .rounded;
-  background-color: $tangerine;
+  background-color: var(--tangerine);
   border: none;
   outline: none;
   -webkit-transition: background-color 0.5s;
@@ -412,11 +411,11 @@
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
   &:active {
-    color: $main_black;
+    color: var(--main-black);
     opacity: .8;
   }
 
   &:hover {
-    background-color: darken($tangerine, 20%);
+    background-color: var(--dark-tangerine);
   }
 }
