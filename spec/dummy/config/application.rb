@@ -9,7 +9,7 @@ require 'sail'
 
 module Dummy
   class Application < Rails::Application
-    config.load_defaults "#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}"
+    config.load_defaults 5.0
     config.active_record.sqlite3.represent_boolean_as_integer = true
 
     Sail.configure do |config|
