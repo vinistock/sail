@@ -4,15 +4,9 @@ describe Sail::ProfilesController, type: :controller do
   routes { Sail::Engine.routes }
 
   describe "POST create" do
-    # :nocov:
     subject(:request) do
-      if Rails::VERSION::MAJOR >= 5
-        post :create, params: { name: "profile" }, format: :js
-      else
-        post :create, name: "profile", format: :js
-      end
+      post :create, params: { name: "profile" }, format: :js
     end
-    # :nocov:
 
     it "returns ok" do
       request
@@ -37,15 +31,9 @@ describe Sail::ProfilesController, type: :controller do
   end
 
   describe "PUT switch" do
-    # :nocov:
     subject(:request) do
-      if Rails::VERSION::MAJOR >= 5
-        put :switch, params: { name: "profile" }, format: :js
-      else
-        put :switch, name: "profile", format: :js
-      end
+      put :switch, params: { name: "profile" }, format: :js
     end
-    # :nocov:
 
     it "returns ok" do
       request
@@ -59,15 +47,9 @@ describe Sail::ProfilesController, type: :controller do
   end
 
   describe "DELETE destroy" do
-    # :nocov:
     subject(:request) do
-      if Rails::VERSION::MAJOR >= 5
-        delete :destroy, params: { name: "profile" }, format: :js
-      else
-        delete :destroy, name: "profile", format: :js
-      end
+      delete :destroy, params: { name: "profile" }, format: :js
     end
-    # :nocov:
 
     let!(:profile) { Sail::Profile.create!(name: :profile) }
 

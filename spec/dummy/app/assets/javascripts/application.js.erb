@@ -11,11 +11,6 @@
 // about supported directives.
 //
 <%
-if Rails::VERSION::MAJOR >= 5
-  require_asset("rails-ujs")
-else
-  require_asset("jquery")
-  require_asset("jquery_ujs")
-end
+require_asset("rails-ujs")
 %>
 //= require_tree .
