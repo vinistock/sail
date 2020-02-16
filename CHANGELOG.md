@@ -1,3 +1,25 @@
+## 4.0.0 ##
+
+* Remove support for Rails 4
+
+*[@vinistock]*
+
+* Fix font aliasing in Firefox
+
+*[@vinistock]*
+
+* Fix details marker not disappearing in Firefox
+
+*[@vinistock]*
+
+* Fix pagination links for a single page display
+
+*[@vinistock]*
+
+* Use css only instead of scss and drop sassc-rails dependency
+
+*[@vinistock]*
+
 ## 3.3.0 ##
 
 * Fix caching issue with settings pagination 
