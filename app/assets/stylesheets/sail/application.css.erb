@@ -42,6 +42,7 @@
 * {
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .title {
@@ -391,8 +392,10 @@ html, body {
   display: none;
 }
 
-#guide-modal details summary::-webkit-details-marker {
+#guide-modal details summary::-webkit-details-marker,
+#guide-modal details summary::marker {
   display: none;
+  font-size: 0;
 }
 
 #guide-modal details summary:hover {
