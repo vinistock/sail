@@ -3,8 +3,7 @@ PATH
   specs:
     sail (3.3.0)
       fugit
-      rails
-      sassc-rails
+      rails (>= 5.0.0)
 
 GEM
   remote: https://rubygems.org/

@@ -2,8 +2,6 @@
 
 $LOAD_PATH.push File.expand_path("lib", __dir__)
 require "sail/version"
-
-# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |s|
   s.name        = "sail"
   s.version     = Sail::VERSION
@@ -19,11 +17,10 @@ Gem::Specification.new do |s|
                 "Rakefile",
                 "README.md"].reject { |path| path.include?("sail.png") }
 
-  s.required_ruby_version = ">= 2.3.0"
+  s.required_ruby_version = ">= 2.5.0"
 
-  s.add_dependency "sassc-rails"
-  s.add_dependency "fugit" # rubocop:disable Gemspec/OrderedDependencies
-  s.add_dependency "rails"
+  s.add_dependency "fugit"
+  s.add_dependency "rails", ">= 5.0.0"
 
   s.add_development_dependency "brakeman"
   s.add_development_dependency "bundler"
@@ -41,4 +38,3 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "webdrivers"
 end
-# rubocop:enable Metrics/BlockLength
