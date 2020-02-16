@@ -37,7 +37,10 @@
           ●●●
         <% end %>
 
-        <%= link_to(@number_of_pages, settings_path(page: @number_of_pages - 1, monitor_mode: params[:monitor_mode], query: params[:query]), method: :get, class: params[:page].to_i == @number_of_pages - 1 ? "active" : "") %>
+        <% if @number_of_pages > 1 %>
+          <%= link_to(@number_of_pages, settings_path(page: @number_of_pages - 1, monitor_mode: params[:monitor_mode], query: params[:query]), method: :get, class: params[:page].to_i == @number_of_pages - 1 ? "active" : "") %>
+        <% end %>
+
         <%= link_to("", settings_path(page: [params[:page].to_i + 1, @number_of_pages - 1].min, monitor_mode: params[:monitor_mode], query: params[:query]), method: :get, id: "angle-right-link", title: I18n.t("sail.next_page")) %>
       </div>
     </div>
