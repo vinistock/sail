@@ -119,6 +119,12 @@ To clear the database and reload the contents of your sail.yml file, invoke this
 $ rake sail:load_defaults
 ```
 
+To update the database with the new contents of your sail.yml file, invoke this rake task.
+
+```bash
+$ rake sail:load_partial_settings
+```
+
 ## Searching
 
 Searching for settings in the dashboard can be done in the following ways:
