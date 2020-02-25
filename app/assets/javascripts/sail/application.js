@@ -10,8 +10,5 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-<%
-require_asset("rails-ujs")
-require_asset("settings")
-%>
+//= require rails-ujs
 //= require_tree .
