@@ -6,7 +6,7 @@ Search related functions
 
 let submitTimer, submitInterval, intervals = 1;
 let queryElement = document.getElementById("query");
-let autoSearchEnabled = "<%= Sail.configuration.enable_search_auto_submit %>";
+let autoSearchEnabled = document.getElementById("auto_search_enabled").value;
 let progress = document.getElementById("search-submit-progress");
 let sortMenu = document.getElementById("sort-menu");
 let orderButton = document.getElementById("btn-order");
@@ -16,7 +16,7 @@ let dashboardBody = document.getElementById("settings-dashboard");
 let guideButton = document.getElementById("btn-guide");
 let guide = document.getElementById("guide-modal");
 let guideSections = guide.getElementsByTagName("summary");
-var i;
+let i;
 
 function submitSearch() {
     document.getElementById("search-form").submit();

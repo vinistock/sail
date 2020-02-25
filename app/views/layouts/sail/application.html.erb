@@ -31,6 +31,8 @@
 
   <div class="clearfix"></div>
   <%= yield %>
+
+  <%= hidden_field_tag(:auto_search_enabled, Sail.configuration.enable_search_auto_submit) %>
 </div>
 </body>
 </html>
