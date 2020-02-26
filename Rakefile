@@ -24,4 +24,4 @@ task all: :environment do
   system("brakeman --no-pager && rake && rubocop --auto-correct && rails_best_practices")
 end
 
-system("cd ./spec/dummy; RAILS_ENV=test rails db:environment:set; cd ../..") if Rails::VERSION::MAJOR >= 5
+system("cd ./spec/dummy; RAILS_ENV=test rails db:environment:set; cd ../..")
