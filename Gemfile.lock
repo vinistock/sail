@@ -66,7 +66,7 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.0)
-    brakeman (4.8.0)
+    brakeman (4.8.1)
     builder (3.2.4)
     byebug (11.1.1)
     capybara (3.32.1)
