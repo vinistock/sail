@@ -93,7 +93,7 @@ GEM
     et-orbi (1.2.4)
       tzinfo
     ffi (1.12.2)
-    fugit (1.3.4)
+    fugit (1.3.5)
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.1)
     globalid (0.4.2)
