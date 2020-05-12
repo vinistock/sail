@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        rails_version: [5.2.4, 6.0.2.1]
+        rails_version: [5.2.4.2, 6.0.3]
         ruby_version: [2.5, 2.6, 2.7]
 
     steps:
@@ -18,7 +18,7 @@ jobs:
         path: vendor/bundle
         key: ${{ matrix.ruby_version }}_${{ matrix.rails_version }}
     - name: Set up Ruby
-      uses: ruby/setup-ruby@v1.20.0
+      uses: ruby/setup-ruby@v1.32.2
       with:
         ruby-version: ${{ matrix.ruby_version }}
     - name: Build and test with Rake
