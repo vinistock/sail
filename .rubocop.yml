@@ -47,3 +47,7 @@ Style/HashTransformKeys:
   Enabled: true
 Style/HashTransformValues:
   Enabled: true
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+Style/SlicingWithRange:
+  Enabled: true
