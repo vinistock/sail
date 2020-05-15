@@ -33,6 +33,10 @@ module Sail
                            migration_version: migration_version
       end
 
+      def create_config_file
+        template "sail.yml", "config/sail.yml"
+      end
+
       def migration_version
         "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]"
       end

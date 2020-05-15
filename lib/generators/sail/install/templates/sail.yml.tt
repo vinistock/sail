@@ -1,0 +1,5 @@
+name_of_setting:
+  description: Describe what the setting does
+  value: 'true'
+  cast_type: boolean
+  group: feature_flags

@@ -6,6 +6,7 @@
 * Shift to using flex attributes where possible
 * Remove monitor mode
 * Make number of settings per page 20
+* Create config/sail.yml in install generator
 
 *[@vinistock]*
 
