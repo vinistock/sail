@@ -55,10 +55,6 @@
                 <div class="flex-grow">
                   <input id="<%= "input_for_#{setting.name}" %>" type="range" min="0" max="99" value="<%= setting.value %>" name="value" class="value-slider">
                 </div>
-              <% elsif setting.date? %>
-                <div>
-                  <input id="<%= "input_for_#{setting.name}" %>" type="datetime-local" value="<%= formatted_date(setting) %>" name="value" class="date-picker">
-                </div>
               <% else %>
                 <div>
                   <input id="<%= "input_for_#{setting.name}" %>" type="text" name="value" class="value-input" value="<%= setting.value %>"/>

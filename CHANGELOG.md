@@ -7,6 +7,8 @@
 * Remove monitor mode
 * Make number of settings per page 20
 * Create config/sail.yml in install generator
+* Fix details marker showing up for chrome
+* Replace datetime-local for simple text input
 
 *[@vinistock]*
 

@@ -125,8 +125,7 @@
     }
 }
 
-#settings-dashboard .card .value-input,
-#settings-dashboard .card .date-picker {
+#settings-dashboard .card .value-input {
     width: 95%;
     text-align: center;
     font-size: 22px;
@@ -144,9 +143,7 @@
 }
 
 #settings-dashboard .card .value-input:focus,
-#settings-dashboard .card .value-input:hover,
-#settings-dashboard .card .date-picker:focus,
-#settings-dashboard .card .date-picker:hover {
+#settings-dashboard .card .value-input:hover {
     border-color: var(--tangerine);
     outline: none;
 }
