@@ -10,15 +10,12 @@ module Sail
   class SettingsController < ApplicationController
     before_action :set_locale, only: :index
     after_action :log_update, only: %i[update reset], if: -> { Sail.configuration.enable_logging && @successful_update }
-
-    # rubocop:disable Metrics/AbcSize
     def index
       @settings = Setting.by_query(s_params[:query]).ordered_by(s_params[:order_field])
-      @number_of_pages = (@settings.count.to_f / settings_per_page).ceil
-      @settings = @settings.paginated(s_params[:page], settings_per_page)
+      @number_of_pages = (@settings.count.to_f / Sail::ConstantCollection::SETTINGS_PER_PAGE).ceil
+      @settings = @settings.paginated(s_params[:page], Sail::ConstantCollection::SETTINGS_PER_PAGE)
       fresh_when(@settings)
     end
-    # rubocop:enable Metrics/AbcSize
 
     def update
       respond_to do |format|
@@ -64,14 +61,6 @@ module Sail
     end
 
     private
-
-    def settings_per_page
-      if params[:monitor_mode] == Sail::ConstantCollection::TRUE
-        Sail::ConstantCollection::MINIMAL_SETTINGS_PER_PAGE
-      else
-        Sail::ConstantCollection::SETTINGS_PER_PAGE
-      end
-    end
 
     def s_params
       params.permit(:page, :query, :name,

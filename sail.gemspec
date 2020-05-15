@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,lib}/**/*",
                 "MIT-LICENSE",
                 "Rakefile",
-                "README.md"].reject { |path| path.include?("sail.png") }
+                "README.md"].reject { |path| path.include?("sail.gif") }
 
   s.required_ruby_version = ">= 2.5.0"
 

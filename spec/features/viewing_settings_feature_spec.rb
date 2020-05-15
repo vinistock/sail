@@ -2,7 +2,7 @@
 
 feature "viewing settings", js: true, type: :feature do
   before do
-    5.times do |index|
+    20.times do |index|
       Sail::Setting.create!(name: "setting_#{index}", cast_type: :string,
                             value: :something,
                             description: "Setting that does something",
@@ -10,7 +10,7 @@ feature "viewing settings", js: true, type: :feature do
     end
 
     5.times do |index|
-      Sail::Setting.create!(name: "setting_#{index + 5}", cast_type: :integer,
+      Sail::Setting.create!(name: "setting_#{index + 20}", cast_type: :integer,
                             value: "5",
                             description: "Setting that does something",
                             group: "tuners",
@@ -21,19 +21,19 @@ feature "viewing settings", js: true, type: :feature do
   it "displays setting information and allows navigation" do
     visit "/sail"
 
-    Sail::Setting.first(8).each { |setting| expect_setting(setting) }
+    Sail::Setting.first(20).each { |setting| expect_setting(setting) }
 
     within("#pagination") do
       click_link("2")
     end
 
-    Sail::Setting.last(2).each { |setting| expect_setting(setting) }
+    Sail::Setting.last(5).each { |setting| expect_setting(setting) }
 
     find("#angle-left-link").click
-    Sail::Setting.first(8).each { |setting| expect_setting(setting) }
+    Sail::Setting.first(20).each { |setting| expect_setting(setting) }
 
     find("#angle-right-link").click
-    Sail::Setting.last(2).each { |setting| expect_setting(setting) }
+    Sail::Setting.last(5).each { |setting| expect_setting(setting) }
   end
 
   it "allows clicking on groups to filter" do
@@ -43,7 +43,7 @@ feature "viewing settings", js: true, type: :feature do
       click_link("feature_flags")
     end
 
-    expect(page).to have_css(".card", count: 5)
+    expect(page).to have_css(".card", count: 20)
   end
 
   it "allows clicking on types to filter" do
@@ -53,11 +53,12 @@ feature "viewing settings", js: true, type: :feature do
       click_link("string")
     end
 
-    expect(page).to have_css(".card", count: 5)
+    expect(page).to have_css(".card", count: 20)
   end
 
   it "allows clicking on stale to filter" do
     visit "/sail"
+    find("#angle-right-link").click
 
     within(all(".card").last) do
       click_link("stale")
@@ -82,7 +83,7 @@ feature "viewing settings", js: true, type: :feature do
     visit "/sail"
 
     within(all(".card").first) do
-      expect(find("h3")).to have_content("5.0")
+      expect(page).to have_content("2.0")
     end
   end
 
@@ -94,14 +95,14 @@ feature "viewing settings", js: true, type: :feature do
 
     it "does not display group label" do
       within(all(".card").first) do
-        expect(page).to have_css(".label-container", count: 1)
+        expect(page).to have_no_css(".group-label", count: 1)
         expect(page).to have_no_content("feature_flags")
       end
     end
   end
 
   it "adjusts pagination if there are too many settings" do
-    50.times do |index|
+    120.times do |index|
       Sail::Setting.create!(name: "new_setting_#{index}", cast_type: :string,
                             value: :something,
                             description: "Setting that does something",
@@ -118,5 +119,20 @@ feature "viewing settings", js: true, type: :feature do
     within("#pagination") do
       expect(page).to have_content("1 ●●● 3 4 5 6 7 8")
     end
+  end
+
+  it "shows description when clicking on title" do
+    visit "/sail"
+
+    setting = Sail::Setting.first
+    first_card = all(".card").first
+
+    expect_setting(setting)
+
+    first_card.all("h3").first.click
+    expect(first_card).to have_content(setting.description.capitalize)
+
+    first_card.all("h3").last.click
+    expect_setting(setting)
   end
 end

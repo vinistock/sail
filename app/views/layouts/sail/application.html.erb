@@ -21,12 +21,6 @@
     <button id="btn-guide" type="button" class="nav-button">
       <%= I18n.t("sail.guide") %>
     </button>
-
-    <% if params[:monitor_mode] == Sail::ConstantCollection::TRUE %>
-      <%= link_to(I18n.t("sail.regular_mode"), settings_path, method: :get, class: "nav-button", id: "btn-regular-mode") %>
-    <% else %>
-      <%= link_to(I18n.t("sail.monitor_mode"), settings_path(monitor_mode: "true"), method: :get, class: "nav-button", id: "btn-monitor-mode") %>
-    <% end %>
   </nav>
 
   <div class="clearfix"></div>

@@ -17,7 +17,7 @@ describe Sail::SettingsController, type: :controller do
     end
 
     it "queries settings with pagination" do
-      expect(Sail::Setting).to receive(:paginated).with("1", 8)
+      expect(Sail::Setting).to receive(:paginated).with("1", 20)
       subject
       expect(response).to have_http_status(:ok)
     end
@@ -48,16 +48,6 @@ describe Sail::SettingsController, type: :controller do
       it "invokes ordered_by properly" do
         subject
         expect(controller.instance_variable_get(:@settings).last.name).to eq(setting.name)
-      end
-    end
-
-    context "when passing monitor mode" do
-      let(:params) { { page: "1", monitor_mode: "true" } }
-
-      it "queries settings with pagination" do
-        expect(Sail::Setting).to receive(:paginated).with("1", 24)
-        subject
-        expect(response).to have_http_status(:ok)
       end
     end
   end

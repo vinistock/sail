@@ -88,7 +88,6 @@ end
 # rubocop:disable Metrics/AbcSize
 def expect_setting(setting)
   expect(page).to have_text(setting.name.titleize)
-  expect(page).to have_text(setting.description.capitalize)
   expect(page).to have_text(setting.cast_type)
   expect(page).to have_link(setting.group)
   expect(page).to have_button("SAVE")

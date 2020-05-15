@@ -21,7 +21,7 @@ feature "resetting settings", js: true, type: :feature do
     let(:name) { "number_of_parallel_jobs" }
 
     it "resets value and refreshes input" do
-      expect(page).to have_content("Updated!")
+      expect(find(".submit-container")).to have_css(".success")
 
       within(".card") do
         expect(find("#input_for_#{setting.name}", visible: false)[:value]).to eq("2")
@@ -37,7 +37,7 @@ feature "resetting settings", js: true, type: :feature do
     let(:name) { "enable_awesome_feature" }
 
     it "resets value and refreshes input" do
-      expect(page).to have_content("Updated!")
+      expect(find(".submit-container")).to have_css(".success")
       expect(setting.reload.value).to eq("true")
     end
   end

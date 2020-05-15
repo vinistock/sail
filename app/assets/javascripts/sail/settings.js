@@ -16,6 +16,7 @@ let dashboardBody = document.getElementById("settings-dashboard");
 let guideButton = document.getElementById("btn-guide");
 let guide = document.getElementById("guide-modal");
 let guideSections = guide.getElementsByTagName("summary");
+let cardTitles = document.getElementsByClassName("card-title");
 let i;
 
 function submitSearch() {
@@ -122,7 +123,9 @@ function refreshClick() {
 
 for(i = 0; i < refreshButtons.length; i++) refreshButtons[i].addEventListener("click", refreshClick);
 
-// Guide related functions
+/*
+Guide related functions
+ */
 
 function sectionClick() {
     for(i = 0; i < guideSections.length; i++) {
@@ -135,3 +138,13 @@ function sectionClick() {
 }
 
 for(i = 0; i < guideSections.length; i++) guideSections[i].addEventListener("click", sectionClick);
+
+/*
+Cards related functions
+ */
+
+function flipCard() {
+    this.parentElement.parentElement.classList.toggle("flipped");
+}
+
+for(i = 0; i < cardTitles.length; i++) cardTitles[i].addEventListener("click", flipCard);

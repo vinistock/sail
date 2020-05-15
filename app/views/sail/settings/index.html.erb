@@ -1,16 +1,10 @@
 <div id="settings-dashboard">
-  <% cache [@settings, params[:monitor_mode]] do %>
-    <% unless params[:monitor_mode] == Sail::ConstantCollection::TRUE %>
-      <%= render(partial: "search") %>
-    <% end %>
+  <% cache @settings do %>
+    <%= render(partial: "search") %>
 
     <div id="settings-container">
       <% if @number_of_pages > 0 %>
-        <% if params[:monitor_mode] == Sail::ConstantCollection::TRUE %>
-          <%= render(partial: "setting_minimal", collection: @settings) %>
-        <% else %>
-          <%= render(partial: "setting", collection: @settings) %>
-        <% end%>
+        <%= render(partial: "setting", collection: @settings) %>
       <% else %>
         <h1><%= I18n.t("sail.no_settings") %></h1>
       <% end %>
@@ -22,15 +16,15 @@
       <div class="clearfix"></div>
 
       <div class="page-links">
-        <%= link_to("", settings_path(page: [params[:page].to_i - 1, 0].max, monitor_mode: params[:monitor_mode], query: params[:query]), method: :get, id: "angle-left-link", title: I18n.t("sail.previous_page")) %>
-        <%= link_to(1, settings_path(page: 0, monitor_mode: params[:monitor_mode], query: params[:query]), method: :get, class: params[:page].to_i.zero? || params[:page].blank? ? "active" : "") %>
+        <%= link_to("", settings_path(page: [params[:page].to_i - 1, 0].max, query: params[:query]), method: :get, id: "angle-left-link", title: I18n.t("sail.previous_page")) %>
+        <%= link_to(1, settings_path(page: 0, query: params[:query]), method: :get, class: params[:page].to_i.zero? || params[:page].blank? ? "active" : "") %>
 
         <% if params[:page].to_i - Sail::ConstantCollection::MAX_PAGES > 1 %>
           ●●●
         <% end %>
 
         <% ([params[:page].to_i - Sail::ConstantCollection::MAX_PAGES, 1].max...[@number_of_pages - 1, params[:page].to_i + Sail::ConstantCollection::MAX_PAGES].min).each do |page| %>
-          <%= link_to(page + 1, settings_path(page: page, monitor_mode: params[:monitor_mode], query: params[:query]), method: :get, class: params[:page].to_i == page || params[:page].blank? && page.zero? ? "active" : "") %>
+          <%= link_to(page + 1, settings_path(page: page, query: params[:query]), method: :get, class: params[:page].to_i == page || params[:page].blank? && page.zero? ? "active" : "") %>
         <% end %>
 
         <% if params[:page].to_i + Sail::ConstantCollection::MAX_PAGES < @number_of_pages - 1 %>
@@ -38,10 +32,10 @@
         <% end %>
 
         <% if @number_of_pages > 1 %>
-          <%= link_to(@number_of_pages, settings_path(page: @number_of_pages - 1, monitor_mode: params[:monitor_mode], query: params[:query]), method: :get, class: params[:page].to_i == @number_of_pages - 1 ? "active" : "") %>
+          <%= link_to(@number_of_pages, settings_path(page: @number_of_pages - 1, query: params[:query]), method: :get, class: params[:page].to_i == @number_of_pages - 1 ? "active" : "") %>
         <% end %>
 
-        <%= link_to("", settings_path(page: [params[:page].to_i + 1, @number_of_pages - 1].min, monitor_mode: params[:monitor_mode], query: params[:query]), method: :get, id: "angle-right-link", title: I18n.t("sail.next_page")) %>
+        <%= link_to("", settings_path(page: [params[:page].to_i + 1, @number_of_pages - 1].min, query: params[:query]), method: :get, id: "angle-right-link", title: I18n.t("sail.next_page")) %>
       </div>
     </div>
   <% end %>

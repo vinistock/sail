@@ -1,3 +1,14 @@
+## 3.5.0 ##
+
+### UI refactors
+
+* Make cards smaller and add flip functionality. Descriptions are now in the back
+* Shift to using flex attributes where possible
+* Remove monitor mode
+* Make number of settings per page 20
+
+*[@vinistock]*
+
 ## 3.4.0 ##
 
 * Remove support for Rails 4

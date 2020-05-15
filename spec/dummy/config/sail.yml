@@ -48,3 +48,8 @@ ab_tester:
   value: 'false'
   cast_type: ab_test
   group: feature_flags
+scaler:
+  description: A scaler
+  value: 33
+  cast_type: range
+  group: tuners

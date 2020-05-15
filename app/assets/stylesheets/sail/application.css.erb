@@ -60,13 +60,6 @@ html, body {
   clear: both;
 }
 
-@media (max-width: 413px) {
-  .clear-xs {
-    clear: both;
-    margin-top: 8px;
-  }
-}
-
 #nav-bar {
   background-color: var(--lead);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15), 0 5px 12px rgba(0, 0, 0, 0.1);
@@ -139,19 +132,6 @@ html, body {
 @media (max-width: 991px) {
   #nav-bar .nav-button {
     display: none;
-  }
-}
-
-#nav-bar #btn-monitor-mode,
-#nav-bar #btn-regular-mode {
-  right: 80px;
-  padding: 1px 7px 2px 7px;
-}
-
-@media (min-width: 1200px) {
-  #nav-bar #btn-monitor-mode,
-  #nav-bar #btn-regular-mode {
-    right: 120px;
   }
 }
 
@@ -263,13 +243,7 @@ html, body {
   outline: none;
 }
 
-#profiles-modal .profile-entry .inline-form {
-  float: right;
-}
-
 #profiles-modal .profile-entry button {
-  float: right;
-  margin-left: 5px;
   padding: 10px;
 }
 
@@ -278,27 +252,11 @@ html, body {
   top: 10px;
 }
 
-@media (max-width: 1199px) {
-  #profiles-modal .profile-entry .entry-name {
-    float: left;
-  }
-}
-
-@media (min-width: 1200px) {
-  #profiles-modal .profile-entry .entry-name {
-    margin-left: 250px;
-  }
+#profiles-modal .buttons button {
+  margin: 0 5px 0 5px;
 }
 
 @media (max-width: 767px) {
-  #profiles-modal .profile-entry .inline-form {
-    margin-right: 3%;
-  }
-
-  #profiles-modal .profile-entry .inline-form:first-child {
-    clear: both;
-  }
-
   #profiles-modal .profile-entry .entry-name {
     width: 90%;
     margin-bottom: 15px;
@@ -310,7 +268,6 @@ html, body {
 }
 
 #profiles-modal .profile-entry .active-indicator {
-  float: left;
   position: relative;
   top: 7px;
 }
@@ -324,7 +281,6 @@ html, body {
 }
 
 #profiles-modal .profile-entry .errors-indicator {
-  float: left;
   position: relative;
   top: 9px;
   left: 15px;
@@ -340,7 +296,6 @@ html, body {
   position: relative;
   top: 10px;
   text-overflow: ellipsis;
-
 }
 
 #profiles-modal #new-profile-input:focus {

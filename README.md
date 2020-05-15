@@ -1,4 +1,4 @@
-![dashboard](https://raw.githubusercontent.com/vinistock/sail/master/app/assets/images/sail/sail.png)
+![dashboard](https://raw.githubusercontent.com/vinistock/sail/master/app/assets/images/sail/sail.gif)
 
 [![Build Status](https://github.com/vinistock/sail/workflows/Ruby%20on%20Rails/badge.svg?branch=master)](https://github.com/vinistock/sail/actions) [![codecov](https://codecov.io/gh/vinistock/sail/branch/master/graph/badge.svg)](https://codecov.io/gh/vinistock/sail) [![Gem Version](https://badge.fury.io/rb/sail.svg)](https://badge.fury.io/rb/sail) ![](http://ruby-gem-downloads-badge.herokuapp.com/sail?color=brightgreen&type=total) [![Mentioned in Awesome Ruby](https://awesome.re/mentioned-badge.svg)](https://github.com/markets/awesome-ruby)
 

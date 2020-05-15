@@ -4,8 +4,6 @@ en:
     save: SAVE
     activate: ACTIVATE
     delete: DELETE
-    updated: Updated!
-    failed: Failed!
     search_placeholder: Setting name, group, cast type, stale or recent x
     search_tooltip: "When searching for recently updated settings, x is the number of hours since the update (e.g.: recent 2)"
     main_app: Main app
@@ -33,6 +31,7 @@ en:
     by_cast_type_html: "<b>By cast type:</b> will find all settings with the same type (must be exact match)"
     by_stale_html: "<b>By stale:</b> will find settings that are stale (haven't been updated recently)"
     by_recent_html: "<b>By recent:</b> will find settings updated in the last X hours (e.g.: recent 50)"
+    click_title: Click a setting's title to view its description.
     profiles_can_be_used: Profiles can be used to configure many states of settings. They save the values of all settings in a given moment.
     profile_configuring: Configure settings as desired and create a new profile. Activate profiles to change the value of all settings at once.
     relevancy_score: Relevancy Score
@@ -40,8 +39,6 @@ en:
     available_groups_and_types: Available groups and types
     groups_are: "The groups currently used are:"
     types_are: "The cast types currently used are:"
-    regular_mode: Regular mode
-    monitor_mode: Monitor mode
     how_to_find_settings: How to find settings you are looking for
     how_to_profiles: How to organize your settings in profiles
     how_to_relevancy_score: What is the relevancy score and how to use it
