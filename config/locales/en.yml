@@ -4,8 +4,6 @@ en:
     save: SAVE
     activate: ACTIVATE
     delete: DELETE
-    updated: Updated!
-    failed: Failed!
     search_placeholder: Setting name, group, cast type, stale or recent x
     search_tooltip: "When searching for recently updated settings, x is the number of hours since the update (e.g.: recent 2)"
     main_app: Main app

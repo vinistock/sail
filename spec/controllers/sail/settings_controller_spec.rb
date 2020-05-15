@@ -17,7 +17,7 @@ describe Sail::SettingsController, type: :controller do
     end
 
     it "queries settings with pagination" do
-      expect(Sail::Setting).to receive(:paginated).with("1", 8)
+      expect(Sail::Setting).to receive(:paginated).with("1", 20)
       subject
       expect(response).to have_http_status(:ok)
     end

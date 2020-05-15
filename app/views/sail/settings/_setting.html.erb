@@ -1,68 +1,94 @@
 <% cache setting, expires_in: Sail.configuration.cache_life_span do %>
   <div class="card">
-    <h3 class="title">
-      <%= setting.display_name %>
+    <div class="front">
+      <h3 class="title card-title"><%= setting.display_name %></h3>
+      <hr/>
 
-      <span class="relevancy-score" title="<%= I18n.t("sail.relevancy_tooltip") %>"><%= setting.relevancy %></span>
-      <div class="clearfix"></div>
-    </h3>
-    <hr/>
+      <div class="flex-container-vertical">
+        <div>
+          <div class="flex-container space-between">
+            <div>
+              <%= form_tag(reset_setting_path(name: setting.name), method: :put, remote: true) do %>
+                <button class="refresh-button" title="<%= I18n.t("sail.refresh_tooltip") %>">
+                  <%= image_tag("sail/refresh.svg", alt: I18n.t("sail.refresh_tooltip")) %>
+                </button>
+              <% end %>
+            </div>
 
-    <%= form_tag(reset_setting_path(name: setting.name), method: :put, remote: true) do %>
-      <button class="refresh-button" title="<%= I18n.t("sail.refresh_tooltip") %>">
-        <%= image_tag("sail/refresh.svg", alt: I18n.t("sail.refresh_tooltip")) %>
-      </button>
-    <% end %>
+            <div>
+              <span class="relevancy-score" title="<%= I18n.t("sail.relevancy_tooltip") %>"><%= setting.relevancy %></span>
+            </div>
+          </div>
+        </div>
 
-    <div class="label-container">
-      <%= link_to(setting.cast_type, settings_path(query: setting.cast_type), method: :get, class: "tag type-label") %>
-    </div>
+        <div>
+          <div class="flex-container justify-end padded">
+            <div>
+              <%= link_to(setting.cast_type, settings_path(query: setting.cast_type), method: :get, class: "tag type-label") %>
+            </div>
 
-    <% if setting.group.present? %>
-      <div class="label-container">
-        <%= link_to(setting.group, settings_path(query: setting.group), method: :get, class: "tag group-label") %>
-      </div>
-    <% end %>
+            <% if setting.group.present? %>
+              <div>
+                <%= link_to(setting.group, settings_path(query: setting.group), method: :get, class: "tag group-label") %>
+              </div>
+            <% end %>
 
-    <div class="clear-xs"></div>
+            <% if setting.stale? %>
+              <div>
+                <%= link_to(I18n.t("sail.stale"), settings_path(query: Sail::ConstantCollection::STALE), method: :get, class: "tag stale-label", title: I18n.t("sail.stale_tooltip", days: Sail.configuration.days_until_stale)) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
 
-    <% if setting.stale? %>
-      <div class="label-container">
-        <%= link_to(I18n.t("sail.stale"), settings_path(query: Sail::ConstantCollection::STALE), method: :get, class: "tag stale-label", title: I18n.t("sail.stale_tooltip", days: Sail.configuration.days_until_stale)) %>
-      </div>
-    <% end %>
+        <div>
+          <%= form_tag(setting_path(name: setting.name), method: :put, remote: true) do %>
+            <div class="flex-container space-between align-bottom">
+              <% if setting.boolean? || setting.ab_test? %>
+                <div>
+                  <label class="switch">
+                    <input id="<%= "input_for_#{setting.name}" %>" type="checkbox" name="value" <%= setting.value == "true" ? "checked" : "" %>>
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              <% elsif setting.range? %>
+                <div class="flex-grow">
+                  <input id="<%= "input_for_#{setting.name}" %>" type="range" min="0" max="99" value="<%= setting.value %>" name="value" class="value-slider">
+                </div>
+              <% elsif setting.date? %>
+                <div>
+                  <input id="<%= "input_for_#{setting.name}" %>" type="datetime-local" value="<%= formatted_date(setting) %>" name="value" class="date-picker">
+                </div>
+              <% else %>
+                <div>
+                  <input id="<%= "input_for_#{setting.name}" %>" type="text" name="value" class="value-input" value="<%= setting.value %>"/>
+                </div>
+              <% end %>
 
-    <p id="success-<%= setting.name %>" class="notice success">
-      <label><%= I18n.t("sail.updated") %></label>
-    </p>
+              <div class="submit-container">
+                <button id="btn-submit-<%= setting.name %>" type="submit" class="btn-value-submit"><%= I18n.t("sail.save") %></button>
 
-    <p id="alert-<%= setting.name %>" class="notice alert">
-      <label><%= I18n.t("sail.failed") %></label>
-    </p>
+                <span id="success-<%= setting.name %>" class="notice success">
+                  <%= image_tag("sail/checkmark.svg") %>
+                </span>
 
-    <p id="description-<%= setting.name %>" class="setting-description" title="<%= setting.description %>">
-      <label for="<%= "input_for_#{setting.name}" %>"><%= setting.description %></label>
-    </p>
-
-    <%= form_tag(setting_path(name: setting.name), method: :put, remote: true) do %>
-      <div class="card-body-container">
-        <div class="card-body">
-          <% if setting.boolean? || setting.ab_test? %>
-            <label class="switch">
-              <input id="<%= "input_for_#{setting.name}" %>" type="checkbox" name="value" <%= setting.value == "true" ? "checked" : "" %>>
-              <span class="slider round"></span>
-            </label>
-          <% elsif setting.range? %>
-            <input id="<%= "input_for_#{setting.name}" %>" type="range" min="0" max="99" value="<%= setting.value %>" name="value" class="value-slider">
-          <% elsif setting.date? %>
-            <input id="<%= "input_for_#{setting.name}" %>" type="datetime-local" value="<%= formatted_date(setting) %>" name="value" class="date-picker">
-          <% else %>
-            <input id="<%= "input_for_#{setting.name}" %>" type="text" name="value" class="value-input" value="<%= setting.value %>"/>
+                <span id="alert-<%= setting.name %>" class="notice alert">
+                  <%= image_tag("sail/error.svg") %>
+                </span>
+              </div>
+            </div>
           <% end %>
-
-          <button type="submit" class="btn-value-submit"><%= I18n.t('sail.save') %></button>
         </div>
       </div>
-    <% end %>
+    </div>
+
+    <div class="back">
+      <h3 class="title card-title"><%= setting.display_name %></h3>
+      <hr/>
+
+      <p class="setting-description" title="<%= setting.description %>">
+        <label for="<%= "input_for_#{setting.name}" %>"><%= setting.description %></label>
+      </p>
+    </div>
   </div>
 <% end %>

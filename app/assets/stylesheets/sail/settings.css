@@ -16,15 +16,19 @@
 #settings-dashboard #settings-container {
     margin-top: 1rem;
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 0 15px 0 15px;
 }
 
 #settings-dashboard .card {
-    min-height: 230px;
+    flex: 0 1 auto;
+    max-height: 220px;
     background-color: white;
     margin: 1rem .75rem;
-    display: inline-block;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    padding: 10px;
+    padding: 0 10px 0 10px;
     z-index: 2;
     width: 90%;
     -webkit-box-sizing: border-box;
@@ -33,14 +37,41 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+
+    transition-duration: 0.6s;
+    transition-timing-function: ease-in-out;
+    transform-style: preserve-3d;
 }
 
-#settings-dashboard .card h3 {
-    margin-left: 25px;
+#settings-dashboard .card .card-title {
+    transition: color 500ms ease-in;
+}
+
+#settings-dashboard .card .card-title:hover {
+    color: var(--tangerine);
+    cursor: pointer;
+}
+
+#settings-dashboard .card .front,
+#settings-dashboard .card .back {
+    backface-visibility: hidden;
+    transform: rotateX(0deg);
+    height: 63%;
+}
+
+#settings-dashboard .card .back {
+    transform: rotateY(-180deg);
+    position: relative;
+    bottom: 155px;
+}
+
+#settings-dashboard .card.flipped {
+    transform: rotateY(-180deg);
 }
 
 #settings-dashboard .card .relevancy-score {
-    float: right;
+    position: relative;
+    bottom: 5px;
     color: var(--dark-aluminium);
 }
 
@@ -52,20 +83,8 @@
 
 @media (min-width: 1200px) {
     #settings-dashboard .card {
-        width: 21%;
+        width: 18%;
     }
-}
-
-#settings-dashboard .card .card-body-container {
-    display: table;
-    width: 100%;
-}
-
-#settings-dashboard .card .card-body {
-    height: 80px;
-    width: 100%;
-    display: table-cell;
-    vertical-align: bottom;
 }
 
 #settings-dashboard .card .tag {
@@ -94,11 +113,6 @@
 }
 
 #settings-dashboard .card .setting-description {
-    clear: both;
-    padding: 25px 15px 15px 15px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
     -webkit-animation: fadeIn 0.5s;
     animation: fadeIn 0.5s;
     color: var(--darker-aluminium);
@@ -111,16 +125,11 @@
     }
 }
 
-#settings-dashboard .card .label-container {
-    float: right;
-    margin-top: 5px;
-}
-
-#settings-dashboard .card .value-input {
-    width: 98%;
-    margin-bottom: 10px;
-    font-size: 22px;
+#settings-dashboard .card .value-input,
+#settings-dashboard .card .date-picker {
+    width: 95%;
     text-align: center;
+    font-size: 22px;
     border: none;
     border-bottom: 2px solid var(--aluminium);
     -webkit-border-radius: 0;
@@ -135,30 +144,7 @@
 }
 
 #settings-dashboard .card .value-input:focus,
-#settings-dashboard .card .value-input:hover {
-    border-color: var(--tangerine);
-    outline: none;
-}
-
-#settings-dashboard .card .date-picker {
-    position: relative;
-    bottom: 10px;
-    border: none;
-    border-bottom: 2px solid var(--aluminium);
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 22px;
-    padding: 0;
-    -webkit-transition : border .25s ease-in;
-    -moz-transition : border .25s ease-in;
-    -o-transition : border .25s ease-in;
-    transition : border .25s ease-in;
-    outline: none;
-}
-
+#settings-dashboard .card .value-input:hover,
 #settings-dashboard .card .date-picker:focus,
 #settings-dashboard .card .date-picker:hover {
     border-color: var(--tangerine);
@@ -167,15 +153,14 @@
 
 #settings-dashboard .card .value-slider {
     -webkit-appearance: none;
-    width: 100%;
     height: 15px;
+    width: 90%;
     border-radius: 5px;
     background: #d3d3d3;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
-    margin: 0 0 10px 0;
 }
 
 #settings-dashboard .card .value-slider::-webkit-slider-thumb {
@@ -197,17 +182,21 @@
 }
 
 #settings-dashboard .card .btn-value-submit {
-    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+#settings-dashboard .card .submit-container {
     height: 35px;
+    width: 24%;
 }
 
 #settings-dashboard .card .switch {
     position: relative;
+    top: 5px;
     display: inline-block;
     width: 60px;
     height: 34px;
-    margin-bottom: 10px;
-    float: right;
 }
 
 #settings-dashboard .card .switch input {display:none;}
@@ -261,8 +250,43 @@
 #settings-dashboard .card .refresh-button {
     border: none;
     outline: none;
-    float: left;
     background: transparent;
+}
+
+#settings-dashboard .card .flex-container {
+    display: flex;
+    align-items: center;
+}
+
+#settings-dashboard .card .flex-container .flex-grow {
+    flex-grow: 4;
+}
+
+#settings-dashboard .card .flex-container-vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+#settings-dashboard .card .flex-container.space-between {
+    justify-content: space-between;
+}
+
+#settings-dashboard .card .flex-container.align-bottom {
+    align-items: flex-end;
+}
+
+#settings-dashboard .card .flex-container.padded {
+    padding: 5px 0 10px 0;
+}
+
+#settings-dashboard .card .flex-container.justify-end {
+    justify-content: flex-end;
+}
+
+#settings-dashboard .card .flex-container > div {
+    flex: 0 1 auto;
 }
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
@@ -294,23 +318,30 @@
 
 .notice {
     display: none;
-    clear: both;
-    padding: 25px 15px 15px 15px;
+    position: relative;
+    top: 10px;
     text-overflow: ellipsis;
-    white-space: nowrap;
     overflow: hidden;
+    text-transform: uppercase;
     font-weight: bolder;
+    font-size: 18px;
+    width: 100%;
+    height: 100%;
     text-align: center;
     -webkit-animation: fadeIn 0.5s;
     animation: fadeIn 0.5s;
 }
 
-.notice.success {
-    color: var(--dark-green);
+.notice img {
+    width: 25px;
 }
 
-.notice.alert {
-    color: var(--bright-red);
+.notice.success img {
+    fill: var(--dark-green);
+}
+
+.notice.alert img {
+    fill: var(--bright-red);
 }
 
 #progress-container {
@@ -368,7 +399,7 @@
     position: absolute;
     right: 30%;
     top: 165px;
-    z-index: 2;
+    z-index: 3;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
