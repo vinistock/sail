@@ -56,7 +56,7 @@
 #settings-dashboard .card .back {
     backface-visibility: hidden;
     transform: rotateX(0deg);
-    height: 63%;
+    height: 61%;
 }
 
 #settings-dashboard .card .back {
@@ -253,39 +253,39 @@
     background: transparent;
 }
 
-#settings-dashboard .card .flex-container {
+.flex-container {
     display: flex;
     align-items: center;
 }
 
-#settings-dashboard .card .flex-container .flex-grow {
+.flex-container .flex-grow {
     flex-grow: 4;
 }
 
-#settings-dashboard .card .flex-container-vertical {
+.flex-container-vertical {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
 }
 
-#settings-dashboard .card .flex-container.space-between {
+.flex-container.space-between {
     justify-content: space-between;
 }
 
-#settings-dashboard .card .flex-container.align-bottom {
+.flex-container.align-bottom {
     align-items: flex-end;
 }
 
-#settings-dashboard .card .flex-container.padded {
+.flex-container.padded {
     padding: 5px 0 10px 0;
 }
 
-#settings-dashboard .card .flex-container.justify-end {
+.flex-container.justify-end {
     justify-content: flex-end;
 }
 
-#settings-dashboard .card .flex-container > div {
+.flex-container > div {
     flex: 0 1 auto;
 }
 

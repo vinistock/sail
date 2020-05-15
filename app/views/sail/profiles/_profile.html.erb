@@ -1,31 +1,43 @@
-<div id="<%= profile.name %>" class="profile-entry">
-  <% if profile.active? %>
+<div id="<%= profile.name %>" class="profile-entry flex-container space-between">
+  <div>
+    <% if profile.active? %>
     <span class="active-indicator <%= profile.dirty? ? "yellow" : "green" %>"
           title="<%= profile.dirty? ? I18n.t("sail.dirty_profile_tooltip") : I18n.t("sail.clean_profile_tooltip") %>">
       ⬤
     </span>
 
-    <% unless Sail.instrumenter.profile(profile.name).zero? %>
+      <% unless Sail.instrumenter.profile(profile.name).zero? %>
       <span class="errors-indicator" title="<%= I18n.t("sail.profile_error_tooltip") %>">
         <%= I18n.t("sail.profile_errors", count: Sail.instrumenter.profile(profile.name)) %>
       </span>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 
-  <span class="entry-name"><%= profile.name.titleize %></span>
+  <div>
+    <span class="entry-name"><%= profile.name.titleize %></span>
+  </div>
 
-  <%= form_tag(profile_path(name: profile.name), method: :delete, remote: true, class: "inline-form") do %>
-    <button class="btn-sail"><%= I18n.t("sail.delete") %></button>
-  <% end %>
+  <div>
+    <div class="flex-container space-between buttons">
+      <div>
+        <%= form_tag(profile_path(name: profile.name), method: :delete, remote: true) do %>
+          <button class="btn-sail"><%= I18n.t("sail.delete") %></button>
+        <% end %>
+      </div>
 
-  <%= form_tag(switch_profile_path(name: profile.name), method: :put, remote: true, class: "inline-form") do %>
-    <button class="btn-sail" type="submit"><%= I18n.t("sail.activate") %></button>
-  <% end %>
+      <div>
+        <%= form_tag(switch_profile_path(name: profile.name), method: :put, remote: true) do %>
+          <button class="btn-sail" type="submit"><%= I18n.t("sail.activate") %></button>
+        <% end %>
+      </div>
 
-  <%= form_tag(profiles_path, method: :post, remote: true, class: "inline-form") do %>
-    <input type="hidden" name="name" value="<%= profile.name %>">
-    <button class="btn-sail" type="submit"><%= I18n.t("sail.save") %></button>
-  <% end %>
-
-  <div class="clearfix"></div>
+      <div>
+        <%= form_tag(profiles_path, method: :post, remote: true) do %>
+          <input type="hidden" name="name" value="<%= profile.name %>">
+          <button class="btn-sail" type="submit"><%= I18n.t("sail.save") %></button>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
