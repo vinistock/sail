@@ -88,9 +88,9 @@
 }
 
 #settings-dashboard .card .tag {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
     padding: 10px;
     color: var(--main-black);
     font-size: 14px;
