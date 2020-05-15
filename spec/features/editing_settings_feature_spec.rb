@@ -28,7 +28,7 @@ feature "editing settings", js: true, type: :feature do
         end
 
         if set[:type] == "date"
-          expect(setting.reload.value).to match(/2018-.*-.*T.*:.*/)
+          expect(setting.reload.value).to match(/2018-.*-.* .*:.*/)
         else
           expect(setting.reload.value).to eq(set[:new])
         end
