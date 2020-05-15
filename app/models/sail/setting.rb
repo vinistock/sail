@@ -40,7 +40,7 @@ module Sail
       elsif select(:id).by_group(query).exists?
         by_group(query)
       elsif query.to_s.include?(Sail::ConstantCollection::RECENT)
-        recently_updated(query.delete("recent ").strip)
+        recently_updated(query.delete("recent ").strip.to_i)
       else
         by_name(query)
       end
