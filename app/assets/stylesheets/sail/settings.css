@@ -307,15 +307,6 @@
     animation:spin 1s linear infinite;
 }
 
-#settings-dashboard .card.minimal {
-    min-height: 50px;
-    padding-top: 0;
-}
-
-#settings-dashboard .card.minimal label {
-    font-size: 22px;
-}
-
 .notice {
     display: none;
     position: relative;
