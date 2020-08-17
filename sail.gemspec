@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rubocop"
   s.add_development_dependency "rubocop-performance"
   s.add_development_dependency "rubocop-rails"
-  s.add_development_dependency "simplecov", "~> 0.18.0"
+  s.add_development_dependency "simplecov", "~> 0.19.0"
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "webdrivers"
 end
