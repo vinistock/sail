@@ -215,7 +215,7 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     sexp_processor (4.14.1)
-    simplecov (0.18.5)
+    simplecov (0.19.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
     simplecov-html (0.12.2)
@@ -264,7 +264,7 @@ DEPENDENCIES
   rubocop-rails
   sail!
   sassc-rails
-  simplecov (~> 0.18.0)
+  simplecov (~> 0.19.0)
   sqlite3 (>= 1.4.0)
   webdrivers
 
