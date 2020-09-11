@@ -2,7 +2,8 @@
 
 $LOAD_PATH.push File.expand_path("lib", __dir__)
 require "sail/version"
-Gem::Specification.new do |s|
+
+Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.name        = "sail"
   s.version     = Sail::VERSION
   s.authors     = ["Vinicius Stock"].freeze
@@ -32,6 +33,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "rspec-retry"
   s.add_development_dependency "rubocop"
+  s.add_development_dependency "rubocop-packaging"
   s.add_development_dependency "rubocop-performance"
   s.add_development_dependency "rubocop-rails"
   s.add_development_dependency "simplecov", "~> 0.19.0"

@@ -59,7 +59,7 @@ module Sail
     def relative_usage_of(setting_name)
       return 0.0 if @statistics[:settings].empty?
 
-      (100.0 * self[setting_name][:usages]) / @statistics[:settings].map { |_, entry| entry[:usages] }.reduce(:+)
+      (100.0 * self[setting_name][:usages]) / @statistics[:settings].map { |_, entry| entry[:usages] }.sum
     end
 
     # increment_failure_of

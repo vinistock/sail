@@ -2,7 +2,6 @@
 
 ENV["RAILS_ENV"] = "test"
 require File.expand_path("dummy/config/environment.rb", __dir__)
-require "bundler/setup"
 require "rspec/rails"
 require "simplecov"
 require "rails/all"
