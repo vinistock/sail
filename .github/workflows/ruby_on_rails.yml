@@ -11,14 +11,14 @@ jobs:
         ruby_version: [2.5, 2.6, 2.7]
 
     steps:
-    - uses: actions/checkout@v2.3.2
+    - uses: actions/checkout@v2.3.3
     - name: Cache
       uses: actions/cache@v2.1.1
       with:
         path: vendor/bundle
         key: ${{ matrix.ruby_version }}_${{ matrix.rails_version }}
     - name: Set up Ruby
-      uses: ruby/setup-ruby@v1.43.0
+      uses: ruby/setup-ruby@v1.46.0
       with:
         ruby-version: ${{ matrix.ruby_version }}
     - name: Build and test with Rake
