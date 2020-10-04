@@ -3,8 +3,8 @@
 $LOAD_PATH.push File.expand_path("lib", __dir__)
 require "sail/version"
 
-Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
-  s.name        = "sail"
+Gem::Specification.new do |s|
+  s.name = "sail"
   s.version     = Sail::VERSION
   s.authors     = ["Vinicius Stock"].freeze
   s.email       = ["vinicius.stock@outlook.com"].freeze
@@ -29,7 +29,6 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.add_development_dependency "capybara-selenium"
   s.add_development_dependency "database_cleaner"
   s.add_development_dependency "rack-mini-profiler"
-  s.add_development_dependency "rails_best_practices"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "rspec-retry"
   s.add_development_dependency "rubocop"
