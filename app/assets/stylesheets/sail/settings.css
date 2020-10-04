@@ -22,6 +22,10 @@
     padding: 0 15px 0 15px;
 }
 
+#settings-dashboard #settings-container.empty {
+    justify-content: center;
+}
+
 #settings-dashboard .card {
     flex: 0 1 auto;
     max-height: 220px;

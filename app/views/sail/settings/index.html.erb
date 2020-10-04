@@ -2,7 +2,7 @@
   <% cache @settings do %>
     <%= render(partial: "search") %>
 
-    <div id="settings-container">
+    <div id="settings-container" class="<%= settings_container_class(@number_of_pages) %>">
       <% if @number_of_pages > 0 %>
         <%= render(partial: "setting", collection: @settings) %>
       <% else %>

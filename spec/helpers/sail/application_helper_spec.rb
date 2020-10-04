@@ -19,4 +19,18 @@ describe Sail::ApplicationHelper, type: :helper do
       expect(subject).to eq("2019-01-01T10:01:00")
     end
   end
+
+  describe "#settings_container_class" do
+    subject { settings_container_class(pages) }
+
+    context "when there's a page or more" do
+      let(:pages) { 1 }
+      it { is_expected.to eq("") }
+    end
+
+    context "when there are no pages" do
+      let(:pages) { 0 }
+      it { is_expected.to eq("empty") }
+    end
+  end
 end

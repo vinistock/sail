@@ -1,3 +1,7 @@
+## 3.5.1 ##
+
+* Fix position of "No settings found" text *[@vinistock]*
+
 ## 3.5.0 ##
 
 ### UI refactors
