@@ -1,6 +1,7 @@
 ## 3.5.1 ##
 
 * Fix position of "No settings found" text *[@vinistock]*
+* Change reset setting value button icon *[@dersnek]*
 
 ## 3.5.0 ##
 
@@ -40,7 +41,7 @@
 
 ## 3.3.0 ##
 
-* Fix caching issue with settings pagination 
+* Fix caching issue with settings pagination
 
 *[@asko-ohmann]*
 
@@ -174,8 +175,8 @@
 
 * Expire cache fragments after 500 new usages of each setting
   so that the relevancy score actually updates.
-  
-*[@vinistock]*  
+
+*[@vinistock]*
 
 ## 3.0.1 ##
 

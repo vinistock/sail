@@ -23,7 +23,7 @@ module Sail
     config.middleware.use Rack::ETag
 
     initializer "sail.assets.precompile" do |app|
-      app.config.assets.precompile += %w[sail/refresh.svg sail/sort.svg sail/angle-left.svg
+      app.config.assets.precompile += %w[sail/reset.svg sail/sort.svg sail/angle-left.svg
                                          sail/angle-right.svg sail/link.svg sail/cog.svg sail/checkmark.svg
                                          sail/error.svg sail/application.css sail/application.js]
     end
