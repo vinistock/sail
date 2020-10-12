@@ -10,7 +10,7 @@
             <div>
               <%= form_tag(reset_setting_path(name: setting.name), method: :put, remote: true) do %>
                 <button class="refresh-button" title="<%= I18n.t("sail.refresh_tooltip") %>">
-                  <%= image_tag("sail/refresh.svg", alt: I18n.t("sail.refresh_tooltip")) %>
+                  <%= image_tag("sail/reset.svg", alt: I18n.t("sail.refresh_tooltip")) %>
                 </button>
               <% end %>
             </div>
