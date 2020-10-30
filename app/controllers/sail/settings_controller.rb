@@ -20,7 +20,7 @@ module Sail
     def update
       respond_to do |format|
         @setting, @successful_update = Setting.set(s_params[:name], s_params[:value])
-        format.js {}
+        format.js
         format.json { @successful_update ? head(:ok) : head(:conflict) }
       end
     end
