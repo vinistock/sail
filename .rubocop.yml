@@ -37,4 +37,5 @@ Gemspec/RequiredRubyVersion:
   Enabled: false
 Style/OptionalBooleanParameter:
   Enabled: false
-
+Naming/VariableNumber:
+  Enabled: false
