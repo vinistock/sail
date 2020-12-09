@@ -12,7 +12,7 @@ module Sail
     belongs_to :profile
     validates :value, :setting, :profile, presence: true
 
-    scope :by_profile_name, ->(name) { joins(:profile).where("sail_profiles.name = ?", name) }
+    scope :by_profile_name, ->(name) { joins(:profile).where(sail_profiles: { name: name }) }
 
     delegate :name, to: :setting
 
