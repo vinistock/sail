@@ -11,3 +11,4 @@ gem "sassc-rails"
 gem "sqlite3",
     (ENV["RAILS_VERSION"].nil? || ENV["RAILS_VERSION"].to_s >= "6.0.0" ? ">= 1.4.0" : "< 1.4.0"),
     platforms: %i[mri mingw x64_mingw]
+gem "webrick"
