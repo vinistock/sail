@@ -14,7 +14,6 @@ module Sail
 
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore
     config.middleware.use ActionDispatch::ContentSecurityPolicy::Middleware if defined?(ActionDispatch::ContentSecurityPolicy)
     config.middleware.use Rack::MethodOverride
     config.middleware.use Rails::Rack::Logger
