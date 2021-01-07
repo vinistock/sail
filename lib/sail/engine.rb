@@ -49,9 +49,9 @@ module Sail
 
     private
 
-    def to_prepare
+    def to_prepare(&block)
       klass = defined?(ActiveSupport::Reloader) ? ActiveSupport::Reloader : ActionDispatch::Reloader
-      klass.to_prepare(&Proc.new)
+      klass.to_prepare(&block)
     end
   end
 end
