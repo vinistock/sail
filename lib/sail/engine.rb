@@ -39,6 +39,8 @@ module Sail
       errors = [ActiveRecord::NoDatabaseError]
       errors << PG::ConnectionBad if defined?(PG)
 
+      config.middleware.use Rails.application.config.session_store || ActionDispatch::Session::CookieStore
+
       begin
         Sail::Setting.load_defaults unless Rails.env.test?
       rescue *errors
