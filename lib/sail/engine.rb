@@ -14,7 +14,6 @@ module Sail
 
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore
     config.middleware.use ActionDispatch::ContentSecurityPolicy::Middleware if defined?(ActionDispatch::ContentSecurityPolicy)
     config.middleware.use Rack::MethodOverride
     config.middleware.use Rails::Rack::Logger
@@ -39,6 +38,8 @@ module Sail
     config.after_initialize do
       errors = [ActiveRecord::NoDatabaseError]
       errors << PG::ConnectionBad if defined?(PG)
+
+      config.middleware.use Rails.application.config.session_store || ActionDispatch::Session::CookieStore
 
       begin
         Sail::Setting.load_defaults unless Rails.env.test?
