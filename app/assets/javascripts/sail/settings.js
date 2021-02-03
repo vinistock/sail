@@ -17,6 +17,8 @@ let guideButton = document.getElementById("btn-guide");
 let guide = document.getElementById("guide-modal");
 let guideSections = guide.getElementsByTagName("summary");
 let cardTitles = document.getElementsByClassName("card-title");
+let inputs = document.getElementsByName("value");
+const initialSettingValues = {};
 let i;
 
 function submitSearch() {
@@ -148,3 +150,28 @@ function flipCard() {
 }
 
 for(i = 0; i < cardTitles.length; i++) cardTitles[i].addEventListener("click", flipCard);
+
+function enableSubmitButton() {
+    const name = this.id.replace("input_for_", "");
+    const submitId = this.id.replace("input_for_", "btn-submit-");
+    const submit = document.getElementById(submitId);
+    const value = this.type === "checkbox" ? this.checked : this.value;
+
+    if (value === initialSettingValues[name]) {
+        submit.classList.remove("orange");
+        submit.disabled = true;
+    } else {
+        submit.classList.add("orange");
+        submit.disabled = false;
+    }
+}
+
+for(i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener("change", enableSubmitButton);
+
+    if (inputs[i].type === "checkbox") {
+        initialSettingValues[inputs[i].id.replace("input_for_", "")] = inputs[i].checked;
+    } else {
+        initialSettingValues[inputs[i].id.replace("input_for_", "")] = inputs[i].value;
+    }
+}

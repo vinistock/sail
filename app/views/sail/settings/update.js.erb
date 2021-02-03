@@ -11,10 +11,16 @@ setTimeout(function () {
 
 if ("<%= @successful_update %>" === "true") {
     var input = document.getElementById("<%= "input_for_#{@setting.name}" %>");
+    var submitButton = document.getElementById("<%= "btn-submit-#{@setting.name}" %>");
 
     if ("<%= @setting.boolean? %>" === "true") {
         input.checked = "<%= @setting.value %>" === "true";
+        initialSettingValues["<%= @setting.name %>"] = "<%= @setting.value %>" === "true";
     } else {
         input.value = "<%= @setting.date? ? formatted_date(@setting) : @setting.value %>";
+        initialSettingValues["<%= @setting.name %>"] = "<%= @setting.date? ? formatted_date(@setting) : @setting.value %>";
     }
+
+    submitButton.classList.remove("orange");
+    submitButton.disabled = true;
 }

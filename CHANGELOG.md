@@ -1,3 +1,7 @@
+## 3.6.0 ##
+
+* Disable submit buttons by default if form is not dirty *[@vinistock]*
+
 ## 3.5.1 ##
 
 * Fix position of "No settings found" text *[@vinistock]*
