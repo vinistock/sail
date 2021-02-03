@@ -10,7 +10,7 @@ require "capybara/rspec"
 require "capybara/rails"
 require "sail"
 require "selenium/webdriver"
-require "webdrivers/chromedriver"
+require "webdrivers/geckodriver"
 require "rspec/retry"
 
 SimpleCov.start
@@ -62,26 +62,10 @@ RSpec.configure do |config|
     ex.run_with_retry retry: 3
   end
 
-  Capybara.register_driver :chrome do |app|
-    Capybara::Selenium::Driver.new(app, browser: :chrome)
-  end
-
-  Capybara.register_driver :headless_chrome do |app|
-    options = ::Selenium::WebDriver::Chrome::Options.new
-
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--window-size=1920,1180")
-    options.add_argument("--disable-gpu")
-
-    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
-  end
-
-  Capybara.javascript_driver = :headless_chrome
+  Capybara.javascript_driver = :selenium_headless
   Capybara.server = :webrick
   Capybara.default_max_wait_time = 5
-  Webdrivers.install_dir = "~/bin/chromedriver" if ENV["ON_CI"].present?
+  Webdrivers.install_dir = "~/bin/firefox_driver" if ENV["ON_CI"].present?
 end
 
 # rubocop:disable Metrics/AbcSize
@@ -98,18 +82,3 @@ def expect_setting(setting)
   end
 end
 # rubocop:enable Metrics/AbcSize
-
-# Patch to avoid failures for
-# Ruby 2.6.x combined with Rails 4.x.x
-# More details in https://github.com/rails/rails/issues/34790
-if RUBY_VERSION >= "2.6.0" && Rails.version < "5"
-  module ActionController
-    class TestResponse < ActionDispatch::TestResponse
-      def recycle!
-        @mon_mutex_owner_object_id = nil
-        @mon_mutex = nil
-        initialize
-      end
-    end
-  end
-end
