@@ -167,7 +167,11 @@ function enableSubmitButton() {
 }
 
 for(i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener("change", enableSubmitButton);
+    if (inputs[i].type === "text") {
+        inputs[i].addEventListener("input", enableSubmitButton);
+    } else {
+        inputs[i].addEventListener("change", enableSubmitButton);
+    }
 
     if (inputs[i].type === "checkbox") {
         initialSettingValues[inputs[i].id.replace("input_for_", "")] = inputs[i].checked;
