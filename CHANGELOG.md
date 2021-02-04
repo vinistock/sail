@@ -1,6 +1,9 @@
 ## 3.6.0 ##
 
 * Disable submit buttons by default if form is not dirty *[@vinistock]*
+* Allow using different session stores *[@denny]*
+* Fix Proc without block error for Ruby 3 *[@denny]*
+* Add missing parameter to permitted list *[@denny]*
 
 ## 3.5.1 ##
 
