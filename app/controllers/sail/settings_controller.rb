@@ -65,7 +65,8 @@ module Sail
     def s_params
       params.permit(:page, :query, :name,
                     :value, :positive, :negative,
-                    :throttled_by, :order_field)
+                    :throttled_by, :order_field,
+                    :_method, :locale, :authenticity_token)
     end
 
     def log_update

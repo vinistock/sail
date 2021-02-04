@@ -34,7 +34,7 @@ module Sail
     private
 
     def s_params
-      params.permit(:name)
+      params.permit(:name, :locale)
     end
   end
 end
