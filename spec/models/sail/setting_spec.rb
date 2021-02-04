@@ -620,6 +620,7 @@ describe Sail::Setting, type: :model do
     let(:setting) { described_class.create!(name: :setting, cast_type: :string, value: "Some string") }
 
     before do
+      Sail.instrumenter.instance_variable_set(:@number_of_settings, 3)
       allow(Sail.instrumenter).to receive(:relative_usage_of).with("setting").and_return(60.0)
 
       described_class.create!(name: :setting_2, cast_type: :string, value: "Some string")
