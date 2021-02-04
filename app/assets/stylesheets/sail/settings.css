@@ -534,7 +534,7 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    background-color: var(--tangerine);
+    background-color: var(--aluminium);
     border: none;
     outline: none;
     -webkit-transition: background-color 0.5s;
@@ -545,11 +545,15 @@
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
+.btn-sail, #settings-dashboard .card .btn-value-submit.orange {
+    background-color: var(--tangerine);
+}
+
 .btn-sail:active {
     color: var(--main-black);
     opacity: .8;
 }
 
-.btn-sail :hover {
+.btn-sail:hover, #settings-dashboard .card .btn-value-submit.orange:hover {
     background-color: var(--dark-tangerine);
 }

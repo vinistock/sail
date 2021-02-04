@@ -73,7 +73,7 @@ def expect_setting(setting)
   expect(page).to have_text(setting.name.titleize)
   expect(page).to have_text(setting.cast_type)
   expect(page).to have_link(setting.group)
-  expect(page).to have_button("SAVE")
+  expect(page).to have_button("SAVE", disabled: true)
 
   if setting.boolean? || setting.ab_test?
     expect(page).to have_css(".slider")

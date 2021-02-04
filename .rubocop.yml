@@ -39,3 +39,5 @@ Style/OptionalBooleanParameter:
   Enabled: false
 Naming/VariableNumber:
   Enabled: false
+Style/RedundantFreeze:
+  Enabled: false

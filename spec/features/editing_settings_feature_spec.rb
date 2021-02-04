@@ -22,7 +22,9 @@ feature "editing settings", js: true, type: :feature do
 
       it "properly changes the setting's value" do
         within(".card") do
+          expect(page).to have_button("SAVE", disabled: true)
           send("fill_for_#{set[:type]}", set[:new])
+          page.execute_script("document.getElementById('input_for_setting').dispatchEvent(new Event('change'))")
           click_button("SAVE")
           expect(page).to have_css(".success")
         end
