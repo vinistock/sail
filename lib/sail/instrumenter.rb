@@ -15,6 +15,7 @@ module Sail
     # statistics
     def initialize
       @statistics = { settings: {}, profiles: {} }.with_indifferent_access
+      @number_of_settings = Setting.count
     end
 
     # []
@@ -74,6 +75,10 @@ module Sail
       increment_profile_failure_of(current_profile.name) if current_profile
 
       Sail.reset(setting_name) if self[setting_name][:failures] > Sail.configuration.failures_until_reset
+    end
+
+    def relevancy_of(setting_name)
+      (relative_usage_of(setting_name) / @number_of_settings).round(1)
     end
 
     private

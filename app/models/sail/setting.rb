@@ -151,7 +151,7 @@ module Sail
     end
 
     def relevancy
-      (Sail.instrumenter.relative_usage_of(name) / Sail::Setting.count).round(1)
+      Sail.instrumenter.relevancy_of(name)
     end
 
     def should_not_cache?

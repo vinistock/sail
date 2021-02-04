@@ -4,6 +4,7 @@
 * Allow using different session stores *[@denny]*
 * Fix Proc without block error for Ruby 3 *[@denny]*
 * Add missing parameter to permitted list *[@denny]*
+* Eliminate unnecessary query in calculating the relevancy score *[@vinistock]*
 
 ## 3.5.1 ##
 
