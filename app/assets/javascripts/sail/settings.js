@@ -4,7 +4,9 @@
 Search related functions
 */
 
-let submitTimer, submitInterval, intervals = 1;
+let submitTimer,
+    submitInterval,
+    intervals = 1;
 let queryElement = document.getElementById("query");
 let autoSearchEnabled = document.getElementById("auto_search_enabled").value;
 let progress = document.getElementById("search-submit-progress");
@@ -66,12 +68,23 @@ function toggleModal(modal) {
 function handleGenericClick(event) {
     let target = event.target;
 
-    if (orderButton !== null && (target === sortMenu || sortMenu.contains(target) || target === orderButton || orderButton.contains(target))) {
+    if (
+        orderButton !== null &&
+        (target === sortMenu ||
+            sortMenu.contains(target) ||
+            target === orderButton ||
+            orderButton.contains(target))
+    ) {
         return;
     }
 
-    if (profilesButton !== null && (target === profilesMenu || profilesMenu.contains(target) || target === profilesButton ||
-        profilesButton.contains(target))) {
+    if (
+        profilesButton !== null &&
+        (target === profilesMenu ||
+            profilesMenu.contains(target) ||
+            target === profilesButton ||
+            profilesButton.contains(target))
+    ) {
         return;
     }
 
@@ -101,10 +114,14 @@ if (queryElement !== null) {
     }
 
     orderButton.addEventListener("click", toggleSortMenu);
-    profilesButton.addEventListener("click", function () { toggleModal(profilesMenu) });
+    profilesButton.addEventListener("click", function () {
+        toggleModal(profilesMenu);
+    });
 }
 
-guideButton.addEventListener("click", function () { toggleModal(guide) });
+guideButton.addEventListener("click", function () {
+    toggleModal(guide);
+});
 document.body.addEventListener("click", handleGenericClick);
 document.addEventListener("keydown", closeAllModals);
 
@@ -119,18 +136,21 @@ function refreshClick() {
 
     if (!button.className.includes("active")) {
         button.classList.add("active");
-        setTimeout(function() { button.classList.remove("active"); }, 500);
+        setTimeout(function () {
+            button.classList.remove("active");
+        }, 500);
     }
 }
 
-for(i = 0; i < refreshButtons.length; i++) refreshButtons[i].addEventListener("click", refreshClick);
+for (i = 0; i < refreshButtons.length; i++)
+    refreshButtons[i].addEventListener("click", refreshClick);
 
 /*
 Guide related functions
  */
 
 function sectionClick() {
-    for(i = 0; i < guideSections.length; i++) {
+    for (i = 0; i < guideSections.length; i++) {
         if (this.parentElement.open) {
             guideSections[i].parentElement.style.display = "block";
         } else if (this !== guideSections[i]) {
@@ -139,7 +159,8 @@ function sectionClick() {
     }
 }
 
-for(i = 0; i < guideSections.length; i++) guideSections[i].addEventListener("click", sectionClick);
+for (i = 0; i < guideSections.length; i++)
+    guideSections[i].addEventListener("click", sectionClick);
 
 /*
 Cards related functions
@@ -149,7 +170,8 @@ function flipCard() {
     this.parentElement.parentElement.classList.toggle("flipped");
 }
 
-for(i = 0; i < cardTitles.length; i++) cardTitles[i].addEventListener("click", flipCard);
+for (i = 0; i < cardTitles.length; i++)
+    cardTitles[i].addEventListener("click", flipCard);
 
 function enableSubmitButton() {
     const name = this.id.replace("input_for_", "");
@@ -166,7 +188,7 @@ function enableSubmitButton() {
     }
 }
 
-for(i = 0; i < inputs.length; i++) {
+for (i = 0; i < inputs.length; i++) {
     if (inputs[i].type === "text") {
         inputs[i].addEventListener("input", enableSubmitButton);
     } else {
@@ -174,8 +196,10 @@ for(i = 0; i < inputs.length; i++) {
     }
 
     if (inputs[i].type === "checkbox") {
-        initialSettingValues[inputs[i].id.replace("input_for_", "")] = inputs[i].checked;
+        initialSettingValues[inputs[i].id.replace("input_for_", "")] =
+            inputs[i].checked;
     } else {
-        initialSettingValues[inputs[i].id.replace("input_for_", "")] = inputs[i].value;
+        initialSettingValues[inputs[i].id.replace("input_for_", "")] =
+            inputs[i].value;
     }
 }
