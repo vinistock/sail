@@ -5,6 +5,7 @@
 * Fix Proc without block error for Ruby 3 *[@denny]*
 * Add missing parameter to permitted list *[@denny]*
 * Eliminate unnecessary query in calculating the relevancy score *[@vinistock]*
+* Create view generator to allow main app to customize setting card *[@vinistock]*
 
 ## 3.5.1 ##
 
