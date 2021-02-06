@@ -30,7 +30,7 @@ Sail assigns to each setting a *relevancy score*. This metric is calculated whil
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'sail'
+gem "sail"
 ```
 
 And then execute:
@@ -41,19 +41,24 @@ $ bundle
 Adding the following line to your routes file will make the dashboard available at <base_url>/sail
 
 ```ruby
-mount Sail::Engine => '/sail'
+mount Sail::Engine => "/sail"
 ```
 
 Running the install generator will create necessary migrations for having the settings in your database.
 
 ```bash
-$ rails g sail:install
+$ bin/rails g sail:install
 ```
 
 When going through a major version upgrade, be sure to check the [changelog] and run the update generator. It will create whatever migrations are needed to move from any other major version to the latest.
 
 ```bash
-$ rails g sail:update
+$ bin/rails g sail:update
+```
+
+If you wish to customize the settings' card, the views can be copied to the main app by using the view generator.
+```bash
+$ bin/rails g sail:views
 ```
 
 ## Configuration
@@ -63,9 +68,9 @@ Available configurations and their defaults are listed below
 ```ruby
 Sail.configure do |config|
   config.cache_life_span = 6.hours        # How long to cache the Sail.get response for (note that cache is deleted after a set)
-  config.array_separator = ';'            # Default separator for array settings
+  config.array_separator = ";"            # Default separator for array settings
   config.dashboard_auth_lambda = nil      # Defines an authorization lambda to access the dashboard as a before action. Rendering or redirecting is included here if desired.
-  config.back_link_path = 'root_path'     # Path method as string for the "Main app" button in the dashboard. Any non-existent path will make the button disappear
+  config.back_link_path = "root_path"     # Path method as string for the "Main app" button in the dashboard. Any non-existent path will make the button disappear
   config.enable_search_auto_submit = true # Enables search auto submit after 2 seconds without typing
   config.days_until_stale = 60            # Days with no updates until a setting is considered stale and is a candidate to be removed from code (leave nil to disable checks)
   config.enable_logging = true            # Enable logging for update and reset actions. Logs include timestamp, setting name, new value and author_user_id (if current_user is defined)
