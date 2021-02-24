@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sail (3.5.1)
+    sail (3.6.0)
       fugit
       rails (>= 5.0.0)
 
@@ -275,4 +275,4 @@ DEPENDENCIES
   webrick
 
 BUNDLED WITH
-   2.2.5
+   2.2.11
