@@ -1,3 +1,7 @@
+## 3.7.0 ##
+
+* Create view generator to allow main app to customize setting card *[@vinistock]*
+
 ## 3.6.0 ##
 
 * Disable submit buttons by default if form is not dirty *[@vinistock]*
