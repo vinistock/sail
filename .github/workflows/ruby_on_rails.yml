@@ -16,12 +16,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2.3.4
     - name: Cache
-      uses: actions/cache@v2.1.3
+      uses: actions/cache@v2.1.5
       with:
         path: vendor/bundle
         key: ${{ matrix.ruby_version }}_${{ matrix.rails_version }}
     - name: Set up Ruby
-      uses: ruby/setup-ruby@v1.62.0
+      uses: ruby/setup-ruby@v1.68.0
       with:
         ruby-version: ${{ matrix.ruby_version }}
     - name: Build and test with Rake
@@ -35,4 +35,3 @@ jobs:
       env:
         RAILS_VERSION: ${{ matrix.rails_version }}
         ON_CI: true
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
