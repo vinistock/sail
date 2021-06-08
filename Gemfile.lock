@@ -85,7 +85,7 @@ GEM
       capybara
       selenium-webdriver
     childprocess (3.0.0)
-    concurrent-ruby (1.1.8)
+    concurrent-ruby (1.1.9)
     crass (1.0.6)
     database_cleaner (2.0.1)
       database_cleaner-active_record (~> 2.0.0)
@@ -99,7 +99,7 @@ GEM
     et-orbi (1.2.4)
       tzinfo
     ffi (1.14.2)
-    fugit (1.4.5)
+    fugit (1.5.0)
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.4)
     globalid (0.4.2)
