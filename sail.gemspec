@@ -22,20 +22,4 @@ Gem::Specification.new do |s|
 
   s.add_dependency "fugit"
   s.add_dependency "rails", ">= 5.0.0"
-
-  s.add_development_dependency "brakeman"
-  s.add_development_dependency "bundler"
-  s.add_development_dependency "capybara"
-  s.add_development_dependency "capybara-selenium"
-  s.add_development_dependency "database_cleaner"
-  s.add_development_dependency "rack-mini-profiler"
-  s.add_development_dependency "rspec-rails"
-  s.add_development_dependency "rspec-retry"
-  s.add_development_dependency "rubocop"
-  s.add_development_dependency "rubocop-packaging"
-  s.add_development_dependency "rubocop-performance"
-  s.add_development_dependency "rubocop-rails"
-  s.add_development_dependency "simplecov", "~> 0.21.0"
-  s.add_development_dependency "sqlite3"
-  s.add_development_dependency "webdrivers"
 end
