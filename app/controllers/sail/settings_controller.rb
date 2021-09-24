@@ -38,17 +38,15 @@ module Sail
     def switcher
       respond_to do |format|
         format.json do
-          begin
-            render json: {
-              value: Sail::Setting.switcher(positive: s_params[:positive],
-                                            negative: s_params[:negative],
-                                            throttled_by: s_params[:throttled_by])
-            }
-          rescue Sail::Setting::UnexpectedCastType
-            head(:bad_request)
-          rescue ActiveRecord::RecordNotFound
-            head(:not_found)
-          end
+          render json: {
+            value: Sail::Setting.switcher(positive: s_params[:positive],
+                                          negative: s_params[:negative],
+                                          throttled_by: s_params[:throttled_by])
+          }
+        rescue Sail::Setting::UnexpectedCastType
+          head(:bad_request)
+        rescue ActiveRecord::RecordNotFound
+          head(:not_found)
         end
       end
     end

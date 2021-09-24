@@ -16,12 +16,12 @@ Dir[File.join(File.dirname(__FILE__), "tasks/**/*.rake")].each { |f| load f }
 
 require "rspec/core"
 require "rspec/core/rake_task"
+require "rubocop/rake_task"
 
 RSpec::Core::RakeTask.new(spec: "app:db:test:prepare")
-task default: :spec
 
-task all: :environment do
-  system("brakeman --no-pager && rake && rubocop -A")
-end
+RuboCop::RakeTask.new
+
+task default: %i[spec rubocop]
 
 system("cd ./spec/dummy; RAILS_ENV=test rails db:environment:set; cd ../..")

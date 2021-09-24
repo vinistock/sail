@@ -31,7 +31,6 @@ jobs:
                   gem install bundler
                   bundle install --path vendor/bundle --jobs 4 --retry 3
                   bundle exec rake
-                  bundle exec rubocop
               env:
                   RAILS_VERSION: ${{ matrix.rails_version }}
                   ON_CI: true

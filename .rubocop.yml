@@ -1,43 +1,40 @@
 require:
-  - rubocop-packaging
-  - rubocop-performance
-  - rubocop-rails
+    - rubocop-packaging
+    - rubocop-performance
+    - rubocop-rails
 
 AllCops:
-  NewCops: enable
-  Exclude:
-  - spec/dummy/**/*
-  - coverage/**/*
-  - lib/generators/sail/**/templates/**/*
-  - vendor/bundle/**/*
+    TargetRubyVersion: 2.5
+    NewCops: enable
+    Exclude:
+        - spec/dummy/**/*
+        - coverage/**/*
+        - lib/generators/sail/**/templates/**/*
+        - vendor/bundle/**/*
 Rails:
-  Enabled: true
+    Enabled: true
 Rails/HttpPositionalArguments:
-  Exclude:
-    - spec/controllers/**/*
+    Exclude:
+        - spec/controllers/**/*
 Layout/LineLength:
-  Max: 140
+    Max: 140
 Metrics/MethodLength:
-  Max: 20
+    Max: 20
 Metrics/BlockLength:
-  Max: 30
-  Exclude:
-    - spec/**/*
+    Max: 30
+    Exclude:
+        - spec/**/*
 Metrics/ClassLength:
-  Max: 175
+    Max: 175
 Style/GuardClause:
-  Enabled: false
+    Enabled: false
 Style/StringLiterals:
-  EnforcedStyle: double_quotes
-Style/RedundantBegin:
-  Enabled: false
+    EnforcedStyle: double_quotes
 Style/StringLiteralsInInterpolation:
-  Enabled: false
-Gemspec/RequiredRubyVersion:
-  Enabled: false
+    Enabled: false
 Style/OptionalBooleanParameter:
-  Enabled: false
+    Enabled: false
 Naming/VariableNumber:
-  Enabled: false
+    Enabled: false
 Style/RedundantFreeze:
-  Enabled: false
+    Enabled: false

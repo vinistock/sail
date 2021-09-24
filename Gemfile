@@ -3,7 +3,6 @@
 source "https://rubygems.org"
 gemspec
 
-gem "brakeman"
 gem "bundler"
 gem "byebug", platforms: %i[mri mingw x64_mingw]
 gem "capybara"
