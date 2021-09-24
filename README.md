@@ -14,7 +14,7 @@ Enable/Disable a new feature, turn ON/OFF ab testing for new functionality, chan
 
 It comes with a lightweight responsive admin dashboard for searching and changing configurations on the fly.
 
-Sail assigns to each setting a *relevancy score*. This metric is calculated while the application is running and is based on the relative number of times a setting is invoked and on the total number of settings. The goal is to have an indicator of how critical changing a setting's value can be based on its frequency of usage. 
+Sail assigns to each setting a _relevancy score_. This metric is calculated while the application is running and is based on the relative number of times a setting is invoked and on the total number of settings. The goal is to have an indicator of how critical changing a setting's value can be based on its frequency of usage.
 
 ## Contents
 
@@ -27,6 +27,7 @@ Sail assigns to each setting a *relevancy score*. This metric is calculated whil
 7. [Contributing](#contributing)
 
 ## Installation
+
 Add this line to your application's Gemfile:
 
 ```ruby
@@ -34,6 +35,7 @@ gem "sail"
 ```
 
 And then execute:
+
 ```bash
 $ bundle
 ```
@@ -57,6 +59,7 @@ $ bin/rails g sail:update
 ```
 
 If you wish to customize the settings' card, the views can be copied to the main app by using the view generator.
+
 ```bash
 $ bin/rails g sail:views
 ```
@@ -101,22 +104,23 @@ After settings have been created a first time, they will not be updated with the
 Removing the entries from this file will cause settings to be deleted from the database.
 
 Settings can be aggregated by using groups. Searching by a group name will return all settings for that group.
+
 ```yaml
 # Rails.root/config/sail.yml
 # Setting name with it's information contained inside
 # These values are used for the reset functionality as well
 
 first_setting:
-  description: My very first setting
-  value: some_important_string
-  cast_type: string
-  group: setting_group_1
+    description: My very first setting
+    value: some_important_string
+    cast_type: string
+    group: setting_group_1
 second_setting:
-  description: My second setting, this time a boolean
-  value: false
-  cast_type: boolean
-  group: feature_flags
-``` 
+    description: My second setting, this time a boolean
+    value: false
+    cast_type: boolean
+    group: feature_flags
+```
 
 To clear the database and reload the contents of your sail.yml file, invoke this rake task.
 
@@ -128,11 +132,11 @@ $ rake sail:load_defaults
 
 Searching for settings in the dashboard can be done in the following ways:
 
-* By name: matches a substring of the setting's name
-* By group: matches all settings with the same group (exact match)
-* By cast type: matches all settings with the same cast type (exact match)
-* By stale: type 'stale' and get all settings that haven't been updated in X days (X is defined in the configuration)
-* By recent: type 'recent X' where X is the number of hours and get all settings that have been updated since X hours ago
+-   By name: matches a substring of the setting's name
+-   By group: matches all settings with the same group (exact match)
+-   By cast type: matches all settings with the same cast type (exact match)
+-   By stale: type 'stale' and get all settings that haven't been updated in X days (X is defined in the configuration)
+-   By recent: type 'recent X' where X is the number of hours and get all settings that have been updated since X hours ago
 
 ## Manipulating settings in the code
 
@@ -157,9 +161,9 @@ end
 # failures_until_reset, it will automatically trigger a Sail.reset for that setting.
 
 # For example, this will ignore ExampleError, but any other error raised will increase
-# the count until the setting "name" is reset. 
+# the count until the setting "name" is reset.
 Sail.get(:name, expected_errors: [ExampleError]) do |value|
-  code_that_can_raise_example_error(value) 
+  code_that_can_raise_example_error(value)
 end
 
 # Set setting value
@@ -174,7 +178,7 @@ Sail.reset(:name)
 # negative: This is the name of the setting that will be returned if the throttle setting returns false
 # throttle: A setting of cast_type throttle that will switch between positive and negative
 #
-# return: Value with cast of either positive or negative, depending on the randomized value of throttle 
+# return: Value with cast of either positive or negative, depending on the randomized value of throttle
 # Settings positive and negative do not have to be of the same type. However, throttle must be a throttle type setting
 
 Sail.switcher(
@@ -241,14 +245,18 @@ To query settings via GraphQL, use the following pattern.
 ```graphql
 query {
     sailGet(name: "my_setting")
-    sailSwitcher(positive: "positive_case_setting", negative: "negative_case_setting", throttledBy: "throttle_setting")
+    sailSwitcher(
+        positive: "positive_case_setting"
+        negative: "negative_case_setting"
+        throttledBy: "throttle_setting"
+    )
 }
 
 mutation {
     sailSet(name: "my_setting", value: "value") {
         success
     }
-    
+
     sailProfileSwitch(name: "my_profile") {
         success
     }
@@ -260,6 +268,10 @@ mutation {
 Sail's few strings are all localized for English in [en.yml], making it easy to create translations for the desired languages.
 
 Make sure to pass in the desired locale as a parameter.
+
+## Credits
+
+The **awesome** icons used by Sail's admin panel are all made by [Font Awesome](https://github.com/FortAwesome/Font-Awesome).
 
 ## Contributing
 
