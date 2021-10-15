@@ -29,8 +29,8 @@ module Sail
 
     initializer "sail" do
       unless Sail.configuration.dashboard_auth_lambda.nil?
-        to_prepare do
-          Sail::SettingsController.before_action(*Sail.configuration.dashboard_auth_lambda)
+        ActiveSupport::Reloader.to_prepare do
+          Sail::SettingsController.before_action(Sail.configuration.dashboard_auth_lambda)
         end
       end
     end
@@ -46,13 +46,6 @@ module Sail
       rescue *errors
         warn "Skipping setting creation because database doesn't exist"
       end
-    end
-
-    private
-
-    def to_prepare(&block)
-      klass = defined?(ActiveSupport::Reloader) ? ActiveSupport::Reloader : ActionDispatch::Reloader
-      klass.to_prepare(&block)
     end
   end
 end
