@@ -10,7 +10,7 @@
             <div>
               <%= form_tag(reset_setting_path(name: setting.name), method: :put, remote: true) do %>
                 <button class="refresh-button" title="<%= I18n.t("sail.refresh_tooltip") %>">
-                  <%= image_tag("sail/reset.svg", alt: I18n.t("sail.refresh_tooltip")) %>
+                  <%= image_tag("sail/undo.svg", alt: I18n.t("sail.refresh_tooltip")) %>
                 </button>
               <% end %>
             </div>
@@ -65,11 +65,11 @@
                 <button id="btn-submit-<%= setting.name %>" type="submit" class="btn-value-submit" disabled><%= I18n.t("sail.save") %></button>
 
                 <span id="success-<%= setting.name %>" class="notice success">
-                  <%= image_tag("sail/checkmark.svg") %>
+                  <%= image_tag("sail/check.svg") %>
                 </span>
 
                 <span id="alert-<%= setting.name %>" class="notice alert">
-                  <%= image_tag("sail/error.svg") %>
+                  <%= image_tag("sail/times.svg") %>
                 </span>
               </div>
             </div>
