@@ -1,4 +1,4 @@
-<% cache setting, expires_in: Sail.configuration.cache_life_span do %>
+<% cache [setting, setting.cache_index], expires_in: Sail.configuration.cache_life_span do %>
   <div class="card">
     <div class="front">
       <h3 class="title card-title"><%= setting.display_name %></h3>
