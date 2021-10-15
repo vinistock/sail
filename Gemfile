@@ -17,7 +17,6 @@ gem "rubocop-packaging"
 gem "rubocop-performance"
 gem "rubocop-rails"
 gem "sassc-rails"
-gem "simplecov", "~> 0.21.0"
 gem "sqlite3",
     (ENV["RAILS_VERSION"].nil? || ENV["RAILS_VERSION"].to_s >= "6.0.0" ? ">= 1.4.0" : "< 1.4.0"),
     platforms: %i[mri mingw x64_mingw]

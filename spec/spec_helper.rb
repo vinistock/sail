@@ -3,7 +3,6 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path("dummy/config/environment.rb", __dir__)
 require "rspec/rails"
-require "simplecov"
 require "rails/all"
 require "database_cleaner"
 require "capybara/rspec"
@@ -13,7 +12,6 @@ require "selenium/webdriver"
 require "webdrivers/geckodriver"
 require "rspec/retry"
 
-SimpleCov.start
 DatabaseCleaner.strategy = :truncation
 
 class User
