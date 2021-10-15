@@ -1,6 +1,6 @@
 ![dashboard](https://raw.githubusercontent.com/vinistock/sail/master/app/assets/images/sail/sail.gif)
 
-[![Build Status](https://github.com/vinistock/sail/workflows/Ruby%20on%20Rails/badge.svg?branch=master)](https://github.com/vinistock/sail/actions) [![Gem Version](https://badge.fury.io/rb/sail.svg)](https://badge.fury.io/rb/sail) ![](http://ruby-gem-downloads-badge.herokuapp.com/sail?color=brightgreen&type=total) [![Mentioned in Awesome Ruby](https://awesome.re/mentioned-badge.svg)](https://github.com/markets/awesome-ruby)
+[![Build Status](https://github.com/vinistock/sail/workflows/Ruby%20on%20Rails/badge.svg?branch=master)](https://github.com/vinistock/sail/actions) [![Gem Version](https://badge.fury.io/rb/sail.svg)](https://badge.fury.io/rb/sail) [![Mentioned in Awesome Ruby](https://awesome.re/mentioned-badge.svg)](https://github.com/markets/awesome-ruby)
 
 # Sail
 
@@ -265,7 +265,7 @@ mutation {
 
 ## Localization
 
-Sail's few strings are all localized for English in [en.yml], making it easy to create translations for the desired languages.
+Sail's few strings are all localized for English in [en.yml]. Using the same YAML keys for other languages should work for localizing the dashboard.
 
 Make sure to pass in the desired locale as a parameter.
 
