@@ -22,4 +22,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "fugit"
   s.add_dependency "rails", ">= 5.0.0"
+  s.metadata = {
+    "rubygems_mfa_required" => "true"
+  }
 end
