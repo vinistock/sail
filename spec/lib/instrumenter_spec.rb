@@ -20,11 +20,6 @@ describe Sail::Instrumenter, type: :lib do
       expect(instrumenter.instance_variable_get(:@statistics)).to eq("settings" => { "setting" => { "usages" => 1, "failures" => 0 } },
                                                                      "profiles" => {})
     end
-
-    it "deletes cache fragment after reaching increment limit" do
-      expect_any_instance_of(ActionController::Base).to receive(:expire_fragment).with(/name: "setting"/)
-      500.times { instrumenter.increment_usage_of("setting") }
-    end
   end
 
   describe "#relative_usage_of" do

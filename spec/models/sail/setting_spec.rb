@@ -685,4 +685,23 @@ describe Sail::Setting, type: :model do
 
     it { is_expected.to eq(true) }
   end
+
+  describe "#cache_index" do
+    let(:setting) { described_class.create!(name: :setting, cast_type: :string, value: "Some string") }
+
+    before do
+      Sail.instrumenter.instance_variable_set(:@number_of_settings, Sail::Setting.count)
+      Sail.instrumenter.instance_variable_set(:@statistics, { settings: {}, profiles: {} }.with_indifferent_access)
+    end
+
+    it "increments according to Instrumenter::USAGES_UNTIL_CACHE_EXPIRE" do
+      expect(setting.cache_index).to eq(0)
+
+      500.times { Sail.get(:setting) }
+      expect(setting.cache_index).to eq(1)
+
+      500.times { Sail.get(:setting) }
+      expect(setting.cache_index).to eq(2)
+    end
+  end
 end

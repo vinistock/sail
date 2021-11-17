@@ -16,6 +16,8 @@ feature "relevancy score", js: true, type: :feature do
   end
 
   before do
+    ActionController::Base.new.expire_fragment(/name: "#{setting_1.name}"/)
+    ActionController::Base.new.expire_fragment(/name: "#{setting_2.name}"/)
     Sail.instrumenter.instance_variable_set(:@number_of_settings, Sail::Setting.count)
     Sail.instrumenter.instance_variable_set(:@statistics, { settings: {}, profiles: {} }.with_indifferent_access)
     visit "/sail"

@@ -162,6 +162,13 @@ module Sail
       try(:caster).try(:to_value)
     end
 
+    # cache_index
+    #
+    # Used in _setting.html.erb for the cache_key
+    def cache_index
+      Sail.instrumenter[name][:usages] / Instrumenter::USAGES_UNTIL_CACHE_EXPIRE
+    end
+
     private
 
     def instantiate_caster

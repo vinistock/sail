@@ -49,7 +49,6 @@ module Sail
     # times a setting has been called
     def increment_usage_of(setting_name)
       self[setting_name][:usages] += 1
-      expire_cache_fragment(setting_name) if (self[setting_name][:usages] % USAGES_UNTIL_CACHE_EXPIRE).zero?
     end
 
     # relative_usage_of
@@ -60,7 +59,10 @@ module Sail
     def relative_usage_of(setting_name)
       return 0.0 if @statistics[:settings].empty?
 
-      (100.0 * self[setting_name][:usages]) / @statistics[:settings].sum { |_, entry| entry[:usages] }
+      total_usages = @statistics[:settings].sum { |_, entry| entry[:usages] }
+      return 0.0 if total_usages.zero?
+
+      (100.0 * self[setting_name][:usages]) / total_usages
     end
 
     # increment_failure_of
@@ -79,12 +81,6 @@ module Sail
 
     def relevancy_of(setting_name)
       (relative_usage_of(setting_name) / @number_of_settings).round(1)
-    end
-
-    private
-
-    def expire_cache_fragment(setting_name)
-      ActionController::Base.new.expire_fragment(/name: "#{setting_name}"/)
     end
   end
 end
