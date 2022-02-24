@@ -644,10 +644,8 @@ describe Sail::Setting, type: :model do
     end
 
     it "formats database values to yaml for config file" do
-      file = Tempfile.new
-      allow(File).to receive(:open).with("./config/sail.yml", "w").and_yield(file)
-
-      expect(file).to receive(:write).with(
+      expect(File).to receive(:write).with(
+        "./config/sail.yml",
         "---\nsetting:\n  description: My setting\n  value: '1'\n  group: tuners\n  cast_type: integer\n"
       )
 

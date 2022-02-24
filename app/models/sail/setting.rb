@@ -134,7 +134,7 @@ module Sail
         attributes[setting.name] = setting_attrs.merge("cast_type" => setting.cast_type)
       end
 
-      File.open(config_file_path, "w") { |f| f.write(attributes.to_yaml) }
+      File.write(config_file_path, attributes.to_yaml)
     end
 
     private_class_method :config_file_path, :destroy_missing_settings,
