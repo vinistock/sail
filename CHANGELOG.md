@@ -1,6 +1,8 @@
-## 3.7.0 ##
+## 3.6.1 ##
 
 * Create view generator to allow main app to customize setting card *[@vinistock]*
+* Fix setting card cache expiration for redis *[@vinistock]*
+* Add require MFA in the gemspec *[@vinistock]*
 
 ## 3.6.0 ##
 

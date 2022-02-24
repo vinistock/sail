@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sail (3.6.0)
+    sail (3.6.1)
       fugit
       rails (>= 5.0.0)
 
@@ -94,7 +94,7 @@ GEM
     database_cleaner-core (2.0.1)
     diff-lcs (1.5.0)
     erubi (1.10.0)
-    et-orbi (1.2.5)
+    et-orbi (1.2.6)
       tzinfo
     ffi (1.14.2)
     fugit (1.5.2)
@@ -263,4 +263,4 @@ DEPENDENCIES
   webrick
 
 BUNDLED WITH
-   2.2.29
+   2.2.31
