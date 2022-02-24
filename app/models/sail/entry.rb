@@ -10,7 +10,7 @@ module Sail
   class Entry < ApplicationRecord
     belongs_to :setting
     belongs_to :profile
-    validates :value, :setting, :profile, presence: true
+    validates :value, presence: true
 
     scope :by_profile_name, ->(name) { joins(:profile).where(sail_profiles: { name: name }) }
 
