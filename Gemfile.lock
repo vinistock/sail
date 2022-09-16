@@ -84,7 +84,7 @@ GEM
       capybara
       selenium-webdriver
     childprocess (3.0.0)
-    concurrent-ruby (1.1.9)
+    concurrent-ruby (1.1.10)
     crass (1.0.6)
     database_cleaner (2.0.1)
       database_cleaner-active_record (~> 2.0.0)
@@ -94,11 +94,11 @@ GEM
     database_cleaner-core (2.0.1)
     diff-lcs (1.5.0)
     erubi (1.10.0)
-    et-orbi (1.2.6)
+    et-orbi (1.2.7)
       tzinfo
     ffi (1.14.2)
-    fugit (1.5.2)
-      et-orbi (~> 1.1, >= 1.1.8)
+    fugit (1.7.0)
+      et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -223,7 +223,7 @@ GEM
     sqlite3 (1.4.2)
     thor (1.2.1)
     tilt (2.0.10)
-    tzinfo (2.0.4)
+    tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
     webdrivers (4.6.1)
