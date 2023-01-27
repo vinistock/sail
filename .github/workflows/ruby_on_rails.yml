@@ -21,21 +21,17 @@ jobs:
                       ruby_version: 3.2
         steps:
             - uses: actions/checkout@v3
-            - name: Cache
-              uses: actions/cache@v3
-              with:
-                  path: vendor/bundle
-                  key: ${{ matrix.ruby_version }}_${{ matrix.rails_version }}
+            - name: Clear existing lockfile and install dependencies
+              run: |
+                  rm Gemfile.lock
+                  sudo apt-get install libsqlite3-dev
             - name: Set up Ruby
               uses: ruby/setup-ruby@v1
               with:
                   ruby-version: ${{ matrix.ruby_version }}
+                  bundler-cache: true
             - name: Build and test with Rake
               run: |
-                  sudo apt-get install libsqlite3-dev
-                  rm Gemfile.lock
-                  gem install bundler
-                  bundle install --path vendor/bundle --jobs 4 --retry 3
                   bundle exec rake
               env:
                   RAILS_VERSION: ${{ matrix.rails_version }}
