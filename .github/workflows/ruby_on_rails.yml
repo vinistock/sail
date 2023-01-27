@@ -8,29 +8,31 @@ jobs:
         strategy:
             matrix:
                 rails_version: [5.2.6, 6.1.4]
-                ruby_version: [2.5, 2.6, 2.7, 3.0]
+                ruby_version: [2.5, 2.6, 2.7, '3.0']
                 exclude:
                     - rails_version: 5.2.6
-                      ruby_version: 3.0
-
+                      ruby_version: '3.0'
+                include:
+                    - rails_version: 7.0.2.3
+                      ruby_version: '3.0'
+                    - rails_version: 7.0.2.3
+                      ruby_version: 3.1
+                    - rails_version: 7.0.2.3
+                      ruby_version: 3.2
+        env:
+          RAILS_VERSION: ${{ matrix.rails_version }}
+          ON_CI: true
         steps:
-            - uses: actions/checkout@v2.3.4
-            - name: Cache
-              uses: actions/cache@v2.1.6
-              with:
-                  path: vendor/bundle
-                  key: ${{ matrix.ruby_version }}_${{ matrix.rails_version }}
+            - uses: actions/checkout@v3
+            - name: Clear existing lockfile and install dependencies
+              run: |
+                  rm Gemfile.lock
+                  sudo apt-get install libsqlite3-dev
             - name: Set up Ruby
-              uses: ruby/setup-ruby@v1.77.0
+              uses: ruby/setup-ruby@v1
               with:
                   ruby-version: ${{ matrix.ruby_version }}
+                  bundler-cache: true
             - name: Build and test with Rake
               run: |
-                  sudo apt-get install libsqlite3-dev
-                  rm Gemfile.lock
-                  gem install bundler
-                  bundle install --path vendor/bundle --jobs 4 --retry 3
                   bundle exec rake
-              env:
-                  RAILS_VERSION: ${{ matrix.rails_version }}
-                  ON_CI: true
